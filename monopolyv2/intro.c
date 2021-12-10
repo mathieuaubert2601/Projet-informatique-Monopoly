@@ -1,0 +1,92 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <windows.h>
+#include "header.h"
+void intro()
+{
+    Color(14,0);
+    printf("Il y a longtemps\n");
+    Sleep(2000);
+    printf("Tres longtemps...");
+    Sleep(2000);
+    system("cls");
+    Sleep(500);
+    printf("Dans une galaxie lointaine\n");
+    Sleep(2000);
+    printf("Tres lointaine...");
+    Sleep(2000);
+    system("cls");
+    Sleep(1000);
+    Color(14,0);
+    printf("              .               .    .          .              .   .         .             .           .          .       .   .   .    .                .     .          .                 .          . .\n");
+    Sleep(50);
+    printf("  .        . . .          .                    .   .            .              .                 .                .                .   .                  .                .       .             .      \n");
+    Sleep(50);
+    printf("              .               .    .          .              .   .         .             .           .          .       .   .   .    .                .     .          .                 .          . .\n");
+    Sleep(50);
+    printf("  .        . . .          .                    .   .            .              .                 .                .                .   .                  .                .       .             .      \n");
+    Sleep(50);
+    printf("     .   .        .            .           .  .          .              .       .             .            ..                 .                  .                          .                  .  .         \n ");
+    printf("         .                .            .  .                  .         .            .               .    .          .              .   .         .             .           .          .       .   .   .    .                .     .          .                 .          . .\n");
+    printf("                  .                        .    .         .     _________________      ____         __________ .                              .                .     \n");
+    Sleep(50);
+    printf("    .             .             .       .         .          . /                 |    /    \\    .  |          \\ .         .             .             .               .\n");
+    Sleep(50);
+    printf(".       .     .               .        .              .       /    ______   _____| . /      \\      |    ___    |     .       .    .         .        .           .    ..\n");
+    Sleep(50);
+    printf(" .            .             .     .        .                  \\    \\    |   |       /   /\\   \\     |   |___>   |      .            .           .       .           .\n");
+    Sleep(50);
+    printf(".         .        .      .          .       .                 \\    \\   |   |      /   /__\\   \\  . |         _/     .          .        .           .    .       .     \n");
+    Sleep(50);
+    printf(".        .             .        .                       ________>    |  |   | .   /            \\   |   |\\    \\_______      .              .             .           ..\n");
+    Sleep(50);
+    printf(".             .         .             .          .     |            /   |   |    /    ______    \\  |   | \\           |            .       .            .           .  \n");
+    Sleep(50);
+    printf(".           .           .      .             .        .|___________/    |___|   /____/      \____\\  |___|  \\__________|          .              .               .      .  \n");
+    Sleep(50);
+    printf(".              .                .           .           ____    __  . _____   ____      .  __________   .  __________ .          .          .  .                   .       .\n");
+    Sleep(50);
+    printf(".        .    .       .       .               .         \\    \\  /  \\  /    /  /    \\       |          \\    /         |      .     .              .      .             .\n");
+    Sleep(50);
+    printf(".  .          .          .        .               .      \\    \\/    \\/    /  /      \\      |    ___    |  /     _____|         .                .             .     .   .\n");
+    Sleep(50);
+    printf(".    .              .            .         .            . \\              /  /   /\\   \\ .   |   |___>   |  \\     \\    .  .                    .          .           .    \n");
+    Sleep(50);
+    printf(".             .            .        .             .        \\            /  /   /__\\   \\    |         _/.   \\     \\   .             .            .          .           .\n");
+    Sleep(50);
+    printf(" .       .              .      .                    .       \\    /\\    /  /            \\   |   |\\    \\______>    |   .         .              .                  .  .    \n");
+    Sleep(50);
+    printf(".       .         .                .     .               .   \\  /  \\  /  /    ______    \\  |   | \\              /     .            .              .              .       .\n");
+    Sleep(50);
+    printf("  .       .               .    .       .  .             .     \\/    \\/  /____/      \\____\\ |___|  \\____________/ .              .          .            .             .  \n");
+    Sleep(50);
+    printf("                       .                           .         .               .                 .         .             .              .          .        .        .   .   \n");
+    Sleep(50);
+    printf("            .   .             .        .                       .         ");
+    Color(3,0);
+    printf("M O N O P O L Y  E D I T I O N");
+    Color(14,0);
+    printf("            .        .             .       .  .        .      .\n");
+    Sleep(50);
+    printf("              .               .    .          .              .   .         .             .           .          .       .   .   .    .                .     .          .                 .          . .\n");
+    Sleep(50);
+    printf("  .        . . .          .                    .   .            .              .                 .                .                .   .                  .                .       .             .      \n");
+    Sleep(50);
+    printf("              .               .    .          .              .   .         .             .           .          .       .   .   .    .                .     .          .                 .          . .\n");
+    Sleep(50);
+    printf("  .        . . .          .                    .   .            .              .                 .                .                .   .                  .                .       .             .      \n");
+    Sleep(50);
+    printf("              .               .    .          .              .   .         .             .           .          .       .   .   .    .                .     .          .                 .          . .\n");
+    Sleep(50);
+    printf("  .        . . .          .                    .   .            .              .                 .                .                .   .                  .                .       .             .      \n");
+    Sleep(50);
+    printf("                       .                           .         .               .                 .         .           .\n");
+    Sleep(50);
+    printf("                                               .                                   .           .     .               .  .          ");
+    Sleep(2000);
+    printf("Appuyer sur entrer pour continuer");
+    fflush(stdin);
+    getchar();
+    system("cls");
+}

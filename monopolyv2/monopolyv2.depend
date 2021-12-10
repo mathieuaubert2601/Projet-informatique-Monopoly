@@ -1,0 +1,117 @@
+# depslib dependency file v1.0
+1639054816 source:c:\ece paris\ing1\algo\programmes ing1\monopolyv2\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"header.h"
+
+1639048891 source:c:\ece paris\ing1\algo\programmes ing1\monopolyv2\menu.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"header.h"
+
+1638824266 source:c:\ece paris\ing1\algo\programmes ing1\monopolyv2\color.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"header.h"
+
+1638974796 c:\ece paris\ing1\algo\programmes ing1\monopolyv2\header.h
+
+1639054439 source:c:\ece paris\ing1\algo\programmes ing1\monopolyv2\intro.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"header.h"
+
+1638862831 source:c:\ece paris\ing1\algo\programmes ing1\monopolyv2\fullscreen.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"header.h"
+
+1638974848 source:c:\ece paris\ing1\algo\programmes ing1\monopolyv2\blindagechoixmenu.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"header.h"
+
+1638974421 source:c:\ece paris\ing1\algo\programmes ing1\monopolyv2\credits.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"header.h"
+
+1639055096 source:c:\ece paris\ing1\algo\programmes ing1\monopolyv2\plateau.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"header.h"
+
+1639072484 source:c:\users\aubert mathieu\dropbox\ece paris 1er annee\projet d'informatique\monopolyv2\monopolyv2\blindagechoixmenu.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"header.h"
+
+1639072484 c:\users\aubert mathieu\dropbox\ece paris 1er annee\projet d'informatique\monopolyv2\monopolyv2\header.h
+
+1639072484 source:c:\users\aubert mathieu\dropbox\ece paris 1er annee\projet d'informatique\monopolyv2\monopolyv2\color.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"header.h"
+
+1639072484 source:c:\users\aubert mathieu\dropbox\ece paris 1er annee\projet d'informatique\monopolyv2\monopolyv2\credits.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"header.h"
+
+1639072484 source:c:\users\aubert mathieu\dropbox\ece paris 1er annee\projet d'informatique\monopolyv2\monopolyv2\fullscreen.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"header.h"
+
+1639072485 source:c:\users\aubert mathieu\dropbox\ece paris 1er annee\projet d'informatique\monopolyv2\monopolyv2\intro.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"header.h"
+
+1639072485 source:c:\users\aubert mathieu\dropbox\ece paris 1er annee\projet d'informatique\monopolyv2\monopolyv2\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"header.h"
+
+1639072485 source:c:\users\aubert mathieu\dropbox\ece paris 1er annee\projet d'informatique\monopolyv2\monopolyv2\menu.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"header.h"
+
+1639072485 source:c:\users\aubert mathieu\dropbox\ece paris 1er annee\projet d'informatique\monopolyv2\monopolyv2\plateau.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"header.h"
+
