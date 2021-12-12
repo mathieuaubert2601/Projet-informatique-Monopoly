@@ -7,7 +7,7 @@
 
 int menu()//menu
 {
-  int choixmenu;//creation d'une variable choix
+  int choix;//creation d'une variable choix
   Color(14,0);
   for (int i=0;i<=0;i++)//pour le nombre de lignes
   {
@@ -63,16 +63,18 @@ int menu()//menu
   Color(3,0);
   printf("                               3: Sauvegarder la partie en cours\n");
   Color(3,0);
-  printf("|   /L___________   `---._________                                                  ");
+  printf("|   /L___________   `---._________                                         ");
   Sleep(30);
   Color(3,0);
-  printf("                               4: Credits\n");
+  printf("                                        4: Credits\n");
   Sleep(30);
   Color(3,0);
   Sleep(30);
-  printf("|   | | .----. _  |---v--.______ _ `-------------.--.__\n");
+  printf("|   | | .----. _  |---v--.______ _ `-------------.--.__ ");
+  Color(3,0);
+  printf("                                                           5: Quitter");
   Sleep(30);
-  printf("|  [| | |    |(_) |]__[_____]____________________]__ __]\n");
+  printf("\n|  [| | |    |(_) |]__[_____]____________________]__ __]\n");
   Sleep(30);
   printf("|   | |___________|---^--'_________.-------------`--'\n");
   Sleep(30);
@@ -104,8 +106,8 @@ int menu()//menu
   printf("Donnez votre choix jeune padawan\n");
   fflush(stdin);
   Color(3,0);
-  scanf("%d",&choixmenu);
-  if(choixmenu<1||choixmenu>4)//blindage
+  scanf("%d",&choix);
+  if(choix<1||choix>5)//blindage
   {
         do//on demande
             {
@@ -114,8 +116,8 @@ int menu()//menu
                 fflush(stdin);
                 Color(3,0);
                 scanf("%d",&choixmenu);
-            }while(choixmenu<1||choixmenu>4);//tant que l'on a pas de resultat entre 1 et 2
+            }while(choix<1||choix>5);//tant que l'on a pas de resultat entre 1 et 5
   }
-
-  return(choixmenu);//on retourne le choix
+  return(choix);//on retourne le choix
 }
+
