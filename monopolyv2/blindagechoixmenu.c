@@ -4,7 +4,7 @@
 #include <windows.h>
 #include "header.h"
 
-int choixmenu(int choixmenu)//va traiter les choix du menu de la valeur deja blind�e
+int choixmenu(int choixmenu)//va traiter les choix du menu de la valeur deja blindée
 {
     int a;
     switch(choixmenu)
@@ -31,7 +31,16 @@ int choixmenu(int choixmenu)//va traiter les choix du menu de la valeur deja bli
 
             break;
         }
+    case 5:
+        {
+            printf("Vous avez bien appuyé sur quitter.");
+            //prog sauvegarder
+            printf("sauvegarde en cours\n");
+            Sleep(2000);
+            return(0);
+        }
 
     }
 
 }
+
