@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1639328749 source:c:\users\aubert mathieu\dropbox\ece paris 1er annee\projet d'informatique\regle_jeu\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+
