@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1639163643 source:c:\users\aubert mathieu\dropbox\ece paris 1er annee\algo et programmation structurée\algo +\lancé de dé\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+
