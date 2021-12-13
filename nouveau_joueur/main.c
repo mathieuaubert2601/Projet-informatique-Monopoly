@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 typedef struct joueur
 {
     char nomJoueur[50] ;
-	/*int possessions[24];
+	possessions[24];
 	int  position;
 	int  argent ;
 	int tourPrison ;
@@ -14,11 +15,11 @@ typedef struct joueur
 	int nbProprietefam2;
 	int nbProprietefam3;
 	int nbProprietefam4;
-	int doubleOuNon;*/
+	int doubleOuNon;
 
 }joueur_t;
 
-void creer_nouveau_joueur(joueur_t* tab_joueur[4], int* nombre_joueur)
+void creer_nouveau_joueur(joueur_t tab_joueur[], int* nombre_joueur)
 {
     ///Déclaration des variables
     int choix = 0, blindage1 = 0 ;
@@ -39,43 +40,15 @@ void creer_nouveau_joueur(joueur_t* tab_joueur[4], int* nombre_joueur)
 
     for(int i=0; i<choix; i++)
     {
-        printf("Entrez un nom d'utilisateur pour le joueur %d (sans espace) :\n",i+1);
-        fflush(stdin);
-        scanf("%s", &nom_utilisateur);
-
-        for(int y=0; nom_utilisateur[y] != '\0'; y++)
-        {
-            if(nom_utilisateur[y] == ' ')
-            {
-                blindage1 = 1;
-            }
-        }
-        while(blindage1 == 1)
-        {
-            blindage1 = 0;
-            printf("Vous avez entre un espace, entrez un nouveau nom d'utilisateur : \n");
+    //Blindage pour les espaces
+        do{
+            printf("Entrez un nom d'utilisateur pour le joueur %d (sans espace) :\n",i+1);
             fflush(stdin);
-            scanf("%s", &nom_utilisateur);
+            fgets(nom_utilisateur, 50, stdin);
+        }while(strchr(nom_utilisateur, ' ') != NULL);
 
-            for(int j=0; nom_utilisateur[j] != '\0'; j++)
-            {
-                if(nom_utilisateur[j] == ' ')
-                {
-                    blindage1 = 1;
-                }
-            }
-
-        }
-        *tab_joueur[i]->nomJoueur = nom_utilisateur;
+        strcpy(tab_joueur[i].nomJoueur , nom_utilisateur);
     }
-
-
-
-
-
-
-
-
 }
 
 
@@ -85,8 +58,7 @@ int main()
     joueur_t joueur1, joueur2, joueur3, joueur4, tab_Joueur[4] = {joueur1, joueur2, joueur3, joueur4};
     int nombreJoueur;
 
-    creer_nouveau_joueur(&tab_Joueur[4], &nombreJoueur);
-
+    creer_nouveau_joueur(tab_Joueur, &nombreJoueur);
 
     return 0;
 }
