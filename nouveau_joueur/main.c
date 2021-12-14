@@ -5,7 +5,7 @@
 typedef struct joueur
 {
     char nomJoueur[50] ;
-	possessions[24];
+    int possessions[24];
 	int  position;
 	int  argent ;
 	int tourPrison ;
