@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1639494010 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\choisirquicommence\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+
