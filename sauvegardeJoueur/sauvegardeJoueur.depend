@@ -1,5 +1,6 @@
 # depslib dependency file v1.0
-1639649967 source:c:\users\aubert mathieu\dropbox\ece paris 1er annee\projet d'informatique\sauvegardejoueur\main.c
+1639680965 source:c:\users\aubert mathieu\dropbox\ece paris 1er annee\projet d'informatique\sauvegardejoueur\main.c
 	<stdio.h>
 	<stdlib.h>
+	<string.h>
 
