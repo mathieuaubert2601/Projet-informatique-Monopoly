@@ -326,7 +326,7 @@ int main()
 
     sauvegardeQuatreJoueur(joueur1, joueur2, joueur3, joueur4);
     chargerQuatreJoueur(&joueur5, &joueur6, &joueur7, &joueur8);
-    printf("Le nom du premier joueur est : %s\nLe nom du second joueur est : %s\nLe nom du troisieme joueur est : %s\nLe nom du quatrieme joueur est %s",joueur5.nomJoueur, joueur6.nomJoueur, joueur7.nomJoueur, joueur8.nomJoueur);
+
 
 
 

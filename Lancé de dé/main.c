@@ -9,35 +9,8 @@ typedef struct t_joueur
 }joueur;
 
 
-int sousProgDouble(int* de1, int* de2,joueur joueurB, int* somme)
-{
-    if(*de1 == *de2)
-    {
-        if(joueurB.doubleOuNon == 3)
-        {
-            printf("Vous allez en prison\n");
-            joueurB.doubleOuNon = 0;
-        }
-        if(joueurB.doubleOuNon == 1)
-        {
-            lancerDeDes(&de1, &de2, &somme,joueurB );
-            joueurB.doubleOuNon == 2;
-        }
-        if(joueurB.doubleOuNon == 0)
-        {
-            lancerDeDes(&de1, &de2, &somme,joueurB);
-            joueurB.doubleOuNon = 1;
-        }
-    }
-    else
-    {
-        joueurB.doubleOuNon = 0;
-    }
-
-}
-
 //Sous programme pour lancer les dés
-void lancerDeDes(int* deC, int* deD, int* somme, joueur joueurC)
+void lancerDeDes(int* deC, int* deD)
 {
     //Déclaration des variables
     char choix;
@@ -60,8 +33,13 @@ void lancerDeDes(int* deC, int* deD, int* somme, joueur joueurC)
     //Obtention de valeurs aléatoire entre 1 et 6
     int de1 = rand() % 6 + 1;
     int de2 = rand() % 6 + 1;
-    sommeInterne = sommeInterne + de1 + de2;
 
+    *deC = de1;
+    *deD = de2;
+}
+
+void afficherDe(int de1, int de2)
+{
     //Affichage des dés
     if(de1 == 1)
     {
@@ -160,41 +138,54 @@ void lancerDeDes(int* deC, int* deD, int* somme, joueur joueurC)
         printf("o 0   0 o\n");
         printf("o o o o o\n");
     }
-
-    return de1 + de2;
 }
 
-
-void lanceDesGlobal(int* deC, int* deD, int* somme, joueur joueurC)
+void lanceDesGlobal(int* deE, int* deF, int* somme, joueur joueurC)
 {
-    int sommeIni = *somme;
-    int sommeTmp;
+    ///Déclaration des variables
+    int sommeTmp = 0;
 
-    sommeIni = lancerDeDes(&deC, &deD, &somme, joueurC);
-    sommeTmp = sommeIni
+    lancerDeDes(deE, deF);
+    afficherDe(*deE, *deF);
 
-    if(*deC == *de)
+    if(*deE == *deF)
     {
-        if(joueurC.doubleOuNon == 0)
-        {
-            joueurC.doubleOuNon == 1;
-            sommeIni = lancerDeDes(&deC, &deD, &somme, joueurC);
-            sommeTmp = sommeTmp + sommeIni;
 
-            if(*deC != *deD)
+        while(*deE == *deF)
+        {
+            if(joueurC.doubleOuNon == 2)
             {
-                *somme = sommeTmp;
+                printf("Vous allez en prison ! \n");
                 joueurC.doubleOuNon = 0;
+                break;
             }
 
             if(joueurC.doubleOuNon == 1)
             {
-                joueurC.doubleOuNon == 2;
-                sommeIni = lancerDeDes(&deC, &deD, &somme, joueurC);
-                sommeTmp = sommeTmp + sommeIni;
+                sommeTmp = sommeTmp + *deE + *deF;
+                lancerDeDes(deE, deF);
+                afficherDe(*deE, *deF);
+                joueurC.doubleOuNon = 2;
             }
+
+            if(joueurC.doubleOuNon == 0)
+            {
+                sommeTmp = sommeTmp + *deE + *deF;
+                lancerDeDes(deE, deF);
+                afficherDe(*deE, *deF);
+                joueurC.doubleOuNon =1;
+            }
+
         }
     }
+
+    if(*deE != *deF)
+    {
+        joueurC.doubleOuNon = 0;
+        *somme = *deE + *deF + sommeTmp;
+        printf("La somme des deux des est de %d", *somme);
+    }
+
 }
 
 
@@ -204,6 +195,7 @@ int main()
     int somme;
     joueur joueurA;
     joueurA.doubleOuNon = 0;
-    lancerDeDes(&de1, &de2,&somme,joueurA);
+    lanceDesGlobal(&de1,&de2,&somme,joueurA);
+
 
 }
