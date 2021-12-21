@@ -4,9 +4,15 @@
 #include <windows.h>
 #include "header.h"
 
-
-int tpnbrjr(int nbr,joueur_t joueur)
+int deplanbrjr(int nbr,joueur_t joueur)
 {
-    joueur.position=nbr;
+    for(int i=0;i<nbr;i++)
+    {
+        joueur.position+=1;
+        if (joueur.position==32)
+        {
+            joueur.position=0;
+        }
+    }
     return(joueur.position);
 }
