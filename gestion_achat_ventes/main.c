@@ -48,18 +48,46 @@ void achat(struct joueur* joueur, struct caseMonop* case1, int *compteurMaison, 
     }
 }
 
+void vente(struct joueur* joueur, struct caseMonop* case1, int *compteurMaison, int *compteurHotel, int nbMaison)
+{
+    if (case1->nbHotel == 0)
+    {
+        case1->nbMaison -= nbMaison;
+        *compteurMaison -= nbMaison;
+        joueur->argent += (case1->cout/8)*nbMaison;
+    }
+    else
+    {
+        case1->nbMaison = 5 - nbMaison ;
+        case1->nbHotel = 0;
+        *compteurMaison += case1->nbMaison;
+        *compteurHotel -=1;
+    }
+}
+
 
 
 void gestion_Prop(struct joueur joueur[],struct caseMonop caseMonop[], int *compteurMaison, int *compteurHotel, int i)
 {
-    int choixM, choixP, choixNbMaison;
-    printf("Souhaitez vous acheter une maison(1), vendre une maison(2) ou quitter ce menu(0) ?");
-    fflush(stdin);
-    scanf("%d",&choixM);
+    int choixM, choixP, choixNbMaison = 0, valid;
+    do
+    {
+        printf("Souhaitez vous acheter une maison(1), vendre une maison(2) ou quitter ce menu(0) ?");
+        fflush(stdin);
+        scanf("%d",&choixM);
+    }while (choixM <0 || choixM >2);
+
 
     if (choixM == 1)
     {
-        printf("où souhaitez vous acheter des maisons ?, vous possédez : ", joueur[i].possessions);
+        printf("où souhaitez vous acheter des maisons ?, vous possédez : ");
+        for (int j=0; j<24; j++)
+        {
+            if (joueur[i].possessions[j] != 0)
+            {
+                printf("%d",joueur[i].possessions[j]);
+            }
+        }
         fflush(stdin);
         scanf("%d",&choixP);
 
@@ -188,6 +216,55 @@ void gestion_Prop(struct joueur joueur[],struct caseMonop caseMonop[], int *comp
                 achat(&joueur[i], &compteurMaison, &compteurHotel, choixNbMaison, choixP);
             }
 
+        }
+
+    }
+
+    else if (choixM == 2)
+    {
+        printf("où souhaitez vous vendre des maisons ?, vous possédez : ");
+        for (int j=0; j<24; j++)
+        {
+            if (joueur[i].possessions[j] != 0)
+            {
+                printf("%d",joueur[i].possessions[j]);
+            }
+        }
+        fflush(stdin);
+        scanf("%d",&choixP);
+
+        if (caseMonop[choixP].nbMaison == 0)
+        {
+            printf("vous ne possedez pas de maisons sur cette propriété, vous ne pouvez donc pas vendre de maisons.");
+        }
+
+        else if (caseMonop[choixP].nbHotel == 1)
+        {
+            printf(" Vous possédez un hotel, vous pouvez le vendre en plusieurs parties afin de n’avoir plus que quelques maisons ou tout vendre.\n");
+            printf(" Combien de maisons souhaitez vous vendre ? 1 maison vendue correspond a %d Credits\n", caseMonop[choixP].cout/8);
+            fflush(stdin);
+            scanf("%d", &choixNbMaison);
+            if (5-choixNbMaison != 0)
+            {
+                do{
+                    printf("Souhaitez vous vendre %d maisons pour %d Credits ? il vous restera donc %d maisons sur cette propriete. Saisir 1 pour valider ou 0 pour annuler", choixNbMaison, (caseMonop[choixP].cout/8)*choixNbMaison, 5-choixNbMaison);
+                    fflush(stdin);
+                    scanf("%d",&valid);
+                }while(valid!=0 || valid!=1);
+            }
+            else if (5-choixNbMaison == 0)
+            {
+                do
+                {
+                     printf("Souhaitez vous vendre %d maisons pour %d Credits ? il ne vous restera plus aucune maison sur cette propriete", choixNbMaison, (caseMonop[choixP].cout/8)*choixNbMaison);
+                     fflush(stdin);
+                     scanf("%d",&valid);
+                }while(valid!=0 || valid!=1);
+            }
+            if (valid == 1)
+            {
+                vente(&joueur[i], &compteurMaison, &compteurHotel, choixNbMaison, choixP);
+            }
         }
 
     }
