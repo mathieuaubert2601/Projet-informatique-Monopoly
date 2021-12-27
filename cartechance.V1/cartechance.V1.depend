@@ -1,0 +1,123 @@
+# depslib dependency file v1.0
+1640599294 source:c:\users\philippe\onedrive - groupe inseec (poce)\ece\projet info\cartechance.v1\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"header.h"
+
+1639471918 source:c:\users\philippe\onedrive - groupe inseec (poce)\ece\projet info\cartechance.v1\creationcarte.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+
+1640264490 c:\users\philippe\onedrive - groupe inseec (poce)\ece\projet info\cartechance.v1\header.h
+
+1640597974 source:c:\users\philippe\onedrive - groupe inseec (poce)\ece\projet info\cartechance.v1\cartechancef1.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+
+1640598060 source:c:\users\philippe\onedrive - groupe inseec (poce)\ece\projet info\cartechance.v1\cartechancef10.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+
+1640598150 source:c:\users\philippe\onedrive - groupe inseec (poce)\ece\projet info\cartechance.v1\cartechancef11.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+
+1640598244 source:c:\users\philippe\onedrive - groupe inseec (poce)\ece\projet info\cartechance.v1\cartechancef12.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+
+1640598310 source:c:\users\philippe\onedrive - groupe inseec (poce)\ece\projet info\cartechance.v1\cartechancef13.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+
+1640598454 source:c:\users\philippe\onedrive - groupe inseec (poce)\ece\projet info\cartechance.v1\cartechancef14.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+
+1640598510 source:c:\users\philippe\onedrive - groupe inseec (poce)\ece\projet info\cartechance.v1\cartechancef15.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+
+1640598600 source:c:\users\philippe\onedrive - groupe inseec (poce)\ece\projet info\cartechance.v1\cartechancef16.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+
+1640598788 source:c:\users\philippe\onedrive - groupe inseec (poce)\ece\projet info\cartechance.v1\cartechancef3.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+
+1640599634 source:c:\users\philippe\onedrive - groupe inseec (poce)\ece\projet info\cartechance.v1\cartechancef4.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+
+1640598727 source:c:\users\philippe\onedrive - groupe inseec (poce)\ece\projet info\cartechance.v1\cartechancef2.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+
+1640598920 source:c:\users\philippe\onedrive - groupe inseec (poce)\ece\projet info\cartechance.v1\cartechancef5.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+
+1640599174 source:c:\users\philippe\onedrive - groupe inseec (poce)\ece\projet info\cartechance.v1\cartechancef8.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+
+1640599284 source:c:\users\philippe\onedrive - groupe inseec (poce)\ece\projet info\cartechance.v1\cartechancef9.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+
+1640599377 source:c:\users\philippe\onedrive - groupe inseec (poce)\ece\projet info\cartechance.v1\cartechancef7.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+
+1640598982 source:c:\users\philippe\onedrive - groupe inseec (poce)\ece\projet info\cartechance.v1\cartechancef6.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+
+1639579084 source:c:\users\philippe\onedrive - groupe inseec (poce)\ece\projet info\cartechance.v1\color.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+
+1639602985 source:c:\users\philippe\onedrive - groupe inseec (poce)\ece\projet info\cartechance.v1\curseur.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+

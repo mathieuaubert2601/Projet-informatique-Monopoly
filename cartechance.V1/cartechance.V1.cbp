@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="cartechance.V1" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Release">
+				<Option output="bin/Release/cartechance" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="cartechanceF1.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cartechanceF10.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cartechanceF11.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cartechanceF12.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cartechanceF13.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cartechanceF14.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cartechanceF15.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cartechanceF16.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cartechanceF2.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cartechanceF3.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cartechanceF4.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cartechanceF5.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cartechanceF6.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cartechanceF7.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cartechanceF8.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cartechanceF9.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="color.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="creationcarte.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="curseur.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="header.h" />
+		<Unit filename="main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Extensions>
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
