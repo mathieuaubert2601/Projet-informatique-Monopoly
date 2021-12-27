@@ -1,0 +1,123 @@
+# depslib dependency file v1.0
+1639582589 source:c:\users\philippe\onedrive - groupe inseec (poce)\ece\projet info\cartesith\cartesith.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+
+1640265603 source:c:\users\philippe\onedrive - groupe inseec (poce)\ece\projet info\cartesith\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"header.h"
+
+1639583576 c:\users\philippe\onedrive - groupe inseec (poce)\ece\projet info\cartesith\header.h
+
+1639582272 source:c:\users\philippe\onedrive - groupe inseec (poce)\ece\projet info\cartesith\color.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+
+1639582404 source:c:\users\philippe\onedrive - groupe inseec (poce)\ece\projet info\cartesith\curseur.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+
+1639751520 source:c:\users\philippe\onedrive - groupe inseec (poce)\ece\projet info\cartesith\cartesith1.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+
+1639752055 source:c:\users\philippe\onedrive - groupe inseec (poce)\ece\projet info\cartesith\cartesith10.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+
+1639751863 source:c:\users\philippe\onedrive - groupe inseec (poce)\ece\projet info\cartesith\cartesith11.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+
+1639751995 source:c:\users\philippe\onedrive - groupe inseec (poce)\ece\projet info\cartesith\cartesith12.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+
+1639750226 source:c:\users\philippe\onedrive - groupe inseec (poce)\ece\projet info\cartesith\cartesith13.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+
+1639750234 source:c:\users\philippe\onedrive - groupe inseec (poce)\ece\projet info\cartesith\cartesith14.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+
+1639750258 source:c:\users\philippe\onedrive - groupe inseec (poce)\ece\projet info\cartesith\cartesith15.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+
+1639750266 source:c:\users\philippe\onedrive - groupe inseec (poce)\ece\projet info\cartesith\cartesith16.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+
+1639750272 source:c:\users\philippe\onedrive - groupe inseec (poce)\ece\projet info\cartesith\cartesith2.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+
+1639603561 source:c:\users\philippe\onedrive - groupe inseec (poce)\ece\projet info\cartesith\cartesith3.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+
+1639603567 source:c:\users\philippe\onedrive - groupe inseec (poce)\ece\projet info\cartesith\cartesith4.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+
+1639603572 source:c:\users\philippe\onedrive - groupe inseec (poce)\ece\projet info\cartesith\cartesith5.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+
+1639603579 source:c:\users\philippe\onedrive - groupe inseec (poce)\ece\projet info\cartesith\cartesith6.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+
+1639603585 source:c:\users\philippe\onedrive - groupe inseec (poce)\ece\projet info\cartesith\cartesith7.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+
+1639603590 source:c:\users\philippe\onedrive - groupe inseec (poce)\ece\projet info\cartesith\cartesith8.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+
+1639603596 source:c:\users\philippe\onedrive - groupe inseec (poce)\ece\projet info\cartesith\cartesith9.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+
