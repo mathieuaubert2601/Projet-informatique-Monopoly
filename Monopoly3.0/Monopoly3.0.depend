@@ -1,0 +1,118 @@
+# depslib dependency file v1.0
+1640605263 source:c:\ece paris\ing1\algo\programmes ing1\monopoly3.0\choixmenu.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"header.h"
+
+1640098046 c:\ece paris\ing1\algo\programmes ing1\monopoly3.0\header.h
+
+1640610134 source:c:\ece paris\ing1\algo\programmes ing1\monopoly3.0\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"header.h"
+	<string.h>
+
+1640605649 source:c:\ece paris\ing1\algo\programmes ing1\monopoly3.0\plateau.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"header.h"
+
+1639475081 source:c:\ece paris\ing1\algo\programmes ing1\monopoly3.0\color.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"header.h"
+
+1639475179 source:c:\ece paris\ing1\algo\programmes ing1\monopoly3.0\cursor.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"header.h"
+
+1639475179 source:c:\ece paris\ing1\algo\programmes ing1\monopoly3.0\fullscreen.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"header.h"
+
+1639475179 source:c:\ece paris\ing1\algo\programmes ing1\monopoly3.0\intro.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"header.h"
+
+1639948754 source:c:\ece paris\ing1\algo\programmes ing1\monopoly3.0\menu.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"header.h"
+
+1639475138 source:c:\ece paris\ing1\algo\programmes ing1\monopoly3.0\credits.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"header.h"
+
+1639646294 source:c:\ece paris\ing1\algo\programmes ing1\monopoly3.0\clone.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"header.h"
+
+1639641727 source:c:\ece paris\ing1\algo\programmes ing1\monopoly3.0\logoece.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"header.h"
+
+1639654643 source:c:\ece paris\ing1\algo\programmes ing1\monopoly3.0\jedi.c
+
+1639646744 source:c:\ece paris\ing1\algo\programmes ing1\monopoly3.0\tour.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"header.h"
+
+1639744912 source:c:\ece paris\ing1\algo\programmes ing1\monopoly3.0\nombre de joueurs.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"header.h"
+
+1639949234 source:c:\ece paris\ing1\algo\programmes ing1\monopoly3.0\regles.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"header.h"
+
+1640097991 source:c:\ece paris\ing1\algo\programmes ing1\monopoly3.0\deplacementnormal.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"header.h"
+
+1640098191 source:c:\ece paris\ing1\algo\programmes ing1\monopoly3.0\tpjoueur.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"header.h"
+
