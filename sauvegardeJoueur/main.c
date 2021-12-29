@@ -19,13 +19,14 @@ typedef struct joueur
 	int doubleOuNon;
 
 }joueur_t;
+
 //////////////////////////////////////////////////////////
 ///Sous programme pour sauvegarder le nombre de joueur ///
 //////////////////////////////////////////////////////////
 void sauvegardeNombreJoueur(int nombre_De_joueur)
 {
     ///Ouverture et test d'ouverture du fichier
-    FILE* nombreDeJoueur = fopen("fichiersSauvegarde/joueurA.bin", "wb+");
+    FILE* nombreDeJoueur = fopen("fichiersSauvegarde/nombreJoueur.bin", "wb+");
     if (nombreDeJoueur == NULL)
     {
         printf("Erreur d'ouverture de fichier.");
@@ -46,7 +47,7 @@ void sauvegardeNombreJoueur(int nombre_De_joueur)
 void chargerNombreJoueur(int* nombre_De_joueur)
 {
     ///Ouverture et test d'ouverture du fichier
-    FILE* nombreDeJoueur = fopen("fichiersSauvegarde/joueurA.bin", "rb");
+    FILE* nombreDeJoueur = fopen("fichiersSauvegarde/nombreJoueur.bin", "rb");
     if (nombreDeJoueur == NULL)
     {
         printf("Erreur d'ouverture de fichier.");
@@ -317,15 +318,14 @@ int main()
     joueur4.nbProprietefam4 = 11;
     joueur4.doubleOuNon = 22;
 
-    int nmrJoueur = 2;
+
+
 
     joueur_t joueur5;
     joueur_t joueur6;
     joueur_t joueur7;
     joueur_t joueur8;
 
-    sauvegardeQuatreJoueur(joueur1, joueur2, joueur3, joueur4);
-    chargerQuatreJoueur(&joueur5, &joueur6, &joueur7, &joueur8);
 
 
 
