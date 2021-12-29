@@ -23,6 +23,55 @@ typedef struct joueur
 //////////////////////////////////////////////////////////
 ///Sous programme pour sauvegarder le nombre de joueur ///
 //////////////////////////////////////////////////////////
+void SauvegardeVerifPartieSauv()
+{
+    ///Déclaration des variables
+    int saisie = 1;
+    ///Ouverture et test d'ouverture du fichier
+    FILE* partieChargee = fopen("fichiersSauvegarde/partieChargee.bin", "wb+");
+    if (partieChargee == NULL)
+    {
+        printf("Erreur d'ouverture de fichier.");
+        return 1;
+    }
+
+    fwrite(&saisie, sizeof(int),1,partieChargee);
+
+    ///Fermeture du fichier
+    fclose(partieChargee);
+    partieChargee = NULL;
+}
+
+//////////////////////////////////////////////////////////
+/////Sous programme pour charger le nombre de joueur /////
+//////////////////////////////////////////////////////////
+
+int testPartieChargee()
+{
+    int test;
+    ///Ouverture et test d'ouverture du fichier
+    FILE* partie_chargee = fopen("fichiersSauvegarde/partieChargee.bin", "rb");
+    if (partie_chargee == NULL)
+    {
+        printf("Erreur d'ouverture de fichier.");
+        return 1;
+    }
+
+    ///Char
+    fread(&test, sizeof(int),1,partie_chargee);
+
+
+    ///Fermeture du fichier
+    fclose(partie_chargee);
+    partie_chargee = NULL;
+
+    return test;
+
+}
+
+//////////////////////////////////////////////////////////
+///Sous programme pour sauvegarder le nombre de joueur ///
+//////////////////////////////////////////////////////////
 void sauvegardeNombreJoueur(int nombre_De_joueur)
 {
     ///Ouverture et test d'ouverture du fichier
@@ -226,6 +275,7 @@ void sauvegardeGlobale(int nombreDeJoueurAjouer,joueur_t premierJoueur, joueur_t
     {
         sauvegardeQuatreJoueur(premierJoueur, secondJoueur, troisiemeJoueur, quatriemeJoueur);
     }
+    SauvegardeVerifPartieSauv();
 }
 
 //////////////////////////////////////////////////////////
@@ -233,18 +283,33 @@ void sauvegardeGlobale(int nombreDeJoueurAjouer,joueur_t premierJoueur, joueur_t
 //////////////////////////////////////////////////////////
 void chargerGlobale(int nombreDeJoueurACharger,joueur_t* joueurAchargerE, joueur_t* joueurAchargerF, joueur_t* joueurAchargerG, joueur_t* joueurAchargerH)
 {
-    if(nombreDeJoueurACharger == 2)
+    ///Test pour vérifier qu'il y a bien une partie sauvegarde
+    int VerificationPartieChargee;
+    VerificationPartieChargee = testPartieChargee();
+
+    if(VerificationPartieChargee == 0)
     {
-        chargerDeuxJoueur(&joueurAchargerE, &joueurAchargerF);
+        printf("Aucune partie n'a ete enregistree \n");
+        return 1;
     }
-    if(nombreDeJoueurACharger == 3)
+
+    if(VerificationPartieChargee == 1)
     {
-        chargerTroisJoueur(&joueurAchargerE, &joueurAchargerF, &joueurAchargerG);
+        if(nombreDeJoueurACharger == 2)
+        {
+            chargerDeuxJoueur(&joueurAchargerE, &joueurAchargerF);
+        }
+        if(nombreDeJoueurACharger == 3)
+        {
+            chargerTroisJoueur(&joueurAchargerE, &joueurAchargerF, &joueurAchargerG);
+        }
+        if(nombreDeJoueurACharger == 4)
+        {
+            chargerQuatreJoueur(&joueurAchargerE, &joueurAchargerF, &joueurAchargerG, &joueurAchargerH);
+        }
+        printf("Le Chargement a ete effectue");
     }
-    if(nombreDeJoueurACharger == 4)
-    {
-        chargerQuatreJoueur(&joueurAchargerE, &joueurAchargerF, &joueurAchargerG, &joueurAchargerH);
-    }
+
 }
 
 int main()
@@ -318,7 +383,7 @@ int main()
     joueur4.nbProprietefam4 = 11;
     joueur4.doubleOuNon = 22;
 
-
+    int nombreJoueur = 1;
 
 
     joueur_t joueur5;
@@ -326,7 +391,8 @@ int main()
     joueur_t joueur7;
     joueur_t joueur8;
 
-
+    SauvegardeVerifPartieSauv();
+    chargerGlobale(nombreJoueur, &joueur5, &joueur6, &joueur7, &joueur8);
 
 
 
