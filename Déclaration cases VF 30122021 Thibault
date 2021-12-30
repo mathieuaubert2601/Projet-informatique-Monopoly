@@ -1,0 +1,313 @@
+ struct caseMonop case0,case1,case2,case3,case4,case5,case6,case7,case8,case9,case10,case11,case12,case13,case14,case15,case16,case17,case18,case19,case20,case21,case22,case23,case24,case25,case26,case27;
+
+
+    strcpy(case0.nomCase,"Depart");
+    case0.position = 0;
+    case0.cout=0;
+    case0.famille=0;
+    case0.proprieteDe=0;
+    case0.nbMaison=0;
+    case0.nbHotel=0;
+    case0.typeCase=0;
+    case0.prixLoyer=200;
+
+
+    strcpy(case1.nomCase,"Dagobah");
+    case1.position = 1;
+    case1.cout=50;
+    case1.famille=1;
+    case1.proprieteDe=0;
+    case1.nbMaison=0;
+    case1.nbHotel=0;
+    case1.typeCase=1;
+    case1.prixLoyer=2;
+
+    strcpy(case2.nomCase,"Conseil Jedi");
+    case2.position = 2;
+    case2.cout=0;
+    case2.famille=0;
+    case2.proprieteDe=0;
+    case2.nbMaison=0;
+    case2.nbHotel=0;
+    case2.typeCase=7;
+    case2.prixLoyer=0;
+
+    strcpy(case3.nomCase,"Hoth");
+    case3.position = 3;
+    case3.cout=75;
+    case3.famille=1;
+    case3.proprieteDe=0;
+    case3.nbMaison=0;
+    case3.nbHotel=0;
+    case3.typeCase=1;
+    case3.prixLoyer=3;
+
+    strcpy(case4.nomCase,"Spatioport I");
+    case4.position = 4;
+    case4.cout=200;
+    case4.famille=9;
+    case4.proprieteDe=0;
+    case4.nbMaison=0;
+    case4.nbHotel=0;
+    case4.typeCase=2;
+    case4.prixLoyer=50;
+
+    strcpy(case5.nomCase,"Kashyyk");
+    case5.position = 5;
+    case5.cout=100;
+    case5.famille=2;
+    case5.proprieteDe=0;
+    case5.nbMaison=0;
+    case5.nbHotel=0;
+    case5.typeCase=1;
+    case5.prixLoyer=5;
+
+    strcpy(case6.nomCase,"Endor");
+    case6.position = 6;
+    case6.cout=125;
+    case6.famille=2;
+    case6.proprieteDe=0;
+    case6.nbMaison=0;
+    case6.nbHotel=0;
+    case6.typeCase=2;
+    case6.prixLoyer=6;
+
+    strcpy(case7.nomCase,"Prison");
+    case7.position = 7;
+    case7.cout=0;
+    case7.famille=0;
+    case7.proprieteDe=0;
+    case7.nbMaison=0;
+    case7.nbHotel=0;
+    case7.typeCase=3;
+    case7.prixLoyer=0;
+
+    strcpy(case8.nomCase,"Mustafar");
+    case8.position = 8;
+    case8.cout=150;
+    case8.famille=3;
+    case8.proprieteDe=0;
+    case8.nbMaison=0;
+    case8.nbHotel=0;
+    case8.typeCase=1;
+    case8.prixLoyer=7;
+
+    strcpy(case9.nomCase,"Jakuu");
+    case9.position = 9;
+    case9.cout=175;
+    case9.famille=3;
+    case9.proprieteDe=0;
+    case9.nbMaison=0;
+    case9.nbHotel=0;
+    case9.typeCase=1;
+    case9.prixLoyer=9;
+
+    strcpy(case10.nomCase,"Spatioport II");
+    case10.position = 10;
+    case10.cout=200;
+    case10.famille=9;
+    case10.proprieteDe=0;
+    case10.nbMaison=0;
+    case10.nbHotel=0;
+    case10.typeCase=2;
+    case10.prixLoyer=50;
+
+    strcpy(case11.nomCase,"Jedha");
+    case11.position = 11;
+    case11.cout=200;
+    case11.famille=4;
+    case11.proprieteDe=0;
+    case11.nbMaison=0;
+    case11.nbHotel=0;
+    case11.typeCase=1;
+    case11.prixLoyer=10;
+
+    strcpy(case12.nomCase,"Alliance Sith");
+    case12.position = 12;
+    case12.cout=0;
+    case12.famille=0;
+    case12.proprieteDe=0;
+    case12.nbMaison=0;
+    case12.nbHotel=0;
+    case12.typeCase=6;
+    case12.prixLoyer=0;
+
+    strcpy(case13.nomCase,"Tatooine");
+    case13.position = 13;
+    case13.cout=225;
+    case13.famille=4;
+    case13.proprieteDe=0;
+    case13.nbMaison=0;
+    case13.nbHotel=0;
+    case13.typeCase=1;
+    case13.prixLoyer=11;
+
+    strcpy(case14.nomCase,"Ordre 66");
+    case14.position = 14;
+    case14.cout=0;
+    case14.famille=0;
+    case14.proprieteDe=0;
+    case14.nbMaison=0;
+    case14.nbHotel=0;
+    case14.typeCase=4;
+    case14.prixLoyer=0;
+
+    strcpy(case15.nomCase,"Kaminoo");
+    case15.position = 15;
+    case15.cout=250;
+    case15.famille=5;
+    case15.proprieteDe=0;
+    case15.nbMaison=0;
+    case15.nbHotel=0;
+    case15.typeCase=1;
+    case15.prixLoyer=13;
+
+    strcpy(case16.nomCase,"Conseil Jedi");
+    case16.position = 16;
+    case16.cout=0;
+    case16.famille=0;
+    case16.proprieteDe=0;
+    case16.nbMaison=0;
+    case16.nbHotel=0;
+    case16.typeCase=7;
+    case16.prixLoyer=0;
+
+    strcpy(case17.nomCase,"Geonosis");
+    case17.position = 17;
+    case17.cout=275;
+    case17.famille=5;
+    case17.proprieteDe=0;
+    case17.nbMaison=0;
+    case17.nbHotel=0;
+    case17.typeCase=1;
+    case17.prixLoyer=14;
+
+    strcpy(case18.nomCase,"Spatioport III");
+    case18.position = 18;
+    case18.cout=200;
+    case18.famille=9;
+    case18.proprieteDe=0;
+    case18.nbMaison=0;
+    case18.nbHotel=0;
+    case18.typeCase=2;
+    case18.prixLoyer=50;
+
+    strcpy(case19.nomCase,"Alderaan");
+    case19.position = 19;
+    case19.cout=300;
+    case19.famille=6;
+    case19.proprieteDe=0;
+    case19.nbMaison=0;
+    case19.nbHotel=0;
+    case19.typeCase=1;
+    case19.prixLoyer=15;
+
+    strcpy(case20.nomCase,"Bespin");
+    case20.position = 20;
+    case20.cout=325;
+    case20.famille=6;
+    case20.proprieteDe=0;
+    case20.nbMaison=0;
+    case20.nbHotel=0;
+    case20.typeCase=1;
+    case20.prixLoyer=16;
+
+    strcpy(case21.nomCase,"Arrestation");
+    case21.position = 21;
+    case21.cout=0;
+    case21.famille=0;
+    case21.proprieteDe=0;
+    case21.nbMaison=0;
+    case21.nbHotel=0;
+    case21.typeCase=5;
+    case21.prixLoyer=0;
+
+    strcpy(case22.nomCase,"Yavin 4");
+    case22.position = 22;
+    case22.cout=350;
+    case22.famille=7;
+    case22.proprieteDe=0;
+    case22.nbMaison=0;
+    case22.nbHotel=0;
+    case22.typeCase=1;
+    case22.prixLoyer=18;
+
+    strcpy(case23.nomCase,"Alliance Sith");
+    case23.position = 23;
+    case23.cout=0;
+    case23.famille=0;
+    case23.proprieteDe=0;
+    case23.nbMaison=0;
+    case23.nbHotel=0;
+    case23.typeCase=6;
+    case23.prixLoyer=0;
+
+    strcpy(case24.nomCase,"Naboo");
+    case24.position = 24;
+    case24.cout=375;
+    case24.famille=7;
+    case24.proprieteDe=0;
+    case24.nbMaison=0;
+    case24.nbHotel=0;
+    case24.typeCase=1;
+    case24.prixLoyer=19;
+
+    strcpy(case25.nomCase,"Spatioport IV");
+    case25.position = 25;
+    case25.cout=200;
+    case25.famille=9;
+    case25.proprieteDe=0;
+    case25.nbMaison=0;
+    case25.nbHotel=0;
+    case25.typeCase=2;
+    case25.prixLoyer=50;
+
+    strcpy(case26.nomCase,"Alderaan");
+    case26.position = 26;
+    case26.cout=400;
+    case26.famille=8;
+    case26.proprieteDe=0;
+    case26.nbMaison=0;
+    case26.nbHotel=0;
+    case26.typeCase=1;
+    case26.prixLoyer=20;
+
+    strcpy(case27.nomCase,"Corusant");
+    case27.position = 27;
+    case27.cout=450;
+    case27.famille=8;
+    case27.proprieteDe=0;
+    case27.nbMaison=0;
+    case27.nbHotel=0;
+    case27.typeCase=1;
+    case27.prixLoyer=23;
+
+
+    cases[0]= case0;
+    cases[1]= case1;
+    cases[2]= case2;
+    cases[3]= case3;
+    cases[4]= case4;
+    cases[5]= case5;
+    cases[6]= case6;
+    cases[7]= case7;
+    cases[8]= case8;
+    cases[9]= case9;
+    cases[10]= case10;
+    cases[11]= case11;
+    cases[12]= case12;
+    cases[13]= case13;
+    cases[14]= case14;
+    cases[15]= case15;
+    cases[16]= case16;
+    cases[17]= case17;
+    cases[18]= case18;
+    cases[19]= case19;
+    cases[20]= case20;
+    cases[21]= case21;
+    cases[22]= case22;
+    cases[23]= case23;
+    cases[24]= case24;
+    cases[25]= case25;
+    cases[26]= case26;
+    cases[27]= case27;
