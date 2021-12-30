@@ -1,0 +1,26 @@
+# depslib dependency file v1.0
+1640851939 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\introductionpartie.c
+	"header.h"
+
+1640853508 c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\header.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	<windows.h>
+
+1640853583 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\main.c
+	"header.h"
+
+1640852048 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\couleursdumonopoly.c
+	"header.h"
+
+1640852499 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\pleinecran.c
+	"header.h"
+
+1640853451 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\menu.c
+	"header.h"
+
+1640853451 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\regles_du_jeu.c
+	"header.h"
+

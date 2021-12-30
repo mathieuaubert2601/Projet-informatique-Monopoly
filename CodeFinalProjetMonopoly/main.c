@@ -1,8 +1,20 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include "header.h"
 
 int main()
 {
-    printf("Hello world!\n");
+    ///déclaration des variables
+    int nombreDeJoueur,choixDuMenuPrincipal;
+
+    ///Ouverture de la console en plein écran
+    pleinEcran();
+
+    ///Introduction du début du jeu
+    //intro();
+
+    ///Affichage et saisie dans le menu
+    choixDuMenuPrincipal = menu(); //Affichage du menu
+    choixmenu(choixDuMenuPrincipal);
+
+
     return 0;
 }
