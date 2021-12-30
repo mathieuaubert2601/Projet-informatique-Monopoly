@@ -1,7 +1,9 @@
 #include "header.h"
 
-void regle_Du_jeu()
+void regle_Du_jeu(joueur_t tab_joueur[], int* nombre_joueur)
 {
+    ///Déclaration des variables
+    int a;
     system("cls");
 
     Sleep(100);
@@ -145,4 +147,9 @@ void regle_Du_jeu()
     printf("\nDivers \n\n");
     Color(3,0);
     printf("- La Banque ne peut preter de l'argent a un.e joueur.euse qu'en hypothequant un bien immobilier. Aucun.e joueur.euse ne peut emprunter a ou preter de l'argent a un autre joueur.\n");
+
+    Sleep(2000);
+    system("cls");
+    a=menu();
+    choixmenu(a, tab_joueur, &nombre_joueur);
 }
