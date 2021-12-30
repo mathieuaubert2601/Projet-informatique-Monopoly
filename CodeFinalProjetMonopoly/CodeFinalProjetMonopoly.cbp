@@ -31,7 +31,23 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="Menu.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Regles_du_jeu.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="couleursDuMonopoly.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="header.h" />
+		<Unit filename="introductionPartie.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="pleinEcran.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Extensions>
