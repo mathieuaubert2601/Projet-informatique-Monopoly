@@ -54,5 +54,5 @@ void credits(joueur_t tab_joueur[], int* nombre_joueur)//va afficher les credits
     Sleep(2000);
     system("cls");
     a=menu();
-    choixmenu(a, tab_joueur, &nombre_joueur);
+    choixmenu(a, tab_joueur);
 }

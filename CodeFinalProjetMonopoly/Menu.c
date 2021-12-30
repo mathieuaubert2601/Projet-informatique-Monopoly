@@ -120,9 +120,10 @@ int menu()//menu
 }
 
 ///Sous programme pour les choix du menu
-int choixmenu(int choixDumenu,joueur_t tab_joueur[], int* nombre_joueur)//va traiter les choix du menu de la valeur deja blindée
+int choixmenu(int choixDumenu,joueur_t tab_joueur[])//va traiter les choix du menu de la valeur deja blindée
 {
     int a;
+    int nombreDeJoueurAJouer;
     switch(choixDumenu)
     {
     case 1:
@@ -135,18 +136,18 @@ int choixmenu(int choixDumenu,joueur_t tab_joueur[], int* nombre_joueur)//va tra
             //lancement partie choix du nombre de joueurs
             int pos[4];
 
-            creer_nouveau_joueur(tab_joueur, &nombre_joueur);
+            creer_nouveau_joueur(tab_joueur, &nombreDeJoueurAJouer);
 
-            for (int i=0;i<nombre_joueur;i++)
+           /* for (int i=0;i<nombre_joueur;i++)
                 {
                     pos[i]=0;
                 }
-            plateau(pos,nombre_joueur);
+            plateau(pos,nombre_joueur);*/
             break;
         }
     case 3:
         {
-            sauvegardeGlobale(nombre_joueur,tab_joueur[0],tab_joueur[1],tab_joueur[2],tab_joueur[3]);
+            sauvegardeGlobale(nombreDeJoueurAJouer,tab_joueur[0],tab_joueur[1],tab_joueur[2],tab_joueur[3]);
             printf("Sauvegarde en cours");
             Sleep(1000);
             printf(".");
@@ -161,7 +162,7 @@ int choixmenu(int choixDumenu,joueur_t tab_joueur[], int* nombre_joueur)//va tra
         }
     case 4:
         {
-            credits(tab_joueur, &nombre_joueur);
+            credits(tab_joueur, &nombreDeJoueurAJouer);
 
             break;
         }
@@ -169,7 +170,7 @@ int choixmenu(int choixDumenu,joueur_t tab_joueur[], int* nombre_joueur)//va tra
         {
             printf("Vous avez bien appuye sur quitter.\n");
             printf("Sauvegarde en cours");
-            sauvegardeGlobale(nombre_joueur,tab_joueur[0],tab_joueur[1],tab_joueur[2],tab_joueur[3]);
+            sauvegardeGlobale(nombreDeJoueurAJouer,tab_joueur[0],tab_joueur[1],tab_joueur[2],tab_joueur[3]);
             Sleep(1000);
             printf(".");
             Sleep(1000);
@@ -183,10 +184,11 @@ int choixmenu(int choixDumenu,joueur_t tab_joueur[], int* nombre_joueur)//va tra
         }
     case 6:
         {
-            regle_Du_jeu(tab_joueur,&nombre_joueur);
+            regle_Du_jeu(tab_joueur,&nombreDeJoueurAJouer);
             break;
         }
 
     }
+    return nombreDeJoueurAJouer;
 
 }

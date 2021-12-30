@@ -32,7 +32,7 @@ void intro();
 void Color(int couleurDuTexte,int couleurDeFond);
 void pleinEcran();
 int menu();
-int choixmenu(int choixDumenu,joueur_t tab_joueur[], int* nombre_joueur);
+int choixmenu(int choixDumenu,joueur_t tab_joueur[]);
 void regle_Du_jeu(joueur_t tab_joueur[], int* nombre_joueur);
 void creer_nouveau_joueur(joueur_t tab_joueur[], int* nombre_joueur);
 void plateau(int pos[4],int nbj);
@@ -49,5 +49,5 @@ void chargerQuatreJoueur(joueur_t* joueurAchargerA, joueur_t* joueurAchargerB, j
 void sauvegardeGlobale(int nombreDeJoueurAjouer,joueur_t premierJoueur, joueur_t secondJoueur, joueur_t troisiemeJoueur, joueur_t quatriemeJoueur);
 void chargerGlobale(int nombreDeJoueurACharger,joueur_t* joueurAchargerE, joueur_t* joueurAchargerF, joueur_t* joueurAchargerG, joueur_t* joueurAchargerH);
 void credits(joueur_t tab_joueur[], int* nombre_joueur);
-
+void choisirQuiCommence(joueur_t ordreJoueur[],joueur_t tabJoueur[], int nbrJoueur);
 #endif // HEADER_H_INCLUDED

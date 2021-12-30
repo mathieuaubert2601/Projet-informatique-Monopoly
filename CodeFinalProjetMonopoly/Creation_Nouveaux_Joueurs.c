@@ -29,5 +29,6 @@ void creer_nouveau_joueur(joueur_t tab_joueur[], int* nombre_joueur)
         }while(strchr(nom_utilisateur, ' ') != NULL);
 
         strcpy(tab_joueur[i].nomJoueur , nom_utilisateur);
+
     }
 }
