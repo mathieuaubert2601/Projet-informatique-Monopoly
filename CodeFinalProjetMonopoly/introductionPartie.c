@@ -3,7 +3,7 @@
 ///Sous programme d'introduction du jeu
 void intro()
 {
-    Color(14,0);
+        Color(14,0);
     printf("Il y a longtemps\n");
     Sleep(2000);
     printf("Tres longtemps...");

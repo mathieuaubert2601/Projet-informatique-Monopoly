@@ -42,7 +42,7 @@ int menu()//menu
   Sleep(30);
   printf("|     |  ||    |.           .             .                   .                .             .\n|     |  ~~    |");
   Color(3,0);
-  printf("     .                           .                               .                         .          TAPEZ:       .         .            .     .\n");
+  printf("     .                           .                               .                         .          TAPEZ:.      .         .            .     .\n");
   Color(3,0);
   Sleep(30);
   printf("|   __L________\_    .                        .                 .              .     ");
@@ -71,8 +71,7 @@ int menu()//menu
   Color(3,0);
   printf("                                                           5: Quitter");
   Sleep(30);
-  printf("\n|  [| | |    |(_) |]__[_____]____________________]__ __]");
-  printf("                                                           6: Afficher les regles du jeu\n");
+  printf("\n|  [| | |    |(_) |]__[_____]____________________]__ __]\n");
   Sleep(30);
   printf("|   | |___________|---^--'_________.-------------`--'\n");
   Sleep(30);

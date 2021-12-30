@@ -116,3 +116,112 @@
 	<windows.h>
 	"header.h"
 
+1640611484 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\monopoly3.0\choixmenu.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"header.h"
+
+1640611484 c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\monopoly3.0\header.h
+
+1640611484 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\monopoly3.0\clone.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"header.h"
+
+1640611484 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\monopoly3.0\color.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"header.h"
+
+1640611484 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\monopoly3.0\credits.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"header.h"
+
+1640611484 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\monopoly3.0\cursor.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"header.h"
+
+1640611484 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\monopoly3.0\deplacementnormal.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"header.h"
+
+1640611484 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\monopoly3.0\fullscreen.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"header.h"
+
+1640611484 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\monopoly3.0\intro.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"header.h"
+
+1640611484 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\monopoly3.0\jedi.c
+
+1640611484 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\monopoly3.0\logoece.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"header.h"
+
+1640611484 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\monopoly3.0\menu.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"header.h"
+
+1640611484 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\monopoly3.0\nombre de joueurs.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"header.h"
+
+1640611484 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\monopoly3.0\plateau.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"header.h"
+
+1640611484 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\monopoly3.0\regles.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"header.h"
+
+1640611484 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\monopoly3.0\tour.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"header.h"
+
+1640611484 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\monopoly3.0\tpjoueur.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"header.h"
+
