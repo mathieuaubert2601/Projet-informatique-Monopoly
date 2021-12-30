@@ -31,10 +31,22 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="Creation_Nouveaux_Joueurs.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="GestionDuCurseur.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="Menu.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="OrdreDesJoueurs.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="Regles_du_jeu.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="SaubegardeEtChargement.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="couleursDuMonopoly.c">
@@ -45,6 +57,12 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="personnesDuProjet.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="plateauDeJeu.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="pleinEcran.c">
