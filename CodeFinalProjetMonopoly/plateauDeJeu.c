@@ -2,25 +2,48 @@
 
 void plateau(int pos[4],int nbj)// rajouter couleur, rajouter
 {
-
     /*for (int i=0;i<4;i++)//remplissage test
     {
-        pos[i]=i;
+       pos[i]=i;
     }*/
     char tab[28];
-    // remplissssage coordonées tableau
+// remplissssage coordonées tableau
 
-    //nombre joueur sur casse
+//nombre joueur sur casse
 
 
     system("cls");
     Color(3,0);
     printf("\n                                                                                                                      M O N O P O L Y  S T A R  W A R S  E D I T I O N  \n");
-    //printf("                                                                \n");
+//printf("                                                                \n");
     printf("      ____________________________________________________________________________________________________________\n");
     printf("      | ORDRE 66           |KAMINOO   | CONSEIL  |   GEO    |  SPATIO- |   ALDE   | BESPIN  |         ARRESTATION|\n");
     printf("      |                    |          |   JEDI   |  NOSIS   | PORT III |   RAAN   |         |                    |\n");
-    printf("      |                    |__________|__________|__________|__________|__________|_________|                    |\n");
+    printf("      |                    |");
+    Color(7,0);
+    printf("__________");//kaminoo
+    Color(3,0);
+    printf("|");
+    Color(6,0);
+    printf("__________");//conseil
+    Color(3,0);
+    printf("|");
+    Color(7,0);
+    printf("__________");//geonosis
+    Color(3,0);
+    printf("|");
+    Color(5,0);
+    printf("__________");//spatioport
+    Color(3,0);
+    printf("|");
+    Color(14,0);
+    printf("__________");//alderaan
+    Color(3,0);
+    printf("|");
+    Color(14,0);
+    printf("_________");//bespin
+    Color(3,0);
+    printf("|                    |\n");
     printf("      |                    |          |          |          |          |          |         |                    |\n");
     printf("      |                    |__________|__________|__________|__________|__________|_________|                    |\n");
     printf("      |                    |          |          |          |          |          |         |                    |\n");
@@ -94,87 +117,161 @@ void plateau(int pos[4],int nbj)// rajouter couleur, rajouter
     printf("      |__|_________________|________________________________________________________________|________________|___|\n");
     printf("      | PRISON             |  ENDOR   | KASHYYYK |  SPATIO- |   HOTH   | CONSEIL  | DAGOBAH |             DEPART |\n");
     printf("      |                    |          |          |  PORT I  |          |   JEDI   |         |                    |\n");
-    printf("      |                    |__________|__________|__________|__________|__________|_________|                    |\n");
+    printf("      |                    |");
+    Color(7,0);
+    printf("__________");//endor
+    Color(3,0);
+    printf("|");
+    Color(6,0);
+    printf("__________");//kashyyyk
+    Color(3,0);
+    printf("|");
+    Color(5,0);
+    printf("__________");//spatioport1
+    Color(3,0);
+    printf("|");
+    Color(7,0);
+    printf("__________");//hoth
+    Color(3,0);
+    printf("|");
+    Color(14,0);
+    printf("__________");//conseil
+    Color(3,0);
+    printf("|");
+    Color(14,0);
+    printf("_________");//dagobah
+    Color(3,0);
+    printf("|                    |\n");
     printf("      |                    |          |          |          |          |          |         |                    |\n");
     printf("      |                    |__________|__________|__________|__________|__________|_________|                    |\n");
     printf("      |                    |          |          |          |          |          |         |                    |\n");
     printf("      |____________________|__________|__________|__________|__________|__________|_________|____________________|\n\n                                                                                                                               M A D E  B Y  T E A M   J A R J A R");
-    Color(10,0);
-    gotoligcol(43,123);
-    Color(12,0);
-    for (int i=0;i<42;i++)
-    {
-        Sleep(15);
-        printf("_");
-    }
-    int colgau=6;//revoir les noms
+
+
+    int colgau=8;//revoir les noms
     int colgdr=37;
-    int lighau=5;
+    int lighau=10;
     int ligbas=93;
     int col=1;
 
-    for (int i=0;i<nbj;i++)
+    for (int i=0; i<nbj; i++)
     {
         Color(col,0);
         int j=0;
-    //ligne du bas ligne 93 variation de 4 à partir de 10
-        for(int k=8;k>0;k--)
+//ligne du bas ligne 93 variation de 4 à partir de 10
+        for(int k=8; k>0; k--)
         {
 
-            gotoligcol(colgdr,lighau+(k*10)+i);
+            gotoligcol(colgdr,lighau+(k*11)+i);
             if (j==pos[i])
             {
-            printf("*");
+                printf("*");
             }
             j+=1;
 
         }
-    //colonne de gauche colone 13 variation de 4 à partir de 10
-        for (int k=6;k>0;k--)
+//colonne de gauche colone 13 variation de 4 à partir de 10
+        for (int k=6; k>0; k--)
         {
 
             gotoligcol((colgau+(k*4)),lighau+i);
             if (j==pos[i])
             {
-            printf("*");
+                printf("*");
             }
             j+=1;
 
         }
         //ligne du haut colone 6 variation de 10 à partir de 13
-        for(int k=1;k<8;k++)
+        for(int k=1; k<8; k++)
         {
-            gotoligcol(colgau,lighau+(k*10)+i);
+            gotoligcol(colgau-2,lighau+(k*11)+i);
             if (j==pos[i])
             {
-            printf("*");
+                printf("*");
             }
             j+=1;
 
 
         }
         //colone de droite ligne 93 variation de 4 à partir de 10
-        for(int k=0;k<9;k++)
+        for(int k=0; k<9; k++)
         {
 
             gotoligcol((colgau+(k*4)),ligbas+i);
             if (j==pos[i])
             {
-            printf("*");
+                printf("*");
             }
             j+=1;
         }
         col+=2;
-    if (pos[i]>=28)
-    {
-        pos[i]=0;
+        if (pos[i]>=28)
+        {
+            pos[i]=0;
+        }
+        Color(5,0);
+        gotoligcol(25,110);
+
+        int z=25;
+        int y=140;
+        Color(3,0);
+        gotoligcol(z,y);
+        z++;
+        printf("\n");
+        gotoligcol(z,y);
+        z++;
+        printf("                 oo");
+        gotoligcol(z,y);
+        z++;
+        printf("           oOOOOOOOOOO ");
+        gotoligcol(z,y);
+        z++;
+        printf("        oOOOOo        O   ");
+        gotoligcol(z,y);
+        z++;
+        printf("      OOOOO  ");
+        gotoligcol(z,y);
+        z++;
+        printf("   oOOOOo     ");
+        gotoligcol(z,y);
+        z++;
+        printf("                   oOOOOo  ");
+        gotoligcol(z,y);
+        z++;
+        printf("                oOOOOo   ");
+        gotoligcol(z,y);
+        z++;
+        printf("               oOOOOo  ");
+        gotoligcol(z,y);
+        z++;
+        printf("    oo     oOOOOOo  ");
+        gotoligcol(z,y);
+        z++;
+        printf("      OOOOOOOo ");
+        z++;
+        gotoligcol(z,y);
+        printf("    E C E  P A R I S  ");
+
+        Color(10,0);
+        gotoligcol(43,123);
+        Color(12,0);
+
+        for (int i=0; i<42; i++) //ligne
+        {
+            Sleep(15);
+            printf("_");
+        }
+
+        gotoligcol(0,0);
+
+        /*for (int i=0; i==nbj-1; i++)
+        {
+            printf("%s",joueur[i].nomJoueur);
+        }*/
+
     }
-    Color(5,0);
-    gotoligcol(25,110);
 
-
-
-    }
     Sleep(1000);
 
 }
