@@ -3,7 +3,7 @@
 int main()
 {
     ///déclaration des variables
-    int choixDuMenuPrincipal,nombreDeJoueur, nbr ;
+    int choixDuMenuPrincipal,nombreDeJoueur, nbr,positionDesJoueurs[4];
     joueur_t joueur1, joueur2, joueur3, joueur4, tableauDeJoueur[4] = {joueur1, joueur2, joueur3, joueur4};
     joueur_t ordreDePassageDesJoueurs[4];
     joueur1.numeroJoueur = 1;
@@ -37,9 +37,18 @@ int main()
          tableauDeJoueur[i].nomJoueur[j] = '\0';
     }
 
+    ///Si l'utilisateur demande de Lancer une nouvelle partie
     ///Mise en place de l'ordre des joueurs
     srand(time(NULL));
     choisirQuiCommence(ordreDePassageDesJoueurs,tableauDeJoueur,nombreDeJoueur);
+
+    ///Lancement de la partie
+    for (int i=0;i<nombreDeJoueur;i++)
+    {
+        positionDesJoueurs[i]=0;
+    }
+    plateau(positionDesJoueurs,nombreDeJoueur);
+
 
 
     return 0;

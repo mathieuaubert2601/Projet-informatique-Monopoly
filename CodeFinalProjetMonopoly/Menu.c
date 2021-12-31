@@ -132,16 +132,7 @@ int choixmenu(int choixDumenu,joueur_t tab_joueur[])//va traiter les choix du me
         }
     case 2:
         {
-            //lancement partie choix du nombre de joueurs
-            int pos[4];
-
             creer_nouveau_joueur(tab_joueur, &nombreDeJoueurAJouer);
-
-           /* for (int i=0;i<nombre_joueur;i++)
-                {
-                    pos[i]=0;
-                }
-            plateau(pos,nombre_joueur);*/
             break;
         }
     case 3:

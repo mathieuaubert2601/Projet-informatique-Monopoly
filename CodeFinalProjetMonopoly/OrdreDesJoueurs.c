@@ -90,4 +90,11 @@ void choisirQuiCommence(joueur_t ordreJoueur[],joueur_t tabJoueur[], int nbrJoue
 
     }
 
+    Sleep(1000);
+    printf("Appuyer sur Entrer pour continuer ");
+    getchar();
+    system("cls");
+
+
+
 }
