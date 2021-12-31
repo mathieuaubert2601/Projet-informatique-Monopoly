@@ -9,16 +9,18 @@ void choisirQuiCommence(joueur_t ordreJoueur[],joueur_t tabJoueur[], int nbrJoue
         {
             if(quiCommence == 1)
             {
-                ordreJoueur[0] = tabJoueur[0];
-                ordreJoueur[1] = tabJoueur[1];
+                memcpy ( &ordreJoueur[0], &tabJoueur[0], sizeof(joueur_t) );
+                memcpy ( &ordreJoueur[1], &tabJoueur[1], sizeof(joueur_t) );
 
                 printf("La personne qui jouera apres %s est %s\n",ordreJoueur[0].nomJoueur , ordreJoueur[1].nomJoueur);
+                printf("Veuillez vous placer dans l'ordre dans le sens horaire \n");
             }
             if(quiCommence == 2)
             {
-                ordreJoueur[0] = tabJoueur[1];
-                ordreJoueur[1] = tabJoueur[0];
+                memcpy ( &ordreJoueur[0], &tabJoueur[1], sizeof(joueur_t) );
+                memcpy ( &ordreJoueur[1], &tabJoueur[0], sizeof(joueur_t) );
                 printf("La personne qui jouera apres %s est %s\n",ordreJoueur[0].nomJoueur, ordreJoueur[1].nomJoueur);
+                printf("Veuillez vous placer dans l'ordre dans le sens horaire \n");
             }
         }
     if(nbrJoueur == 3)
@@ -30,6 +32,7 @@ void choisirQuiCommence(joueur_t ordreJoueur[],joueur_t tabJoueur[], int nbrJoue
                 ordreJoueur[2] = tabJoueur[2];
 
                 printf("La personne qui jouera apres %s est %s puis %s \n",ordreJoueur[0].nomJoueur , ordreJoueur[1].nomJoueur, ordreJoueur[2].nomJoueur);
+                printf("Veuillez vous placer dans l'ordre dans le sens horaire \n");
             }
             if(quiCommence == 2)
             {
@@ -37,6 +40,7 @@ void choisirQuiCommence(joueur_t ordreJoueur[],joueur_t tabJoueur[], int nbrJoue
                 ordreJoueur[1] = tabJoueur[2];
                 ordreJoueur[2] = tabJoueur[0];
                 printf("La personne qui jouera apres %s est %s puis %s \n",ordreJoueur[0].nomJoueur , ordreJoueur[1].nomJoueur, ordreJoueur[2].nomJoueur);
+                printf("Veuillez vous placer dans l'ordre dans le sens horaire \n");
             }
             if(quiCommence == 3)
             {
@@ -44,6 +48,7 @@ void choisirQuiCommence(joueur_t ordreJoueur[],joueur_t tabJoueur[], int nbrJoue
                 ordreJoueur[1] = tabJoueur[0];
                 ordreJoueur[2] = tabJoueur[1];
                 printf("La personne qui jouera apres %s est %s puis %s \n",ordreJoueur[0].nomJoueur , ordreJoueur[1].nomJoueur, ordreJoueur[2].nomJoueur);
+                printf("Veuillez vous placer dans l'ordre dans le sens horaire \n");
             }
 
     }

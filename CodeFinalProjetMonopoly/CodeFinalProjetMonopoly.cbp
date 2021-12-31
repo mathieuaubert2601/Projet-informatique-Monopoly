@@ -37,6 +37,9 @@
 		<Unit filename="GestionDuCurseur.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="LancementEtGestionDesDes.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="Menu.c">
 			<Option compilerVar="CC" />
 		</Unit>

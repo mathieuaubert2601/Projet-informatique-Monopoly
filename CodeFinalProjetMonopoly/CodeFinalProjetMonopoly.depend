@@ -1,15 +1,15 @@
 # depslib dependency file v1.0
-1640883442 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\introductionpartie.c
+1640945658 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\introductionpartie.c
 	"header.h"
 
-1640892626 c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\header.h
+1640940345 c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\header.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<time.h>
 	<windows.h>
 
-1640937683 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\main.c
+1640945679 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\main.c
 	"header.h"
 
 1640852048 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\couleursdumonopoly.c
@@ -27,7 +27,7 @@
 1640883849 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\creation_nouveaux_joueurs.c
 	"header.h"
 
-1640883503 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\plateaudejeu.c
+1640942186 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\plateaudejeu.c
 	"header.h"
 
 1640857646 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\gestionducurseur.c
@@ -42,6 +42,9 @@
 1640878112 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\saubegardeetchargement.c
 	"header.h"
 
-1640937868 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\ordredesjoueurs.c
+1640945782 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\ordredesjoueurs.c
+	"header.h"
+
+1640945548 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\lancementetgestiondesdes.c
 	"header.h"
 

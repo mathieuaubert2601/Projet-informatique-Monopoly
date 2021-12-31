@@ -2,6 +2,7 @@
 
 void plateau(int pos[4],int nbj)// rajouter couleur, rajouter
 {
+
     /*for (int i=0;i<4;i++)//remplissage test
     {
         pos[i]=i;
@@ -101,7 +102,7 @@ void plateau(int pos[4],int nbj)// rajouter couleur, rajouter
     Color(10,0);
     gotoligcol(43,123);
     Color(12,0);
-    for (int i=0; i<42; i++)
+    for (int i=0;i<42;i++)
     {
         Sleep(15);
         printf("_");
@@ -112,68 +113,68 @@ void plateau(int pos[4],int nbj)// rajouter couleur, rajouter
     int ligbas=93;
     int col=1;
 
-    for (int i=0; i<nbj; i++)
+    for (int i=0;i<nbj;i++)
     {
         Color(col,0);
         int j=0;
-        //ligne du bas ligne 93 variation de 4 à partir de 10
-        for(int k=8; k>0; k--)
+    //ligne du bas ligne 93 variation de 4 à partir de 10
+        for(int k=8;k>0;k--)
         {
 
             gotoligcol(colgdr,lighau+(k*10)+i);
             if (j==pos[i])
             {
-                printf("*");
+            printf("*");
             }
             j+=1;
 
         }
-        //colonne de gauche colone 13 variation de 4 à partir de 10
-        for (int k=6; k>0; k--)
+    //colonne de gauche colone 13 variation de 4 à partir de 10
+        for (int k=6;k>0;k--)
         {
 
             gotoligcol((colgau+(k*4)),lighau+i);
             if (j==pos[i])
             {
-                printf("*");
+            printf("*");
             }
             j+=1;
 
         }
         //ligne du haut colone 6 variation de 10 à partir de 13
-        for(int k=1; k<8; k++)
+        for(int k=1;k<8;k++)
         {
             gotoligcol(colgau,lighau+(k*10)+i);
             if (j==pos[i])
             {
-                printf("*");
+            printf("*");
             }
             j+=1;
 
 
         }
         //colone de droite ligne 93 variation de 4 à partir de 10
-        for(int k=0; k<9; k++)
+        for(int k=0;k<9;k++)
         {
 
             gotoligcol((colgau+(k*4)),ligbas+i);
             if (j==pos[i])
             {
-                printf("*");
+            printf("*");
             }
             j+=1;
         }
         col+=2;
-        if (pos[i]>=28)
-        {
-            pos[i]=0;
-        }
-        Color(5,0);
-        gotoligcol(25,110);
+    if (pos[i]>=28)
+    {
+        pos[i]=0;
+    }
+    Color(5,0);
+    gotoligcol(25,110);
 
 
 
     }
-    Sleep(5000);
+    Sleep(1000);
 
 }

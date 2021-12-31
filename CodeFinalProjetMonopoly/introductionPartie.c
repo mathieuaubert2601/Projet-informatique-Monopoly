@@ -5,15 +5,15 @@ void intro()
 {
         Color(14,0);
     printf("Il y a longtemps\n");
-    Sleep(2000);
+    Sleep(1000);
     printf("Tres longtemps...");
-    Sleep(2000);
+    Sleep(1000);
     system("cls");
     Sleep(500);
     printf("Dans une galaxie lointaine\n");
-    Sleep(2000);
+    Sleep(1000);
     printf("Tres lointaine...");
-    Sleep(2000);
+    Sleep(1000);
     system("cls");
     Sleep(1000);
     Color(14,0);
@@ -82,7 +82,7 @@ void intro()
     printf("                       .                           .         .               .                 .         .           .\n");
     Sleep(50);
     printf("                                               .                                   .           .     .               .  .          ");
-    Sleep(2000);
+    Sleep(1000);
     printf("Appuyer sur entrer pour continuer");
     fflush(stdin);
     getchar();

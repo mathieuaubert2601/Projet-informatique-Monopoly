@@ -50,4 +50,7 @@ void sauvegardeGlobale(int nombreDeJoueurAjouer,joueur_t premierJoueur, joueur_t
 void chargerGlobale(int nombreDeJoueurACharger,joueur_t* joueurAchargerE, joueur_t* joueurAchargerF, joueur_t* joueurAchargerG, joueur_t* joueurAchargerH);
 void credits(joueur_t tab_joueur[], int* nombre_joueur);
 void choisirQuiCommence(joueur_t ordreJoueur[],joueur_t tabJoueur[], int nbrJoueur);
+void lanceDesGlobal(int* deE, int* deF, int* somme, joueur_t joueurC);
+void afficherDe(int de1, int de2);
+void lancerDeDes(int* deC, int* deD);
 #endif // HEADER_H_INCLUDED
