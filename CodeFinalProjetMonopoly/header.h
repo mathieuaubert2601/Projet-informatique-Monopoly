@@ -35,7 +35,7 @@ int menu();
 int choixmenu(int choixDumenu,joueur_t tab_joueur[]);
 void regle_Du_jeu(joueur_t tab_joueur[], int* nombre_joueur);
 void creer_nouveau_joueur(joueur_t tab_joueur[], int* nombre_joueur);
-void plateau(int pos[4],int nbj);
+void plateau(int pos[],int nbj);
 void SauvegardeVerifPartieSauv();
 int testPartieChargee();
 void sauvegardeNombreJoueur(int nombre_De_joueur);
@@ -53,4 +53,5 @@ void choisirQuiCommence(joueur_t ordreJoueur[],joueur_t tabJoueur[], int nbrJoue
 void lanceDesGlobal(int* deE, int* deF, int* somme, joueur_t joueurC);
 void afficherDe(int de1, int de2);
 void lancerDeDes(int* deC, int* deD);
+int deplanbrjr(int nbr,joueur_t joueur);
 #endif // HEADER_H_INCLUDED

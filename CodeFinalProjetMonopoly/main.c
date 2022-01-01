@@ -14,6 +14,10 @@ int main()
     joueur2.doubleOuNon = 0;
     joueur3.doubleOuNon = 0;
     joueur4.doubleOuNon = 0;
+    joueur1.position = 0;
+    joueur2.position = 0;
+    joueur3.position = 0;
+    joueur4.position = 0;
 
 
     char* retourAlaLigneTmp = NULL;
@@ -66,11 +70,16 @@ int main()
                 t=0;
             }
             gotoligcol(5,115);
-            printf("C'est a %s de jouer !",ordreDePassageDesJoueurs[t].nomJoueur,ordreDePassageDesJoueurs[t].doubleOuNon);
+            printf("C'est a %s de jouer !",ordreDePassageDesJoueurs[t].nomJoueur);
 
             //Lancement des dés
             lanceDesGlobal(&deNumeroUn,&deNumeroDeux,&sommeDesLance,ordreDePassageDesJoueurs[t]);
             Sleep(1000);
+
+            //Déplacement du joueur
+
+            ordreDePassageDesJoueurs[t].position = deplanbrjr(sommeDesLance,ordreDePassageDesJoueurs[t]);
+            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
 
             gotoligcol(21,115);
             printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
@@ -86,6 +95,8 @@ int main()
                     printf(" ");
                 }
             }
+
+            //Actualisation du plateau
             plateau(positionDesJoueurs,nombreDeJoueur);
         }
     }

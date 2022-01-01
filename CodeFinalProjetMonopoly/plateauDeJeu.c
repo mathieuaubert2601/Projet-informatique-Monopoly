@@ -1,6 +1,6 @@
 #include "header.h"
 
-void plateau(int pos[4],int nbj)// rajouter couleur, rajouter
+void plateau(int pos[],int nbj)// rajouter couleur, rajouter
 {
     /*for (int i=0;i<4;i++)//remplissage test
     {
@@ -265,10 +265,6 @@ void plateau(int pos[4],int nbj)// rajouter couleur, rajouter
 
         gotoligcol(0,0);
 
-        /*for (int i=0; i==nbj-1; i++)
-        {
-            printf("%s",joueur[i].nomJoueur);
-        }*/
 
     }
 
