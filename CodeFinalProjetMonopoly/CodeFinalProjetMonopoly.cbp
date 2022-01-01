@@ -34,6 +34,9 @@
 		<Unit filename="Creation_Nouveaux_Joueurs.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="DeplacementDuJoueur.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="GestionDuCurseur.c">
 			<Option compilerVar="CC" />
 		</Unit>

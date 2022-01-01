@@ -8,6 +8,10 @@ int deplanbrjr(int nbr,joueur_t joueur)
         if (joueur.position==32)
         {
             joueur.position=0;
+            if(joueur.position == 0)
+            {
+                joueur.argent = joueur.argent + 200;
+            }
         }
     }
     return(joueur.position);

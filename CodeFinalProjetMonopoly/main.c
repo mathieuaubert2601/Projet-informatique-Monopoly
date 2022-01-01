@@ -26,7 +26,7 @@ int main()
     pleinEcran();
 
 ///Introduction du début du jeu
-    //intro();
+    intro();
 
 ///Affichage et saisie dans le menu
     choixDuMenuPrincipal = menu(); //Affichage du menu
