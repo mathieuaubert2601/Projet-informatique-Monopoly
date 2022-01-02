@@ -122,15 +122,38 @@ int menu()//menu
 }
 
 ///Sous programme pour les choix du menu
-int choixmenu(int choixDumenu,joueur_t tab_joueur[])//va traiter les choix du menu de la valeur deja blindée
+int choixmenu(int choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[], joueur_t OrdreDesJoueursAcharger[])//va traiter les choix du menu de la valeur deja blindée
 {
-    int a;
+    int a,chargementPossibleOuNon;
     int nombreDeJoueurAJouer;
     switch(choixDumenu)
     {
     case 1:
         {
-            //prog reprendre partie
+            //Verification si une partie a été chargée
+            chargementPossibleOuNon = testPartieChargee();
+
+            if(chargementPossibleOuNon != 1)
+            {
+                printf("Aucune partie n'a ete sauvegardee");
+            }
+            else
+            {
+                chargerNombreJoueur(&nombreDeJoueurAJouer);
+                chargerOrdreJoueur(OrdreDesJoueursAcharger);
+
+                //chargerCasesMonopoly(tableauDeCase);
+                printf("Chargement en cours");
+                Sleep(1000);
+                printf(".");
+                Sleep(1000);
+                printf(".");
+                Sleep(1000);
+                printf(".\n");
+                Sleep(1000);
+                printf("Partie chargee.\n");
+                Sleep(2000);
+            }
             break;
         }
     case 2:
@@ -140,7 +163,10 @@ int choixmenu(int choixDumenu,joueur_t tab_joueur[])//va traiter les choix du me
         }
     case 3:
         {
-            sauvegardeGlobale(nombreDeJoueurAJouer,tab_joueur[0],tab_joueur[1],tab_joueur[2],tab_joueur[3]);
+            sauvegardeNombreJoueur(nombreDeJoueurAJouer);
+            sauvegarderOrdreJoueur(OrdreDesJoueursAcharger);
+            SauvegardeVerifPartieSauv();
+
             printf("Sauvegarde en cours");
             Sleep(1000);
             printf(".");
@@ -155,7 +181,7 @@ int choixmenu(int choixDumenu,joueur_t tab_joueur[])//va traiter les choix du me
         }
     case 4:
         {
-            credits(tab_joueur, &nombreDeJoueurAJouer);
+            credits(tab_joueur, &nombreDeJoueurAJouer,tableauDeCase,OrdreDesJoueursAcharger);
 
             break;
         }
@@ -177,7 +203,7 @@ int choixmenu(int choixDumenu,joueur_t tab_joueur[])//va traiter les choix du me
         }
     case 6:
         {
-            regle_Du_jeu(tab_joueur,&nombreDeJoueurAJouer);
+            regle_Du_jeu(tab_joueur,&nombreDeJoueurAJouer,tableauDeCase,OrdreDesJoueursAcharger);
             break;
         }
 

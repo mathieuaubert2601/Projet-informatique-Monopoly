@@ -1,6 +1,54 @@
 #include "header.h"
 
 //////////////////////////////////////////////////////////
+////Sous programme pour saubegarder le tableau de case////
+//////////////////////////////////////////////////////////
+
+void sauvegardeCasesMonopoly(caseMonop tableauCaseMonopoly[])
+{
+    ///Ouverture et test d'ouverture du fichier
+    FILE* tabCaseMonopoly = fopen("fichiersSauvegarde/case.bin", "wb+");
+    if (tabCaseMonopoly == NULL)
+    {
+        printf("Erreur d'ouverture de fichier.");
+        return 1;
+    }
+
+    for(int i=0 ; i<28 ; i++)
+    {
+        fwrite(&tableauCaseMonopoly[i],sizeof(caseMonop),1,tabCaseMonopoly);
+    }
+
+    ///Fermeture du fichier
+    fclose(tabCaseMonopoly);
+    tabCaseMonopoly = NULL;
+}
+
+//////////////////////////////////////////////////////////
+//////Sous programme pour charger le tableau de case//////
+//////////////////////////////////////////////////////////
+
+void chargerCasesMonopoly(caseMonop tableauCaseMonopolyAremplir[])
+{
+    ///Ouverture et test d'ouverture du fichier
+    FILE* tabCaseMonopoly = fopen("fichiersSauvegarde/case.bin", "rb");
+    if (tabCaseMonopoly == NULL)
+    {
+        printf("Erreur d'ouverture de fichier caseMonopoly.");
+        return 1;
+    }
+
+    for(int i=0 ; i<28 ; i++)
+    {
+        fread(&tableauCaseMonopolyAremplir[i],sizeof(caseMonop),1,tabCaseMonopoly);
+    }
+
+    ///Fermeture du fichier
+    fclose(tabCaseMonopoly);
+    tabCaseMonopoly = NULL;
+}
+
+//////////////////////////////////////////////////////////
 ///Sous programme pour sauvegarder une partie chargee ////
 //////////////////////////////////////////////////////////
 void SauvegardeVerifPartieSauv()
@@ -33,7 +81,7 @@ int testPartieChargee()
     FILE* partie_chargee = fopen("fichiersSauvegarde/partieChargee.bin", "rb");
     if (partie_chargee == NULL)
     {
-        printf("Erreur d'ouverture de fichier.");
+        printf("Erreur d'ouverture de fichier testPartieChargee.");
         return 1;
     }
 
@@ -79,7 +127,7 @@ void chargerNombreJoueur(int* nombre_De_joueur)
     FILE* nombreDeJoueur = fopen("fichiersSauvegarde/nombreJoueur.bin", "rb");
     if (nombreDeJoueur == NULL)
     {
-        printf("Erreur d'ouverture de fichier.");
+        printf("Erreur d'ouverture de fichier nombreJoueur.");
         return 1;
     }
 
@@ -234,6 +282,54 @@ void chargerQuatreJoueur(joueur_t* joueurAchargerA, joueur_t* joueurAchargerB, j
     ///Fermeture du fichier
     fclose(donneJoueur);
     donneJoueur = NULL;
+
+
+}
+void sauvegarderOrdreJoueur(joueur_t tableauOrdre[])
+{
+    ///Ouverture et test d'ouverture du fichier
+    FILE* OrdreJoueur = fopen("fichiersSauvegarde/Ordre.bin", "wb+");
+    if (OrdreJoueur == NULL)
+    {
+        printf("Erreur d'ouverture de fichier.");
+        return 1;
+    }
+
+    ///Sauvegarder l'ordre des joueurs
+    fwrite(&tableauOrdre[0], sizeof(joueur_t),1,OrdreJoueur);
+    fwrite(&tableauOrdre[1], sizeof(joueur_t),1,OrdreJoueur);
+    fwrite(&tableauOrdre[2], sizeof(joueur_t),1,OrdreJoueur);
+    fwrite(&tableauOrdre[3], sizeof(joueur_t),1,OrdreJoueur);
+
+    ///Fermeture du fichier
+    fclose(OrdreJoueur);
+    OrdreJoueur = NULL;
+
+}
+
+//////////////////////////////////////////////////////////
+//////Sous programme pour charger un tableau d'ordre//////
+//////////////////////////////////////////////////////////
+
+void chargerOrdreJoueur(joueur_t tableauOrdre[])
+{
+    ///Ouverture et test d'ouverture du fichier
+    FILE* OrdreJoueur = fopen("fichiersSauvegarde/Ordre.bin", "rb");
+    if (OrdreJoueur == NULL)
+    {
+        printf("Erreur d'ouverture de fichier.");
+        return 1;
+    }
+
+    ///Sauvegarder l'ordre des joueurs
+    fread(&tableauOrdre[0], sizeof(joueur_t),1,OrdreJoueur);
+    fread(&tableauOrdre[1], sizeof(joueur_t),1,OrdreJoueur);
+    fread(&tableauOrdre[2], sizeof(joueur_t),1,OrdreJoueur);
+    fread(&tableauOrdre[3], sizeof(joueur_t),1,OrdreJoueur);
+
+    ///Fermeture du fichier
+    fclose(OrdreJoueur);
+    OrdreJoueur = NULL;
 
 
 }

@@ -18,39 +18,87 @@ int main()
     joueur2.position = 0;
     joueur3.position = 0;
     joueur4.position = 0;
-
-
-    char* retourAlaLigneTmp = NULL;
+    caseMonop TableauDesCasesDuMonopoly[28];
 
 ///Ouverture de la console en plein écran
     pleinEcran();
 
 ///Introduction du début du jeu
-    intro();
+    //intro();
 
 ///Affichage et saisie dans le menu
     choixDuMenuPrincipal = menu(); //Affichage du menu
-    nbr = choixmenu(choixDuMenuPrincipal, tableauDeJoueur);
+    nbr = choixmenu(choixDuMenuPrincipal, tableauDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
 
 ///Actualisation du nombre de joueur
     nombreDeJoueur = nbr;
 
-///Suppression du retour chariot à la fin des noms
 
-    for(int i=0 ; i<nombreDeJoueur ; i++)
+///Si l'utilisateur demande de Lancer une partie déja chargée
+    if(choixDuMenuPrincipal == 1)
     {
-         int j=0;
-         while(tableauDeJoueur[i].nomJoueur[j] != '\n')
-         {
-             j++;
-         }
-         tableauDeJoueur[i].nomJoueur[j] = '\0';
-    }
+        ///Lancement de la partie
+        for (int i=0;i<nombreDeJoueur;i++)
+        {
+            positionDesJoueurs[i]=ordreDePassageDesJoueurs[i].position;
+        }
+        plateau(positionDesJoueurs,nombreDeJoueur);
 
+        ///Lancement des tours
+        for(int t=0 ;t<=nombreDeJoueur ;t++)
+        {
+            if(t==(nombreDeJoueur))
+            {
+                t=0;
+            }
+            gotoligcol(5,115);
+            printf("C'est a %s de jouer !",ordreDePassageDesJoueurs[t].nomJoueur);
+
+            //Lancement des dés
+            lanceDesGlobal(&deNumeroUn,&deNumeroDeux,&sommeDesLance,ordreDePassageDesJoueurs[t]);
+            Sleep(1000);
+
+            //Déplacement du joueur
+
+            ordreDePassageDesJoueurs[t].position = deplanbrjr(sommeDesLance,ordreDePassageDesJoueurs[t]);
+            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+
+            gotoligcol(21,115);
+            printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
+            fflush(stdin);
+            getchar();
+
+            //On efface toutes les données des dés
+            for(int l=5 ; l<22 ;l++)
+            {
+                for(int c = 115 ; c<160 ; c++)
+                {
+                    gotoligcol(l,c);
+                    printf(" ");
+                }
+            }
+
+            //Actualisation du plateau
+            plateau(positionDesJoueurs,nombreDeJoueur);
+        }
+
+    }
 ///Si l'utilisateur demande de Lancer une nouvelle partie
 
     if(choixDuMenuPrincipal == 2)
     {
+        ///Suppression du retour chariot à la fin des noms
+
+        for(int i=0 ; i<nombreDeJoueur ; i++)
+        {
+             int j=0;
+             while(tableauDeJoueur[i].nomJoueur[j] != '\n')
+             {
+                 j++;
+             }
+             tableauDeJoueur[i].nomJoueur[j] = '\0';
+        }
+
         ///Mise en place de l'ordre des joueurs
         srand(time(NULL));
         choisirQuiCommence(ordreDePassageDesJoueurs,tableauDeJoueur,nombreDeJoueur);
@@ -98,6 +146,9 @@ int main()
 
             //Actualisation du plateau
             plateau(positionDesJoueurs,nombreDeJoueur);
+
+
+
         }
     }
 
