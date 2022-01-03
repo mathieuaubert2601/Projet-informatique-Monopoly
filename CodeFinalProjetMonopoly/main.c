@@ -2,7 +2,7 @@
 
 int main()
 {
-///déclaration des variables
+///dÃ©claration des variables
     int choixDuMenuPrincipal,nombreDeJoueur, nbr,deNumeroUn, deNumeroDeux,sommeDesLance,retournerMenu,positionDesJoueurs[4];
     joueur_t joueur1, joueur2, joueur3, joueur4, tableauDeJoueur[4] = {joueur1, joueur2, joueur3, joueur4};
     joueur_t ordreDePassageDesJoueurs[4];
@@ -20,10 +20,10 @@ int main()
     joueur4.position = 0;
     caseMonop TableauDesCasesDuMonopoly[28];
 
-///Ouverture de la console en plein écran
+///Ouverture de la console en plein Ã©cran
     pleinEcran();
 
-///Introduction du début du jeu
+///Introduction du dÃ©but du jeu
     //intro();
 
 ///Affichage et saisie dans le menu
@@ -37,7 +37,7 @@ int main()
 
     while(choixDuMenuPrincipal != 5)
     {
-        ///Si l'utilisateur demande de Lancer une partie déja chargée
+        ///Si l'utilisateur demande de Lancer une partie dÃ©ja chargÃ©e
         while(choixDuMenuPrincipal == 1)
         {
             SauvegardeVerifPartieCommencee();
@@ -55,14 +55,14 @@ int main()
                 {
                     t=0;
                 }
-                gotoligcol(5,115);
+                gotoligcol(11,115);
                 printf("C'est a %s de jouer !",ordreDePassageDesJoueurs[t].nomJoueur);
 
-                //Lancement des dés
+                //Lancement des dÃ©s
                 lanceDesGlobal(&deNumeroUn,&deNumeroDeux,&sommeDesLance,ordreDePassageDesJoueurs[t]);
                 Sleep(1000);
 
-                //Déplacement du joueur
+                //DÃ©placement du joueur
 
                 ordreDePassageDesJoueurs[t].position = deplanbrjr(sommeDesLance,ordreDePassageDesJoueurs[t]);
                 positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
@@ -72,7 +72,7 @@ int main()
                 fflush(stdin);
                 getchar();
 
-                //On efface toutes les données des dés
+                //On efface toutes les donnÃ©es des dÃ©s
                 for(int l=5 ; l<22 ;l++)
                 {
                     for(int c = 115 ; c<160 ; c++)
@@ -90,7 +90,7 @@ int main()
                 {
                     do
                     {
-                        gotoligcol(3,115);
+                        gotoligcol(11,115);
                         printf("revenir au menu principal ? || OUI : 1 || NON : 0 || : ");
                         fflush(stdin);
                         scanf("%d",&retournerMenu);
@@ -119,7 +119,7 @@ int main()
         if(choixDuMenuPrincipal == 2)
         {
             SauvegardeVerifPartieCommencee();
-            ///Suppression du retour chariot à la fin des noms
+            ///Suppression du retour chariot Ã  la fin des noms
 
             for(int i=0 ; i<nombreDeJoueur ; i++)
             {
@@ -150,13 +150,13 @@ int main()
                 {
                     t=0;
                 }
-                gotoligcol(5,115);
+                gotoligcol(11,115);
                 printf("C'est a %s de jouer !",ordreDePassageDesJoueurs[t].nomJoueur);
 
-                //Lancement des dés
+                //Lancement des dÃ©s
                 lanceDesGlobal(&deNumeroUn,&deNumeroDeux,&sommeDesLance,ordreDePassageDesJoueurs[t]);
                 Sleep(1000);
-                //Déplacement du joueur
+                //DÃ©placement du joueur
 
 
                 ordreDePassageDesJoueurs[t].position = deplanbrjr(sommeDesLance,ordreDePassageDesJoueurs[t]);
@@ -167,7 +167,7 @@ int main()
                 fflush(stdin);
                 getchar();
 
-                //On efface toutes les données des dés
+                //On efface toutes les donnÃ©es des dÃ©s
                 for(int l=5 ; l<22 ;l++)
                 {
                     for(int c = 115 ; c<160 ; c++)
@@ -206,7 +206,7 @@ int main()
             }
         }
 
-        ///Si l'utilisateur revient au menu et demande à reprendre la partie en cours;
+        ///Si l'utilisateur revient au menu et demande Ã  reprendre la partie en cours;
         while(choixDuMenuPrincipal == 7)
         {
             ///Lancement de la partie
@@ -226,11 +226,11 @@ int main()
                 gotoligcol(5,115);
                 printf("C'est a %s de jouer !",ordreDePassageDesJoueurs[t].nomJoueur);
 
-                //Lancement des dés
+                //Lancement des dÃ©s
                 lanceDesGlobal(&deNumeroUn,&deNumeroDeux,&sommeDesLance,ordreDePassageDesJoueurs[t]);
                 Sleep(1000);
 
-                //Déplacement du joueur
+                //DÃ©placement du joueur
 
                 ordreDePassageDesJoueurs[t].position = deplanbrjr(sommeDesLance,ordreDePassageDesJoueurs[t]);
                 positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
@@ -240,7 +240,7 @@ int main()
                 fflush(stdin);
                 getchar();
 
-                //On efface toutes les données des dés
+                //On efface toutes les donnÃ©es des dÃ©s
                 for(int l=5 ; l<22 ;l++)
                 {
                     for(int c = 115 ; c<160 ; c++)
