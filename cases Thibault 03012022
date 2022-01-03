@@ -393,11 +393,11 @@ struct caseMonop case0,case1,case2,case3,case4,case5,case6,case7,case8,case9,cas
     case27.nbHotel=0;
     case27.typeCase=1;
     case27.prixLoyer=23;
-    case26.prixloy1maison=112;
-    case26.prixloy2maison=337;
-    case26.prixloy3maison=843;
-    case26.prixloy4maison=1265;
-    case26.prixloyhotel=1898;
+    case27.prixloy1maison=112;
+    case27.prixloy2maison=337;
+    case27.prixloy3maison=843;
+    case27.prixloy4maison=1265;
+    case27.prixloyhotel=1898;
     
 
     cases[0]= case0;
