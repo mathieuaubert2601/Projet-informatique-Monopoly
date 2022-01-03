@@ -74,4 +74,7 @@ void chargerOrdreJoueur(joueur_t tableauOrdre[]);
 void sauvegarderOrdreJoueur(joueur_t tableauOrdre[]);
 void chargerCasesMonopoly(caseMonop tableauCaseMonopolyAremplir[]);
 void sauvegardeCasesMonopoly(caseMonop tableauCaseMonopoly[]);
+void SauvegardeVerifPartieCommencee();
+void SauvegardeVerifPartiePasCommencee();
+int testPartieCommencee();
 #endif // HEADER_H_INCLUDED

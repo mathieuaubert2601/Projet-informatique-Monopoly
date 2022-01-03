@@ -47,7 +47,7 @@ int menu()//menu
     Sleep(30);
     printf("|   __L________\_    .                        .                 .              .     ");
     Color(3,0);
-    printf("                               1: Reprendre la partie en cours .             .       .\n");
+    printf("                               1: Charger une partie sauvegardee .             .       .\n");
     Sleep(30);
     Color(3,0);
     printf("|  <_|_L___/   | |,                                                                 ");
@@ -75,7 +75,8 @@ int menu()//menu
     Color(3,0);
     printf("                                                           6: Lire les regles .   .   ..          .");
     Sleep(30);
-    printf("\n|   | |___________|---^--'_________.-------------`--'   ..      .   .           .       .   .   .\n");
+    printf("\n|   | |___________|---^--'_________.-------------`--'   ..      .   .           .       .   .   .");
+    printf("                  7: Reprendre la partie en cours\n");
     Sleep(30);
     printf("|   __|__/_    | |    .           .               .                   .           .       .       .\n");
     Sleep(30);
@@ -106,7 +107,7 @@ int menu()//menu
     fflush(stdin);
     Color(3,0);
     scanf("%d",&choix);
-    if(choix<1||choix>6)//blindage
+    if(choix<1||choix>7)//blindage
     {
         do//on demande
         {
@@ -116,7 +117,7 @@ int menu()//menu
             Color(3,0);
             scanf("%d",&choix);
         }
-        while(choix<1||choix>6); //tant que l'on a pas de resultat entre 1 et 6
+        while(choix<1||choix>7); //tant que l'on a pas de resultat entre 1 et 6
     }
     return(choix);//on retourne le choix
 }
@@ -124,7 +125,7 @@ int menu()//menu
 ///Sous programme pour les choix du menu
 int choixmenu(int choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[], joueur_t OrdreDesJoueursAcharger[])//va traiter les choix du menu de la valeur deja blindée
 {
-    int a,chargementPossibleOuNon;
+    int a,chargementPossibleOuNon,reprisePossibleOuNon;
     int nombreDeJoueurAJouer;
     switch(choixDumenu)
     {
@@ -135,14 +136,18 @@ int choixmenu(int choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[], 
 
             if(chargementPossibleOuNon != 1)
             {
-                printf("Aucune partie n'a ete sauvegardee");
+                printf("Aucune partie n'a ete sauvegardee.\n");
+                Sleep(2000);
+                system("cls");
+                choixDumenu = menu();
+                choixmenu(choixDumenu,tab_joueur,tableauDeCase,OrdreDesJoueursAcharger);
             }
             else
             {
                 chargerNombreJoueur(&nombreDeJoueurAJouer);
                 chargerOrdreJoueur(OrdreDesJoueursAcharger);
+                SauvegardeVerifPartieCommencee();
 
-                //chargerCasesMonopoly(tableauDeCase);
                 printf("Chargement en cours");
                 Sleep(1000);
                 printf(".");
@@ -177,6 +182,9 @@ int choixmenu(int choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[], 
             Sleep(1000);
             printf("Partie sauvegardee.\n");
             Sleep(2000);
+            system("cls");
+            choixDumenu = menu();
+            choixmenu(choixDumenu,tab_joueur,tableauDeCase,OrdreDesJoueursAcharger);
             break;
         }
     case 4:
@@ -188,22 +196,27 @@ int choixmenu(int choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[], 
     case 5:
         {
             printf("Vous avez bien appuye sur quitter.\n");
-            printf("Sauvegarde en cours");
-            sauvegardeGlobale(nombreDeJoueurAJouer,tab_joueur[0],tab_joueur[1],tab_joueur[2],tab_joueur[3]);
-            Sleep(1000);
-            printf(".");
-            Sleep(1000);
-            printf(".");
-            Sleep(1000);
-            printf(".\n");
-            Sleep(1000);
-            printf("Partie sauvegardee, au revoir Padawan.\n");
+            printf("Au revoir Padawan.\n");
+            SauvegardeVerifPartiePasCommencee();
             Sleep(2000);
             return(0);
         }
     case 6:
         {
             regle_Du_jeu(tab_joueur,&nombreDeJoueurAJouer,tableauDeCase,OrdreDesJoueursAcharger);
+            break;
+        }
+    case 7:
+        {
+            reprisePossibleOuNon = testPartieCommencee();
+            if(reprisePossibleOuNon != 1)
+            {
+                printf("Aucune partie n'a ete commencee.\n");
+                Sleep(2000);
+                system("cls");
+                choixDumenu = menu();
+                choixmenu(choixDumenu,tab_joueur,tableauDeCase,OrdreDesJoueursAcharger);
+            }
             break;
         }
 

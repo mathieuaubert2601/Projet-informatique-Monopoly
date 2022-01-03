@@ -48,6 +48,81 @@ void chargerCasesMonopoly(caseMonop tableauCaseMonopolyAremplir[])
     tabCaseMonopoly = NULL;
 }
 
+///////////////////////////////////////////////////////////////
+///Sous programme pour sauvegarder verif une partie commencée//
+///////////////////////////////////////////////////////////////
+void SauvegardeVerifPartieCommencee()
+{
+    ///Déclaration des variables
+    int saisie = 1;
+    ///Ouverture et test d'ouverture du fichier
+    FILE* partieCommencee = fopen("fichiersSauvegarde/partieCommencee.bin", "wb+");
+    if (partieCommencee == NULL)
+    {
+        printf("Erreur d'ouverture de fichier PartieCommencee.");
+        return 1;
+    }
+
+    fwrite(&saisie, sizeof(int),1,partieCommencee);
+
+    ///Fermeture du fichier
+    fclose(partieCommencee);
+    partieCommencee = NULL;
+}
+
+///////////////////////////////////////////////////////////////////
+///Sous programme pour sauvegarder verif une partie pas commencée//
+///////////////////////////////////////////////////////////////////
+void SauvegardeVerifPartiePasCommencee()
+{
+    ///Déclaration des variables
+    int saisie = 0;
+    ///Ouverture et test d'ouverture du fichier
+    FILE* partieCommencee = fopen("fichiersSauvegarde/partieCommencee.bin", "wb+");
+    if (partieCommencee == NULL)
+    {
+        printf("Erreur d'ouverture de fichier PartieCommencee.");
+        return 1;
+    }
+
+    fwrite(&saisie, sizeof(int),1,partieCommencee);
+
+    ///Fermeture du fichier
+    fclose(partieCommencee);
+    partieCommencee = NULL;
+}
+
+//////////////////////////////////////////////////////////
+/////Sous programme pour tester une partie commencée//////
+//////////////////////////////////////////////////////////
+
+int testPartieCommencee()
+{
+    int test;
+    ///Ouverture et test d'ouverture du fichier
+    FILE* partie_commencee = fopen("fichiersSauvegarde/partieCommencee.bin", "rb");
+    if (partie_commencee == NULL)
+    {
+        printf("Erreur d'ouverture de fichier testPartiecommencee.");
+        return 1;
+    }
+
+    ///Char
+    fread(&test, sizeof(int),1,partie_commencee);
+
+
+    ///Fermeture du fichier
+    fclose(partie_commencee);
+    partie_commencee = NULL;
+
+    return test;
+
+}
+
+
+
+
+
 //////////////////////////////////////////////////////////
 ///Sous programme pour sauvegarder une partie chargee ////
 //////////////////////////////////////////////////////////
