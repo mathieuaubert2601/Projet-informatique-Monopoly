@@ -13,7 +13,7 @@
 typedef struct
 {
     char nomJoueur[50] ;
-    int possessions[24];
+    int possessions[28];
 	int  position;
 	int  argent ;
 	int tourPrison ;
