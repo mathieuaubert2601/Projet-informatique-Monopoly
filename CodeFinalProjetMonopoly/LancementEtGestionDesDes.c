@@ -1,15 +1,16 @@
 #include "header.h"
+#include <time.h>
 
-//Sous programme pour lancer les dés
+//Sous programme pour lancer les dÃ©s
 void lancerDeDes(int* deC, int* deD)
 {
-    //Déclaration des variables
+    //DÃ©claration des variables
     char choix;
     srand(time(NULL));
 
 
-    //Demande à l'utilisateur d'appuyer sur L pour lancer les dés
-    gotoligcol(6,115);
+    //Demande Ã  l'utilisateur d'appuyer sur L pour lancer les dÃ©s
+    gotoligcol(12,115);
     printf("Appuyer sur L pour lancer les des : ");
     fflush(stdin);
     scanf("%s", &choix);
@@ -22,7 +23,7 @@ void lancerDeDes(int* deC, int* deD)
         scanf("%s", &choix);
     }
 
-    //Obtention de valeurs aléatoire entre 1 et 6
+    //Obtention de valeurs alÃ©atoire entre 1 et 6
     int de1 = rand() % 6 + 1;
     int de2 = rand() % 6 + 1;
 
@@ -32,170 +33,241 @@ void lancerDeDes(int* deC, int* deD)
 
 void afficherDe(int de1, int de2)
 {
-    //Affichage des dés
-
+    //Affichage des dÃ©s
+    int x=7,y=115;
     if(de1 == 1)
     {
-        gotoligcol(7,115);
+        x=14,y=115;
+        gotoligcol(x,y);
+        x++;
         printf("o o o o o \n");
-        gotoligcol(8,115);
+        gotoligcol(x,y);
         printf("o       o \n");
-        gotoligcol(9,115);
+        x++;
+        gotoligcol(x,y);
         printf("o   0   o \n");
-        gotoligcol(10,115);
+        x++;
+        gotoligcol(x,y);
         printf("o       o \n");
-        gotoligcol(11,115);
+        x++;
+        gotoligcol(x,y);
         printf("o o o o o \n");
     }
     else if(de1 == 2)
     {
-        gotoligcol(7,115);
+        x=14,y=115;
+        gotoligcol(x,y);
+        x++;
         printf("o o o o o\n");
-        gotoligcol(8,115);
+        gotoligcol(x,y);
+        x++;
         printf("o 0     o\n");
-        gotoligcol(9,115);
+        gotoligcol(x,y);
+        x++;
         printf("o       o\n");
-        gotoligcol(10,115);
+        gotoligcol(x,y);
+        x++;
         printf("o     0 o\n");
-        gotoligcol(11,115);
+        gotoligcol(x,y);
+        x++;
         printf("o o o o o\n");
     }
     else if(de1 == 3)
     {
-        gotoligcol(7,115);
+        x=14,y=115;
+        gotoligcol(x,y);
+        x++;
         printf("o o o o o\n");
-        gotoligcol(8,115);
+        gotoligcol(x,y);
+        x++;
         printf("o 0     o\n");
-        gotoligcol(9,115);
+        gotoligcol(x,y);
+        x++;
         printf("o   0   o\n");
-        gotoligcol(10,115);
+        gotoligcol(x,y);
+        x++;
         printf("o     0 o\n");
-        gotoligcol(11,115);
+        gotoligcol(x,y);
+        x++;
         printf("o o o o o\n");
     }
     else if(de1 ==4)
     {
-        gotoligcol(7,115);
+        x=14,y=115;
+        gotoligcol(x,y);
+        x++;
         printf("o o o o o\n");
-        gotoligcol(8,115);
+        gotoligcol(x,y);
+        x++;
         printf("o 0   0 o\n");
-        gotoligcol(9,115);
+        gotoligcol(x,y);
+        x++;
         printf("o       o\n");
-        gotoligcol(10,115);
+        gotoligcol(x,y);
+        x++;
         printf("o 0   0 o\n");
-        gotoligcol(11,115);
+        gotoligcol(x,y);
+        x++;
         printf("o o o o o\n");
     }
     else if (de1 == 5)
     {
-        gotoligcol(7,115);
+        x=14,y=115;
+        gotoligcol(x,y);
+        x++;
         printf("o o o o o\n");
-        gotoligcol(8,115);
+        gotoligcol(x,y);
+        x++;
         printf("o 0   0 o\n");
-        gotoligcol(9,115);
+        gotoligcol(x,y);
+        x++;
         printf("o   0   o\n");
-        gotoligcol(10,115);
+        gotoligcol(x,y);
+        x++;
         printf("o 0   0 o\n");
-        gotoligcol(11,115);
+        gotoligcol(x,y);
+        x++;
         printf("o o o o o\n");
     }
     else if(de1 == 6)
     {
-        gotoligcol(7,115);
+        x=14,y=115;
+        gotoligcol(x,y);
+        x++;
         printf("o o o o o\n");
-        gotoligcol(8,115);
+        gotoligcol(x,y);
+        x++;
         printf("o 0   0 o\n");
-        gotoligcol(9,115);
+        gotoligcol(x,y);
+        x++;
         printf("o 0   0 o\n");
-        gotoligcol(10,115);
+        gotoligcol(x,y);
+        x++;
         printf("o 0   0 o\n");
-        gotoligcol(11,115);
+        gotoligcol(x,y);
+        x++;
         printf("o o o o o\n");
     }
     printf("\n \n");
     if(de2 == 1)
     {
-        gotoligcol(14,115);
+        x=14,y=128;
+        gotoligcol(x,y);
+        x++;
         printf("o o o o o\n");
-        gotoligcol(15,115);
+        gotoligcol(x,y);
+        x++;
         printf("o       o\n");
-        gotoligcol(16,115);
+        gotoligcol(x,y);
+        x++;
         printf("o   0   o\n");
-        gotoligcol(17,115);
+        gotoligcol(x,y);
+        x++;
         printf("o       o\n");
-        gotoligcol(18,115);
+        gotoligcol(x,y);
+        x++;
         printf("o o o o o\n");
     }
     else if(de2 == 2)
     {
-        gotoligcol(14,115);
+        x=14,y=128;
+        gotoligcol(x,y);
+        x++;
         printf("o o o o o\n");
-        gotoligcol(15,115);
+        gotoligcol(x,y);
+        x++;
         printf("o 0     o\n");
-        gotoligcol(16,115);
+        gotoligcol(x,y);
+        x++;
         printf("o       o\n");
-        gotoligcol(17,115);
+        gotoligcol(x,y);
+        x++;
         printf("o     0 o\n");
-        gotoligcol(18,115);
+        gotoligcol(x,y);
+        x++;
         printf("o o o o o\n");
     }
     else if(de2 == 3)
     {
-        gotoligcol(14,115);
+        x=14,y=128;
+        gotoligcol(x,y);
+        x++;
         printf("o o o o o\n");
-        gotoligcol(15,115);
+        gotoligcol(x,y);
+        x++;
         printf("o 0     o\n");
-        gotoligcol(16,115);
+        gotoligcol(x,y);
+        x++;
         printf("o   0   o\n");
-        gotoligcol(17,115);
+        gotoligcol(x,y);
+        x++;
         printf("o     0 o\n");
-        gotoligcol(18,115);
+        gotoligcol(x,y);
+        x++;
         printf("o o o o o\n");
     }
     else if(de2 ==4)
     {
-        gotoligcol(14,115);
+        x=14,y=128;
+        gotoligcol(x,y);
+        x++;
         printf("o o o o o\n");
-        gotoligcol(15,115);
+        gotoligcol(x,y);
+        x++;
         printf("o 0   0 o\n");
-        gotoligcol(16,115);
+        gotoligcol(x,y);
+        x++;
         printf("o       o\n");
-        gotoligcol(17,115);
+        gotoligcol(x,y);
+        x++;
         printf("o 0   0 o\n");
-        gotoligcol(18,115);
+        gotoligcol(x,y);
+        x++;
         printf("o o o o o\n");
     }
     else if (de2 == 5)
     {
-        gotoligcol(14,115);
+        x=14,y=128;
+        gotoligcol(x,y);
+        x++;
         printf("o o o o o\n");
-        gotoligcol(15,115);
+        gotoligcol(x,y);
+        x++;
         printf("o 0   0 o\n");
-        gotoligcol(16,115);
+        gotoligcol(x,y);
+        x++;
         printf("o   0   o\n");
-        gotoligcol(17,115);
+        gotoligcol(x,y);
+        x++;
         printf("o 0   0 o\n");
-        gotoligcol(18,115);
+        gotoligcol(x,y);
+        x++;
         printf("o o o o o\n");
     }
     else if (de2 == 6)
     {
-        gotoligcol(14,115);
+        x=14,y=128;
+        gotoligcol(x,y);
+        x++;
         printf("o o o o o\n");
-        gotoligcol(15,115);
+        gotoligcol(x,y);
+        x++;
         printf("o 0   0 o\n");
-        gotoligcol(16,115);
+        gotoligcol(x,y);
+        x++;
         printf("o 0   0 o\n");
-        gotoligcol(17,115);
+        gotoligcol(x,y);
+        x++;
         printf("o 0   0 o\n");
-        gotoligcol(18,115);
+        gotoligcol(x,y);
+        x++;
         printf("o o o o o\n");
     }
 }
 
 void lanceDesGlobal(int* deE, int* deF, int* somme, joueur_t joueurC)
 {
-    ///Déclaration des variables
+    ///DÃ©claration des variables
     int sommeTmp = 0;
     joueurC.doubleOuNon = 0;
     lancerDeDes(deE, deF);
@@ -205,14 +277,14 @@ void lanceDesGlobal(int* deE, int* deF, int* somme, joueur_t joueurC)
 
         while(*deE == *deF)
         {
-            gotoligcol(19,115);
-            printf("Vous avez fait un double !\n");
             gotoligcol(20,115);
+            printf("Vous avez fait un double !\n");
+            gotoligcol(21,115);
             printf("Appuyer sur entrer pour continuer");
             fflush(stdin);
             getchar();
 
-            ///On efface les données existantes
+            ///On efface les donnÃ©es existantes
             for(int l=5 ; l<21 ;l++)
             {
                 for(int c = 115 ; c<160 ; c++)
