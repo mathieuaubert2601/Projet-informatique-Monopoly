@@ -29,10 +29,11 @@ int main()
 
 ///Affichage et saisie dans le menu
     choixDuMenuPrincipal = menu(); //Affichage du menu
-    nbr = choixmenu(choixDuMenuPrincipal, tableauDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+    choixmenu(choixDuMenuPrincipal, tableauDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs,&nombreDeJoueur);
+    printf("%d",nombreDeJoueur);
+    Sleep(1000);
 
-///Actualisation du nombre de joueur
-    nombreDeJoueur = nbr;
+
 
 
 
@@ -554,7 +555,7 @@ int main()
         ///On affiche le menu
         system("cls");
         choixDuMenuPrincipal = menu();
-        nombreDeJoueur = choixmenu(choixDuMenuPrincipal,tableauDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+        choixmenu(choixDuMenuPrincipal,tableauDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs,&nombreDeJoueur);
         quitterLaBoucle = 0;
     }
 

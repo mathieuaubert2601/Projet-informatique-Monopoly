@@ -151,5 +151,5 @@ void regle_Du_jeu(joueur_t tab_joueur[], int* nombre_joueur,caseMonop tableauDeC
     Sleep(2000);
     system("cls");
     a=menu();
-    choixmenu(a, tab_joueur,tableauDeCase,OrdreDesJoueursAcharger);
+    choixmenu(a, tab_joueur,tableauDeCase,OrdreDesJoueursAcharger,nombre_joueur);
 }

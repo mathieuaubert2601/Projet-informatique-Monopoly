@@ -48,7 +48,7 @@ void intro();
 void Color(int couleurDuTexte,int couleurDeFond);
 void pleinEcran();
 int menu();
-int choixmenu(int choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[], joueur_t OrdreDesJoueursAcharger[]);
+void choixmenu(int choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[], joueur_t OrdreDesJoueursAcharger[],int* nombreDeJoueurAJouer);
 void regle_Du_jeu(joueur_t tab_joueur[], int* nombre_joueur,caseMonop tableauDeCase[], joueur_t OrdreDesJoueursAcharger[]);
 void creer_nouveau_joueur(joueur_t tab_joueur[], int* nombre_joueur);
 void plateau(int pos[],int nbj);

@@ -123,10 +123,10 @@ int menu()//menu
 }
 
 ///Sous programme pour les choix du menu
-int choixmenu(int choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[], joueur_t OrdreDesJoueursAcharger[])//va traiter les choix du menu de la valeur deja blindée
+void choixmenu(int choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[], joueur_t OrdreDesJoueursAcharger[],int* nombreDeJoueurAJouer)//va traiter les choix du menu de la valeur deja blindée
 {
     int a,chargementPossibleOuNon,reprisePossibleOuNon;
-    int nombreDeJoueurAJouer;
+
     switch(choixDumenu)
     {
     case 1:
@@ -140,11 +140,13 @@ int choixmenu(int choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[], 
                 Sleep(2000);
                 system("cls");
                 choixDumenu = menu();
-                choixmenu(choixDumenu,tab_joueur,tableauDeCase,OrdreDesJoueursAcharger);
+                choixmenu(choixDumenu,tab_joueur,tableauDeCase,OrdreDesJoueursAcharger, nombreDeJoueurAJouer);
             }
             else
             {
-                chargerNombreJoueur(&nombreDeJoueurAJouer);
+
+                chargerNombreJoueur(nombreDeJoueurAJouer);
+                Sleep(1000);
                 chargerOrdreJoueur(OrdreDesJoueursAcharger);
                 SauvegardeVerifPartieCommencee();
 
@@ -163,12 +165,12 @@ int choixmenu(int choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[], 
         }
     case 2:
         {
-            creer_nouveau_joueur(tab_joueur, &nombreDeJoueurAJouer);
+            creer_nouveau_joueur(tab_joueur, nombreDeJoueurAJouer);
             break;
         }
     case 3:
         {
-            sauvegardeNombreJoueur(nombreDeJoueurAJouer);
+            sauvegardeNombreJoueur(*nombreDeJoueurAJouer);
             sauvegarderOrdreJoueur(OrdreDesJoueursAcharger);
             SauvegardeVerifPartieSauv();
 
@@ -184,12 +186,12 @@ int choixmenu(int choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[], 
             Sleep(2000);
             system("cls");
             choixDumenu = menu();
-            choixmenu(choixDumenu,tab_joueur,tableauDeCase,OrdreDesJoueursAcharger);
+            choixmenu(choixDumenu,tab_joueur,tableauDeCase,OrdreDesJoueursAcharger,nombreDeJoueurAJouer);
             break;
         }
     case 4:
         {
-            credits(tab_joueur, &nombreDeJoueurAJouer,tableauDeCase,OrdreDesJoueursAcharger);
+            credits(tab_joueur, nombreDeJoueurAJouer,tableauDeCase,OrdreDesJoueursAcharger);
 
             break;
         }
@@ -203,7 +205,7 @@ int choixmenu(int choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[], 
         }
     case 6:
         {
-            regle_Du_jeu(tab_joueur,&nombreDeJoueurAJouer,tableauDeCase,OrdreDesJoueursAcharger);
+            regle_Du_jeu(tab_joueur,nombreDeJoueurAJouer,tableauDeCase,OrdreDesJoueursAcharger);
             break;
         }
     case 7:
@@ -215,12 +217,11 @@ int choixmenu(int choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[], 
                 Sleep(2000);
                 system("cls");
                 choixDumenu = menu();
-                choixmenu(choixDumenu,tab_joueur,tableauDeCase,OrdreDesJoueursAcharger);
+                choixmenu(choixDumenu,tab_joueur,tableauDeCase,OrdreDesJoueursAcharger,nombreDeJoueurAJouer);
             }
             break;
         }
 
     }
-    return nombreDeJoueurAJouer;
 
 }

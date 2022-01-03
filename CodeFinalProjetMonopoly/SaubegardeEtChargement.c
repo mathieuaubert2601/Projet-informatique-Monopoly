@@ -218,6 +218,52 @@ void chargerNombreJoueur(int* nombre_De_joueur)
 }
 
 //////////////////////////////////////////////////////////
+///Sous programme pour sauvegarder le nombre de joueur ///
+//////////////////////////////////////////////////////////
+void sauvegardeNombreJoueurAsauvegarder(int nombre_De_joueur)
+{
+    ///Ouverture et test d'ouverture du fichier
+    FILE* nombreDeJoueurASauvegarder = fopen("fichiersSauvegarde/nombreJoueurAsauvegarder.bin", "wb+");
+    if (nombreDeJoueurASauvegarder == NULL)
+    {
+        printf("Erreur d'ouverture de fichier.");
+        return 1;
+    }
+
+    fwrite(&nombre_De_joueur, sizeof(int),1,nombreDeJoueurASauvegarder);
+
+    ///Fermeture du fichier
+    fclose(nombreDeJoueurASauvegarder);
+    nombreDeJoueurASauvegarder = NULL;
+}
+
+//////////////////////////////////////////////////////////
+/////Sous programme pour charger le nombre de joueur /////
+//////////////////////////////////////////////////////////
+
+int chargerNombreJoueurAsauvegarder()
+{
+    int nombre_De_joueur;
+    ///Ouverture et test d'ouverture du fichier
+    FILE* nombreDeJoueurAcharger = fopen("fichiersSauvegarde/nombreJoueurAsauvegarder.bin", "rb");
+    if (nombreDeJoueurAcharger == NULL)
+    {
+        printf("Erreur d'ouverture de fichier nombreJoueur.");
+        return 1;
+    }
+
+    ///Char
+    fread(nombre_De_joueur, sizeof(int),1,nombreDeJoueurAcharger);
+
+
+    ///Fermeture du fichier
+    fclose(nombreDeJoueurAcharger);
+    nombreDeJoueurAcharger = NULL;
+    return nombre_De_joueur;
+
+}
+
+//////////////////////////////////////////////////////////
 ////////Sous programme pour saubegarder 2 de joueurs /////
 //////////////////////////////////////////////////////////
 
