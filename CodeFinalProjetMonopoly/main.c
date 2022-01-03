@@ -11,14 +11,6 @@ int main()
     joueur2.numeroJoueur = 2;
     joueur3.numeroJoueur = 3;
     joueur4.numeroJoueur = 4;
-    joueur1.doubleOuNon = 0;
-    joueur2.doubleOuNon = 0;
-    joueur3.doubleOuNon = 0;
-    joueur4.doubleOuNon = 0;
-    joueur1.position = 0;
-    joueur2.position = 0;
-    joueur3.position = 0;
-    joueur4.position = 0;
     caseMonop TableauDesCasesDuMonopoly[28];
 
 ///Ouverture de la console en plein écran
@@ -30,29 +22,34 @@ int main()
 ///Affichage et saisie dans le menu
     choixDuMenuPrincipal = menu(); //Affichage du menu
     choixmenu(choixDuMenuPrincipal, tableauDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs,&nombreDeJoueur);
-    printf("%d",nombreDeJoueur);
     Sleep(1000);
 
-
-
-
+/// ////////////////////////////////////////////////////////////////////
+///Boucle qui tourne tant que l'utilisateur ne demande pas de quitter///
+/// ////////////////////////////////////////////////////////////////////
 
     while(choixDuMenuPrincipal != 5 && (choixDuMenuPrincipal == 1 || choixDuMenuPrincipal == 2 || choixDuMenuPrincipal ==7))
     {
-        ///Si l'utilisateur demande de Lancer une partie déja chargée
+        /// //////////////////////////////////////////////////////////////
+        ///Si l'utilisateur veut lancer une partie commencée auparavant///
+        /// //////////////////////////////////////////////////////////////
+
         while(choixDuMenuPrincipal == 1 && quitterLaBoucle == 0)
         {
+            //On appelle le sous programme pour enregistrer qu'une partie est en cours
             SauvegardeVerifPartieCommencee();
-            ///Lancement de la partie
-            for (int i=0;i<nombreDeJoueur;i++)
+
+            //On redonne les positions des joueurs et on affiche le plateau
+            for (int i=0; i<nombreDeJoueur; i++)
             {
                 positionDesJoueurs[i]=ordreDePassageDesJoueurs[i].position;
             }
             plateau(positionDesJoueurs,nombreDeJoueur);
 
-            ///Lancement des tours
-            for(int t=0 ;t<=nombreDeJoueur ;t++)
+            //Lancement des tours
+            for(int t=0 ; t<=nombreDeJoueur ; t++)
             {
+                //Si on a atteint le nombre de joueur, on remet t à zéro pour continuer la partie
                 if(t==(nombreDeJoueur))
                 {
                     t=0;
@@ -60,23 +57,25 @@ int main()
                 gotoligcol(11,115);
                 printf("C'est a %s de jouer !",ordreDePassageDesJoueurs[t].nomJoueur);
 
-                //Lancement des dés
+                //On lance les dés une première fois
+                ordreDePassageDesJoueurs[t].doubleOuNon = 0;
                 lancerDeDes(&deNumeroUn,&deNumeroDeux);
                 afficherDe(deNumeroUn,deNumeroDeux);
                 sommeDesLance = deNumeroUn + deNumeroDeux;
 
-                //premier Déplacement
+                //On actualise la position
                 ordreDePassageDesJoueurs[t].position = deplanbrjr(sommeDesLance,ordreDePassageDesJoueurs[t]);
                 positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
                 Sleep(1000);
 
+                //Actualisation du plateau avec les nouvelles positions
                 gotoligcol(21,115);
                 printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
                 fflush(stdin);
                 getchar();
 
                 //On efface toutes les données des dés
-                for(int l=5 ; l<22 ;l++)
+                for(int l=5 ; l<22 ; l++)
                 {
                     for(int c = 115 ; c<160 ; c++)
                     {
@@ -90,7 +89,7 @@ int main()
 
                 //Action case
 
-                //Si double
+                //Cette boucle est utilisée ssi un double à été fait
                 while(deNumeroDeux == deNumeroUn)
                 {
                     if(ordreDePassageDesJoueurs[t].doubleOuNon == 2)
@@ -104,7 +103,7 @@ int main()
                         getchar();
 
                         //On efface toutes les données des dés
-                        for(int l=5 ; l<22 ;l++)
+                        for(int l=5 ; l<22 ; l++)
                         {
                             for(int c = 115 ; c<160 ; c++)
                             {
@@ -133,7 +132,7 @@ int main()
                         getchar();
 
                         //On efface toutes les données des dés
-                        for(int l=5 ; l<22 ;l++)
+                        for(int l=5 ; l<22 ; l++)
                         {
                             for(int c = 115 ; c<160 ; c++)
                             {
@@ -161,7 +160,7 @@ int main()
                         getchar();
 
                         //On efface toutes les données des dés
-                        for(int l=5 ; l<22 ;l++)
+                        for(int l=5 ; l<22 ; l++)
                         {
                             for(int c = 115 ; c<160 ; c++)
                             {
@@ -178,7 +177,7 @@ int main()
 
 
 
-                //Si le joueur veut revenir au menu principal
+                //Cette boucle permet de demander à l'utilisateur s'il veut revenir au programme principal à la fin du tour
                 if(t==(nombreDeJoueur-1))
                 {
                     do
@@ -187,7 +186,9 @@ int main()
                         printf("revenir au menu principal ? || OUI : 1 || NON : 0 || : ");
                         fflush(stdin);
                         scanf("%d",&retournerMenu);
-                    }while(retournerMenu != 0 && retournerMenu !=1);
+                    }
+                    while(retournerMenu != 0 && retournerMenu !=1);
+
                     if(retournerMenu == 1)
                     {
                         quitterLaBoucle = 1;
@@ -206,29 +207,32 @@ int main()
         }
 
 
-    ///Si l'utilisateur demande de Lancer une nouvelle partie
+        /// //////////////////////////////////////////////////////////////
+        /// ////Si l'utilisateur veut lancer une partie nouvelle//////////
+        /// //////////////////////////////////////////////////////////////
 
         while(choixDuMenuPrincipal == 2 && quitterLaBoucle == 0)
         {
+            //On sauvegarde le fait qu'une partie a été lancé
             SauvegardeVerifPartieCommencee();
-            ///Suppression du retour chariot à la fin des noms
 
+            //Suppression du retour chariot à la fin des noms pour faciliter l'affichage
             for(int i=0 ; i<nombreDeJoueur ; i++)
             {
-                 int j=0;
-                 while(tableauDeJoueur[i].nomJoueur[j] != '\n')
-                 {
-                     j++;
-                 }
-                 tableauDeJoueur[i].nomJoueur[j] = '\0';
+                int j=0;
+                while(tableauDeJoueur[i].nomJoueur[j] != '\n')
+                {
+                    j++;
+                }
+                tableauDeJoueur[i].nomJoueur[j] = '\0';
             }
 
-            ///Mise en place de l'ordre des joueurs
+            //Mise en place de l'ordre des joueurs
             srand(time(NULL));
             choisirQuiCommence(ordreDePassageDesJoueurs,tableauDeJoueur,nombreDeJoueur);
 
-            ///Lancement de la partie
-            for (int i=0;i<nombreDeJoueur;i++)
+            //On initialise les données des joueurs
+            for (int i=0; i<nombreDeJoueur; i++)
             {
                 positionDesJoueurs[i]=0;
                 for(int j=0 ; j<28 ; j++)
@@ -246,11 +250,13 @@ int main()
                 ordreDePassageDesJoueurs[i].doubleOuNon = 0;
 
             }
+            //On actualise le plateau
             plateau(positionDesJoueurs,nombreDeJoueur);
 
-            ///Lancement des tours
-            for(int t=0 ;t<=nombreDeJoueur ;t++)
+            //Lancement des tours
+            for(int t=0 ; t<=nombreDeJoueur ; t++)
             {
+                //Si on a atteint le nombre de joueur, on remet t à zéro pour continuer la partie
                 if(t==(nombreDeJoueur))
                 {
                     t=0;
@@ -258,38 +264,28 @@ int main()
                 gotoligcol(11,115);
                 printf("C'est a %s de jouer !",ordreDePassageDesJoueurs[t].nomJoueur);
 
-                //Lancement des dés
+                //On lance les dés une première fois
                 ordreDePassageDesJoueurs[t].doubleOuNon = 0;
                 lancerDeDes(&deNumeroUn,&deNumeroDeux);
                 afficherDe(deNumeroUn,deNumeroDeux);
                 sommeDesLance = deNumeroUn + deNumeroDeux;
 
-                //premier Déplacement
+                //On actualise la position des joueurs
                 ordreDePassageDesJoueurs[t].position = deplanbrjr(sommeDesLance,ordreDePassageDesJoueurs[t]);
                 positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-                Sleep(1000);
+                Sleep(500);
 
                 gotoligcol(21,115);
                 printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
                 fflush(stdin);
                 getchar();
 
-                //On efface toutes les données des dés
-                for(int l=5 ; l<22 ;l++)
-                {
-                    for(int c = 115 ; c<160 ; c++)
-                    {
-                        gotoligcol(l,c);
-                        printf(" ");
-                    }
-                }
-
                 //Actualisation du plateau
                 plateau(positionDesJoueurs,nombreDeJoueur);
 
                 //Action case
 
-                //Si double
+                //Cette boucle est utilisée ssi un double a été fait
                 while(deNumeroDeux == deNumeroUn)
                 {
                     if(ordreDePassageDesJoueurs[t].doubleOuNon == 2)
@@ -303,7 +299,7 @@ int main()
                         getchar();
 
                         //On efface toutes les données des dés
-                        for(int l=5 ; l<22 ;l++)
+                        for(int l=5 ; l<22 ; l++)
                         {
                             for(int c = 115 ; c<160 ; c++)
                             {
@@ -332,7 +328,7 @@ int main()
                         getchar();
 
                         //On efface toutes les données des dés
-                        for(int l=5 ; l<22 ;l++)
+                        for(int l=5 ; l<22 ; l++)
                         {
                             for(int c = 115 ; c<160 ; c++)
                             {
@@ -360,7 +356,7 @@ int main()
                         getchar();
 
                         //On efface toutes les données des dés
-                        for(int l=5 ; l<22 ;l++)
+                        for(int l=5 ; l<22 ; l++)
                         {
                             for(int c = 115 ; c<160 ; c++)
                             {
@@ -374,7 +370,7 @@ int main()
                     }
                 }
 
-                // le joueur veut revenir au menu principal
+                //On demande à l'utilisateur à la fin du tour s'il veut revenir au menu principal
                 if(t==(nombreDeJoueur-1))
                 {
                     do
@@ -383,7 +379,9 @@ int main()
                         printf("revenir au menu principal ? || OUI : 1 || NON : 0 || : ");
                         fflush(stdin);
                         scanf("%d",&retournerMenu);
-                    }while(retournerMenu != 0 && retournerMenu !=1);
+                    }
+                    while(retournerMenu != 0 && retournerMenu !=1);
+
                     if(retournerMenu == 1)
                     {
                         quitterLaBoucle = 1;
@@ -399,19 +397,19 @@ int main()
             }
         }
 
-        ///Si l'utilisateur revient au menu et demande à reprendre la partie en cours;
+        /// //////////////////////////////////////////////////////////////
+        ///Si l'utilisateur veut reprendre une partie qui est en cours////
+        /// //////////////////////////////////////////////////////////////
+
         while(choixDuMenuPrincipal == 7 && quitterLaBoucle == 0)
         {
-            ///Lancement de la partie
-            for (int i=0;i<nombreDeJoueur;i++)
-            {
-                positionDesJoueurs[i]=ordreDePassageDesJoueurs[i].position;
-            }
+            //On actualise le plateau
             plateau(positionDesJoueurs,nombreDeJoueur);
 
-            ///Lancement des tours
-            for(int t=0 ;t<=nombreDeJoueur ;t++)
+            //Lancement des tours
+            for(int t=0 ; t<=nombreDeJoueur ; t++)
             {
+                //Si on a atteint le nombre de joueur, on remet t à zéro pour continuer la partie
                 if(t==(nombreDeJoueur))
                 {
                     t=0;
@@ -419,12 +417,12 @@ int main()
                 gotoligcol(5,115);
                 printf("C'est a %s de jouer !",ordreDePassageDesJoueurs[t].nomJoueur);
 
-                //Lancement des dés
+                //On lance une premuère fois les dés
                 lancerDeDes(&deNumeroUn,&deNumeroDeux);
                 afficherDe(deNumeroUn,deNumeroDeux);
                 sommeDesLance = deNumeroUn + deNumeroDeux;
 
-                //premier Déplacement
+                //On actualise la position des joueurs
                 ordreDePassageDesJoueurs[t].position = deplanbrjr(sommeDesLance,ordreDePassageDesJoueurs[t]);
                 positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
                 Sleep(1000);
@@ -435,7 +433,7 @@ int main()
                 getchar();
 
                 //On efface toutes les données des dés
-                for(int l=5 ; l<22 ;l++)
+                for(int l=5 ; l<22 ; l++)
                 {
                     for(int c = 115 ; c<160 ; c++)
                     {
@@ -449,7 +447,7 @@ int main()
 
                 //Action case
 
-                //Si double
+                //Cette boucle s'effectue ssi un double a été effectué
                 while(deNumeroDeux == deNumeroUn)
                 {
                     if(ordreDePassageDesJoueurs[t].doubleOuNon == 2)
@@ -463,7 +461,7 @@ int main()
                         getchar();
 
                         //On efface toutes les données des dés
-                        for(int l=5 ; l<22 ;l++)
+                        for(int l=5 ; l<22 ; l++)
                         {
                             for(int c = 115 ; c<160 ; c++)
                             {
@@ -492,7 +490,7 @@ int main()
                         getchar();
 
                         //On efface toutes les données des dés
-                        for(int l=5 ; l<22 ;l++)
+                        for(int l=5 ; l<22 ; l++)
                         {
                             for(int c = 115 ; c<160 ; c++)
                             {
@@ -526,7 +524,7 @@ int main()
                     }
                 }
 
-                //Si le joueur veut revenir au menu principal
+                //A la fin du tour, on demande à l'utilisateur s'il veut revenir au menu principal
                 if(t==(nombreDeJoueur-1))
                 {
                     do
@@ -535,7 +533,8 @@ int main()
                         printf("revenir au menu principal ? || OUI : 1 || NON : 0 || : ");
                         fflush(stdin);
                         scanf("%d",&retournerMenu);
-                    }while(retournerMenu != 0 && retournerMenu !=1);
+                    }
+                    while(retournerMenu != 0 && retournerMenu !=1);
                     if(retournerMenu == 1)
                     {
                         quitterLaBoucle = 1;
@@ -552,16 +551,12 @@ int main()
             }
 
         }
-        ///On affiche le menu
+
+        //Si l'utilisateur sort de la boucle, on affiche le menu principal
         system("cls");
         choixDuMenuPrincipal = menu();
         choixmenu(choixDuMenuPrincipal,tableauDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs,&nombreDeJoueur);
         quitterLaBoucle = 0;
     }
-
-
-
-
-
     return 0;
 }

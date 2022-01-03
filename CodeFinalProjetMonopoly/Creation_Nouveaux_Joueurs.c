@@ -12,7 +12,8 @@ void creer_nouveau_joueur(joueur_t tab_joueur[], int* nombre_joueur)
         printf("Combien de joueur ?\n");
         fflush(stdin);
         scanf("%d", &choix);
-    }while(choix<=1 || choix >4);
+    }
+    while(choix<=1 || choix >4);
 
     ///On définit le nombre de joueur
     *nombre_joueur = choix;
@@ -21,14 +22,16 @@ void creer_nouveau_joueur(joueur_t tab_joueur[], int* nombre_joueur)
 
     for(int i=0; i<choix; i++)
     {
-    //Blindage pour les espaces
-        do{
+        //Blindage pour les espaces
+        do
+        {
             printf("Entrez un nom d'utilisateur pour le joueur %d (sans espace) :\n",i+1);
             fflush(stdin);
             fgets(nom_utilisateur, 50, stdin);
-        }while(strchr(nom_utilisateur, ' ') != NULL);
+        }
+        while(strchr(nom_utilisateur, ' ') != NULL);
 
-        strcpy(tab_joueur[i].nomJoueur , nom_utilisateur);
+        strcpy(tab_joueur[i].nomJoueur, nom_utilisateur);
 
     }
 }

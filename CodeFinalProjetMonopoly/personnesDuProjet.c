@@ -5,7 +5,7 @@ void credits(joueur_t tab_joueur[], int* nombre_joueur,caseMonop tableauDeCase[]
 {
     system("cls");
     int a;
-    for(int i=0;i<=10;i++)
+    for(int i=0; i<=10; i++)
     {
         Color(3,0);
         Sleep(40);
@@ -15,7 +15,7 @@ void credits(joueur_t tab_joueur[], int* nombre_joueur,caseMonop tableauDeCase[]
     Sleep(300);
     printf("LIONSQUY Adrien: Pilote xwing\n");
     Sleep(300);
-    for(int i=0;i<=max;i++)
+    for(int i=0; i<=max; i++)
     {
         Color(3,0);
         Sleep(40);
@@ -25,7 +25,7 @@ void credits(joueur_t tab_joueur[], int* nombre_joueur,caseMonop tableauDeCase[]
     Color(14,0);
     printf("LEONARDON Thibault: Jabba the hutt\n");
     Sleep(300);
-    for(int i=0;i<=max;i++)
+    for(int i=0; i<=max; i++)
     {
         Color(3,0);
         Sleep(40);
@@ -35,7 +35,7 @@ void credits(joueur_t tab_joueur[], int* nombre_joueur,caseMonop tableauDeCase[]
     Sleep(300);
     printf("CHAMPOLLION Phillippe: DARK JAR JAR\n");
     Sleep(300);
-    for(int i=0;i<=max;i++)
+    for(int i=0; i<=max; i++)
     {
         Color(3,0);
         Sleep(40);
@@ -45,7 +45,7 @@ void credits(joueur_t tab_joueur[], int* nombre_joueur,caseMonop tableauDeCase[]
     Sleep(300);
     printf("AUBERT Mathieu: Prefere star trek\n");
     Sleep(300);
-    for(int i=0;i<=7;i++)
+    for(int i=0; i<=7; i++)
     {
         Color(3,0);
         Sleep(40);

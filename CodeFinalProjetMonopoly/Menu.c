@@ -130,51 +130,27 @@ void choixmenu(int choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[],
     switch(choixDumenu)
     {
     case 1:
+    {
+        //Verification si une partie a été chargée
+        chargementPossibleOuNon = testPartieChargee();
+
+        if(chargementPossibleOuNon != 1)
         {
-            //Verification si une partie a été chargée
-            chargementPossibleOuNon = testPartieChargee();
-
-            if(chargementPossibleOuNon != 1)
-            {
-                printf("Aucune partie n'a ete sauvegardee.\n");
-                Sleep(2000);
-                system("cls");
-                choixDumenu = menu();
-                choixmenu(choixDumenu,tab_joueur,tableauDeCase,OrdreDesJoueursAcharger, nombreDeJoueurAJouer);
-            }
-            else
-            {
-
-                chargerNombreJoueur(nombreDeJoueurAJouer);
-                Sleep(1000);
-                chargerOrdreJoueur(OrdreDesJoueursAcharger);
-                SauvegardeVerifPartieCommencee();
-
-                printf("Chargement en cours");
-                Sleep(1000);
-                printf(".");
-                Sleep(1000);
-                printf(".");
-                Sleep(1000);
-                printf(".\n");
-                Sleep(1000);
-                printf("Partie chargee.\n");
-                Sleep(2000);
-            }
-            break;
+            printf("Aucune partie n'a ete sauvegardee.\n");
+            Sleep(2000);
+            system("cls");
+            choixDumenu = menu();
+            choixmenu(choixDumenu,tab_joueur,tableauDeCase,OrdreDesJoueursAcharger, nombreDeJoueurAJouer);
         }
-    case 2:
+        else
         {
-            creer_nouveau_joueur(tab_joueur, nombreDeJoueurAJouer);
-            break;
-        }
-    case 3:
-        {
-            sauvegardeNombreJoueur(*nombreDeJoueurAJouer);
-            sauvegarderOrdreJoueur(OrdreDesJoueursAcharger);
-            SauvegardeVerifPartieSauv();
 
-            printf("Sauvegarde en cours");
+            chargerNombreJoueur(nombreDeJoueurAJouer);
+            Sleep(1000);
+            chargerOrdreJoueur(OrdreDesJoueursAcharger);
+            SauvegardeVerifPartieCommencee();
+
+            printf("Chargement en cours");
             Sleep(1000);
             printf(".");
             Sleep(1000);
@@ -182,45 +158,69 @@ void choixmenu(int choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[],
             Sleep(1000);
             printf(".\n");
             Sleep(1000);
-            printf("Partie sauvegardee.\n");
+            printf("Partie chargee.\n");
+            Sleep(2000);
+        }
+        break;
+    }
+    case 2:
+    {
+        creer_nouveau_joueur(tab_joueur, nombreDeJoueurAJouer);
+        break;
+    }
+    case 3:
+    {
+        sauvegardeNombreJoueur(*nombreDeJoueurAJouer);
+        sauvegarderOrdreJoueur(OrdreDesJoueursAcharger);
+        SauvegardeVerifPartieSauv();
+
+        printf("Sauvegarde en cours");
+        Sleep(1000);
+        printf(".");
+        Sleep(1000);
+        printf(".");
+        Sleep(1000);
+        printf(".\n");
+        Sleep(1000);
+        printf("Partie sauvegardee.\n");
+        Sleep(2000);
+        system("cls");
+        choixDumenu = menu();
+        choixmenu(choixDumenu,tab_joueur,tableauDeCase,OrdreDesJoueursAcharger,nombreDeJoueurAJouer);
+        break;
+    }
+    case 4:
+    {
+        credits(tab_joueur, nombreDeJoueurAJouer,tableauDeCase,OrdreDesJoueursAcharger);
+
+        break;
+    }
+    case 5:
+    {
+        printf("Vous avez bien appuye sur quitter.\n");
+        printf("Au revoir Padawan.\n");
+        SauvegardeVerifPartiePasCommencee();
+        Sleep(2000);
+        return(0);
+    }
+    case 6:
+    {
+        regle_Du_jeu(tab_joueur,nombreDeJoueurAJouer,tableauDeCase,OrdreDesJoueursAcharger);
+        break;
+    }
+    case 7:
+    {
+        reprisePossibleOuNon = testPartieCommencee();
+        if(reprisePossibleOuNon != 1)
+        {
+            printf("Aucune partie n'a ete commencee.\n");
             Sleep(2000);
             system("cls");
             choixDumenu = menu();
             choixmenu(choixDumenu,tab_joueur,tableauDeCase,OrdreDesJoueursAcharger,nombreDeJoueurAJouer);
-            break;
         }
-    case 4:
-        {
-            credits(tab_joueur, nombreDeJoueurAJouer,tableauDeCase,OrdreDesJoueursAcharger);
-
-            break;
-        }
-    case 5:
-        {
-            printf("Vous avez bien appuye sur quitter.\n");
-            printf("Au revoir Padawan.\n");
-            SauvegardeVerifPartiePasCommencee();
-            Sleep(2000);
-            return(0);
-        }
-    case 6:
-        {
-            regle_Du_jeu(tab_joueur,nombreDeJoueurAJouer,tableauDeCase,OrdreDesJoueursAcharger);
-            break;
-        }
-    case 7:
-        {
-            reprisePossibleOuNon = testPartieCommencee();
-            if(reprisePossibleOuNon != 1)
-            {
-                printf("Aucune partie n'a ete commencee.\n");
-                Sleep(2000);
-                system("cls");
-                choixDumenu = menu();
-                choixmenu(choixDumenu,tab_joueur,tableauDeCase,OrdreDesJoueursAcharger,nombreDeJoueurAJouer);
-            }
-            break;
-        }
+        break;
+    }
 
     }
 

@@ -1,7 +1,9 @@
 #include "header.h"
 #include <time.h>
 
-//Sous programme pour lancer les dés
+/// /////////////////////////////////////
+///Sous Programmme pour lancer les dés///
+/// /////////////////////////////////////
 void lancerDeDes(int* deC, int* deD)
 {
     //Déclaration des variables
@@ -30,6 +32,11 @@ void lancerDeDes(int* deC, int* deD)
     *deC = de1;
     *deD = de2;
 }
+
+
+/// ///////////////////////////////////////
+///Sous Programmme pour afficher les dés///
+/// ///////////////////////////////////////
 
 void afficherDe(int de1, int de2)
 {
@@ -265,68 +272,3 @@ void afficherDe(int de1, int de2)
     }
 }
 
-void lanceDesGlobal(int* deE, int* deF, int* somme, joueur_t joueurC)
-{
-    ///Déclaration des variables
-    int sommeTmp = 0;
-    joueurC.doubleOuNon = 0;
-    lancerDeDes(deE, deF);
-    afficherDe(*deE, *deF);
-
-
-
-        while(*deE == *deF)
-        {
-            gotoligcol(20,115);
-            printf("Vous avez fait un double !\n");
-            gotoligcol(21,115);
-            printf("Appuyer sur entrer pour continuer");
-            fflush(stdin);
-            getchar();
-
-            ///On efface les données existantes
-            for(int l=5 ; l<21 ;l++)
-            {
-                for(int c = 115 ; c<160 ; c++)
-                {
-                    gotoligcol(l,c);
-                    printf(" ");
-                }
-            }
-
-            if(joueurC.doubleOuNon == 2)
-            {
-                gotoligcol(22,115);
-                printf("Vous allez en prison ! \n");
-                joueurC.doubleOuNon = 0;
-                break;
-            }
-
-            if(joueurC.doubleOuNon == 1)
-            {
-                sommeTmp = sommeTmp + (*deE) + (*deF);
-                lancerDeDes(deE, deF);
-                afficherDe(*deE, *deF);
-                joueurC.doubleOuNon = 2;
-            }
-
-            if(joueurC.doubleOuNon == 0)
-            {
-                sommeTmp = sommeTmp + (*deE) + (*deF);
-                lancerDeDes(deE, deF);
-                afficherDe(*deE, *deF);
-                joueurC.doubleOuNon =1;
-            }
-
-        }
-
-
-    if(*deE != *deF)
-    {
-        *somme = 0;
-        *somme = (*deE) + (*deF) + sommeTmp;
-        gotoligcol(20,115);
-        printf("La somme des des est de %d\n", *somme);
-    }
-
-}
