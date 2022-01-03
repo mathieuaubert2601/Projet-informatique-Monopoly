@@ -1,3 +1,39 @@
+typedef struct
+{
+    char nomJoueur[20] ;
+    int possessions[28];
+    int  position ;
+    int  argent ;
+    int tourPrison ;
+    int numeroJoueur ;
+    int libertePrison ;
+    int nbProprietefam1;
+    int nbProprietefam2;
+    int nbProprietefam3;
+    int nbProprietefam4;
+    int doubleOuNon;
+
+}joueur_t;
+
+struct caseMonop
+{
+
+    char nomCase[20];
+    int  position ;
+    int prix_case;
+    int famille;
+    int proprieteDe;
+    int nbMaison;
+    int nbHotel;
+    int typeCase;
+    int prixLoyer;
+    int prixloy1maison;
+    int prixloy2maison;
+    int prixloy3maison;
+    int prixloy4maison;
+    int prixloyhotel;
+
+};
 struct caseMonop case0,case1,case2,case3,case4,case5,case6,case7,case8,case9,case10,case11,case12,case13,case14,case15,case16,case17,case18,case19,case20,case21,case22,case23,case24,case25,case26,case27;
 
 
@@ -11,7 +47,6 @@ struct caseMonop case0,case1,case2,case3,case4,case5,case6,case7,case8,case9,cas
     case0.typeCase=0;
     case0.prixLoyer=200;
 
-
     strcpy(case1.nomCase,"Dagobah");
     case1.position = 1;
     case1.prix_case=50;
@@ -20,7 +55,13 @@ struct caseMonop case0,case1,case2,case3,case4,case5,case6,case7,case8,case9,cas
     case1.nbMaison=2;
     case1.nbHotel=0;
     case1.typeCase=1;
-    case1.prixLoyer=2;
+    case1.prixLoyer=3;
+    case1.prixloy1maison=13;
+    case1.prixloy2maison=38;
+    case1.prixloy3maison=94;
+    case1.prixloy4maison=140;
+    case1.prixloyhotel=210;
+    
 
     strcpy(case2.nomCase,"Conseil Jedi");
     case2.position = 2;
@@ -32,6 +73,7 @@ struct caseMonop case0,case1,case2,case3,case4,case5,case6,case7,case8,case9,cas
     case2.typeCase=7;
     case2.prixLoyer=0;
 
+
     strcpy(case3.nomCase,"Hoth");
     case3.position = 3;
     case3.prix_case=75;
@@ -40,7 +82,12 @@ struct caseMonop case0,case1,case2,case3,case4,case5,case6,case7,case8,case9,cas
     case3.nbMaison=0;
     case3.nbHotel=0;
     case3.typeCase=1;
-    case3.prixLoyer=3;
+    case3.prixLoyer=4;
+    case3.prixloy1maison=18;
+    case3.prixloy2maison=56;
+    case3.prixloy3maison=140;
+    case3.prixloy4maison=210;
+    case3.prixloyhotel=316;
 
     strcpy(case4.nomCase,"Spatioport I");
     case4.position = 4;
@@ -61,6 +108,11 @@ struct caseMonop case0,case1,case2,case3,case4,case5,case6,case7,case8,case9,cas
     case5.nbHotel=0;
     case5.typeCase=1;
     case5.prixLoyer=5;
+    case5.prixloy1maison=25;
+    case5.prixloy2maison=75;
+    case5.prixloy3maison=187;
+    case5.prixloy4maison=281;
+    case5.prixloyhotel=422;
 
     strcpy(case6.nomCase,"Endor");
     case6.position = 6;
@@ -71,6 +123,11 @@ struct caseMonop case0,case1,case2,case3,case4,case5,case6,case7,case8,case9,cas
     case6.nbHotel=0;
     case6.typeCase=2;
     case6.prixLoyer=6;
+    case6.prixloy1maison=31;
+    case6.prixloy2maison=93;
+    case6.prixloy3maison=234;
+    case6.prixloy4maison=351;
+    case6.prixloyhotel=527;
 
     strcpy(case7.nomCase,"Prison");
     case7.position = 7;
@@ -91,6 +148,11 @@ struct caseMonop case0,case1,case2,case3,case4,case5,case6,case7,case8,case9,cas
     case8.nbHotel=0;
     case8.typeCase=1;
     case8.prixLoyer=7;
+    case8.prixloy1maison=37;
+    case8.prixloy2maison=112;
+    case8.prixloy3maison=281;
+    case8.prixloy4maison=412;
+    case8.prixloyhotel=632;
 
     strcpy(case9.nomCase,"Jakuu");
     case9.position = 9;
@@ -101,6 +163,11 @@ struct caseMonop case0,case1,case2,case3,case4,case5,case6,case7,case8,case9,cas
     case9.nbHotel=0;
     case9.typeCase=1;
     case9.prixLoyer=9;
+    case9.prixloy1maison=44;
+    case9.prixloy2maison=1313;
+    case9.prixloy3maison=328;
+    case9.prixloy4maison=492;
+    case9.prixloyhotel=738;
 
     strcpy(case10.nomCase,"Spatioport II");
     case10.position = 10;
@@ -121,6 +188,11 @@ struct caseMonop case0,case1,case2,case3,case4,case5,case6,case7,case8,case9,cas
     case11.nbHotel=0;
     case11.typeCase=1;
     case11.prixLoyer=10;
+    case11.prixloy1maison=50;
+    case11.prixloy2maison=150;
+    case11.prixloy3maison=375;
+    case11.prixloy4maison=562;
+    case11.prixloyhotel=844;
 
     strcpy(case12.nomCase,"Alliance Sith");
     case12.position = 12;
@@ -141,6 +213,11 @@ struct caseMonop case0,case1,case2,case3,case4,case5,case6,case7,case8,case9,cas
     case13.nbHotel=0;
     case13.typeCase=1;
     case13.prixLoyer=11;
+    case13.prixloy1maison=56;
+    case13.prixloy2maison=169;
+    case13.prixloy3maison=421;
+    case13.prixloy4maison=632;
+    case13.prixloyhotel=949;
 
     strcpy(case14.nomCase,"Ordre 66");
     case14.position = 14;
@@ -161,6 +238,11 @@ struct caseMonop case0,case1,case2,case3,case4,case5,case6,case7,case8,case9,cas
     case15.nbHotel=0;
     case15.typeCase=1;
     case15.prixLoyer=13;
+    case15.prixloy1maison=62;
+    case15.prixloy2maison=187;
+    case15.prixloy3maison=468;
+    case15.prixloy4maison=703;
+    case15.prixloyhotel=1054;
 
     strcpy(case16.nomCase,"Conseil Jedi");
     case16.position = 16;
@@ -181,6 +263,11 @@ struct caseMonop case0,case1,case2,case3,case4,case5,case6,case7,case8,case9,cas
     case17.nbHotel=0;
     case17.typeCase=1;
     case17.prixLoyer=14;
+    case17.prixloy1maison=69;
+    case17.prixloy2maison=206;
+    case17.prixloy3maison=515;
+    case17.prixloy4maison=773;
+    case17.prixloyhotel=1160;
 
     strcpy(case18.nomCase,"Spatioport III");
     case18.position = 18;
@@ -201,6 +288,11 @@ struct caseMonop case0,case1,case2,case3,case4,case5,case6,case7,case8,case9,cas
     case19.nbHotel=0;
     case19.typeCase=1;
     case19.prixLoyer=15;
+    case19.prixloy1maison=75;
+    case19.prixloy2maison=225;
+    case19.prixloy3maison=562;
+    case19.prixloy4maison=843;
+    case19.prixloyhotel=1265;
 
     strcpy(case20.nomCase,"Bespin");
     case20.position = 20;
@@ -211,6 +303,11 @@ struct caseMonop case0,case1,case2,case3,case4,case5,case6,case7,case8,case9,cas
     case20.nbHotel=0;
     case20.typeCase=1;
     case20.prixLoyer=16;
+    case20.prixloy1maison=81;
+    case20.prixloy2maison=243;
+    case20.prixloy3maison=609;
+    case20.prixloy4maison=914;
+    case20.prixloyhotel=1160;
 
     strcpy(case21.nomCase,"Arrestation");
     case21.position = 21;
@@ -231,6 +328,11 @@ struct caseMonop case0,case1,case2,case3,case4,case5,case6,case7,case8,case9,cas
     case22.nbHotel=0;
     case22.typeCase=1;
     case22.prixLoyer=18;
+    case22.prixloy1maison=87;
+    case22.prixloy2maison=262;
+    case22.prixloy3maison=659;
+    case22.prixloy4maison=984;
+    case22.prixloyhotel=1371;
 
     strcpy(case23.nomCase,"Alliance Sith");
     case23.position = 23;
@@ -251,6 +353,11 @@ struct caseMonop case0,case1,case2,case3,case4,case5,case6,case7,case8,case9,cas
     case24.nbHotel=0;
     case24.typeCase=1;
     case24.prixLoyer=19;
+    case24.prixloy1maison=93;
+    case24.prixloy2maison=281;
+    case24.prixloy3maison=703;
+    case24.prixloy4maison=1054;
+    case24.prixloyhotel=1582;
 
     strcpy(case25.nomCase,"Spatioport IV");
     case25.position = 25;
@@ -271,6 +378,11 @@ struct caseMonop case0,case1,case2,case3,case4,case5,case6,case7,case8,case9,cas
     case26.nbHotel=0;
     case26.typeCase=1;
     case26.prixLoyer=20;
+    case26.prixloy1maison=100;
+    case26.prixloy2maison=300;
+    case26.prixloy3maison=750;
+    case26.prixloy4maison=1125;
+    case26.prixloyhotel=1687;
 
     strcpy(case27.nomCase,"Corusant");
     case27.position = 27;
@@ -281,7 +393,12 @@ struct caseMonop case0,case1,case2,case3,case4,case5,case6,case7,case8,case9,cas
     case27.nbHotel=0;
     case27.typeCase=1;
     case27.prixLoyer=23;
-
+    case26.prixloy1maison=112;
+    case26.prixloy2maison=337;
+    case26.prixloy3maison=843;
+    case26.prixloy4maison=1265;
+    case26.prixloyhotel=1898;
+    
 
     cases[0]= case0;
     cases[1]= case1;
