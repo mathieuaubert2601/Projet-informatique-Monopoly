@@ -1,0 +1,44 @@
+#include"header.h"
+
+int actioncase(joueur_t joueur[],caseMonop tabc[],int i)
+    {
+        int pos=joueur[i].position;
+        switch (tabc[pos].typeCase)
+        {
+        case 0:
+            {
+                joueur[i].argent+=200;
+                break;
+            }
+        case 2:
+            {
+                //prog acheter
+                break;
+            }
+        case 4:
+            {
+                //ordre 66 a voir si on fait
+                break;
+            }
+        case 5:
+            {
+                joueur[i].position=7;
+                joueur[i].tourPrison+=1;
+                break;
+            }
+        case 6:
+            {
+
+                break;
+            }
+        case 7:
+            {
+                break;
+            }
+        default:
+            {
+                break;
+            }
+
+        }
+    }
