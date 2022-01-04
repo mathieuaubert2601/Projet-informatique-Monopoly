@@ -74,4 +74,6 @@ void sauvegardeCasesMonopoly(caseMonop tableauCaseMonopoly[]);
 void SauvegardeVerifPartieCommencee();
 void SauvegardeVerifPartiePasCommencee();
 int testPartieCommencee();
+void remplirTableauDeCase(caseMonop tableauDesCases[]);
+void actioncase(joueur_t joueur,caseMonop tabc[]);
 #endif // HEADER_H_INCLUDED
