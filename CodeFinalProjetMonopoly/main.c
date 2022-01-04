@@ -237,17 +237,19 @@ int main()
                 positionDesJoueurs[i]=0;
                 for(int j=0 ; j<28 ; j++)
                 {
-                    ordreDePassageDesJoueurs[i].possessions[j];
+                    ordreDePassageDesJoueurs[i].possessions[j] = 0;
                 }
+
                 ordreDePassageDesJoueurs[i].position = 0;
                 ordreDePassageDesJoueurs[i].argent = 1500;
                 ordreDePassageDesJoueurs[i].tourPrison = 0;
                 ordreDePassageDesJoueurs[i].libertePrison = 0;
-                ordreDePassageDesJoueurs[i].nbProprietefam1 = 0;
-                ordreDePassageDesJoueurs[i].nbProprietefam2 = 0;
-                ordreDePassageDesJoueurs[i].nbProprietefam3 = 0;
-                ordreDePassageDesJoueurs[i].nbProprietefam4 = 0;
+                /*for(int k=0 ; k=10 ; k++)
+                {
+                    ordreDePassageDesJoueurs[i].familles[k] = 0;
+                }*/
                 ordreDePassageDesJoueurs[i].doubleOuNon = 0;
+                ordreDePassageDesJoueurs[i].nbPropriete = 0;
 
             }
             //On actualise le plateau

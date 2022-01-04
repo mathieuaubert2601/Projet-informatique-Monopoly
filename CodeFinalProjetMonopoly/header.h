@@ -12,18 +12,16 @@
 //Structure joueur
 typedef struct
 {
-    char nomJoueur[50] ;
+    char nomJoueur[20] ;
     int possessions[28];
-    int  position;
+    int  position ;
     int  argent ;
     int tourPrison ;
     int numeroJoueur ;
     int libertePrison ;
-    int nbProprietefam1;
-    int nbProprietefam2;
-    int nbProprietefam3;
-    int nbProprietefam4;
+    int familles[10];
     int doubleOuNon;
+    int nbPropriete;
 
 } joueur_t;
 
@@ -33,13 +31,21 @@ typedef struct
 
     char nomCase[20];
     int  position ;
-    int coutDelaCase;
+    int prix_case;
     int famille;
     int proprieteDe;
     int nbMaison;
     int nbHotel;
     int typeCase;
     int prixLoyer;
+    int prixloy1maison;
+    int prixloy2maison;
+    int prixloy3maison;
+    int prixloy4maison;
+    int prixloyhotel;
+    int hypotheque; //0 si pas hypothequer et 1 si hypothequer
+    int couthypo;
+
 
 } caseMonop;
 

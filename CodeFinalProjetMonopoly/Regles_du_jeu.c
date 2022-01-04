@@ -2,7 +2,7 @@
 
 void regle_Du_jeu(joueur_t tab_joueur[], int* nombre_joueur,caseMonop tableauDeCase[], joueur_t OrdreDesJoueursAcharger[])
 {
-    ///Déclaration des variables
+    ///Declaration des variables
     int a;
     system("cls");
 
@@ -102,7 +102,7 @@ void regle_Du_jeu(joueur_t tab_joueur[], int* nombre_joueur,caseMonop tableauDeC
     printf("- Une maison peut etre achete sur n'importe quel case propriete possedee.\n");
     printf("- S'il achete une maison, il peut la mettre sur la propriete ou il.elle est.\n");
     printf("- Le prix que le joueur doit payer a la Banque pour chaque maison est indique sur sa carte de titre de propriete pour la propriete sur laquelle il erige la maison.\n");
-    printf("- Le proprietaire peut toujours percevoir un double loyer s'il.elle possède tout un groupe de proprietes.\n");
+    printf("- Le proprietaire peut toujours percevoir un double loyer s'il.elle possede tout un groupe de proprietes.\n");
 
     Sleep(100);
     Color(14,0);
@@ -121,14 +121,14 @@ void regle_Du_jeu(joueur_t tab_joueur[], int* nombre_joueur,caseMonop tableauDeC
     printf("\nVendre/negocier un bien immobilier\n\n");
     Color(3,0);
     printf("- Les maisons et les hotels peuvent etre revendus a la Banque a tout moment pour la moitie du prix paye.\n");
-    printf("- Les hotels peuvent etre vendus en une seule fois. Ou bien ils peuvent etre vendus une maison a la fois (un hotel equivaut a cinq maisons), de manière egale, a l'inverse de la maniere dont ils ont ete eriges.\n");
+    printf("- Les hotels peuvent etre vendus en une seule fois. Ou bien ils peuvent etre vendus une maison a la fois (un hotel equivaut a cinq maisons), de maniere egale, a l'inverse de la maniere dont ils ont ete eriges.\n");
 
     Sleep(100);
     Color(14,0);
     printf("\nHypotheques\n\n");
     Color(3,0);
     printf("- Les proprietes non ameliorees peuvent etre hypothequees par l'entremise de la Banque en tout temps.\n");
-    printf("- Avant qu'une propriete amélioree puisse etre hypothequee, tous les batiments sur toutes les proprietes de son groupe de couleur doivent etre revendus a la Banque a moitie prix. La valeur de l'hypotheque est \nimprimee sur chaque carte de titre de propriete.\n");
+    printf("- Avant qu'une propriete amelioree puisse etre hypothequee, tous les batiments sur toutes les proprietes de son groupe de couleur doivent etre revendus a la Banque a moitie prix. La valeur de l'hypotheque est \nimprimee sur chaque carte de titre de propriete.\n");
     printf("- Aucun loyer ne peut etre percu sur les proprietes hypothequees ou les services publics, mais le loyer peut etre perçu sur les proprietes non hypothequees du meme groupe de couleur. Afin de lever l'hypotheque, le proprietaire doit payer a la Banque le montant de l'hypotheque majore d'un interet de 10 pourcents.\n");
     printf("- Toutefois, le proprietaire peut vendre ou echanger cette propriete hypothequee a un autre joueur a n'importe quel prix convenu. Le nouveau proprietaire peut lever l'hypotheque immediatement, s'il le desire, \nen remboursant l'hypotheque plus 10 pourcents d'interets a la Banque. S'il ne resilie pas l'hypotheque immediatement, il doit payer a la banque un interet de 10pourcents lorsqu'il achete/reçoit la propriete \nhypothequee, et s'il leve l'hypotheque plus tard, il doit payer a la Banque un interet additionnel de 10pourcents ainsi que le montant de l'hypotheque.\n");
 
@@ -137,7 +137,7 @@ void regle_Du_jeu(joueur_t tab_joueur[], int* nombre_joueur,caseMonop tableauDeC
     printf("\nFaillite\n\n");
     Color(3,0);
     printf("- Un.e joueur.euse est en faillite lorsqu'il doit plus qu'il ne peut payer a un autre joueur ou a la Banque. Si sa dette est envers un autre joueur, il doit remettre a ce joueur tout ce qu'il a de valeur et se \nretirer du jeu.\n");
-    printf("- Dans le cadre de ce reglement, s'il est propriétaire de maisons ou d'hotels, il doit les restituer a la Banque en echange d'argent a hauteur de la moitie du montant paye et cet argent est remis au creancier.\n");
+    printf("- Dans le cadre de ce reglement, s'il est proprietaire de maisons ou d'hotels, il doit les restituer a la Banque en echange d'argent a hauteur de la moitie du montant paye et cet argent est remis au creancier.\n");
     printf("- S'il a hypotheque un bien, il remet egalement son bien a ce creancier, mais le nouveau proprietaire doit payer immediatement a la Banque le montant des interets sur le pret, soit 10 pourcents de la valeur du \nbien.\n");
     printf("- Une fois que le nouveau proprietaire l'a fait, il peut, a son gre, payer le capital ou detenir la propriete jusqu'a une date ulterieure a laquelle il peut resilier l'hypotheque. S'il detient des biens de cette facon jusqu'a un tour ulterieur, il/elle doit payer les interets a nouveau lorsqu'il/elle leve l'hypotheque.\n");
     printf("- Si un.e joueur.euse doit a la Banque, au lieu d'un autre joueur, plus que ce qu'il peut payer (en raison de taxes ou de penalitees), meme en vendant ses batiments, en hypothequant sa propriete ou en vendant ou en echangeant avec d'autres joueurs, il doit remettre tous ses biens a la Banque.\n");
@@ -148,7 +148,9 @@ void regle_Du_jeu(joueur_t tab_joueur[], int* nombre_joueur,caseMonop tableauDeC
     Color(3,0);
     printf("- La Banque ne peut preter de l'argent a un.e joueur.euse qu'en hypothequant un bien immobilier. Aucun.e joueur.euse ne peut emprunter a ou preter de l'argent a un autre joueur.\n");
 
-    Sleep(2000);
+    printf("Appuyer sur entrer pour continuer");
+    fflush(stdin);
+    getchar();
     system("cls");
     a=menu();
     choixmenu(a, tab_joueur,tableauDeCase,OrdreDesJoueursAcharger,nombre_joueur);

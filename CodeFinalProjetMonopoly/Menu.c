@@ -125,7 +125,7 @@ int menu()//menu
 ///Sous programme pour les choix du menu
 void choixmenu(int choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[], joueur_t OrdreDesJoueursAcharger[],int* nombreDeJoueurAJouer)//va traiter les choix du menu de la valeur deja blindée
 {
-    int a,chargementPossibleOuNon,reprisePossibleOuNon;
+    int a,chargementPossibleOuNon,reprisePossibleOuNon,sauvegardePossibleOuNon;
 
     switch(choixDumenu)
     {
@@ -170,23 +170,36 @@ void choixmenu(int choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[],
     }
     case 3:
     {
-        sauvegardeNombreJoueur(*nombreDeJoueurAJouer);
-        sauvegarderOrdreJoueur(OrdreDesJoueursAcharger);
-        SauvegardeVerifPartieSauv();
+        sauvegardePossibleOuNon = testPartieCommencee();
+        if(sauvegardePossibleOuNon != 1)
+        {
+            printf("La sauvegarde est impossible car aucune partie n'a ete commencee");
+            Sleep(2000);
+            system("cls");
+            choixDumenu = menu();
+            choixmenu(choixDumenu,tab_joueur,tableauDeCase,OrdreDesJoueursAcharger,nombreDeJoueurAJouer);
+        }
+        else if (sauvegardePossibleOuNon == 1)
+        {
+            sauvegardeNombreJoueur(*nombreDeJoueurAJouer);
+            sauvegarderOrdreJoueur(OrdreDesJoueursAcharger);
+            SauvegardeVerifPartieSauv();
 
-        printf("Sauvegarde en cours");
-        Sleep(1000);
-        printf(".");
-        Sleep(1000);
-        printf(".");
-        Sleep(1000);
-        printf(".\n");
-        Sleep(1000);
-        printf("Partie sauvegardee.\n");
-        Sleep(2000);
-        system("cls");
-        choixDumenu = menu();
-        choixmenu(choixDumenu,tab_joueur,tableauDeCase,OrdreDesJoueursAcharger,nombreDeJoueurAJouer);
+            printf("Sauvegarde en cours");
+            Sleep(1000);
+            printf(".");
+            Sleep(1000);
+            printf(".");
+            Sleep(1000);
+            printf(".\n");
+            Sleep(1000);
+            printf("Partie sauvegardee.\n");
+            Sleep(2000);
+            system("cls");
+            choixDumenu = menu();
+            choixmenu(choixDumenu,tab_joueur,tableauDeCase,OrdreDesJoueursAcharger,nombreDeJoueurAJouer);
+        }
+
         break;
     }
     case 4:
