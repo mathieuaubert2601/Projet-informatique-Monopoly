@@ -2,9 +2,8 @@
 
 ///Sous programme pour afficher le menu et les différents choix possibles
 
-int menu()//menu
+void menu(int* choix)//menu
 {
-    int choix;//creation d'une variable choix
     Color(14,0);
     for (int i=0; i<=0; i++) //pour le nombre de lignes
     {
@@ -106,8 +105,8 @@ int menu()//menu
     printf("Donnez votre choix jeune padawan\n");
     fflush(stdin);
     Color(3,0);
-    scanf("%d",&choix);
-    if(choix<1||choix>7)//blindage
+    scanf("%d",choix);
+    if(*choix<1||*choix>7)//blindage
     {
         do//on demande
         {
@@ -117,17 +116,16 @@ int menu()//menu
             Color(3,0);
             scanf("%d",&choix);
         }
-        while(choix<1||choix>7); //tant que l'on a pas de resultat entre 1 et 6
+        while(*choix<1||*choix>7); //tant que l'on a pas de resultat entre 1 et 6
     }
-    return(choix);//on retourne le choix
 }
 
 ///Sous programme pour les choix du menu
-void choixmenu(int choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[], joueur_t OrdreDesJoueursAcharger[],int* nombreDeJoueurAJouer)//va traiter les choix du menu de la valeur deja blindée
+void choixmenu(int* choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[], joueur_t OrdreDesJoueursAcharger[],int* nombreDeJoueurAJouer)//va traiter les choix du menu de la valeur deja blindée
 {
     int a,chargementPossibleOuNon,reprisePossibleOuNon,sauvegardePossibleOuNon;
 
-    switch(choixDumenu)
+    switch(*choixDumenu)
     {
     case 1:
     {
@@ -139,7 +137,7 @@ void choixmenu(int choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[],
             printf("Aucune partie n'a ete sauvegardee.\n");
             Sleep(2000);
             system("cls");
-            choixDumenu = menu();
+            menu(choixDumenu);
             choixmenu(choixDumenu,tab_joueur,tableauDeCase,OrdreDesJoueursAcharger, nombreDeJoueurAJouer);
         }
         else
@@ -176,7 +174,7 @@ void choixmenu(int choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[],
             printf("La sauvegarde est impossible car aucune partie n'a ete commencee");
             Sleep(2000);
             system("cls");
-            choixDumenu = menu();
+            menu(choixDumenu);
             choixmenu(choixDumenu,tab_joueur,tableauDeCase,OrdreDesJoueursAcharger,nombreDeJoueurAJouer);
         }
         else if (sauvegardePossibleOuNon == 1)
@@ -196,7 +194,7 @@ void choixmenu(int choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[],
             printf("Partie sauvegardee.\n");
             Sleep(2000);
             system("cls");
-            choixDumenu = menu();
+            menu(choixDumenu);
             choixmenu(choixDumenu,tab_joueur,tableauDeCase,OrdreDesJoueursAcharger,nombreDeJoueurAJouer);
         }
 
@@ -229,7 +227,7 @@ void choixmenu(int choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[],
             printf("Aucune partie n'a ete commencee.\n");
             Sleep(2000);
             system("cls");
-            choixDumenu = menu();
+            menu(choixDumenu);
             choixmenu(choixDumenu,tab_joueur,tableauDeCase,OrdreDesJoueursAcharger,nombreDeJoueurAJouer);
         }
         break;

@@ -3,7 +3,7 @@
 int main()
 {
 ///déclaration des variables
-    int choixDuMenuPrincipal,nombreDeJoueur, nbr,deNumeroUn, deNumeroDeux,sommeDesLance,retournerMenu,positionDesJoueurs[4];
+    int choixDuMenuPrincipal,choixIntermediaire,nombreDeJoueur, nbr,deNumeroUn, deNumeroDeux,sommeDesLance,retournerMenu,positionDesJoueurs[4];
     int quitterLaBoucle = 0;
     joueur_t joueur1, joueur2, joueur3, joueur4, tableauDeJoueur[4] = {joueur1, joueur2, joueur3, joueur4};
     joueur_t ordreDePassageDesJoueurs[4];
@@ -20,15 +20,15 @@ int main()
     //intro();
 
 ///Affichage et saisie dans le menu
-    choixDuMenuPrincipal = menu(); //Affichage du menu
-    choixmenu(choixDuMenuPrincipal, tableauDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs,&nombreDeJoueur);
+    menu(&choixDuMenuPrincipal); //Affichage du menu
+    choixmenu(&choixDuMenuPrincipal, tableauDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs,&nombreDeJoueur);
     Sleep(1000);
 
 /// ////////////////////////////////////////////////////////////////////
 ///Boucle qui tourne tant que l'utilisateur ne demande pas de quitter///
 /// ////////////////////////////////////////////////////////////////////
 
-    while(choixDuMenuPrincipal != 5 && (choixDuMenuPrincipal == 1 || choixDuMenuPrincipal == 2 || choixDuMenuPrincipal ==7))
+    while(choixDuMenuPrincipal != 5 /*&& (choixDuMenuPrincipal == 1 || choixDuMenuPrincipal == 2 || choixDuMenuPrincipal ==7)*/)
     {
         /// //////////////////////////////////////////////////////////////
         ///Si l'utilisateur veut lancer une partie commencée auparavant///
@@ -244,10 +244,10 @@ int main()
                 ordreDePassageDesJoueurs[i].argent = 1500;
                 ordreDePassageDesJoueurs[i].tourPrison = 0;
                 ordreDePassageDesJoueurs[i].libertePrison = 0;
-                /*for(int k=0 ; k=10 ; k++)
+                for(int k=0 ; k<10 ; k++)
                 {
                     ordreDePassageDesJoueurs[i].familles[k] = 0;
-                }*/
+                }
                 ordreDePassageDesJoueurs[i].doubleOuNon = 0;
                 ordreDePassageDesJoueurs[i].nbPropriete = 0;
 
@@ -556,8 +556,8 @@ int main()
 
         //Si l'utilisateur sort de la boucle, on affiche le menu principal
         system("cls");
-        choixDuMenuPrincipal = menu();
-        choixmenu(choixDuMenuPrincipal,tableauDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs,&nombreDeJoueur);
+        menu(&choixDuMenuPrincipal);
+        choixmenu(&choixDuMenuPrincipal,tableauDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs,&nombreDeJoueur);
         quitterLaBoucle = 0;
     }
     return 0;

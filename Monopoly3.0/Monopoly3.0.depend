@@ -225,3 +225,11 @@
 	<windows.h>
 	"header.h"
 
+1641288697 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\monopoly3.0\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"header.h"
+	<string.h>
+

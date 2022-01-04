@@ -20,12 +20,11 @@ fullscreen();
 int choix=0;//on crée un choix pour savoir si l'on reprend la derniere partie ou si l'on commence une nouvelle
 //ece();
 //Sleep(3000);
-/*system("cls");
+/*system("cls");*/
 cartejedi();
 system("cls");
 cartesith();
 system("cls");
-intro();*/
 choix=menu();//appel du menu
 choixmenu(choix);
 return 0;

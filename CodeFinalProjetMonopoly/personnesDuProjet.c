@@ -53,6 +53,6 @@ void credits(joueur_t tab_joueur[], int* nombre_joueur,caseMonop tableauDeCase[]
     }
     Sleep(2000);
     system("cls");
-    a=menu();
-    choixmenu(a, tab_joueur,tableauDeCase,OrdreDesJoueursAcharger,nombre_joueur);
+    menu(&a);
+    choixmenu(&a, tab_joueur,tableauDeCase,OrdreDesJoueursAcharger,nombre_joueur);
 }
