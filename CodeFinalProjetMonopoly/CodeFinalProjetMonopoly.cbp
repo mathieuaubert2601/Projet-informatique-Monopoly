@@ -31,6 +31,9 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="CarteChance.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="Creation_Nouveaux_Joueurs.c">
 			<Option compilerVar="CC" />
 		</Unit>

@@ -1,11 +1,11 @@
 #include "header.h"
 
 
-void actioncase(joueur_t* joueur,caseMonop tabc[])
+void actioncase(joueur_t* joueur,caseMonop* tabc[], int* nombreCarteSith)
 {
     int pos= joueur->position;
 
-    switch (tabc[pos].typeCase)
+    switch (tabc[pos]->typeCase)
     {
     case 0:
     {
@@ -30,6 +30,78 @@ void actioncase(joueur_t* joueur,caseMonop tabc[])
     }
     case 6:
     {
+        switch(*nombreCarteSith)
+        {
+        case 0:
+            {
+                Fsith1(joueur);
+            }
+        case 1:
+            {
+                Fsith2(joueur);
+            }
+        case 2:
+            {
+                Fsith3(joueur);
+            }
+        case 3:
+            {
+                Fsith4(joueur);
+            }
+        case 4:
+            {
+                Fsith5(joueur);
+            }
+        case 5:
+            {
+                Fsith6(joueur);
+            }
+        case 6:
+            {
+                Fsith7(joueur);
+            }
+        case 7:
+            {
+                Fsith8(joueur);
+            }
+        case 8:
+            {
+                Fsith9(joueur);
+            }
+        case 9:
+            {
+                Fsith10(joueur);
+            }
+        case 10:
+            {
+                Fsith11(joueur);
+            }
+        case 11:
+            {
+                Fsith12(joueur);
+            }
+        case 12:
+            {
+                Fsith13(joueur);
+            }
+        case 13:
+            {
+                Fsith14(joueur);
+            }
+        case 14:
+            {
+                //Fsith15(joueur);
+            }
+        case 15:
+            {
+                Fsith16(joueur);
+            }
+        }
+        *nombreCarteSith = *nombreCarteSith + 1;
+        if(*nombreCarteSith == 16)
+        {
+            *nombreCarteSith = 0;
+        }
 
         break;
     }

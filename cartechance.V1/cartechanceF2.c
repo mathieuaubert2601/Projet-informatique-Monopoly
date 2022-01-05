@@ -61,7 +61,7 @@ gotoligcol(24,95);
 printf(" U N  C H A S S E U R  D E  P R I M E  V O U S  C H E R C H E");
 
 gotoligcol(26,105);
-printf(" R E S T E Z  C A C H E R  D E U X  T O U R S");
+printf(" P A Y E R  2 0 0   C R E D I T  P O U R  Q U ' I L  V O U S  L A I S S E");
 
 
 gotoligcol(28,90);
@@ -77,6 +77,11 @@ for (int i=0;i<168;i++)
 {
     Sleep(20);
     printf(".");
+}
+
+joueur->argent-=200;
+if (joueur->argent)<0{
+    joueur->argent=0;
 }
 
 

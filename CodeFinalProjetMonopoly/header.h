@@ -75,7 +75,7 @@ void SauvegardeVerifPartieCommencee();
 void SauvegardeVerifPartiePasCommencee();
 int testPartieCommencee();
 void remplirTableauDeCase(caseMonop tableauDesCases[]);
-void actioncase(joueur_t* joueur,caseMonop tabc[]);
+void actioncase(joueur_t* joueur,caseMonop* tabc[], int* nombreCarteSith);
 void Fsith1(joueur_t* joueur);
 void Fsith2(joueur_t* joueur);
 void Fsith3(joueur_t* joueur);
