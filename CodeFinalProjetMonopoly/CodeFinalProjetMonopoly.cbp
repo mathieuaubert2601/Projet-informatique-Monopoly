@@ -52,6 +52,9 @@
 		<Unit filename="OrdreDesJoueurs.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="Prison.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="Regles_du_jeu.c">
 			<Option compilerVar="CC" />
 		</Unit>

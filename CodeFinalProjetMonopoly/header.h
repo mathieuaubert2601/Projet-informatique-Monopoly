@@ -112,5 +112,6 @@ void SauvegardeNombreCarteSith(int nombreCarteSith);
 int ChargerNombreCarteChance();
 void SauvegardeNombreCarteChance(int nombreCarteChance);
 void prisonChoix(int* choixPrison);
+void prison (int choixPrisonPrec, joueur_t tableauDeJoueur[] , int tourActuel, int nombreDeJoueur);
 
 #endif // HEADER_H_INCLUDED
