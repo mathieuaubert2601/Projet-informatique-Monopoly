@@ -1,11 +1,11 @@
 #include "header.h"
 
 
-void actioncase(joueur_t* joueur,caseMonop* tabc[], int* nombreCarteSith)
+void actioncase(joueur_t* joueur,caseMonop tabc[], int* nombreCarteSith,int* nombreCarteChance)
 {
-    int pos= joueur->position;
+    int pos = joueur->position;
 
-    switch (tabc[pos]->typeCase)
+    switch (tabc[pos].typeCase)
     {
     case 0:
     {
@@ -30,71 +30,89 @@ void actioncase(joueur_t* joueur,caseMonop* tabc[], int* nombreCarteSith)
     }
     case 6:
     {
+        system("cls");
+        Color(15,0);
         switch(*nombreCarteSith)
         {
-        case 0:
+            case 0:
             {
                 Fsith1(joueur);
+                break;
             }
-        case 1:
+            case 1:
             {
                 Fsith2(joueur);
+                break;
             }
-        case 2:
+            case 2:
             {
                 Fsith3(joueur);
+                break;
             }
-        case 3:
+            case 3:
             {
                 Fsith4(joueur);
+                break;
             }
-        case 4:
+            case 4:
             {
                 Fsith5(joueur);
+                break;
             }
-        case 5:
+            case 5:
             {
                 Fsith6(joueur);
+                break;
             }
-        case 6:
+            case 6:
             {
                 Fsith7(joueur);
+                break;
             }
-        case 7:
+            case 7:
             {
                 Fsith8(joueur);
+                break;
             }
-        case 8:
+            case 8:
             {
                 Fsith9(joueur);
+                break;
             }
-        case 9:
+            case 9:
             {
                 Fsith10(joueur);
+                break;
             }
-        case 10:
+            case 10:
             {
                 Fsith11(joueur);
+                break;
             }
-        case 11:
+            case 11:
             {
                 Fsith12(joueur);
+                break;
             }
-        case 12:
+            case 12:
             {
                 Fsith13(joueur);
+                break;
             }
-        case 13:
+            case 13:
             {
                 Fsith14(joueur);
+                break;
             }
-        case 14:
+            case 14:
             {
                 //Fsith15(joueur);
+                break;
             }
-        case 15:
+            case 15:
             {
                 Fsith16(joueur);
+                break;
             }
         }
         *nombreCarteSith = *nombreCarteSith + 1;
@@ -107,13 +125,91 @@ void actioncase(joueur_t* joueur,caseMonop* tabc[], int* nombreCarteSith)
     }
     case 7:
     {
+        switch(*nombreCarteChance)
+        {
+        case 0:
+        {
+            f1(joueur);
+            break;
+        }
+        case 1:
+        {
+            f2(joueur);
+            break;
+        }
+        case 2:
+        {
+            f3(joueur);
+            break;
+        }
+        case 3:
+        {
+            f4(joueur);
+            break;
+        }
+        case 4:
+        {
+            f5(joueur);
+            break;
+        }
+        case 5:
+        {
+            f6(joueur);
+            break;
+        }
+        case 6:
+        {
+            f7(joueur);
+            break;
+        }
+        case 7:
+        {
+            f8(joueur);
+            break;
+        }
+        case 8:
+        {
+            f9(joueur);
+            break;
+        }
+        case 9:
+        {
+            f10(joueur);
+            break;
+        }
+        case 10:
+        {
+            f11(joueur);
+            break;
+        }
+        case 11:
+        {
+            f12(joueur);
+            break;
+        }
+        case 12:
+        {
+            f13(joueur);
+            break;
+        }
+        case 13:
+        {
+            f14(joueur);
+            break;
+        }
+        case 14:
+        {
+            f15(joueur);
+            break;
+        }
+        case 15:
+        {
+            f16(joueur);
+            break;
+        }
+        }
         break;
     }
-    default:
-    {
-        break;
-    }
-
     }
 }
 

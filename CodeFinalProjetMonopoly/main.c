@@ -5,6 +5,9 @@ int main()
 ///déclaration des variables
     int choixDuMenuPrincipal,choixIntermediaire,nombreDeJoueur, nbr,deNumeroUn, deNumeroDeux,sommeDesLance,retournerMenu,positionDesJoueurs[4];
     int quitterLaBoucle = 0;
+    int numeroCarteSith = 0;
+    int numeroCarteChance = 0;
+    int positionTemporaire;
     joueur_t joueur1, joueur2, joueur3, joueur4, tableauDeJoueur[4] = {joueur1, joueur2, joueur3, joueur4};
     joueur_t ordreDePassageDesJoueurs[4];
     joueur1.numeroJoueur = 1;
@@ -12,6 +15,7 @@ int main()
     joueur3.numeroJoueur = 3;
     joueur4.numeroJoueur = 4;
     caseMonop TableauDesCasesDuMonopoly[28];
+    remplirTableauDeCase(TableauDesCasesDuMonopoly);
 
 ///Ouverture de la console en plein écran
     pleinEcran();
@@ -286,6 +290,27 @@ int main()
                 plateau(positionDesJoueurs,nombreDeJoueur);
 
                 //Action case
+                positionTemporaire = ordreDePassageDesJoueurs[t].position;
+                actioncase(&ordreDePassageDesJoueurs[t],TableauDesCasesDuMonopoly,&numeroCarteSith,&numeroCarteChance);
+
+                //On vérifie si le joueur était sur une case avec une carte
+                if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23)
+                {
+                    gotoligcol(3,115);
+                    printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
+                    fflush(stdin);
+                    getchar();
+
+                    positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+
+                    //Actualisation du plateau
+                    plateau(positionDesJoueurs,nombreDeJoueur);
+                }
+
+
+
+
+
 
                 //Cette boucle est utilisée ssi un double a été fait
                 while(deNumeroDeux == deNumeroUn)

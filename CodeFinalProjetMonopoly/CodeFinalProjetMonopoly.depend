@@ -2,14 +2,14 @@
 1640973789 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\introductionpartie.c
 	"header.h"
 
-1641372724 c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\header.h
+1641389691 c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\header.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<time.h>
 	<windows.h>
 
-1641319891 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\main.c
+1641393755 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\main.c
 	"header.h"
 
 1641235028 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\couleursdumonopoly.c
@@ -52,9 +52,12 @@
 1641235037 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\deplacementdujoueur.c
 	"header.h"
 
-1641372724 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\actiondescases.c
+1641393342 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\actiondescases.c
 	"header.h"
 
 1641372302 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\cartealliancesith.c
+	"header.h"
+
+1641385222 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\cartechance.c
 	"header.h"
 
