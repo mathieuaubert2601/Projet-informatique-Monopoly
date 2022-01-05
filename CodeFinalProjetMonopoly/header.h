@@ -111,5 +111,6 @@ int ChargerNombreCarteSith();
 void SauvegardeNombreCarteSith(int nombreCarteSith);
 int ChargerNombreCarteChance();
 void SauvegardeNombreCarteChance(int nombreCarteChance);
+void prisonChoix(int* choixPrison);
 
 #endif // HEADER_H_INCLUDED
