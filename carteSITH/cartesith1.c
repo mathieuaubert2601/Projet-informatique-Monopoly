@@ -90,7 +90,7 @@ for (int i=0;i<168;i++)
 }
 
 
-joueur.position=/*coordonne case prison*/
+joueur.position= 7;
 return joueur.position;
 
 

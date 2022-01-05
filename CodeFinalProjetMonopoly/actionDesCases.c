@@ -3,13 +3,13 @@
 
 void actioncase(joueur_t* joueur,caseMonop tabc[])
 {
-    int pos= *joueur->position;
+    int pos= joueur->position;
 
     switch (tabc[pos].typeCase)
     {
     case 0:
     {
-        *joueur->argent+=200;
+        joueur->argent+=200;
         break;
     }
     case 2:
@@ -24,8 +24,8 @@ void actioncase(joueur_t* joueur,caseMonop tabc[])
     }
     case 5:
     {
-        *joueur->position=7;
-        *joueur->tourPrison+=1;
+        joueur->position=7;
+        joueur->tourPrison+=1;
         break;
     }
     case 6:

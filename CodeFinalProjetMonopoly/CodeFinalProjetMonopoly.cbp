@@ -58,6 +58,9 @@
 		<Unit filename="actionDesCases.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="carteAllianceSith.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="couleursDuMonopoly.c">
 			<Option compilerVar="CC" />
 		</Unit>

@@ -41,7 +41,7 @@ printf("   ;;;iiiii7iiii^  87;;888888888888888888888888888888888888887;778] 8887
 Sleep(30);
 printf("   ;iiiii7iiiii7iiii77;i88888888888888888888i7888888888888888877;77i 888877777ii78\n");
 Color(15,0);
-printf("   iiiiiiiiiii7iiii7iii;;;i7778888888888888ii7788888888888777i;;;;iiii 88888888888                I N F I L T R E Z  V IO U S : P I O C H E Z  U N E  C A R T E  J E D I \n");
+printf("   iiiiiiiiiii7iiii7iii;;;i7778888888888888ii7788888888888777i;;;;iiii 88888888888                I N F I L T R E Z  V O U S : P I O C H E Z  U N E  C A R T E  J E D I \n");
 Sleep(30);
 printf("     i;iiiiiiiiiiii7iiiiiiiiiiiiiiiiiiiiiiiiii8877iiiiiiiiiiiiiiiiiii877   88888      \n");
 printf("      ii;;iiiiiiiiiiiiii;;;ii^^^;;;ii77777788888888888887777iii;;  77777           78                   \n");

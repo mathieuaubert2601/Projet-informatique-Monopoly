@@ -75,5 +75,21 @@ void SauvegardeVerifPartieCommencee();
 void SauvegardeVerifPartiePasCommencee();
 int testPartieCommencee();
 void remplirTableauDeCase(caseMonop tableauDesCases[]);
-void actioncase(joueur_t joueur,caseMonop tabc[]);
+void actioncase(joueur_t* joueur,caseMonop tabc[]);
+void Fsith1(joueur_t* joueur);
+void Fsith2(joueur_t* joueur);
+void Fsith3(joueur_t* joueur);
+void Fsith4(joueur_t* joueur);
+void Fsith5(joueur_t* joueur);
+void Fsith6(joueur_t* joueur);
+void Fsith7(joueur_t* joueur);
+void Fsith8(joueur_t* joueur);
+void Fsith9(joueur_t* joueur);
+void Fsith10(joueur_t* joueur);
+void Fsith11(joueur_t* joueur);
+void Fsith12(joueur_t* joueur);
+void Fsith13(joueur_t* joueur);
+void Fsith14(joueur_t* joueur);
+void Fsith16(joueur_t* joueur);
+
 #endif // HEADER_H_INCLUDED

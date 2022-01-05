@@ -4,7 +4,7 @@
 #include <windows.h>
 
 
- Fsith5()
+int Fsith5()
 {
 printf("                              ,ooo888888888888888oooo,\n");
 printf("                            o8888YYYYYY77iiiiooo8888888o\n");
