@@ -1,6 +1,6 @@
 #include "header.h"
 
-void plateau(int pos[],int nbj)// rajouter couleur, rajouter
+void plateau(int pos[],int nbj,caseMonop cases[28])// rajouter couleur, rajouter
 {
     /*for (int i=0;i<4;i++)//remplissage test
     {
@@ -122,7 +122,7 @@ void plateau(int pos[],int nbj)// rajouter couleur, rajouter
     printf("__________");//endor
     Color(3,0);
     printf("|");
-    Color(6,0);
+    Color(7,0);
     printf("__________");//kashyyyk
     Color(3,0);
     printf("|");
@@ -130,11 +130,11 @@ void plateau(int pos[],int nbj)// rajouter couleur, rajouter
     printf("__________");//spatioport1
     Color(3,0);
     printf("|");
-    Color(7,0);
+    Color(14,0);
     printf("__________");//hoth
     Color(3,0);
     printf("|");
-    Color(14,0);
+    Color(6,0);
     printf("__________");//conseil
     Color(3,0);
     printf("|");
@@ -147,6 +147,7 @@ void plateau(int pos[],int nbj)// rajouter couleur, rajouter
     printf("      |                    |          |          |          |          |          |         |                    |\n");
     printf("      |____________________|__________|__________|__________|__________|__________|_________|____________________|\n\n                                                                                                                               M A D E  B Y  T E A M   J A R J A R");
 
+///position joueur
 
     int colgau=8;//revoir les noms
     int colgdr=37;
@@ -211,10 +212,12 @@ void plateau(int pos[],int nbj)// rajouter couleur, rajouter
             pos[i]=0;
         }
         Color(5,0);
-        gotoligcol(25,110);
+    }
 
-        int z=25;
-        int y=140;
+///LOGO ECE//////////////////////////////////
+
+        int z=27;
+        int y=130;
         Color(3,0);
         gotoligcol(z,y);
         z++;
@@ -254,10 +257,90 @@ void plateau(int pos[],int nbj)// rajouter couleur, rajouter
         printf("    E C E  P A R I S  ");
 
         Color(10,0);
+
+
+///POSITION MAISON
+
+    int maisonlhaut=10;//revoir les noms
+    int maisonlbas=39;
+    int maisoncgau=12;
+    int maisoncdro=100;
+    int cas=0;
+    for (int i=0;i<28;i++)
+    {
+        if(i<8)
+        {
+            if(cases[i].nbMaison>0)//ligne bas
+            {
+                for(int j1=0;j1<cases[i].nbMaison;j1++)
+                {
+                    gotoligcol(maisonlbas,maisoncdro-(i*11)-j1);//coordonées a determiner
+                    printf("M");
+                }
+            }
+            else if(cases[i].nbHotel>0)
+            {
+                    gotoligcol(maisonlbas,maisoncdro-(i*11));
+                    printf("H");
+            }
+
+        else if(i>=8&&i<14)//colonne gauche
+        {
+            if(cases[i].nbMaison>0)
+            {
+                for(int j2=0;j2<cases[i].nbMaison;j2++)
+                {
+                    gotoligcol(maisonlhaut-((14-i)*4)-j2,maisoncgau);//coordonées a determiner
+                    printf("M");
+                }
+            }
+            else if(cases[i].nbHotel>0)
+            {
+                    gotoligcol(maisonlhaut-(i*4),maisoncgau);
+                    printf("H");
+            }
+        }
+        else if(i>=14&&i<22)//ligne haut
+        {
+            if(cases[i].nbMaison>0)
+            {
+                for(int j3=0;j3<cases[i].nbMaison;j3++)
+                {
+                    gotoligcol(maisonlhaut,maisoncdro+((22-i)*11)+j3);//coordonées a determiner
+                    printf("M");
+                }
+            }
+            else if(cases[i].nbHotel>0)
+            {
+                    gotoligcol(maisonlbas,maisoncgau+((22-i)*11));
+                    printf("H");
+            }
+        }
+        else if (i>=22&&i<28)//colonne droite
+        {
+            if(cases[i].nbMaison>0)
+            {
+                for(int j4=0;j4<cases[i].nbMaison;j4++)
+                {
+                    gotoligcol(maisonlbas+((28-i)*4)+j4,maisoncgau);//coordonées a determiner
+                    printf("M");
+                }
+            }
+            else if(cases[i].nbHotel>0)
+            {
+                    gotoligcol(maisonlbas+((28-i)*4),maisoncgau);
+                    printf("H");
+            }
+        }
+
+        }
+    }
+
+///LIGNE TEAM JARJAR
         gotoligcol(43,123);
         Color(12,0);
 
-        for (int i=0; i<42; i++) //ligne
+for (int i=0; i<42; i++) //ligne
         {
             Sleep(15);
             printf("_");
@@ -265,9 +348,10 @@ void plateau(int pos[],int nbj)// rajouter couleur, rajouter
 
         gotoligcol(0,0);
 
-
-    }
-
     Sleep(1000);
 
 }
+
+
+
+

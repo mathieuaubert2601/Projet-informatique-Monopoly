@@ -69,12 +69,7 @@ void f1(joueur_t* joueur)
         Sleep(20);
         printf("_");
     }
-    gotoligcol(45,00);
-    for (int i=0; i<168; i++)
-    {
-        Sleep(20);
-        printf(".");
-    }
+
 
 
 
@@ -158,12 +153,6 @@ void f2(joueur_t* joueur)
         Sleep(20);
         printf("_");
     }
-    gotoligcol(45,00);
-    for (int i=0; i<168; i++)
-    {
-        Sleep(20);
-        printf(".");
-    }
 
     joueur->argent-=200;
     if (joueur->argent<0)
@@ -242,12 +231,7 @@ void f3(joueur_t* joueur)
         Sleep(20);
         printf("_");
     }
-    gotoligcol(45,00);
-    for (int i=0; i<168; i++)
-    {
-        Sleep(20);
-        printf(".");
-    }
+
 
     joueur->argent=joueur->argent-50;
     if (joueur->argent<0)
@@ -326,12 +310,6 @@ void f4(joueur_t* joueur)
     {
         Sleep(20);
         printf("_");
-    }
-    gotoligcol(45,00);
-    for (int i=0; i<168; i++)
-    {
-        Sleep(20);
-        printf(".");
     }
 
     if(joueur->position > 24)
@@ -412,12 +390,6 @@ void f5(joueur_t* joueur)
         Sleep(20);
         printf("_");
     }
-    gotoligcol(45,00);
-    for (int i=0; i<168; i++)
-    {
-        Sleep(20);
-        printf(".");
-    }
 
     if(joueur->position > 22)
     {
@@ -497,12 +469,7 @@ void f6(joueur_t* joueur)
         Sleep(20);
         printf("_");
     }
-    gotoligcol(45,00);
-    for (int i=0; i<168; i++)
-    {
-        Sleep(20);
-        printf(".");
-    }
+
 
     if(joueur->position > 1)
     {
@@ -583,12 +550,7 @@ void f7(joueur_t* joueur)
         Sleep(20);
         printf("_");
     }
-    gotoligcol(45,00);
-    for (int i=0; i<168; i++)
-    {
-        Sleep(20);
-        printf(".");
-    }
+    gotoligcol(45,0);
 
     joueur->argent=joueur->argent-500;
     if (joueur->argent<0)
@@ -670,12 +632,6 @@ void f8(joueur_t* joueur)
         Sleep(20);
         printf("_");
     }
-    gotoligcol(45,00);
-    for (int i=0; i<168; i++)
-    {
-        Sleep(20);
-        printf(".");
-    }
 
 
     joueur->argent=joueur->argent+400;
@@ -750,12 +706,6 @@ void f9(joueur_t* joueur)
     {
         Sleep(20);
         printf("_");
-    }
-    gotoligcol(45,00);
-    for (int i=0; i<168; i++)
-    {
-        Sleep(20);
-        printf(".");
     }
 
     joueur->argent=joueur->argent-100;
@@ -835,12 +785,8 @@ void f10(joueur_t* joueur)
         Sleep(20);
         printf("_");
     }
-    gotoligcol(45,00);
-    for (int i=0; i<168; i++)
-    {
-        Sleep(20);
-        printf(".");
-    }
+    gotoligcol(45,0);
+
 
     if(joueur->position > 8)
     {
@@ -919,12 +865,8 @@ void f11(joueur_t* joueur)
         Sleep(20);
         printf("_");
     }
-    gotoligcol(45,00);
-    for (int i=0; i<168; i++)
-    {
-        Sleep(20);
-        printf(".");
-    }
+    gotoligcol(45,0);
+
 
     joueur->argent=joueur->argent+200;
 }
@@ -998,12 +940,8 @@ void f12(joueur_t* joueur)
         Sleep(20);
         printf("_");
     }
-    gotoligcol(45,00);
-    for (int i=0; i<168; i++)
-    {
-        Sleep(20);
-        printf(".");
-    }
+    gotoligcol(45,0);
+
 
     joueur->argent=joueur->argent+50;
 
@@ -1076,12 +1014,6 @@ void f13(joueur_t* joueur)
     {
         Sleep(20);
         printf("_");
-    }
-    gotoligcol(45,00);
-    for (int i=0; i<168; i++)
-    {
-        Sleep(20);
-        printf(".");
     }
 
     if(joueur->position >= 1 || joueur->position <= 7)
@@ -1178,12 +1110,7 @@ void f14(joueur_t* joueur)
         Sleep(20);
         printf("_");
     }
-    gotoligcol(45,00);
-    for (int i=0; i<168; i++)
-    {
-        Sleep(20);
-        printf(".");
-    }
+    gotoligcol(45,0);
 
     joueur->position=27;
 
@@ -1256,12 +1183,6 @@ void f15(joueur_t* joueur)
     {
         Sleep(20);
         printf("_");
-    }
-    gotoligcol(45,00);
-    for (int i=0; i<168; i++)
-    {
-        Sleep(20);
-        printf(".");
     }
 
     joueur->position = joueur->position - 3 ;
@@ -1339,12 +1260,6 @@ void f16(joueur_t* joueur)
     {
         Sleep(20);
         printf("_");
-    }
-    gotoligcol(45,00);
-    for (int i=0; i<168; i++)
-    {
-        Sleep(20);
-        printf(".");
     }
 
     if(joueur->position > 18)

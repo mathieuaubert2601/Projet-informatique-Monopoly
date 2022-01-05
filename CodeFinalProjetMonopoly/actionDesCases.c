@@ -233,7 +233,7 @@ void remplirTableauDeCase(caseMonop tableauDesCases[])
     case1.prix_case=50;
     case1.famille=1;
     case1.proprieteDe=1;
-    case1.nbMaison=2;
+    case1.nbMaison = 0;
     case1.nbHotel=0;
     case1.typeCase=1;
     case1.prixLoyer=3;

@@ -2,11 +2,13 @@
 
 int main()
 {
+///Permet d'obtenir une valeur aléatoire toujours différente
+    srand(time(NULL));
 ///déclaration des variables
     int choixDuMenuPrincipal,choixIntermediaire,nombreDeJoueur, nbr,deNumeroUn, deNumeroDeux,sommeDesLance,retournerMenu,positionDesJoueurs[4];
     int quitterLaBoucle = 0;
-    int numeroCarteSith = 0;
-    int numeroCarteChance = 0;
+    int numeroCarteSith = rand() % 15;
+    int numeroCarteChance = rand() % 15;
     int positionTemporaire;
     joueur_t joueur1, joueur2, joueur3, joueur4, tableauDeJoueur[4] = {joueur1, joueur2, joueur3, joueur4};
     joueur_t ordreDePassageDesJoueurs[4];
@@ -25,14 +27,14 @@ int main()
 
 ///Affichage et saisie dans le menu
     menu(&choixDuMenuPrincipal); //Affichage du menu
-    choixmenu(&choixDuMenuPrincipal, tableauDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs,&nombreDeJoueur);
+    choixmenu(&choixDuMenuPrincipal, tableauDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs,&nombreDeJoueur,&numeroCarteSith,&numeroCarteChance);
     Sleep(1000);
 
 /// ////////////////////////////////////////////////////////////////////
 ///Boucle qui tourne tant que l'utilisateur ne demande pas de quitter///
 /// ////////////////////////////////////////////////////////////////////
 
-    while(choixDuMenuPrincipal != 5 /*&& (choixDuMenuPrincipal == 1 || choixDuMenuPrincipal == 2 || choixDuMenuPrincipal ==7)*/)
+    while(choixDuMenuPrincipal != 5)
     {
         /// //////////////////////////////////////////////////////////////
         ///Si l'utilisateur veut lancer une partie commencée auparavant///
@@ -48,7 +50,7 @@ int main()
             {
                 positionDesJoueurs[i]=ordreDePassageDesJoueurs[i].position;
             }
-            plateau(positionDesJoueurs,nombreDeJoueur);
+            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly);
 
             //Lancement des tours
             for(int t=0 ; t<=nombreDeJoueur ; t++)
@@ -89,9 +91,25 @@ int main()
                 }
 
                 //Actualisation du plateau
-                plateau(positionDesJoueurs,nombreDeJoueur);
+                plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly);
 
                 //Action case
+                positionTemporaire = ordreDePassageDesJoueurs[t].position;
+                actioncase(&ordreDePassageDesJoueurs[t],TableauDesCasesDuMonopoly,&numeroCarteSith,&numeroCarteChance);
+
+                //On vérifie si le joueur était sur une case avec une carte
+                if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23)
+                {
+                    gotoligcol(3,115);
+                    printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
+                    fflush(stdin);
+                    getchar();
+
+                    positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+
+                    //Actualisation du plateau
+                    plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly);
+                }
 
                 //Cette boucle est utilisée ssi un double à été fait
                 while(deNumeroDeux == deNumeroUn)
@@ -101,6 +119,8 @@ int main()
                         gotoligcol(22,115);
                         printf("Vous allez en prison ! \n");
                         ordreDePassageDesJoueurs[t].doubleOuNon = 0;
+
+
                         gotoligcol(21,115);
                         printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
                         fflush(stdin);
@@ -117,7 +137,8 @@ int main()
                         }
 
                         //Actualisation du plateau
-                        plateau(positionDesJoueurs,nombreDeJoueur);
+                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly);
+
                         break;
                     }
 
@@ -146,7 +167,25 @@ int main()
                         }
 
                         //Actualisation du plateau
-                        plateau(positionDesJoueurs,nombreDeJoueur);
+                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly);
+
+                        //Action case
+                        positionTemporaire = ordreDePassageDesJoueurs[t].position;
+                        actioncase(&ordreDePassageDesJoueurs[t],TableauDesCasesDuMonopoly,&numeroCarteSith,&numeroCarteChance);
+
+                        //On vérifie si le joueur était sur une case avec une carte
+                        if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23)
+                        {
+                            gotoligcol(3,115);
+                            printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
+                            fflush(stdin);
+                            getchar();
+
+                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+
+                            //Actualisation du plateau
+                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly);
+                        }
                     }
 
                     if(ordreDePassageDesJoueurs[t].doubleOuNon == 0)
@@ -174,7 +213,24 @@ int main()
                         }
 
                         //Actualisation du plateau
-                        plateau(positionDesJoueurs,nombreDeJoueur);
+                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly);
+                        //Action case
+                        positionTemporaire = ordreDePassageDesJoueurs[t].position;
+                        actioncase(&ordreDePassageDesJoueurs[t],TableauDesCasesDuMonopoly,&numeroCarteSith,&numeroCarteChance);
+
+                        //On vérifie si le joueur était sur une case avec une carte
+                        if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23)
+                        {
+                            gotoligcol(3,115);
+                            printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
+                            fflush(stdin);
+                            getchar();
+
+                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+
+                            //Actualisation du plateau
+                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly);
+                        }
                     }
                 }
 
@@ -257,7 +313,7 @@ int main()
 
             }
             //On actualise le plateau
-            plateau(positionDesJoueurs,nombreDeJoueur);
+            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly);
 
             //Lancement des tours
             for(int t=0 ; t<=nombreDeJoueur ; t++)
@@ -287,7 +343,7 @@ int main()
                 getchar();
 
                 //Actualisation du plateau
-                plateau(positionDesJoueurs,nombreDeJoueur);
+                plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly);
 
                 //Action case
                 positionTemporaire = ordreDePassageDesJoueurs[t].position;
@@ -304,12 +360,8 @@ int main()
                     positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
 
                     //Actualisation du plateau
-                    plateau(positionDesJoueurs,nombreDeJoueur);
+                    plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly);
                 }
-
-
-
-
 
 
                 //Cette boucle est utilisée ssi un double a été fait
@@ -320,6 +372,8 @@ int main()
                         gotoligcol(22,115);
                         printf("Vous allez en prison ! \n");
                         ordreDePassageDesJoueurs[t].doubleOuNon = 0;
+
+
                         gotoligcol(21,115);
                         printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
                         fflush(stdin);
@@ -336,7 +390,8 @@ int main()
                         }
 
                         //Actualisation du plateau
-                        plateau(positionDesJoueurs,nombreDeJoueur);
+                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly);
+
                         break;
                     }
 
@@ -365,7 +420,25 @@ int main()
                         }
 
                         //Actualisation du plateau
-                        plateau(positionDesJoueurs,nombreDeJoueur);
+                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly);
+
+                        //Action case
+                        positionTemporaire = ordreDePassageDesJoueurs[t].position;
+                        actioncase(&ordreDePassageDesJoueurs[t],TableauDesCasesDuMonopoly,&numeroCarteSith,&numeroCarteChance);
+
+                        //On vérifie si le joueur était sur une case avec une carte
+                        if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23)
+                        {
+                            gotoligcol(3,115);
+                            printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
+                            fflush(stdin);
+                            getchar();
+
+                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+
+                            //Actualisation du plateau
+                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly);
+                        }
                     }
 
                     if(ordreDePassageDesJoueurs[t].doubleOuNon == 0)
@@ -393,7 +466,24 @@ int main()
                         }
 
                         //Actualisation du plateau
-                        plateau(positionDesJoueurs,nombreDeJoueur);
+                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly);
+                        //Action case
+                        positionTemporaire = ordreDePassageDesJoueurs[t].position;
+                        actioncase(&ordreDePassageDesJoueurs[t],TableauDesCasesDuMonopoly,&numeroCarteSith,&numeroCarteChance);
+
+                        //On vérifie si le joueur était sur une case avec une carte
+                        if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23)
+                        {
+                            gotoligcol(3,115);
+                            printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
+                            fflush(stdin);
+                            getchar();
+
+                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+
+                            //Actualisation du plateau
+                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly);
+                        }
                     }
                 }
 
@@ -431,7 +521,7 @@ int main()
         while(choixDuMenuPrincipal == 7 && quitterLaBoucle == 0)
         {
             //On actualise le plateau
-            plateau(positionDesJoueurs,nombreDeJoueur);
+            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly);
 
             //Lancement des tours
             for(int t=0 ; t<=nombreDeJoueur ; t++)
@@ -470,9 +560,25 @@ int main()
                 }
 
                 //Actualisation du plateau
-                plateau(positionDesJoueurs,nombreDeJoueur);
+                plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly);
 
                 //Action case
+                positionTemporaire = ordreDePassageDesJoueurs[t].position;
+                actioncase(&ordreDePassageDesJoueurs[t],TableauDesCasesDuMonopoly,&numeroCarteSith,&numeroCarteChance);
+
+                //On vérifie si le joueur était sur une case avec une carte
+                if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23)
+                {
+                    gotoligcol(3,115);
+                    printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
+                    fflush(stdin);
+                    getchar();
+
+                    positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+
+                    //Actualisation du plateau
+                    plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly);
+                }
 
                 //Cette boucle s'effectue ssi un double a été effectué
                 while(deNumeroDeux == deNumeroUn)
@@ -482,6 +588,8 @@ int main()
                         gotoligcol(22,115);
                         printf("Vous allez en prison ! \n");
                         ordreDePassageDesJoueurs[t].doubleOuNon = 0;
+
+
                         gotoligcol(21,115);
                         printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
                         fflush(stdin);
@@ -498,7 +606,8 @@ int main()
                         }
 
                         //Actualisation du plateau
-                        plateau(positionDesJoueurs,nombreDeJoueur);
+                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly);
+
                         break;
                     }
 
@@ -527,7 +636,25 @@ int main()
                         }
 
                         //Actualisation du plateau
-                        plateau(positionDesJoueurs,nombreDeJoueur);
+                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly);
+
+                        //Action case
+                        positionTemporaire = ordreDePassageDesJoueurs[t].position;
+                        actioncase(&ordreDePassageDesJoueurs[t],TableauDesCasesDuMonopoly,&numeroCarteSith,&numeroCarteChance);
+
+                        //On vérifie si le joueur était sur une case avec une carte
+                        if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23)
+                        {
+                            gotoligcol(3,115);
+                            printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
+                            fflush(stdin);
+                            getchar();
+
+                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+
+                            //Actualisation du plateau
+                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly);
+                        }
                     }
 
                     if(ordreDePassageDesJoueurs[t].doubleOuNon == 0)
@@ -544,10 +671,35 @@ int main()
                         fflush(stdin);
                         getchar();
 
-
+                        //On efface toutes les données des dés
+                        for(int l=5 ; l<22 ; l++)
+                        {
+                            for(int c = 115 ; c<160 ; c++)
+                            {
+                                gotoligcol(l,c);
+                                printf(" ");
+                            }
+                        }
 
                         //Actualisation du plateau
-                        plateau(positionDesJoueurs,nombreDeJoueur);
+                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly);
+                        //Action case
+                        positionTemporaire = ordreDePassageDesJoueurs[t].position;
+                        actioncase(&ordreDePassageDesJoueurs[t],TableauDesCasesDuMonopoly,&numeroCarteSith,&numeroCarteChance);
+
+                        //On vérifie si le joueur était sur une case avec une carte
+                        if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23)
+                        {
+                            gotoligcol(3,115);
+                            printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
+                            fflush(stdin);
+                            getchar();
+
+                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+
+                            //Actualisation du plateau
+                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly);
+                        }
                     }
                 }
 
@@ -582,7 +734,7 @@ int main()
         //Si l'utilisateur sort de la boucle, on affiche le menu principal
         system("cls");
         menu(&choixDuMenuPrincipal);
-        choixmenu(&choixDuMenuPrincipal,tableauDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs,&nombreDeJoueur);
+        choixmenu(&choixDuMenuPrincipal,tableauDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs,&nombreDeJoueur,&numeroCarteSith,&numeroCarteChance);
         quitterLaBoucle = 0;
     }
     return 0;

@@ -121,7 +121,7 @@ void menu(int* choix)//menu
 }
 
 ///Sous programme pour les choix du menu
-void choixmenu(int* choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[], joueur_t OrdreDesJoueursAcharger[],int* nombreDeJoueurAJouer)//va traiter les choix du menu de la valeur deja blindée
+void choixmenu(int* choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[], joueur_t OrdreDesJoueursAcharger[],int* nombreDeJoueurAJouer,int* nombreCarteSith, int* nombreCarteChance)//va traiter les choix du menu de la valeur deja blindée
 {
     int a,chargementPossibleOuNon,reprisePossibleOuNon,sauvegardePossibleOuNon;
 
@@ -138,7 +138,7 @@ void choixmenu(int* choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[]
             Sleep(2000);
             system("cls");
             menu(choixDumenu);
-            choixmenu(choixDumenu,tab_joueur,tableauDeCase,OrdreDesJoueursAcharger, nombreDeJoueurAJouer);
+            choixmenu(choixDumenu,tab_joueur,tableauDeCase,OrdreDesJoueursAcharger, nombreDeJoueurAJouer,nombreCarteSith,nombreCarteChance);
         }
         else
         {
@@ -147,6 +147,8 @@ void choixmenu(int* choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[]
             Sleep(1000);
             chargerOrdreJoueur(OrdreDesJoueursAcharger);
             SauvegardeVerifPartieCommencee();
+            *nombreCarteChance = ChargerNombreCarteChance();
+            *nombreCarteSith = ChargerNombreCarteSith();
 
             printf("Chargement en cours");
             Sleep(1000);
@@ -175,13 +177,15 @@ void choixmenu(int* choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[]
             Sleep(2000);
             system("cls");
             menu(choixDumenu);
-            choixmenu(choixDumenu,tab_joueur,tableauDeCase,OrdreDesJoueursAcharger,nombreDeJoueurAJouer);
+            choixmenu(choixDumenu,tab_joueur,tableauDeCase,OrdreDesJoueursAcharger,nombreDeJoueurAJouer,nombreCarteSith,nombreCarteChance);
         }
         else if (sauvegardePossibleOuNon == 1)
         {
             sauvegardeNombreJoueur(*nombreDeJoueurAJouer);
             sauvegarderOrdreJoueur(OrdreDesJoueursAcharger);
             SauvegardeVerifPartieSauv();
+            SauvegardeNombreCarteChance(*nombreCarteChance);
+            SauvegardeNombreCarteSith(*nombreCarteSith);
 
             printf("Sauvegarde en cours");
             Sleep(1000);
@@ -195,14 +199,14 @@ void choixmenu(int* choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[]
             Sleep(2000);
             system("cls");
             menu(choixDumenu);
-            choixmenu(choixDumenu,tab_joueur,tableauDeCase,OrdreDesJoueursAcharger,nombreDeJoueurAJouer);
+            choixmenu(choixDumenu,tab_joueur,tableauDeCase,OrdreDesJoueursAcharger,nombreDeJoueurAJouer,nombreCarteSith,nombreCarteChance);
         }
 
         break;
     }
     case 4:
     {
-        credits(tab_joueur, nombreDeJoueurAJouer,tableauDeCase,OrdreDesJoueursAcharger);
+        credits(tab_joueur, nombreDeJoueurAJouer,tableauDeCase,OrdreDesJoueursAcharger,nombreCarteSith, nombreCarteChance);
 
         break;
     }
@@ -216,7 +220,7 @@ void choixmenu(int* choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[]
     }
     case 6:
     {
-        regle_Du_jeu(tab_joueur,nombreDeJoueurAJouer,tableauDeCase,OrdreDesJoueursAcharger);
+        regle_Du_jeu(tab_joueur,nombreDeJoueurAJouer,tableauDeCase,OrdreDesJoueursAcharger,nombreCarteSith, nombreCarteChance);
         break;
     }
     case 7:
@@ -228,7 +232,7 @@ void choixmenu(int* choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[]
             Sleep(2000);
             system("cls");
             menu(choixDumenu);
-            choixmenu(choixDumenu,tab_joueur,tableauDeCase,OrdreDesJoueursAcharger,nombreDeJoueurAJouer);
+            choixmenu(choixDumenu,tab_joueur,tableauDeCase,OrdreDesJoueursAcharger,nombreDeJoueurAJouer,nombreCarteSith, nombreCarteChance);
         }
         break;
     }

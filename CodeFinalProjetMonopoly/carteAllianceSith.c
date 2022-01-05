@@ -440,7 +440,7 @@ void Fsith5(joueur_t* joueur)
         printf("_");
     }
     gotoligcol(45,00);
-    for (int i=0; i<168; i++)
+    for (int i=0; i<150; i++)
     {
         Sleep(20);
         printf(".");

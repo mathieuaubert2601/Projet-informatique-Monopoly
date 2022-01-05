@@ -1,7 +1,7 @@
 #include "header.h"
 #define max 5
 
-void credits(joueur_t tab_joueur[], int* nombre_joueur,caseMonop tableauDeCase[], joueur_t OrdreDesJoueursAcharger[])//va afficher les credits
+void credits(joueur_t tab_joueur[], int* nombre_joueur,caseMonop tableauDeCase[], joueur_t OrdreDesJoueursAcharger[],int* nombreCarteSith, int* nombreCarteChance)//va afficher les credits
 {
     system("cls");
     int a;
@@ -54,5 +54,5 @@ void credits(joueur_t tab_joueur[], int* nombre_joueur,caseMonop tableauDeCase[]
     Sleep(2000);
     system("cls");
     menu(&a);
-    choixmenu(&a, tab_joueur,tableauDeCase,OrdreDesJoueursAcharger,nombre_joueur);
+    choixmenu(&a, tab_joueur,tableauDeCase,OrdreDesJoueursAcharger,nombre_joueur,nombreCarteSith, nombreCarteChance);
 }

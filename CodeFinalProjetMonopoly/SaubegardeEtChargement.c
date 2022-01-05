@@ -1,5 +1,105 @@
 #include "header.h"
 
+/////////////////////////////////////////////////////////////////////////////////
+///Sous programme pour sauvegarder carte chance nombre //////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+void SauvegardeNombreCarteChance(int nombreCarteChance)
+{
+    ///Ouverture et test d'ouverture du fichier
+    FILE* nombre_carte_chance = fopen("fichiersSauvegarde/nbrCarteChance.bin", "wb+");
+    if (nombre_carte_chance == NULL)
+    {
+        printf("Erreur d'ouverture de fichier NombreCarteChance.");
+        return 1;
+    }
+
+    fwrite(&nombreCarteChance, sizeof(int),1,nombre_carte_chance);
+
+    ///Fermeture du fichier
+    fclose(nombre_carte_chance);
+    nombre_carte_chance = NULL;
+}
+
+////////////////////////////////////////////////////////////////
+///Sous programme pour charger le nombre de carte chance////////
+////////////////////////////////////////////////////////////////
+
+int ChargerNombreCarteChance()
+{
+    int test;
+    ///Ouverture et test d'ouverture du fichier
+    FILE* nombre_carte_chance_recup = fopen("fichiersSauvegarde/nbrCarteChance.bin", "rb");
+    if (nombre_carte_chance_recup == NULL)
+    {
+        printf("Erreur d'ouverture de fichier NombreCarteChance.");
+        return 1;
+    }
+
+    ///Char
+    fread(&test, sizeof(int),1,nombre_carte_chance_recup);
+
+
+    ///Fermeture du fichier
+    fclose(nombre_carte_chance_recup);
+    nombre_carte_chance_recup = NULL;
+
+    return test;
+
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////////////
+///Sous programme pour sauvegarder carte Sith nombre //////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+void SauvegardeNombreCarteSith(int nombreCarteSith)
+{
+    ///Ouverture et test d'ouverture du fichier
+    FILE* nombre_carte_sith = fopen("fichiersSauvegarde/nbrCarteSith.bin", "wb+");
+    if (nombre_carte_sith == NULL)
+    {
+        printf("Erreur d'ouverture de fichier NombreCarteSith.");
+        return 1;
+    }
+
+    fwrite(&nombreCarteSith, sizeof(int),1,nombre_carte_sith);
+
+    ///Fermeture du fichier
+    fclose(nombre_carte_sith);
+    nombre_carte_sith = NULL;
+}
+
+//////////////////////////////////////////////////////////
+///Sous programme pour charger nombre carte sith//////////
+//////////////////////////////////////////////////////////
+
+int ChargerNombreCarteSith()
+{
+    int test;
+    ///Ouverture et test d'ouverture du fichier
+    FILE* nombre_carte_sith_recup = fopen("fichiersSauvegarde/nbrCarteSith.bin", "rb");
+    if (nombre_carte_sith_recup == NULL)
+    {
+        printf("Erreur d'ouverture de fichier NombreCarteSith.");
+        return 1;
+    }
+
+    ///Char
+    fread(&test, sizeof(int),1,nombre_carte_sith_recup);
+
+
+    ///Fermeture du fichier
+    fclose(nombre_carte_sith_recup);
+    nombre_carte_sith_recup = NULL;
+
+    return test;
+
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 //////////////////////////////////////////////////////////
 ///Sous programme pour saubegarder le tableau de case/////
 //////////////////////////////////////////////////////////
