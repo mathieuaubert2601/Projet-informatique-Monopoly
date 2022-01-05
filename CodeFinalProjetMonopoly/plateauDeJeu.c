@@ -3,9 +3,9 @@
 void plateau(int pos[],int nbj,caseMonop cases[28])// rajouter couleur, rajouter
 {
     /*for (int i=0;i<4;i++)//remplissage test
-    {
-       pos[i]=i;
-    }*/
+     {
+        pos[i]=i;
+     }*/
     char tab[28];
 // remplissssage coordonées tableau
 
@@ -216,139 +216,142 @@ void plateau(int pos[],int nbj,caseMonop cases[28])// rajouter couleur, rajouter
 
 ///LOGO ECE//////////////////////////////////
 
-        int z=27;
-        int y=130;
-        Color(3,0);
-        gotoligcol(z,y);
-        z++;
-        printf("\n");
-        gotoligcol(z,y);
-        z++;
-        printf("                 oo");
-        gotoligcol(z,y);
-        z++;
-        printf("           oOOOOOOOOOO ");
-        gotoligcol(z,y);
-        z++;
-        printf("        oOOOOo        O   ");
-        gotoligcol(z,y);
-        z++;
-        printf("      OOOOO  ");
-        gotoligcol(z,y);
-        z++;
-        printf("   oOOOOo     ");
-        gotoligcol(z,y);
-        z++;
-        printf("                   oOOOOo  ");
-        gotoligcol(z,y);
-        z++;
-        printf("                oOOOOo   ");
-        gotoligcol(z,y);
-        z++;
-        printf("               oOOOOo  ");
-        gotoligcol(z,y);
-        z++;
-        printf("    oo     oOOOOOo  ");
-        gotoligcol(z,y);
-        z++;
-        printf("      OOOOOOOo ");
-        z++;
-        gotoligcol(z,y);
-        printf("    E C E  P A R I S  ");
+    int z=16;
+    int y=40;
+    Color(3,0);
+    gotoligcol(z,y);
+    z++;
+    printf("\n");
+    gotoligcol(z,y);
+    z++;
+    printf("                       oo");
+    gotoligcol(z,y);
+    z++;
+    printf("                 oOOOOOOOOOO ");
+    gotoligcol(z,y);
+    z++;
+    printf("              oOOOOo        O   ");
+    gotoligcol(z,y);
+    z++;
+    printf("            OOOOO  ");
+    gotoligcol(z,y);
+    z++;
+    z++;
+    printf("         oOOOOo     ");
+    gotoligcol(z,y);
+    z++;
+    printf("                         oOOOOo");
+    gotoligcol(z,y);
+    z++;
+    printf("                      oOOOOo   ");
+    gotoligcol(z,y);
+    z++;
+    printf("                     oOOOOo");
+    gotoligcol(z,y);
+    z++;
+    printf("          oo     oOOOOOo  ");
+    gotoligcol(z,y);
+    z++;
+    printf("            OOOOOOOo");
+    z+=2;
+    gotoligcol(z,y);
+    printf("A N  E C E  P A R I S  P R O D U C T I O N");
 
-        Color(10,0);
+    Color(10,0);
 
 
 ///POSITION MAISON
 
-    int maisonlhaut=10;//revoir les noms
+    int maisonlhaut=13;//revoir les noms
     int maisonlbas=39;
-    int maisoncgau=12;
+    int maisoncgau=8;
     int maisoncdro=100;
     int cas=0;
-    for (int i=0;i<28;i++)
+    for (int i=0; i<28; i++)
     {
-        if(i<8)
+        if(i<7)
         {
             if(cases[i].nbMaison>0)//ligne bas
             {
-                for(int j1=0;j1<cases[i].nbMaison;j1++)
+                for(int j1=0; j1<cases[i].nbMaison; j1++)
                 {
-                    gotoligcol(maisonlbas,maisoncdro-(i*11)-j1);//coordonées a determiner
+                    gotoligcol(maisonlbas,maisoncdro-(i*11)-j1);//coordonées verifiées
                     printf("M");
                 }
             }
             else if(cases[i].nbHotel>0)
             {
-                    gotoligcol(maisonlbas,maisoncdro-(i*11));
-                    printf("H");
+                gotoligcol(maisonlbas,maisoncdro-(i*11));
+                printf("H");
             }
-
-        else if(i>=8&&i<14)//colonne gauche
+        }
+        else if(i>=7&&i<14)//colonne gauche
         {
             if(cases[i].nbMaison>0)
             {
-                for(int j2=0;j2<cases[i].nbMaison;j2++)
+                for(int j2=0; j2<cases[i].nbMaison; j2++)
                 {
-                    gotoligcol(maisonlhaut-((14-i)*4)-j2,maisoncgau);//coordonées a determiner
+                    gotoligcol(maisonlhaut+((13-i)*4)-j2,maisoncgau);//coordonées verifiées
                     printf("M");
                 }
             }
             else if(cases[i].nbHotel>0)
             {
-                    gotoligcol(maisonlhaut-(i*4),maisoncgau);
-                    printf("H");
+                gotoligcol(maisonlhaut+((13-i)*4),maisoncgau);
+                printf("H");
             }
         }
         else if(i>=14&&i<22)//ligne haut
         {
             if(cases[i].nbMaison>0)
             {
-                for(int j3=0;j3<cases[i].nbMaison;j3++)
+                for(int j3=0; j3<cases[i].nbMaison; j3++)
                 {
-                    gotoligcol(maisonlhaut,maisoncdro+((22-i)*11)+j3);//coordonées a determiner
+                    gotoligcol(6,maisoncdro-((21-i)*11)+j3-2);//coordonées a determiner
                     printf("M");
                 }
             }
             else if(cases[i].nbHotel>0)
             {
-                    gotoligcol(maisonlbas,maisoncgau+((22-i)*11));
-                    printf("H");
+                gotoligcol(6,maisoncdro-((21-i)*11)-2);
+                printf("H");
             }
         }
         else if (i>=22&&i<28)//colonne droite
         {
             if(cases[i].nbMaison>0)
             {
-                for(int j4=0;j4<cases[i].nbMaison;j4++)
+                for(int j4=0; j4<cases[i].nbMaison; j4++)
                 {
-                    gotoligcol(maisonlbas+((28-i)*4)+j4,maisoncgau);//coordonées a determiner
+                    gotoligcol(maisonlbas-((29-i)*4)-1+j4,maisoncdro+10);//coordonées a determiner
                     printf("M");
                 }
             }
             else if(cases[i].nbHotel>0)
             {
-                    gotoligcol(maisonlbas+((28-i)*4),maisoncgau);
-                    printf("H");
+                gotoligcol(maisonlbas-((29-i)*4)-1,maisoncdro+10);
+                printf("H");
             }
         }
 
-        }
     }
 
+
 ///LIGNE TEAM JARJAR
-        gotoligcol(43,123);
-        Color(12,0);
+    gotoligcol(43,123);
+    Color(12,0);
 
-for (int i=0; i<42; i++) //ligne
-        {
-            Sleep(15);
-            printf("_");
-        }
+    for (int i=0; i<42; i++) //ligne
+    {
+        Sleep(15);
+        printf("_");
+    }
 
-        gotoligcol(0,0);
+    gotoligcol(0,0);
 
     Sleep(1000);
+
+
 
 }
 

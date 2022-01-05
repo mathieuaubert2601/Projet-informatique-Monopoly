@@ -127,86 +127,91 @@ void actioncase(joueur_t* joueur,caseMonop tabc[], int* nombreCarteSith,int* nom
     {
         switch(*nombreCarteChance)
         {
-        case 0:
-        {
-            f1(joueur);
-            break;
-        }
-        case 1:
-        {
-            f2(joueur);
-            break;
-        }
-        case 2:
-        {
-            f3(joueur);
-            break;
-        }
-        case 3:
-        {
-            f4(joueur);
-            break;
-        }
-        case 4:
-        {
-            f5(joueur);
-            break;
-        }
-        case 5:
-        {
-            f6(joueur);
-            break;
-        }
-        case 6:
-        {
-            f7(joueur);
-            break;
-        }
-        case 7:
-        {
-            f8(joueur);
-            break;
-        }
-        case 8:
-        {
-            f9(joueur);
-            break;
-        }
-        case 9:
-        {
-            f10(joueur);
-            break;
-        }
-        case 10:
-        {
-            f11(joueur);
-            break;
-        }
-        case 11:
-        {
-            f12(joueur);
-            break;
-        }
-        case 12:
-        {
-            f13(joueur);
-            break;
-        }
-        case 13:
-        {
-            f14(joueur);
-            break;
-        }
-        case 14:
-        {
-            f15(joueur);
-            break;
-        }
-        case 15:
-        {
-            f16(joueur);
-            break;
-        }
+            case 0:
+            {
+                f1(joueur);
+                break;
+            }
+            case 1:
+            {
+                f2(joueur);
+                break;
+            }
+            case 2:
+            {
+                f3(joueur);
+                break;
+            }
+            case 3:
+            {
+                f4(joueur);
+                break;
+            }
+            case 4:
+            {
+                f5(joueur);
+                break;
+            }
+            case 5:
+            {
+                f6(joueur);
+                break;
+            }
+            case 6:
+            {
+                f7(joueur);
+                break;
+            }
+            case 7:
+            {
+                f8(joueur);
+                break;
+            }
+            case 8:
+            {
+                f9(joueur);
+                break;
+            }
+            case 9:
+            {
+                f10(joueur);
+                break;
+            }
+            case 10:
+            {
+                f11(joueur);
+                break;
+            }
+            case 11:
+            {
+                f12(joueur);
+                break;
+            }
+            case 12:
+            {
+                f13(joueur);
+                break;
+            }
+            case 13:
+            {
+                f14(joueur);
+                break;
+            }
+            case 14:
+            {
+                f15(joueur);
+                break;
+            }
+            case 15:
+            {
+                f16(joueur);
+                break;
+            }
+            *nombreCarteChance = *nombreCarteChance + 1;
+            if(*nombreCarteChance == 16)
+            {
+                *nombreCarteChance = 0;
+            }
         }
         break;
     }

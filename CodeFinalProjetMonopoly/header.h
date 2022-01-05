@@ -66,7 +66,7 @@ void credits(joueur_t tab_joueur[], int* nombre_joueur,caseMonop tableauDeCase[]
 void choisirQuiCommence(joueur_t ordreJoueur[],joueur_t tabJoueur[], int nbrJoueur);
 void afficherDe(int de1, int de2);
 void lancerDeDes(int* deC, int* deD);
-int deplanbrjr(int nbr,joueur_t joueur);
+int deplanbrjr(int nbr,joueur_t* joueur);
 void chargerOrdreJoueur(joueur_t tableauOrdre[]);
 void sauvegarderOrdreJoueur(joueur_t tableauOrdre[]);
 void chargerCasesMonopoly(caseMonop tableauCaseMonopolyAremplir[]);

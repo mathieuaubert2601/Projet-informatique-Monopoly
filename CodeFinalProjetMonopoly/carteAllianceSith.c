@@ -80,12 +80,6 @@ void Fsith1(joueur_t* joueur)
         Sleep(20);
         printf("_");
     }
-    gotoligcol(45,00);
-    for (int i=0; i<168; i++)
-    {
-        Sleep(20);
-        printf(".");
-    }
 
     joueur->position = 7;
 }
@@ -170,11 +164,7 @@ void Fsith2(joueur_t* joueur)
         printf("_");
     }
     gotoligcol(45,00);
-    for (int i=0; i<168; i++)
-    {
-        Sleep(20);
-        printf(".");
-    }
+
 
     joueur->argent = joueur->argent + 1000;
 
@@ -218,10 +208,10 @@ void Fsith3(joueur_t* joueur)
     Sleep(30);
     printf("   ;iiiii7iiiii7iiii77;i88888888888888888888i7888888888888888877;77i 888877777ii78\n");
     Color(15,0);
-    printf("   iiiiiiiiiii7iiii7iii;;;i7778888888888888ii7788888888888777i;;;;iiii 88888888888                I N F I L T R E Z  V O U S : P I O C H E Z  U N E  C A R T E  J E D I \n");
+    printf("   iiiiiiiiiii7iiii7iii;;;i7778888888888888ii7788888888888777i;;;;iiii 88888888888                V O U S  P A Y E Z  2 0 0  C R E D I T S  L E  C O I F  F E U R  \n");
     Sleep(30);
     printf("     i;iiiiiiiiiiii7iiiiiiiiiiiiiiiiiiiiiiiiii8877iiiiiiiiiiiiiiiiiii877   88888      \n");
-    printf("      ii;;iiiiiiiiiiiiii;;;ii^^^;;;ii77777788888888888887777iii;;  77777           78                   \n");
+    printf("      ii;;iiiiiiiiiiiiii;;;ii^^^;;;ii77777788888888888887777iii;;  77777           78                                   D E  C H U B A K A        \n");
     Sleep(30);
     printf("     77iii;;iiiiiiiiii;;;ii;;;;;;;;;^^^^8888888888888888888777ii;;  ii7         ;i78\n");
     printf("        ^ii;8iiiiiiii ';;;;ii;;;;;;;;;;;;;;;;;;^^oo ooooo^^^88888888;;i7          7;788\n");
@@ -258,14 +248,9 @@ void Fsith3(joueur_t* joueur)
         Sleep(20);
         printf("_");
     }
-    gotoligcol(45,00);
-    for (int i=0; i<168; i++)
-    {
-        Sleep(20);
-        printf(".");
-    }
 
-//cartejedi(joueur_t joueur, /*structure d'une propriété*/);
+
+
 
 
 }
@@ -350,11 +335,7 @@ void Fsith4(joueur_t* joueur)
         printf("_");
     }
     gotoligcol(45,00);
-    for (int i=0; i<168; i++)
-    {
-        Sleep(20);
-        printf(".");
-    }
+
 
     joueur->position = 0;
     joueur->argent = joueur->argent + 200;
@@ -440,11 +421,6 @@ void Fsith5(joueur_t* joueur)
         printf("_");
     }
     gotoligcol(45,00);
-    for (int i=0; i<150; i++)
-    {
-        Sleep(20);
-        printf(".");
-    }
 
     joueur->argent= joueur->argent-400;
     if (joueur->argent<0)
@@ -534,11 +510,7 @@ void Fsith6(joueur_t* joueur)
         printf("_");
     }
     gotoligcol(45,00);
-    for (int i=0; i<168; i++)
-    {
-        Sleep(20);
-        printf(".");
-    }
+
 
     joueur->argent= joueur->argent+200;
 
@@ -624,11 +596,7 @@ void Fsith7(joueur_t* joueur)
         printf("_");
     }
     gotoligcol(45,00);
-    for (int i=0; i<168; i++)
-    {
-        Sleep(20);
-        printf(".");
-    }
+
 
     joueur->argent= joueur->argent-200;
     if (joueur->argent<0)
@@ -718,11 +686,7 @@ void Fsith8(joueur_t* joueur)
         printf("_");
     }
     gotoligcol(45,00);
-    for (int i=0; i<168; i++)
-    {
-        Sleep(20);
-        printf(".");
-    }
+
 
     if(joueur->position > 17)
     {
@@ -812,11 +776,7 @@ void Fsith9(joueur_t* joueur)
         printf("_");
     }
     gotoligcol(45,00);
-    for (int i=0; i<168; i++)
-    {
-        Sleep(20);
-        printf(".");
-    }
+
 
     if(joueur->position > 15)
     {
@@ -909,11 +869,6 @@ void Fsith10(joueur_t* joueur)
         printf("_");
     }
     gotoligcol(45,00);
-    for (int i=0; i<168; i++)
-    {
-        Sleep(20);
-        printf(".");
-    }
 
     joueur->argent= joueur->argent+200;
 
@@ -999,11 +954,6 @@ void Fsith11(joueur_t* joueur)
         printf("_");
     }
     gotoligcol(45,00);
-    for (int i=0; i<168; i++)
-    {
-        Sleep(20);
-        printf(".");
-    }
 
     joueur->argent=joueur->argent-200;
     if (joueur->argent<0)
@@ -1091,12 +1041,6 @@ void Fsith12(joueur_t* joueur)
     {
         Sleep(20);
         printf("_");
-    }
-    gotoligcol(45,00);
-    for (int i=0; i<168; i++)
-    {
-        Sleep(20);
-        printf(".");
     }
 
 
@@ -1190,12 +1134,7 @@ void Fsith13(joueur_t* joueur)
         Sleep(20);
         printf("_");
     }
-    gotoligcol(45,00);
-    for (int i=0; i<168; i++)
-    {
-        Sleep(20);
-        printf(".");
-    }
+
 
     joueur->argent= joueur->argent+200;
 
@@ -1281,8 +1220,7 @@ void Fsith14(joueur_t* joueur)
         Sleep(20);
         printf("_");
     }
-    gotoligcol(45,00);
-    for (int i=0; i<168; i++)
+    gotoligcol(45,00);for (int i=0; i<168; i++)
     {
         Sleep(20);
         printf(".");
@@ -1461,12 +1399,7 @@ void Fsith16(joueur_t* joueur)
         Sleep(20);
         printf("_");
     }
-    gotoligcol(45,00);
-    for (int i=0; i<168; i++)
-    {
-        Sleep(20);
-        printf(".");
-    }
+
 
     if(joueur->position > 3)
     {

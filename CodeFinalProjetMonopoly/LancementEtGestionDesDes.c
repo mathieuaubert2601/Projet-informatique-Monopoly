@@ -12,14 +12,17 @@ void lancerDeDes(int* deC, int* deD)
 
 
     //Demande à l'utilisateur d'appuyer sur L pour lancer les dés
-    gotoligcol(12,115);
+    gotoligcol(4,115);
     printf("Appuyer sur L pour lancer les des : ");
     fflush(stdin);
     scanf("%s", &choix);
 
     while (choix != 'L')
     {
+        gotoligcol(4,115);
         printf("Erreur dans la saisie\n");
+        Sleep(1000);
+        gotoligcol(4,115);
         printf("Appuyer sur L pour lancer les des : ");
         fflush(stdin);
         scanf("%s", &choix);
@@ -41,10 +44,10 @@ void lancerDeDes(int* deC, int* deD)
 void afficherDe(int de1, int de2)
 {
     //Affichage des dés
-    int x=7,y=115;
+    int x=6,y=115;
     if(de1 == 1)
     {
-        x=14,y=115;
+        x=6,y=115;
         gotoligcol(x,y);
         x++;
         printf("o o o o o \n");
@@ -62,7 +65,7 @@ void afficherDe(int de1, int de2)
     }
     else if(de1 == 2)
     {
-        x=14,y=115;
+        x=6,y=115;
         gotoligcol(x,y);
         x++;
         printf("o o o o o\n");
@@ -81,7 +84,7 @@ void afficherDe(int de1, int de2)
     }
     else if(de1 == 3)
     {
-        x=14,y=115;
+        x=6,y=115;
         gotoligcol(x,y);
         x++;
         printf("o o o o o\n");
@@ -100,7 +103,7 @@ void afficherDe(int de1, int de2)
     }
     else if(de1 ==4)
     {
-        x=14,y=115;
+        x=6,y=115;
         gotoligcol(x,y);
         x++;
         printf("o o o o o\n");
@@ -119,7 +122,7 @@ void afficherDe(int de1, int de2)
     }
     else if (de1 == 5)
     {
-        x=14,y=115;
+        x=6,y=115;
         gotoligcol(x,y);
         x++;
         printf("o o o o o\n");
@@ -138,7 +141,7 @@ void afficherDe(int de1, int de2)
     }
     else if(de1 == 6)
     {
-        x=14,y=115;
+        x=6,y=115;
         gotoligcol(x,y);
         x++;
         printf("o o o o o\n");
@@ -158,7 +161,7 @@ void afficherDe(int de1, int de2)
     printf("\n \n");
     if(de2 == 1)
     {
-        x=14,y=128;
+        x=6,y=128;
         gotoligcol(x,y);
         x++;
         printf("o o o o o\n");
@@ -177,7 +180,7 @@ void afficherDe(int de1, int de2)
     }
     else if(de2 == 2)
     {
-        x=14,y=128;
+        x=6,y=128;
         gotoligcol(x,y);
         x++;
         printf("o o o o o\n");
@@ -196,7 +199,7 @@ void afficherDe(int de1, int de2)
     }
     else if(de2 == 3)
     {
-        x=14,y=128;
+        x=6,y=128;
         gotoligcol(x,y);
         x++;
         printf("o o o o o\n");
@@ -215,7 +218,7 @@ void afficherDe(int de1, int de2)
     }
     else if(de2 ==4)
     {
-        x=14,y=128;
+        x=6,y=128;
         gotoligcol(x,y);
         x++;
         printf("o o o o o\n");
@@ -234,7 +237,7 @@ void afficherDe(int de1, int de2)
     }
     else if (de2 == 5)
     {
-        x=14,y=128;
+        x=6,y=128;
         gotoligcol(x,y);
         x++;
         printf("o o o o o\n");
@@ -253,7 +256,7 @@ void afficherDe(int de1, int de2)
     }
     else if (de2 == 6)
     {
-        x=14,y=128;
+        x=6,y=128;
         gotoligcol(x,y);
         x++;
         printf("o o o o o\n");
