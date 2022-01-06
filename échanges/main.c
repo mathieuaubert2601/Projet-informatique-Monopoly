@@ -43,16 +43,16 @@ void echange(joueur_t tabJoueur[], struct caseMonop tabCases[],int *compteurMais
     int joueurSelec, choixEchange1,choixEchange1_2, choixEchange2,choixEchange2_1, choixEchange2_2, creditsJ1,creditsJ2, propriete1J1,propriete2J1, propriete1J2,propriete2J2, valid, nbPropJ1, nbPropJ2;
     do
     {
-        do
-        {
-            printf("Avec quel joueur souhaitez vous echanger ? veuillez selectionner son numero. Selectionner 0 pour quitter ce menu.\n");
+            printf("Avec quel joueur souhaitez vous echanger ? veuillez selectionner son numero. Selectionner -1 pour quitter ce menu.\n");
             fflush(stdin);
             scanf("%d",&joueurSelec);
         }
-        while(joueurSelec<0 && joueurSelec>nbJoueurs);
-        do
+        while((joueurSelec<-1 || joueurSelec>nbJoueurs)|| joueurSelec==i);
+        if (joueurSelec>=0)
         {
-            printf("souhaitez vous lui echanger des credits(1) ou des proprietes(1) ? Selectionner 0 pour quitter ce menu.\n");
+            do
+        {
+            printf("souhaitez vous lui echanger des credits(1) ou des proprietes(2) ? Selectionner 0 pour quitter ce menu.\n");
             fflush(stdin);
             scanf("%d", &choixEchange1);
         }
@@ -108,155 +108,164 @@ void echange(joueur_t tabJoueur[], struct caseMonop tabCases[],int *compteurMais
             }
             else if (choixEchange1_2 == 2)
             {
-                do
+                if (tabJoueur[joueurSelec].nbPropriete==0)
                 {
-                    printf("Contre combien de propriete de %s souhaitez vous echanger vos %d credits ? 2 maximum, %s possede %d propiete(s).\n",tabJoueur[joueurSelec].nomJoueur,creditsJ1,tabJoueur[joueurSelec].nomJoueur, tabJoueur[joueurSelec].nbPropriete);
-                    fflush(stdin);
-                    scanf("%d",&nbPropJ2);
+                    printf("%s n'a pas de propriete a echanger.\n",tabJoueur[joueurSelec].nomJoueur);
                 }
-                while(nbPropJ2<0 || (nbPropJ2>2 || nbPropJ2>tabJoueur[joueurSelec].nbPropriete));
-                if (nbPropJ2==1)
+                else if(tabJoueur[joueurSelec].nbPropriete!=0)
                 {
+
                     do
                     {
-                        printf("Contre quelle propriete de %s souhaitez vous echanger %d credits ?\n",tabJoueur[joueurSelec].nomJoueur,creditsJ1);
-                        printf("%s  possede : \n");//Affichage des possessions
-                        for (int j=0; j<28; j++)
+                        printf("Contre combien de propriete de %s souhaitez vous echanger vos %d credits ? 2 maximum, %s possede %d propiete(s).\n",tabJoueur[joueurSelec].nomJoueur,creditsJ1,tabJoueur[joueurSelec].nomJoueur, tabJoueur[joueurSelec].nbPropriete);
+                        fflush(stdin);
+                        scanf("%d",&nbPropJ2);
+                    }
+                    while(nbPropJ2<1 || (nbPropJ2>2 || nbPropJ2>tabJoueur[joueurSelec].nbPropriete));
+                    if (nbPropJ2==1)
+                    {
+                        do
                         {
-                            if (tabJoueur[joueurSelec].possessions[j] != 0)
+                            printf("Contre quelle propriete de %s souhaitez vous echanger %d credits ?\n",tabJoueur[joueurSelec].nomJoueur,creditsJ1);
+                            printf("%s  possede : \n");//Affichage des possessions
+                            for (int j=0; j<28; j++)
                             {
-                                printf("%d(%s)\n",j,tabCases[j].nomCase);
+                                if (tabJoueur[joueurSelec].possessions[j] != 0)
+                                {
+                                    printf("%d(%s)\n",j,tabCases[j].nomCase);
+                                }
                             }
+                            fflush(stdin);
+                            scanf("%d",&propriete1J2);
                         }
-                        fflush(stdin);
-                        scanf("%d",&propriete1J2);
-                    }
-                    while(tabJoueur[joueurSelec].possessions[propriete1J2] == 0 );
-                    do
-                    {
-                        printf("%s, souhaitez vous echanger %s contre %d credits avec %s ? Saisir 1 pour valider ou 0 pour refuser.\n",tabJoueur[joueurSelec].nomJoueur,tabCases[propriete1J2].nomCase, creditsJ1, tabJoueur[i].nomJoueur);
-                        fflush(stdin);
-                        scanf("%d", &valid);
-
-                    }
-                    while(valid !=0 && valid !=1);
-                    if (valid == 1)
-                    {
-                        tabJoueur[i].argent -= creditsJ1;
-                        tabJoueur[joueurSelec].argent += creditsJ1;
-
-                        tabJoueur[i].nbPropriete+=1;
-                        tabJoueur[joueurSelec].nbPropriete-=1;
-
-                        tabJoueur[i].possessions[propriete1J2]= propriete1J2;
-                        tabJoueur[joueurSelec].possessions[propriete1J2]=0;
-
-                        tabJoueur[i].familles[tabCases[propriete1J2].famille]+=1;
-                        tabJoueur[joueurSelec].familles[tabCases[propriete1J2].famille]-=1;
-
-                        *compteurHotels -= tabCases[propriete1J2].nbHotel;
-                        *compteurMaisons -= tabCases[propriete1J2].nbMaison;
-
-                        tabCases[propriete1J2].proprieteDe = tabJoueur[i].numeroJoueur;
-                        tabCases[propriete1J2].nbMaison = 0;
-                        tabCases[propriete1J2].nbHotel = 0;
-                        tabCases[propriete1J2].hypotheque = 0;
-
-                        printf("%s a bien echange %d credits contre %s de %s.\n",tabJoueur[i].nomJoueur, creditsJ1, tabCases[propriete1J2].nomCase, tabJoueur[joueurSelec]);
-                    }
-                    else if (valid==0)
-                    {
-                        printf("l'echange a ete refuse par %s\n", tabJoueur[joueurSelec]);
-                    }
-
-                }
-                else if(nbPropJ2 == 2);
-                {
-                    do
-                    {
-                        printf("Contre quelles proprietes de %s souhaitez vous echanger %d credits ?\n",tabJoueur[joueurSelec].nomJoueur,creditsJ1);
-                        printf("%s  possede : \n", tabJoueur[joueurSelec].nomJoueur);//Affichage des possessions
-                        for (int j=0; j<28; j++)
+                        while(tabJoueur[joueurSelec].possessions[propriete1J2] == 0 );
+                        do
                         {
-                            if (tabJoueur[joueurSelec].possessions[j] != 0)
-                            {
-                                printf("%d(%s)\n",j,tabCases[j].nomCase);
-                            }
+                            printf("%s, souhaitez vous echanger %s contre %d credits avec %s ? Saisir 1 pour valider ou 0 pour refuser.\n",tabJoueur[joueurSelec].nomJoueur,tabCases[propriete1J2].nomCase, creditsJ1, tabJoueur[i].nomJoueur);
+                            fflush(stdin);
+                            scanf("%d", &valid);
+
                         }
-                        printf("Selectionner premiere propriete.\n");
-                        fflush(stdin);
-                        scanf("%d",&propriete1J2);
+                        while(valid !=0 && valid !=1);
+                        if (valid == 1)
+                        {
+                            tabJoueur[i].argent -= creditsJ1;
+                            tabJoueur[joueurSelec].argent += creditsJ1;
+
+                            tabJoueur[i].nbPropriete+=1;
+                            tabJoueur[joueurSelec].nbPropriete-=1;
+
+                            tabJoueur[i].possessions[propriete1J2]= propriete1J2;
+                            tabJoueur[joueurSelec].possessions[propriete1J2]=0;
+
+                            tabJoueur[i].familles[tabCases[propriete1J2].famille]+=1;
+                            tabJoueur[joueurSelec].familles[tabCases[propriete1J2].famille]-=1;
+
+                            *compteurHotels -= tabCases[propriete1J2].nbHotel;
+                            *compteurMaisons -= tabCases[propriete1J2].nbMaison;
+
+                            tabCases[propriete1J2].proprieteDe = tabJoueur[i].numeroJoueur;
+                            tabCases[propriete1J2].nbMaison = 0;
+                            tabCases[propriete1J2].nbHotel = 0;
+                            tabCases[propriete1J2].hypotheque = 0;
+
+                            printf("%s a bien echange %d credits contre %s de %s.\n",tabJoueur[i].nomJoueur, creditsJ1, tabCases[propriete1J2].nomCase, tabJoueur[joueurSelec]);
+                        }
+                        else if (valid==0)
+                        {
+                            printf("l'echange a ete refuse par %s\n", tabJoueur[joueurSelec]);
+                        }
+
                     }
-                    while(tabJoueur[joueurSelec].possessions[propriete1J2] == 0 );
-                    do
+                    else if(nbPropJ2 == 2);
                     {
-                        printf("Selectionner deuxieme propriete\n");
-                        fflush(stdin);
-                        scanf("%d",&propriete2J2);
+                        do
+                        {
+                            printf("Contre quelles proprietes de %s souhaitez vous echanger %d credits ?\n",tabJoueur[joueurSelec].nomJoueur,creditsJ1);
+                            printf("%s  possede : \n", tabJoueur[joueurSelec].nomJoueur);//Affichage des possessions
+                            for (int j=0; j<28; j++)
+                            {
+                                if (tabJoueur[joueurSelec].possessions[j] != 0)
+                                {
+                                    printf("%d(%s)\n",j,tabCases[j].nomCase);
+                                }
+                            }
+                            printf("Selectionner premiere propriete.\n");
+                            fflush(stdin);
+                            scanf("%d",&propriete1J2);
+                        }
+                        while(tabJoueur[joueurSelec].possessions[propriete1J2] == 0 );
+                        do
+                        {
+                            printf("Selectionner deuxieme propriete\n");
+                            fflush(stdin);
+                            scanf("%d",&propriete2J2);
+                        }
+                        while(tabJoueur[joueurSelec].possessions[propriete2J2] == 0 && propriete2J2==propriete1J2);
+
+                        do
+                        {
+                            printf("%s, souhaitez vous echanger %s et %s contre %d credits avec %s ? Saisir 1 pour valider ou 0 pour refuser.\n",tabJoueur[joueurSelec].nomJoueur,tabCases[propriete1J2].nomCase, tabCases[propriete2J2].nomCase, creditsJ1, tabJoueur[i].nomJoueur);
+                            fflush(stdin);
+                            scanf("%d", &valid);
+
+                        }
+                        while(valid !=0 && valid !=1);
+                        if (valid == 1)
+                        {
+                            //echange argent//
+                            tabJoueur[i].argent -= creditsJ1;
+                            tabJoueur[joueurSelec].argent += creditsJ1;
+
+                            //echange proprieteJ2_1//
+                            tabJoueur[i].nbPropriete+=1;
+                            tabJoueur[joueurSelec].nbPropriete-=1;
+
+                            tabJoueur[i].possessions[propriete1J2]= propriete1J2;
+                            tabJoueur[joueurSelec].possessions[propriete1J2]=0;
+
+                            tabJoueur[i].familles[tabCases[propriete1J2].famille]+=1;
+                            tabJoueur[joueurSelec].familles[tabCases[propriete1J2].famille]-=1;
+
+                            *compteurHotels -= tabCases[propriete1J2].nbHotel;
+                            *compteurMaisons -= tabCases[propriete1J2].nbMaison;
+
+                            tabCases[propriete1J2].proprieteDe = tabJoueur[i].numeroJoueur;
+                            tabCases[propriete1J2].nbMaison = 0;
+                            tabCases[propriete1J2].nbHotel = 0;
+                            tabCases[propriete1J2].hypotheque = 0;
+
+                            //echange proprieteJ2_2//
+                            tabJoueur[i].nbPropriete+=1;
+                            tabJoueur[joueurSelec].nbPropriete-=1;
+
+                            tabJoueur[i].possessions[propriete2J2]= propriete2J2;
+                            tabJoueur[joueurSelec].possessions[propriete2J2]=0;
+
+                            tabJoueur[i].familles[tabCases[propriete2J2].famille]+=1;
+                            tabJoueur[joueurSelec].familles[tabCases[propriete2J2].famille]-=1;
+
+                            *compteurHotels -= tabCases[propriete2J2].nbHotel;
+                            *compteurMaisons -= tabCases[propriete2J2].nbMaison;
+
+                            tabCases[propriete2J2].proprieteDe = tabJoueur[i].numeroJoueur;
+                            tabCases[propriete2J2].nbMaison = 0;
+                            tabCases[propriete2J2].nbHotel = 0;
+                            tabCases[propriete2J2].hypotheque = 0;
+
+                            printf("%s a bien echange %d credits contre %s et %s avec %s\n",tabJoueur[i].nomJoueur, creditsJ1, tabCases[propriete1J2].nomCase, tabCases[propriete2J2].nomCase, tabJoueur[joueurSelec].nomJoueur);
+                        }
+                        else if (valid==0)
+                        {
+                            printf("l'echange a ete refuse par %s\n", tabJoueur[joueurSelec]);
+                        }
+
                     }
-                    while(tabJoueur[joueurSelec].possessions[propriete2J2] == 0 && propriete2J2==propriete1J2);
-
-                    do
-                    {
-                        printf("%s, souhaitez vous echanger %s et %s contre %d credits avec %s ? Saisir 1 pour valider ou 0 pour refuser.\n",tabJoueur[joueurSelec].nomJoueur,tabCases[propriete1J2].nomCase, tabCases[propriete2J2].nomCase, creditsJ1, tabJoueur[i].nomJoueur);
-                        fflush(stdin);
-                        scanf("%d", &valid);
-
-                    }
-                    while(valid !=0 && valid !=1);
-                    if (valid == 1)
-                    {
-                        //echange argent//
-                        tabJoueur[i].argent -= creditsJ1;
-                        tabJoueur[joueurSelec].argent += creditsJ1;
-
-                        //echange proprieteJ2_1//
-                        tabJoueur[i].nbPropriete+=1;
-                        tabJoueur[joueurSelec].nbPropriete-=1;
-
-                        tabJoueur[i].possessions[propriete1J2]= propriete1J2;
-                        tabJoueur[joueurSelec].possessions[propriete1J2]=0;
-
-                        tabJoueur[i].familles[tabCases[propriete1J2].famille]+=1;
-                        tabJoueur[joueurSelec].familles[tabCases[propriete1J2].famille]-=1;
-
-                        *compteurHotels -= tabCases[propriete1J2].nbHotel;
-                        *compteurMaisons -= tabCases[propriete1J2].nbMaison;
-
-                        tabCases[propriete1J2].proprieteDe = tabJoueur[i].numeroJoueur;
-                        tabCases[propriete1J2].nbMaison = 0;
-                        tabCases[propriete1J2].nbHotel = 0;
-                        tabCases[propriete1J2].hypotheque = 0;
-
-                        //echange proprieteJ2_2//
-                        tabJoueur[i].nbPropriete+=1;
-                        tabJoueur[joueurSelec].nbPropriete-=1;
-
-                        tabJoueur[i].possessions[propriete2J2]= propriete2J2;
-                        tabJoueur[joueurSelec].possessions[propriete2J2]=0;
-
-                        tabJoueur[i].familles[tabCases[propriete2J2].famille]+=1;
-                        tabJoueur[joueurSelec].familles[tabCases[propriete2J2].famille]-=1;
-
-                        *compteurHotels -= tabCases[propriete2J2].nbHotel;
-                        *compteurMaisons -= tabCases[propriete2J2].nbMaison;
-
-                        tabCases[propriete2J2].proprieteDe = tabJoueur[i].numeroJoueur;
-                        tabCases[propriete2J2].nbMaison = 0;
-                        tabCases[propriete2J2].nbHotel = 0;
-                        tabCases[propriete2J2].hypotheque = 0;
-
-                        printf("%s a bien echange %d credits contre %s et %s avec %s\n",tabJoueur[i].nomJoueur, creditsJ1, tabCases[propriete1J2].nomCase, tabCases[propriete2J2].nomCase, tabJoueur[joueurSelec].nomJoueur);
-                    }
-                    else if (valid==0)
-                    {
-                        printf("l'echange a ete refuse par %s\n", tabJoueur[joueurSelec]);
-                    }
-
                 }
+
             }
         }
-        else if (choixEchange2 == 2)
+        else if (choixEchange1 == 2)
             do
             {
                 printf("combien de propriete souhaitez vous echanger? Maximum 2. Vous en possedez :%d\n", tabJoueur[i].nbPropriete);
@@ -264,491 +273,325 @@ void echange(joueur_t tabJoueur[], struct caseMonop tabCases[],int *compteurMais
                 scanf("%d",&nbPropJ1);
             }
             while(nbPropJ1<0 || (nbPropJ1>2 || nbPropJ1>tabJoueur[i].nbPropriete));
-
-        if (nbPropJ1 == 1)
+        if (tabJoueur[i].nbPropriete==0)
         {
-            do
-            {
-                printf("Quelle propriete souhaitez vous echanger ? vous possedez :\n");
-                for (int j=0; j<28; j++)
-                {
-                    if (tabJoueur[i].possessions[j] != 0)
-                    {
-                        printf("%d(%s)\n",j,tabCases[j].nomCase);
-                    }
-                }
-                fflush(stdin);
-                scanf("%d",&propriete1J1);
-            }
-            while(tabJoueur[i].possessions[propriete1J1] == 0 );
-
-            do
-            {
-                printf("Contre quoi souhaitez vous echanger %s ? des credits(1)? ou une/des proprietes(2) ?\n", tabCases[propriete1J1].nomCase);
-                fflush(stdin);
-                scanf("%d",&choixEchange2_1);
-            }
-            while(choixEchange2_1!=1 && choixEchange2_1!=2);
-            if (choixEchange2_1 == 1)
-            {
-                do
-                {
-                    printf("Contre combien de credits souhaitez vous echanger %s ? %s possede : %d credits\n",tabCases[propriete1J1].nomCase, tabJoueur[joueurSelec].nomJoueur, tabJoueur[joueurSelec].argent);
-                    fflush(stdin);
-                    scanf("%d", &creditsJ2);
-                }
-                while(creditsJ2<0 || creditsJ2>tabJoueur[joueurSelec].argent);
-
-                do
-                {
-                    printf("%s souhaitez vous recevoir %s contre %d credits? Saisir 1 pour valider ou 0 pour refuser\n", tabJoueur[joueurSelec].nomJoueur, tabCases[propriete1J1].nomCase, creditsJ2);
-                    fflush(stdin);
-                    scanf("%d",&valid);
-                }
-                while(valid !=0 && valid !=1);
-                if (valid==1)
-                {
-                    tabJoueur[i].argent += creditsJ2;
-                    tabJoueur[joueurSelec].argent -= creditsJ2;
-
-                    tabJoueur[joueurSelec].nbPropriete+=1;
-                    tabJoueur[i].nbPropriete-=1;
-
-                    tabJoueur[joueurSelec].possessions[propriete1J1]= propriete1J1;
-                    tabJoueur[i].possessions[propriete1J1]=0;
-
-                    tabJoueur[joueurSelec].familles[tabCases[propriete1J1].famille]+=1;
-                    tabJoueur[i].familles[tabCases[propriete1J1].famille]-=1;
-
-                    *compteurHotels -= tabCases[propriete1J1].nbHotel;
-                    *compteurMaisons -= tabCases[propriete1J1].nbMaison;
-
-                    tabCases[propriete1J1].proprieteDe = tabJoueur[joueurSelec].numeroJoueur;
-                    tabCases[propriete1J1].nbMaison = 0;
-                    tabCases[propriete1J1].nbHotel = 0;
-                    tabCases[propriete1J1].hypotheque = 0;
-
-                    printf("%s a echange %s contre %d credits avec %s\n",tabJoueur[i].nomJoueur, tabCases[propriete1J1].nomCase, creditsJ2, tabJoueur[joueurSelec].nomJoueur);
-                }
-                else if(valid == 0)
-                {
-                    printf("%s a refuse l'echange.\n",tabJoueur[joueurSelec].nomJoueur);
-                }
-            }
-            else if (choixEchange2_1==2)
-            {
-                do
-                {
-                    printf("Contre combien de propriete de %s souhaitez vous echanger %s ? 2 maximum, %s possede %d propiete(s).\n",tabJoueur[joueurSelec].nomJoueur,tabCases[propriete1J1].nomCase,tabJoueur[joueurSelec].nomJoueur, tabJoueur[joueurSelec].nbPropriete);
-                    fflush(stdin);
-                    scanf("%d",&nbPropJ2);
-                }
-                while(nbPropJ2<0 || (nbPropJ2>2 || nbPropJ2>tabJoueur[joueurSelec].nbPropriete));
-                if (nbPropJ2==1)
-                {
-                    do
-                    {
-                        printf("Contre quelle propriete de %s souhaitez vous echanger %s ?\n",tabJoueur[joueurSelec].nomJoueur,tabCases[propriete1J1].nomCase);
-                        printf("%s  possede : \n",tabJoueur[joueurSelec].nomJoueur);//Affichage des possessions
-                        for (int j=0; j<28; j++)
-                        {
-                            if (tabJoueur[joueurSelec].possessions[j] != 0)
-                            {
-                                printf("%d(%s)\n",j,tabCases[j].nomCase);
-                            }
-                        }
-                        fflush(stdin);
-                        scanf("%d",&propriete1J2);
-                    }
-                    while(tabJoueur[joueurSelec].possessions[propriete1J2] == 0 );
-                    do
-                    {
-                        printf("%s, souhaitez vous echanger %s contre %s avec %s ? Saisir 1 pour valider ou 0 pour refuser.\n",tabJoueur[joueurSelec].nomJoueur,tabCases[propriete1J2].nomCase, tabCases[propriete1J1].nomCase, tabJoueur[i].nomJoueur);
-                        fflush(stdin);
-                        scanf("%d", &valid);
-
-                    }
-                    while(valid !=0 && valid !=1);
-
-                    if (valid == 1)
-                    {
-                        // echange propJ1
-                        tabJoueur[joueurSelec].nbPropriete+=1;
-                        tabJoueur[i].nbPropriete-=1;
-
-                        tabJoueur[joueurSelec].possessions[propriete1J1]= propriete1J1;
-                        tabJoueur[i].possessions[propriete1J1]=0;
-
-                        tabJoueur[joueurSelec].familles[tabCases[propriete1J1].famille]+=1;
-                        tabJoueur[i].familles[tabCases[propriete1J1].famille]-=1;
-
-                        *compteurHotels -= tabCases[propriete1J1].nbHotel;
-                        *compteurMaisons -= tabCases[propriete1J1].nbMaison;
-
-                        tabCases[propriete1J1].proprieteDe = tabJoueur[joueurSelec].numeroJoueur;
-                        tabCases[propriete1J1].nbMaison = 0;
-                        tabCases[propriete1J1].nbHotel = 0;
-                        tabCases[propriete1J1].hypotheque = 0;
-
-                        // echange propJ2
-                        tabJoueur[i].nbPropriete+=1;
-                        tabJoueur[joueurSelec].nbPropriete-=1;
-
-                        tabJoueur[i].possessions[propriete1J2]= propriete1J2;
-                        tabJoueur[joueurSelec].possessions[propriete1J2]=0;
-
-                        tabJoueur[i].familles[tabCases[propriete1J2].famille]+=1;
-                        tabJoueur[joueurSelec].familles[tabCases[propriete1J2].famille]-=1;
-
-                        *compteurHotels -= tabCases[propriete1J2].nbHotel;
-                        *compteurMaisons -= tabCases[propriete1J2].nbMaison;
-
-                        tabCases[propriete1J2].proprieteDe = tabJoueur[i].numeroJoueur;
-                        tabCases[propriete1J2].nbMaison = 0;
-                        tabCases[propriete1J2].nbHotel = 0;
-                        tabCases[propriete1J2].hypotheque = 0;
-
-                        printf("%s a echange %s contre %s de %s\n",tabJoueur[i].nomJoueur,tabCases[propriete1J1].nomCase, tabCases[propriete1J2].nomCase, tabJoueur[joueurSelec].nomJoueur);
-                    }
-                    else if (valid == 0)
-                    {
-                        printf("%s a refuse l'echange\n",tabJoueur[joueurSelec].nomJoueur);
-                    }
-                }
-                else if (nbPropJ2==2)
-                {
-                    do
-                    {
-                        printf("Contre quelles proprietes de %s souhaitez vous echanger %s ?\n",tabJoueur[joueurSelec].nomJoueur,tabCases[propriete1J1].nomCase);
-                        printf("%s  possede : \n",tabJoueur[joueurSelec].nomJoueur);//Affichage des possessions
-                        for (int j=0; j<28; j++)
-                        {
-                            if (tabJoueur[joueurSelec].possessions[j] != 0)
-                            {
-                                printf("%d(%s)\n",j,tabCases[j].nomCase);
-                            }
-                        }
-                        printf("Selectionner premiere propriete.\n");
-                        fflush(stdin);
-                        scanf("%d",&propriete1J2);
-                    }
-                    while(tabJoueur[joueurSelec].possessions[propriete1J2] == 0 );
-                    do
-                    {
-                        printf("Selectionner deuxieme propriete\n");
-                        fflush(stdin);
-                        scanf("%d",&propriete2J2);
-                    }
-                    while(tabJoueur[joueurSelec].possessions[propriete2J2] == 0 && propriete2J2==propriete1J2);
-
-                    do
-                    {
-                        printf("%s, souhaitez vous echanger %s et %s contre %s avec %s ? Saisir 1 pour valider ou 0 pour refuser.\n",tabJoueur[joueurSelec].nomJoueur,tabCases[propriete1J2].nomCase, tabCases[propriete2J2].nomCase, tabCases[propriete1J1].nomCase, tabJoueur[i].nomJoueur);
-                        fflush(stdin);
-                        scanf("%d", &valid);
-                    }
-                    while(valid !=0 && valid !=1);
-
-                    if (valid==1)
-                    {
-                        // echange propJ1
-                        tabJoueur[joueurSelec].nbPropriete+=1;
-                        tabJoueur[i].nbPropriete-=1;
-
-                        tabJoueur[joueurSelec].possessions[propriete1J1]= propriete1J1;
-                        tabJoueur[i].possessions[propriete1J1]=0;
-
-                        tabJoueur[joueurSelec].familles[tabCases[propriete1J1].famille]+=1;
-                        tabJoueur[i].familles[tabCases[propriete1J1].famille]-=1;
-
-                        *compteurHotels -= tabCases[propriete1J1].nbHotel;
-                        *compteurMaisons -= tabCases[propriete1J1].nbMaison;
-
-                        tabCases[propriete1J1].proprieteDe = tabJoueur[joueurSelec].numeroJoueur;
-                        tabCases[propriete1J1].nbMaison = 0;
-                        tabCases[propriete1J1].nbHotel = 0;
-                        tabCases[propriete1J1].hypotheque = 0;
-
-                        // echange propJ2
-                        tabJoueur[i].nbPropriete+=1;
-                        tabJoueur[joueurSelec].nbPropriete-=1;
-
-                        tabJoueur[i].possessions[propriete1J2]= propriete1J2;
-                        tabJoueur[joueurSelec].possessions[propriete1J2]=0;
-
-                        tabJoueur[i].familles[tabCases[propriete1J2].famille]+=1;
-                        tabJoueur[joueurSelec].familles[tabCases[propriete1J2].famille]-=1;
-
-                        *compteurHotels -= tabCases[propriete1J2].nbHotel;
-                        *compteurMaisons -= tabCases[propriete1J2].nbMaison;
-
-                        tabCases[propriete1J2].proprieteDe = tabJoueur[i].numeroJoueur;
-                        tabCases[propriete1J2].nbMaison = 0;
-                        tabCases[propriete1J2].nbHotel = 0;
-                        tabCases[propriete1J2].hypotheque = 0;
-
-                        // echange prop2J2
-                        tabJoueur[i].nbPropriete+=1;
-                        tabJoueur[joueurSelec].nbPropriete-=1;
-
-                        tabJoueur[i].possessions[propriete2J2]= propriete2J2;
-                        tabJoueur[joueurSelec].possessions[propriete2J2]=0;
-
-                        tabJoueur[i].familles[tabCases[propriete2J2].famille]+=1;
-                        tabJoueur[joueurSelec].familles[tabCases[propriete2J2].famille]-=1;
-
-                        *compteurHotels -= tabCases[propriete2J2].nbHotel;
-                        *compteurMaisons -= tabCases[propriete2J2].nbMaison;
-
-                        tabCases[propriete2J2].proprieteDe = tabJoueur[i].numeroJoueur;
-                        tabCases[propriete2J2].nbMaison = 0;
-                        tabCases[propriete2J2].nbHotel = 0;
-                        tabCases[propriete2J2].hypotheque = 0;
-
-                        printf("%s a echange %s contre %s et %s avec %s\n",tabJoueur[i].nomJoueur,tabCases[propriete1J1].nomCase, tabCases[propriete1J2].nomCase, tabCases[propriete2J2].nomCase, tabJoueur[joueurSelec].nomJoueur);
-                    }
-                    else if(valid==0)
-                    {
-                        printf("%s a refuse l'echange",tabJoueur[joueurSelec].nomJoueur);
-                    }
-                }
-
-
-            }
+            printf("vous n'avez pas de propriete a echanger.\n");
         }
-        else if(nbPropJ1 == 2)
+        else if(tabJoueur[i].nbPropriete!=0)
         {
-            do
+            if (nbPropJ1 == 1)
             {
-                printf("Quelles proprietes souhaitez vous echanger ? vous possedez :\n");
-                for (int j=0; j<28; j++)
+                do
                 {
-                    if (tabJoueur[i].possessions[j] != 0)
+                    printf("Quelle propriete souhaitez vous echanger ? vous possedez :\n");
+                    for (int j=0; j<28; j++)
                     {
-                        printf("%d(%s)\n",j,tabCases[j].nomCase);
-                    }
-                }
-                fflush(stdin);
-                scanf("%d",&propriete1J1);
-            }
-            while(tabJoueur[i].possessions[propriete1J1] == 0 );
-
-            do
-            {
-                printf("Selectionner deuxieme propriete\n");
-                fflush(stdin);
-                scanf("%d",&propriete2J1);
-            }
-            while(tabJoueur[i].possessions[propriete2J1] == 0 && propriete2J1==propriete1J1);
-
-            do
-            {
-                printf("Contre quoi souhaitez vous echanger %s et %s ? des credits(1)? ou une/des proprietes(2) ?\n", tabCases[propriete1J1].nomCase, tabCases[propriete2J1].nomCase);
-                fflush(stdin);
-                scanf("%d",&choixEchange2_2);
-            }
-            while(choixEchange2_2!=1 && choixEchange2_2!=2);
-            if (choixEchange2_2 == 1)
-            {
-                do
-                {
-                    printf("Contre combien de credits souhaitez vous echanger %s et %s ? %s possede : %d credits\n",tabCases[propriete1J1].nomCase, tabCases[propriete2J1].nomCase, tabJoueur[joueurSelec].nomJoueur, tabJoueur[joueurSelec].argent);
-                    fflush(stdin);
-                    scanf("%d", &creditsJ2);
-                }
-                while(creditsJ2<0 || creditsJ2>tabJoueur[joueurSelec].argent);
-
-                do
-                {
-                    printf("%s souhaitez vous recevoir %s et %s contre %d credits? Saisir 1 pour valider ou 0 pour refuser\n", tabJoueur[joueurSelec].nomJoueur, tabCases[propriete1J1].nomCase, tabCases[propriete2J1].nomCase, creditsJ2);
-                    fflush(stdin);
-                    scanf("%d",&valid);
-                }
-                while(valid !=0 && valid !=1);
-                if (valid==1)
-                {
-                    // echange argent
-                    tabJoueur[i].argent += creditsJ2;
-                    tabJoueur[joueurSelec].argent -= creditsJ2;
-
-                    //echange prop1J1
-                    tabJoueur[joueurSelec].nbPropriete+=1;
-                    tabJoueur[i].nbPropriete-=1;
-
-                    tabJoueur[joueurSelec].possessions[propriete1J1]= propriete1J1;
-                    tabJoueur[i].possessions[propriete1J1]=0;
-
-                    tabJoueur[joueurSelec].familles[tabCases[propriete1J1].famille]+=1;
-                    tabJoueur[i].familles[tabCases[propriete1J1].famille]-=1;
-
-                    *compteurHotels -= tabCases[propriete1J1].nbHotel;
-                    *compteurMaisons -= tabCases[propriete1J1].nbMaison;
-
-                    tabCases[propriete1J1].proprieteDe = tabJoueur[joueurSelec].numeroJoueur;
-                    tabCases[propriete1J1].nbMaison = 0;
-                    tabCases[propriete1J1].nbHotel = 0;
-                    tabCases[propriete1J1].hypotheque = 0;
-
-                    //echange prop2J1
-                    tabJoueur[joueurSelec].nbPropriete+=1;
-                    tabJoueur[i].nbPropriete-=1;
-
-                    tabJoueur[joueurSelec].possessions[propriete2J1]= propriete2J1;
-                    tabJoueur[i].possessions[propriete2J1]=0;
-
-                    tabJoueur[joueurSelec].familles[tabCases[propriete2J1].famille]+=1;
-                    tabJoueur[i].familles[tabCases[propriete2J1].famille]-=1;
-
-                    *compteurHotels -= tabCases[propriete2J1].nbHotel;
-                    *compteurMaisons -= tabCases[propriete2J1].nbMaison;
-
-                    tabCases[propriete2J1].proprieteDe = tabJoueur[joueurSelec].numeroJoueur;
-                    tabCases[propriete2J1].nbMaison = 0;
-                    tabCases[propriete2J1].nbHotel = 0;
-                    tabCases[propriete2J1].hypotheque = 0;
-
-                    printf("%s a echange %s et %s contre %d credits avec %s\n",tabJoueur[i].nomJoueur, tabCases[propriete1J1].nomCase, tabCases[propriete2J1].nomCase, creditsJ2, tabJoueur[joueurSelec].nomJoueur);
-                }
-                else if(valid == 0)
-                {
-                    printf("%s a refuse l'echange.\n",tabJoueur[joueurSelec].nomJoueur);
-                }
-            }
-            else if (choixEchange2_2==2)
-            {
-                do
-                {
-                    printf("Contre combien de propriete de %s souhaitez vous echanger %s et %s ? 2 maximum, %s possede %d propiete(s).\n",tabJoueur[joueurSelec].nomJoueur,tabCases[propriete1J1].nomCase, tabCases[propriete2J1].nomCase,tabJoueur[joueurSelec].nomJoueur, tabJoueur[joueurSelec].nbPropriete);
-                    fflush(stdin);
-                    scanf("%d",&nbPropJ2);
-                }
-                while(nbPropJ2<0 || (nbPropJ2>2 || nbPropJ2>tabJoueur[joueurSelec].nbPropriete));
-                if (nbPropJ2==1)
-                {
-                    do
-                    {
-                        printf("Contre quelle propriete de %s souhaitez vous echanger %s et %S ?\n",tabJoueur[joueurSelec].nomJoueur,tabCases[propriete1J1].nomCase, tabCases[propriete2J1].nomCase);
-                        printf("%s  possede : \n",tabJoueur[joueurSelec].nomJoueur);//Affichage des possessions
-                        for (int j=0; j<28; j++)
+                        if (tabJoueur[i].possessions[j] != 0)
                         {
-                            if (tabJoueur[joueurSelec].possessions[j] != 0)
-                            {
-                                printf("%d(%s)\n",j,tabCases[j].nomCase);
-                            }
+                            printf("%d(%s)\n",j,tabCases[j].nomCase);
                         }
-                        fflush(stdin);
-                        scanf("%d",&propriete1J2);
                     }
-                    while(tabJoueur[joueurSelec].possessions[propriete1J2] == 0 );
+                    fflush(stdin);
+                    scanf("%d",&propriete1J1);
+                }
+                while(tabJoueur[i].possessions[propriete1J1] == 0 );
+
+                do
+                {
+                    printf("Contre quoi souhaitez vous echanger %s ? des credits(1)? ou une/des proprietes(2) ?\n", tabCases[propriete1J1].nomCase);
+                    fflush(stdin);
+                    scanf("%d",&choixEchange2_1);
+                }
+                while(choixEchange2_1!=1 && choixEchange2_1!=2);
+                if (choixEchange2_1 == 1)
+                {
                     do
                     {
-                        printf("%s, souhaitez vous echanger %s contre %s et %s avec %s ? Saisir 1 pour valider ou 0 pour refuser.\n",tabJoueur[joueurSelec].nomJoueur,tabCases[propriete1J2].nomCase, tabCases[propriete1J1].nomCase,tabCases[propriete2J1].nomCase, tabJoueur[i].nomJoueur);
+                        printf("Contre combien de credits souhaitez vous echanger %s ? %s possede : %d credits\n",tabCases[propriete1J1].nomCase, tabJoueur[joueurSelec].nomJoueur, tabJoueur[joueurSelec].argent);
                         fflush(stdin);
-                        scanf("%d", &valid);
+                        scanf("%d", &creditsJ2);
+                    }
+                    while(creditsJ2<0 || creditsJ2>tabJoueur[joueurSelec].argent);
 
+                    do
+                    {
+                        printf("%s souhaitez vous recevoir %s contre %d credits? Saisir 1 pour valider ou 0 pour refuser\n", tabJoueur[joueurSelec].nomJoueur, tabCases[propriete1J1].nomCase, creditsJ2);
+                        fflush(stdin);
+                        scanf("%d",&valid);
                     }
                     while(valid !=0 && valid !=1);
-
-                    if (valid == 1)
-                    {
-                        // echange propJ1
-                        tabJoueur[joueurSelec].nbPropriete+=1;
-                        tabJoueur[i].nbPropriete-=1;
-
-                        tabJoueur[joueurSelec].possessions[propriete1J1]= propriete1J1;
-                        tabJoueur[i].possessions[propriete1J1]=0;
-
-                        tabJoueur[joueurSelec].familles[tabCases[propriete1J1].famille]+=1;
-                        tabJoueur[i].familles[tabCases[propriete1J1].famille]-=1;
-
-                        *compteurHotels -= tabCases[propriete1J1].nbHotel;
-                        *compteurMaisons -= tabCases[propriete1J1].nbMaison;
-
-                        tabCases[propriete1J1].proprieteDe = tabJoueur[joueurSelec].numeroJoueur;
-                        tabCases[propriete1J1].nbMaison = 0;
-                        tabCases[propriete1J1].nbHotel = 0;
-                        tabCases[propriete1J1].hypotheque = 0;
-
-                        //echange prop2J1
-                        tabJoueur[joueurSelec].nbPropriete+=1;
-                        tabJoueur[i].nbPropriete-=1;
-
-                        tabJoueur[joueurSelec].possessions[propriete2J1]= propriete2J1;
-                        tabJoueur[i].possessions[propriete2J1]=0;
-
-                        tabJoueur[joueurSelec].familles[tabCases[propriete2J1].famille]+=1;
-                        tabJoueur[i].familles[tabCases[propriete2J1].famille]-=1;
-
-                        *compteurHotels -= tabCases[propriete2J1].nbHotel;
-                        *compteurMaisons -= tabCases[propriete2J1].nbMaison;
-
-                        tabCases[propriete2J1].proprieteDe = tabJoueur[joueurSelec].numeroJoueur;
-                        tabCases[propriete2J1].nbMaison = 0;
-                        tabCases[propriete2J1].nbHotel = 0;
-                        tabCases[propriete2J1].hypotheque = 0;
-
-                        // echange propJ2
-                        tabJoueur[i].nbPropriete+=1;
-                        tabJoueur[joueurSelec].nbPropriete-=1;
-
-                        tabJoueur[i].possessions[propriete1J2]= propriete1J2;
-                        tabJoueur[joueurSelec].possessions[propriete1J2]=0;
-
-                        tabJoueur[i].familles[tabCases[propriete1J2].famille]+=1;
-                        tabJoueur[joueurSelec].familles[tabCases[propriete1J2].famille]-=1;
-
-                        *compteurHotels -= tabCases[propriete1J2].nbHotel;
-                        *compteurMaisons -= tabCases[propriete1J2].nbMaison;
-
-                        tabCases[propriete1J2].proprieteDe = tabJoueur[i].numeroJoueur;
-                        tabCases[propriete1J2].nbMaison = 0;
-                        tabCases[propriete1J2].nbHotel = 0;
-                        tabCases[propriete1J2].hypotheque = 0;
-
-                        printf("%s a echange %s et %s contre %s de %s\n",tabJoueur[i].nomJoueur,tabCases[propriete1J1].nomCase,tabCases[propriete2J1].nomCase, tabCases[propriete1J2].nomCase, tabJoueur[joueurSelec].nomJoueur);
-                    }
-                    else if (valid == 0)
-                    {
-                        printf("%s a refuse l'echange\n",tabJoueur[joueurSelec].nomJoueur);
-                    }
-                }
-                else if (nbPropJ2==2)
-                {
-                    do
-                    {
-                        printf("Contre quelles proprietes de %s souhaitez vous echanger %s et %s ?\n",tabJoueur[joueurSelec].nomJoueur,tabCases[propriete1J1].nomCase,tabCases[propriete2J1].nomCase);
-                        printf("%s  possede : \n",tabJoueur[joueurSelec].nomJoueur);//Affichage des possessions
-                        for (int j=0; j<28; j++)
-                        {
-                            if (tabJoueur[joueurSelec].possessions[j] != 0)
-                            {
-                                printf("%d(%s)\n",j,tabCases[j].nomCase);
-                            }
-                        }
-                        printf("Selectionner premiere propriete.\n");
-                        fflush(stdin);
-                        scanf("%d",&propriete1J2);
-                    }
-                    while(tabJoueur[joueurSelec].possessions[propriete1J2] == 0 );
-                    do
-                    {
-                        printf("Selectionner deuxieme propriete\n");
-                        fflush(stdin);
-                        scanf("%d",&propriete2J2);
-                    }
-                    while(tabJoueur[joueurSelec].possessions[propriete2J2] == 0 && propriete2J2==propriete1J2);
-
-                    do
-                    {
-                        printf("%s, souhaitez vous echanger %s et %s contre %s et %s avec %s ? Saisir 1 pour valider ou 0 pour refuser.\n",tabJoueur[joueurSelec].nomJoueur,tabCases[propriete1J2].nomCase, tabCases[propriete2J2].nomCase, tabCases[propriete1J1].nomCase, tabCases[propriete2J1].nomCase, tabJoueur[i].nomJoueur);
-                        fflush(stdin);
-                        scanf("%d", &valid);
-                    }
-                    while(valid !=0 && valid !=1);
-
                     if (valid==1)
                     {
-                        // echange propJ1
+                        tabJoueur[i].argent += creditsJ2;
+                        tabJoueur[joueurSelec].argent -= creditsJ2;
+
+                        tabJoueur[joueurSelec].nbPropriete+=1;
+                        tabJoueur[i].nbPropriete-=1;
+
+                        tabJoueur[joueurSelec].possessions[propriete1J1]= propriete1J1;
+                        tabJoueur[i].possessions[propriete1J1]=0;
+
+                        tabJoueur[joueurSelec].familles[tabCases[propriete1J1].famille]+=1;
+                        tabJoueur[i].familles[tabCases[propriete1J1].famille]-=1;
+
+                        *compteurHotels -= tabCases[propriete1J1].nbHotel;
+                        *compteurMaisons -= tabCases[propriete1J1].nbMaison;
+
+                        tabCases[propriete1J1].proprieteDe = tabJoueur[joueurSelec].numeroJoueur;
+                        tabCases[propriete1J1].nbMaison = 0;
+                        tabCases[propriete1J1].nbHotel = 0;
+                        tabCases[propriete1J1].hypotheque = 0;
+
+                        printf("%s a echange %s contre %d credits avec %s\n",tabJoueur[i].nomJoueur, tabCases[propriete1J1].nomCase, creditsJ2, tabJoueur[joueurSelec].nomJoueur);
+                    }
+                    else if(valid == 0)
+                    {
+                        printf("%s a refuse l'echange.\n",tabJoueur[joueurSelec].nomJoueur);
+                    }
+                }
+                else if (choixEchange2_1==2)
+                {
+                    if (tabJoueur[joueurSelec].nbPropriete==0)
+                    {
+                        printf("%s n'a pas de propriete a echanger.\n",tabJoueur[joueurSelec].nomJoueur);
+                    }
+                    else if(tabJoueur[joueurSelec].nbPropriete!=0)
+                    {
+                        do
+                        {
+                            printf("Contre combien de propriete de %s souhaitez vous echanger %s ? 2 maximum, %s possede %d propiete(s).\n",tabJoueur[joueurSelec].nomJoueur,tabCases[propriete1J1].nomCase,tabJoueur[joueurSelec].nomJoueur, tabJoueur[joueurSelec].nbPropriete);
+                            fflush(stdin);
+                            scanf("%d",&nbPropJ2);
+                        }
+                        while(nbPropJ2<0 || (nbPropJ2>2 || nbPropJ2>tabJoueur[joueurSelec].nbPropriete));
+                        if (nbPropJ2==1)
+                        {
+                            do
+                            {
+                                printf("Contre quelle propriete de %s souhaitez vous echanger %s ?\n",tabJoueur[joueurSelec].nomJoueur,tabCases[propriete1J1].nomCase);
+                                printf("%s  possede : \n",tabJoueur[joueurSelec].nomJoueur);//Affichage des possessions
+                                for (int j=0; j<28; j++)
+                                {
+                                    if (tabJoueur[joueurSelec].possessions[j] != 0)
+                                    {
+                                        printf("%d(%s)\n",j,tabCases[j].nomCase);
+                                    }
+                                }
+                                fflush(stdin);
+                                scanf("%d",&propriete1J2);
+                            }
+                            while(tabJoueur[joueurSelec].possessions[propriete1J2] == 0 );
+                            do
+                            {
+                                printf("%s, souhaitez vous echanger %s contre %s avec %s ? Saisir 1 pour valider ou 0 pour refuser.\n",tabJoueur[joueurSelec].nomJoueur,tabCases[propriete1J2].nomCase, tabCases[propriete1J1].nomCase, tabJoueur[i].nomJoueur);
+                                fflush(stdin);
+                                scanf("%d", &valid);
+
+                            }
+                            while(valid !=0 && valid !=1);
+
+                            if (valid == 1)
+                            {
+                                // echange propJ1
+                                tabJoueur[joueurSelec].nbPropriete+=1;
+                                tabJoueur[i].nbPropriete-=1;
+
+                                tabJoueur[joueurSelec].possessions[propriete1J1]= propriete1J1;
+                                tabJoueur[i].possessions[propriete1J1]=0;
+
+                                tabJoueur[joueurSelec].familles[tabCases[propriete1J1].famille]+=1;
+                                tabJoueur[i].familles[tabCases[propriete1J1].famille]-=1;
+
+                                *compteurHotels -= tabCases[propriete1J1].nbHotel;
+                                *compteurMaisons -= tabCases[propriete1J1].nbMaison;
+
+                                tabCases[propriete1J1].proprieteDe = tabJoueur[joueurSelec].numeroJoueur;
+                                tabCases[propriete1J1].nbMaison = 0;
+                                tabCases[propriete1J1].nbHotel = 0;
+                                tabCases[propriete1J1].hypotheque = 0;
+
+                                // echange propJ2
+                                tabJoueur[i].nbPropriete+=1;
+                                tabJoueur[joueurSelec].nbPropriete-=1;
+
+                                tabJoueur[i].possessions[propriete1J2]= propriete1J2;
+                                tabJoueur[joueurSelec].possessions[propriete1J2]=0;
+
+                                tabJoueur[i].familles[tabCases[propriete1J2].famille]+=1;
+                                tabJoueur[joueurSelec].familles[tabCases[propriete1J2].famille]-=1;
+
+                                *compteurHotels -= tabCases[propriete1J2].nbHotel;
+                                *compteurMaisons -= tabCases[propriete1J2].nbMaison;
+
+                                tabCases[propriete1J2].proprieteDe = tabJoueur[i].numeroJoueur;
+                                tabCases[propriete1J2].nbMaison = 0;
+                                tabCases[propriete1J2].nbHotel = 0;
+                                tabCases[propriete1J2].hypotheque = 0;
+
+                                printf("%s a echange %s contre %s de %s\n",tabJoueur[i].nomJoueur,tabCases[propriete1J1].nomCase, tabCases[propriete1J2].nomCase, tabJoueur[joueurSelec].nomJoueur);
+                            }
+                            else if (valid == 0)
+                            {
+                                printf("%s a refuse l'echange\n",tabJoueur[joueurSelec].nomJoueur);
+                            }
+                        }
+                        else if (nbPropJ2==2)
+                        {
+                            do
+                            {
+                                printf("Contre quelles proprietes de %s souhaitez vous echanger %s ?\n",tabJoueur[joueurSelec].nomJoueur,tabCases[propriete1J1].nomCase);
+                                printf("%s  possede : \n",tabJoueur[joueurSelec].nomJoueur);//Affichage des possessions
+                                for (int j=0; j<28; j++)
+                                {
+                                    if (tabJoueur[joueurSelec].possessions[j] != 0)
+                                    {
+                                        printf("%d(%s)\n",j,tabCases[j].nomCase);
+                                    }
+                                }
+                                printf("Selectionner premiere propriete.\n");
+                                fflush(stdin);
+                                scanf("%d",&propriete1J2);
+                            }
+                            while(tabJoueur[joueurSelec].possessions[propriete1J2] == 0 );
+                            do
+                            {
+                                printf("Selectionner deuxieme propriete\n");
+                                fflush(stdin);
+                                scanf("%d",&propriete2J2);
+                            }
+                            while(tabJoueur[joueurSelec].possessions[propriete2J2] == 0 && propriete2J2==propriete1J2);
+
+                            do
+                            {
+                                printf("%s, souhaitez vous echanger %s et %s contre %s avec %s ? Saisir 1 pour valider ou 0 pour refuser.\n",tabJoueur[joueurSelec].nomJoueur,tabCases[propriete1J2].nomCase, tabCases[propriete2J2].nomCase, tabCases[propriete1J1].nomCase, tabJoueur[i].nomJoueur);
+                                fflush(stdin);
+                                scanf("%d", &valid);
+                            }
+                            while(valid !=0 && valid !=1);
+
+                            if (valid==1)
+                            {
+                                // echange propJ1
+                                tabJoueur[joueurSelec].nbPropriete+=1;
+                                tabJoueur[i].nbPropriete-=1;
+
+                                tabJoueur[joueurSelec].possessions[propriete1J1]= propriete1J1;
+                                tabJoueur[i].possessions[propriete1J1]=0;
+
+                                tabJoueur[joueurSelec].familles[tabCases[propriete1J1].famille]+=1;
+                                tabJoueur[i].familles[tabCases[propriete1J1].famille]-=1;
+
+                                *compteurHotels -= tabCases[propriete1J1].nbHotel;
+                                *compteurMaisons -= tabCases[propriete1J1].nbMaison;
+
+                                tabCases[propriete1J1].proprieteDe = tabJoueur[joueurSelec].numeroJoueur;
+                                tabCases[propriete1J1].nbMaison = 0;
+                                tabCases[propriete1J1].nbHotel = 0;
+                                tabCases[propriete1J1].hypotheque = 0;
+
+                                // echange propJ2
+                                tabJoueur[i].nbPropriete+=1;
+                                tabJoueur[joueurSelec].nbPropriete-=1;
+
+                                tabJoueur[i].possessions[propriete1J2]= propriete1J2;
+                                tabJoueur[joueurSelec].possessions[propriete1J2]=0;
+
+                                tabJoueur[i].familles[tabCases[propriete1J2].famille]+=1;
+                                tabJoueur[joueurSelec].familles[tabCases[propriete1J2].famille]-=1;
+
+                                *compteurHotels -= tabCases[propriete1J2].nbHotel;
+                                *compteurMaisons -= tabCases[propriete1J2].nbMaison;
+
+                                tabCases[propriete1J2].proprieteDe = tabJoueur[i].numeroJoueur;
+                                tabCases[propriete1J2].nbMaison = 0;
+                                tabCases[propriete1J2].nbHotel = 0;
+                                tabCases[propriete1J2].hypotheque = 0;
+
+                                // echange prop2J2
+                                tabJoueur[i].nbPropriete+=1;
+                                tabJoueur[joueurSelec].nbPropriete-=1;
+
+                                tabJoueur[i].possessions[propriete2J2]= propriete2J2;
+                                tabJoueur[joueurSelec].possessions[propriete2J2]=0;
+
+                                tabJoueur[i].familles[tabCases[propriete2J2].famille]+=1;
+                                tabJoueur[joueurSelec].familles[tabCases[propriete2J2].famille]-=1;
+
+                                *compteurHotels -= tabCases[propriete2J2].nbHotel;
+                                *compteurMaisons -= tabCases[propriete2J2].nbMaison;
+
+                                tabCases[propriete2J2].proprieteDe = tabJoueur[i].numeroJoueur;
+                                tabCases[propriete2J2].nbMaison = 0;
+                                tabCases[propriete2J2].nbHotel = 0;
+                                tabCases[propriete2J2].hypotheque = 0;
+
+                                printf("%s a echange %s contre %s et %s avec %s\n",tabJoueur[i].nomJoueur,tabCases[propriete1J1].nomCase, tabCases[propriete1J2].nomCase, tabCases[propriete2J2].nomCase, tabJoueur[joueurSelec].nomJoueur);
+                            }
+                            else if(valid==0)
+                            {
+                                printf("%s a refuse l'echange",tabJoueur[joueurSelec].nomJoueur);
+                            }
+                        }
+
+                    }
+                }
+            }
+            else if(nbPropJ1 == 2)
+            {
+                do
+                {
+                    printf("Quelles proprietes souhaitez vous echanger ? vous possedez :\n");
+                    for (int j=0; j<28; j++)
+                    {
+                        if (tabJoueur[i].possessions[j] != 0)
+                        {
+                            printf("%d(%s)\n",j,tabCases[j].nomCase);
+                        }
+                    }
+                    fflush(stdin);
+                    scanf("%d",&propriete1J1);
+                }
+                while(tabJoueur[i].possessions[propriete1J1] == 0 );
+
+                do
+                {
+                    printf("Selectionner deuxieme propriete\n");
+                    fflush(stdin);
+                    scanf("%d",&propriete2J1);
+                }
+                while(tabJoueur[i].possessions[propriete2J1] == 0 && propriete2J1==propriete1J1);
+
+                do
+                {
+                    printf("Contre quoi souhaitez vous echanger %s et %s ? des credits(1)? ou une/des proprietes(2) ?\n", tabCases[propriete1J1].nomCase, tabCases[propriete2J1].nomCase);
+                    fflush(stdin);
+                    scanf("%d",&choixEchange2_2);
+                }
+                while(choixEchange2_2!=1 && choixEchange2_2!=2);
+                if (choixEchange2_2 == 1)
+                {
+                    do
+                    {
+                        printf("Contre combien de credits souhaitez vous echanger %s et %s ? %s possede : %d credits\n",tabCases[propriete1J1].nomCase, tabCases[propriete2J1].nomCase, tabJoueur[joueurSelec].nomJoueur, tabJoueur[joueurSelec].argent);
+                        fflush(stdin);
+                        scanf("%d", &creditsJ2);
+                    }
+                    while(creditsJ2<0 || creditsJ2>tabJoueur[joueurSelec].argent);
+
+                    do
+                    {
+                        printf("%s souhaitez vous recevoir %s et %s contre %d credits? Saisir 1 pour valider ou 0 pour refuser\n", tabJoueur[joueurSelec].nomJoueur, tabCases[propriete1J1].nomCase, tabCases[propriete2J1].nomCase, creditsJ2);
+                        fflush(stdin);
+                        scanf("%d",&valid);
+                    }
+                    while(valid !=0 && valid !=1);
+                    if (valid==1)
+                    {
+                        // echange argent
+                        tabJoueur[i].argent += creditsJ2;
+                        tabJoueur[joueurSelec].argent -= creditsJ2;
+
+                        //echange prop1J1
                         tabJoueur[joueurSelec].nbPropriete+=1;
                         tabJoueur[i].nbPropriete-=1;
 
@@ -784,54 +627,242 @@ void echange(joueur_t tabJoueur[], struct caseMonop tabCases[],int *compteurMais
                         tabCases[propriete2J1].nbHotel = 0;
                         tabCases[propriete2J1].hypotheque = 0;
 
-                        // echange propJ2
-                        tabJoueur[i].nbPropriete+=1;
-                        tabJoueur[joueurSelec].nbPropriete-=1;
-
-                        tabJoueur[i].possessions[propriete1J2]= propriete1J2;
-                        tabJoueur[joueurSelec].possessions[propriete1J2]=0;
-
-                        tabJoueur[i].familles[tabCases[propriete1J2].famille]+=1;
-                        tabJoueur[joueurSelec].familles[tabCases[propriete1J2].famille]-=1;
-
-                        *compteurHotels -= tabCases[propriete1J2].nbHotel;
-                        *compteurMaisons -= tabCases[propriete1J2].nbMaison;
-
-                        tabCases[propriete1J2].proprieteDe = tabJoueur[i].numeroJoueur;
-                        tabCases[propriete1J2].nbMaison = 0;
-                        tabCases[propriete1J2].nbHotel = 0;
-                        tabCases[propriete1J2].hypotheque = 0;
-
-                        // echange prop2J2
-                        tabJoueur[i].nbPropriete+=1;
-                        tabJoueur[joueurSelec].nbPropriete-=1;
-
-                        tabJoueur[i].possessions[propriete2J2]= propriete2J2;
-                        tabJoueur[joueurSelec].possessions[propriete2J2]=0;
-
-                        tabJoueur[i].familles[tabCases[propriete2J2].famille]+=1;
-                        tabJoueur[joueurSelec].familles[tabCases[propriete2J2].famille]-=1;
-
-                        *compteurHotels -= tabCases[propriete2J2].nbHotel;
-                        *compteurMaisons -= tabCases[propriete2J2].nbMaison;
-
-                        tabCases[propriete2J2].proprieteDe = tabJoueur[i].numeroJoueur;
-                        tabCases[propriete2J2].nbMaison = 0;
-                        tabCases[propriete2J2].nbHotel = 0;
-                        tabCases[propriete2J2].hypotheque = 0;
-
-                        printf("%s a echange %s et %s contre %s et %s avec %s\n",tabJoueur[i].nomJoueur,tabCases[propriete1J1].nomCase, tabCases[propriete2J1].nomCase, tabCases[propriete1J2].nomCase, tabCases[propriete2J2].nomCase, tabJoueur[joueurSelec].nomJoueur);
+                        printf("%s a echange %s et %s contre %d credits avec %s\n",tabJoueur[i].nomJoueur, tabCases[propriete1J1].nomCase, tabCases[propriete2J1].nomCase, creditsJ2, tabJoueur[joueurSelec].nomJoueur);
                     }
-                    else if(valid==0)
+                    else if(valid == 0)
                     {
-                        printf("%s a refuse l'echange",tabJoueur[joueurSelec].nomJoueur);
+                        printf("%s a refuse l'echange.\n",tabJoueur[joueurSelec].nomJoueur);
                     }
                 }
+                else if (choixEchange2_2==2)
+                {
+                    if (tabJoueur[joueurSelec].nbPropriete==0)
+                    {
+                        printf("%s n'a pas de propriete a echanger.\n",tabJoueur[joueurSelec].nomJoueur);
+                    }
+                    else if(tabJoueur[joueurSelec].nbPropriete!=0)
+                    {
+                        do
+                        {
+                            printf("Contre combien de propriete de %s souhaitez vous echanger %s et %s ? 2 maximum, %s possede %d propiete(s).\n",tabJoueur[joueurSelec].nomJoueur,tabCases[propriete1J1].nomCase, tabCases[propriete2J1].nomCase,tabJoueur[joueurSelec].nomJoueur, tabJoueur[joueurSelec].nbPropriete);
+                            fflush(stdin);
+                            scanf("%d",&nbPropJ2);
+                        }
+                        while(nbPropJ2<0 || (nbPropJ2>2 || nbPropJ2>tabJoueur[joueurSelec].nbPropriete));
+                        if (nbPropJ2==1)
+                        {
+                            do
+                            {
+                                printf("Contre quelle propriete de %s souhaitez vous echanger %s et %S ?\n",tabJoueur[joueurSelec].nomJoueur,tabCases[propriete1J1].nomCase, tabCases[propriete2J1].nomCase);
+                                printf("%s  possede : \n",tabJoueur[joueurSelec].nomJoueur);//Affichage des possessions
+                                for (int j=0; j<28; j++)
+                                {
+                                    if (tabJoueur[joueurSelec].possessions[j] != 0)
+                                    {
+                                        printf("%d(%s)\n",j,tabCases[j].nomCase);
+                                    }
+                                }
+                                fflush(stdin);
+                                scanf("%d",&propriete1J2);
+                            }
+                            while(tabJoueur[joueurSelec].possessions[propriete1J2] == 0 );
+                            do
+                            {
+                                printf("%s, souhaitez vous echanger %s contre %s et %s avec %s ? Saisir 1 pour valider ou 0 pour refuser.\n",tabJoueur[joueurSelec].nomJoueur,tabCases[propriete1J2].nomCase, tabCases[propriete1J1].nomCase,tabCases[propriete2J1].nomCase, tabJoueur[i].nomJoueur);
+                                fflush(stdin);
+                                scanf("%d", &valid);
 
+                            }
+                            while(valid !=0 && valid !=1);
+
+                            if (valid == 1)
+                            {
+                                // echange propJ1
+                                tabJoueur[joueurSelec].nbPropriete+=1;
+                                tabJoueur[i].nbPropriete-=1;
+
+                                tabJoueur[joueurSelec].possessions[propriete1J1]= propriete1J1;
+                                tabJoueur[i].possessions[propriete1J1]=0;
+
+                                tabJoueur[joueurSelec].familles[tabCases[propriete1J1].famille]+=1;
+                                tabJoueur[i].familles[tabCases[propriete1J1].famille]-=1;
+
+                                *compteurHotels -= tabCases[propriete1J1].nbHotel;
+                                *compteurMaisons -= tabCases[propriete1J1].nbMaison;
+
+                                tabCases[propriete1J1].proprieteDe = tabJoueur[joueurSelec].numeroJoueur;
+                                tabCases[propriete1J1].nbMaison = 0;
+                                tabCases[propriete1J1].nbHotel = 0;
+                                tabCases[propriete1J1].hypotheque = 0;
+
+                                //echange prop2J1
+                                tabJoueur[joueurSelec].nbPropriete+=1;
+                                tabJoueur[i].nbPropriete-=1;
+
+                                tabJoueur[joueurSelec].possessions[propriete2J1]= propriete2J1;
+                                tabJoueur[i].possessions[propriete2J1]=0;
+
+                                tabJoueur[joueurSelec].familles[tabCases[propriete2J1].famille]+=1;
+                                tabJoueur[i].familles[tabCases[propriete2J1].famille]-=1;
+
+                                *compteurHotels -= tabCases[propriete2J1].nbHotel;
+                                *compteurMaisons -= tabCases[propriete2J1].nbMaison;
+
+                                tabCases[propriete2J1].proprieteDe = tabJoueur[joueurSelec].numeroJoueur;
+                                tabCases[propriete2J1].nbMaison = 0;
+                                tabCases[propriete2J1].nbHotel = 0;
+                                tabCases[propriete2J1].hypotheque = 0;
+
+                                // echange propJ2
+                                tabJoueur[i].nbPropriete+=1;
+                                tabJoueur[joueurSelec].nbPropriete-=1;
+
+                                tabJoueur[i].possessions[propriete1J2]= propriete1J2;
+                                tabJoueur[joueurSelec].possessions[propriete1J2]=0;
+
+                                tabJoueur[i].familles[tabCases[propriete1J2].famille]+=1;
+                                tabJoueur[joueurSelec].familles[tabCases[propriete1J2].famille]-=1;
+
+                                *compteurHotels -= tabCases[propriete1J2].nbHotel;
+                                *compteurMaisons -= tabCases[propriete1J2].nbMaison;
+
+                                tabCases[propriete1J2].proprieteDe = tabJoueur[i].numeroJoueur;
+                                tabCases[propriete1J2].nbMaison = 0;
+                                tabCases[propriete1J2].nbHotel = 0;
+                                tabCases[propriete1J2].hypotheque = 0;
+
+                                printf("%s a echange %s et %s contre %s de %s\n",tabJoueur[i].nomJoueur,tabCases[propriete1J1].nomCase,tabCases[propriete2J1].nomCase, tabCases[propriete1J2].nomCase, tabJoueur[joueurSelec].nomJoueur);
+                            }
+                            else if (valid == 0)
+                            {
+                                printf("%s a refuse l'echange\n",tabJoueur[joueurSelec].nomJoueur);
+                            }
+                        }
+                        else if (nbPropJ2==2)
+                        {
+                            do
+                            {
+                                printf("Contre quelles proprietes de %s souhaitez vous echanger %s et %s ?\n",tabJoueur[joueurSelec].nomJoueur,tabCases[propriete1J1].nomCase,tabCases[propriete2J1].nomCase);
+                                printf("%s  possede : \n",tabJoueur[joueurSelec].nomJoueur);//Affichage des possessions
+                                for (int j=0; j<28; j++)
+                                {
+                                    if (tabJoueur[joueurSelec].possessions[j] != 0)
+                                    {
+                                        printf("%d(%s)\n",j,tabCases[j].nomCase);
+                                    }
+                                }
+                                printf("Selectionner premiere propriete.\n");
+                                fflush(stdin);
+                                scanf("%d",&propriete1J2);
+                            }
+                            while(tabJoueur[joueurSelec].possessions[propriete1J2] == 0 );
+                            do
+                            {
+                                printf("Selectionner deuxieme propriete\n");
+                                fflush(stdin);
+                                scanf("%d",&propriete2J2);
+                            }
+                            while(tabJoueur[joueurSelec].possessions[propriete2J2] == 0 && propriete2J2==propriete1J2);
+
+                            do
+                            {
+                                printf("%s, souhaitez vous echanger %s et %s contre %s et %s avec %s ? Saisir 1 pour valider ou 0 pour refuser.\n",tabJoueur[joueurSelec].nomJoueur,tabCases[propriete1J2].nomCase, tabCases[propriete2J2].nomCase, tabCases[propriete1J1].nomCase, tabCases[propriete2J1].nomCase, tabJoueur[i].nomJoueur);
+                                fflush(stdin);
+                                scanf("%d", &valid);
+                            }
+                            while(valid !=0 && valid !=1);
+
+                            if (valid==1)
+                            {
+                                // echange propJ1
+                                tabJoueur[joueurSelec].nbPropriete+=1;
+                                tabJoueur[i].nbPropriete-=1;
+
+                                tabJoueur[joueurSelec].possessions[propriete1J1]= propriete1J1;
+                                tabJoueur[i].possessions[propriete1J1]=0;
+
+                                tabJoueur[joueurSelec].familles[tabCases[propriete1J1].famille]+=1;
+                                tabJoueur[i].familles[tabCases[propriete1J1].famille]-=1;
+
+                                *compteurHotels -= tabCases[propriete1J1].nbHotel;
+                                *compteurMaisons -= tabCases[propriete1J1].nbMaison;
+
+                                tabCases[propriete1J1].proprieteDe = tabJoueur[joueurSelec].numeroJoueur;
+                                tabCases[propriete1J1].nbMaison = 0;
+                                tabCases[propriete1J1].nbHotel = 0;
+                                tabCases[propriete1J1].hypotheque = 0;
+
+                                //echange prop2J1
+                                tabJoueur[joueurSelec].nbPropriete+=1;
+                                tabJoueur[i].nbPropriete-=1;
+
+                                tabJoueur[joueurSelec].possessions[propriete2J1]= propriete2J1;
+                                tabJoueur[i].possessions[propriete2J1]=0;
+
+                                tabJoueur[joueurSelec].familles[tabCases[propriete2J1].famille]+=1;
+                                tabJoueur[i].familles[tabCases[propriete2J1].famille]-=1;
+
+                                *compteurHotels -= tabCases[propriete2J1].nbHotel;
+                                *compteurMaisons -= tabCases[propriete2J1].nbMaison;
+
+                                tabCases[propriete2J1].proprieteDe = tabJoueur[joueurSelec].numeroJoueur;
+                                tabCases[propriete2J1].nbMaison = 0;
+                                tabCases[propriete2J1].nbHotel = 0;
+                                tabCases[propriete2J1].hypotheque = 0;
+
+                                // echange propJ2
+                                tabJoueur[i].nbPropriete+=1;
+                                tabJoueur[joueurSelec].nbPropriete-=1;
+
+                                tabJoueur[i].possessions[propriete1J2]= propriete1J2;
+                                tabJoueur[joueurSelec].possessions[propriete1J2]=0;
+
+                                tabJoueur[i].familles[tabCases[propriete1J2].famille]+=1;
+                                tabJoueur[joueurSelec].familles[tabCases[propriete1J2].famille]-=1;
+
+                                *compteurHotels -= tabCases[propriete1J2].nbHotel;
+                                *compteurMaisons -= tabCases[propriete1J2].nbMaison;
+
+                                tabCases[propriete1J2].proprieteDe = tabJoueur[i].numeroJoueur;
+                                tabCases[propriete1J2].nbMaison = 0;
+                                tabCases[propriete1J2].nbHotel = 0;
+                                tabCases[propriete1J2].hypotheque = 0;
+
+                                // echange prop2J2
+                                tabJoueur[i].nbPropriete+=1;
+                                tabJoueur[joueurSelec].nbPropriete-=1;
+
+                                tabJoueur[i].possessions[propriete2J2]= propriete2J2;
+                                tabJoueur[joueurSelec].possessions[propriete2J2]=0;
+
+                                tabJoueur[i].familles[tabCases[propriete2J2].famille]+=1;
+                                tabJoueur[joueurSelec].familles[tabCases[propriete2J2].famille]-=1;
+
+                                *compteurHotels -= tabCases[propriete2J2].nbHotel;
+                                *compteurMaisons -= tabCases[propriete2J2].nbMaison;
+
+                                tabCases[propriete2J2].proprieteDe = tabJoueur[i].numeroJoueur;
+                                tabCases[propriete2J2].nbMaison = 0;
+                                tabCases[propriete2J2].nbHotel = 0;
+                                tabCases[propriete2J2].hypotheque = 0;
+
+                                printf("%s a echange %s et %s contre %s et %s avec %s\n",tabJoueur[i].nomJoueur,tabCases[propriete1J1].nomCase, tabCases[propriete2J1].nomCase, tabCases[propriete1J2].nomCase, tabCases[propriete2J2].nomCase, tabJoueur[joueurSelec].nomJoueur);
+                            }
+                            else if(valid==0)
+                            {
+                                printf("%s a refuse l'echange",tabJoueur[joueurSelec].nomJoueur);
+                            }
+                        }
+                    }
+                }
             }
         }
     }
-    while(joueurSelec!=0);
+    else if (joueurSelec==-1)
+    {
+        printf("Echange annule.\n");
+    }
+
 
 }
 
@@ -860,9 +891,12 @@ int main()
     joueur1.numeroJoueur = 3;
     joueur1.libertePrison = 2;
     joueur1.doubleOuNon = 19;
+    joueur1.nbPropriete=2;
 
     joueur1.possessions[4]=4;
     joueur1.possessions[1]=1;
+
+
 
     strcpy(joueur2.nomJoueur,"Thibault");
     for (int i = 0; i<28; i++)
@@ -870,11 +904,14 @@ int main()
         joueur2.possessions[i] = 0;
     }
     joueur2.position = 6;
-    joueur2.argent = 1600;
+    joueur2.argent = 1500;
     joueur2.tourPrison = 1;
     joueur2.numeroJoueur = 4;
     joueur2.libertePrison = 5;
     joueur2.doubleOuNon = 20;
+    joueur2.nbPropriete=1;
+
+    joueur2.possessions[6]=6;
 
     strcpy(joueur3.nomJoueur,"Adrien");
     for (int i = 0; i<28; i++)
@@ -882,7 +919,7 @@ int main()
         joueur3.possessions[i] = 0;
     }
     joueur3.position = 7;
-    joueur3.argent = 2000;
+    joueur3.argent = 1500;
     joueur3.tourPrison = 2;
     joueur3.numeroJoueur = 5;
     joueur3.libertePrison = 6;
@@ -894,7 +931,7 @@ int main()
         joueur4.possessions[i] = 0;
     }
     joueur4.position = 8;
-    joueur4.argent = 2500;
+    joueur4.argent = 1500;
     joueur4.tourPrison = 3;
     joueur4.numeroJoueur = 6;
     joueur4.libertePrison = 7;
@@ -1301,6 +1338,9 @@ int main()
     cases[25]= case25;
     cases[26]= case26;
     cases[27]= case27;
+
+    int i=1;
+    echange(joueurs,cases,&compteurMaisons,&compteurHotels,i,4);
 
     return 0;
 }
