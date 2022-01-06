@@ -29,6 +29,7 @@ void prison (int choixPrisonPrec, joueur_t tableauDeJoueur[] , int tourActuel, i
 {
     system("cls");
     int testCarteJoueur = 0;
+    int pasDeCarte = 0;
     int j1,j2,j3,prixEchange,choixJoueur,variableBoucle,dee1,dee2;
     printf("Le choix est %d",choixPrisonPrec);
 
@@ -40,6 +41,7 @@ void prison (int choixPrisonPrec, joueur_t tableauDeJoueur[] , int tourActuel, i
             {
                 printf("Vous n'avez pas de carte. \n");
                 prisonChoix(&choixPrisonPrec);
+                pasDeCarte = 1;
             }
             else
             {
@@ -202,6 +204,14 @@ void prison (int choixPrisonPrec, joueur_t tableauDeJoueur[] , int tourActuel, i
         {
             break;
         }
+    }
+    if(choixPrisonPrec == 5 || (choixPrisonPrec == 2 && choixJoueur == 1)||(choixPrisonPrec == 1 && pasDeCarte == 1))
+    {
+        tableauDeJoueur[tourActuel].tourPrison ++;
+    }
+    else if((choixPrisonPrec == 2 && choixJoueur == 1)||choixPrisonPrec == 4)
+    {
+        tableauDeJoueur[tourActuel].tourPrison = 0;
     }
 
 }
