@@ -2,7 +2,7 @@
 
 
 /// Carte sith 1
-void Fsith1(joueur_t* joueur)
+void Fsith1(joueur_t Tabjoueur[], int tour)
 {
     printf("                              ,ooo888888888888888oooo,\n");
     printf("                            o8888YYYYYY77iiiiooo8888888o\n");
@@ -80,14 +80,19 @@ void Fsith1(joueur_t* joueur)
         Sleep(20);
         printf("_");
     }
+    gotoligcol(45,00);
+    for (int i=0; i<168; i++)
+    {
+        Sleep(20);
+        printf(".");
+    }
 
-    joueur->position = 7;
-    joueur->tourPrison = 1;
+    Tabjoueur[tour].position = 7;
 }
 
 ///Carte sith 2
 
-void Fsith2(joueur_t* joueur)
+void Fsith2(joueur_t Tabjoueur[], int tour)
 {
     printf("                              ,ooo888888888888888oooo,\n");
     printf("                            o8888YYYYYY77iiiiooo8888888o\n");
@@ -165,14 +170,18 @@ void Fsith2(joueur_t* joueur)
         printf("_");
     }
     gotoligcol(45,00);
+    for (int i=0; i<168; i++)
+    {
+        Sleep(20);
+        printf(".");
+    }
 
-
-    joueur->argent = joueur->argent + 1000;
+    Tabjoueur[tour].argent = Tabjoueur[tour].argent + 1000;
 
 }
 
 ///Carte sith 3
-void Fsith3(joueur_t* joueur)
+void Fsith3(joueur_t Tabjoueur[], int tour)
 {
     printf("                              ,ooo888888888888888oooo,\n");
     printf("                            o8888YYYYYY77iiiiooo8888888o\n");
@@ -209,10 +218,10 @@ void Fsith3(joueur_t* joueur)
     Sleep(30);
     printf("   ;iiiii7iiiii7iiii77;i88888888888888888888i7888888888888888877;77i 888877777ii78\n");
     Color(15,0);
-    printf("   iiiiiiiiiii7iiii7iii;;;i7778888888888888ii7788888888888777i;;;;iiii 88888888888                V O U S  P A Y E Z  2 0 0  C R E D I T S  L E  C O I F  F E U R  \n");
+    printf("   iiiiiiiiiii7iiii7iii;;;i7778888888888888ii7788888888888777i;;;;iiii 88888888888                I N F I L T R E Z  V O U S : P I O C H E Z  U N E  C A R T E  J E D I \n");
     Sleep(30);
     printf("     i;iiiiiiiiiiii7iiiiiiiiiiiiiiiiiiiiiiiiii8877iiiiiiiiiiiiiiiiiii877   88888      \n");
-    printf("      ii;;iiiiiiiiiiiiii;;;ii^^^;;;ii77777788888888888887777iii;;  77777           78                                   D E  C H U B A K A        \n");
+    printf("      ii;;iiiiiiiiiiiiii;;;ii^^^;;;ii77777788888888888887777iii;;  77777           78                   \n");
     Sleep(30);
     printf("     77iii;;iiiiiiiiii;;;ii;;;;;;;;;^^^^8888888888888888888777ii;;  ii7         ;i78\n");
     printf("        ^ii;8iiiiiiii ';;;;ii;;;;;;;;;;;;;;;;;;^^oo ooooo^^^88888888;;i7          7;788\n");
@@ -249,16 +258,21 @@ void Fsith3(joueur_t* joueur)
         Sleep(20);
         printf("_");
     }
+    gotoligcol(45,00);
+    for (int i=0; i<168; i++)
+    {
+        Sleep(20);
+        printf(".");
+    }
 
-
-
+//cartejedi(joueur_t joueur, /*structure d'une propriété*/);
 
 
 }
 
 ///Carte sith 4
 
-void Fsith4(joueur_t* joueur)
+void Fsith4(joueur_t Tabjoueur[], int tour)
 {
     printf("                              ,ooo888888888888888oooo,\n");
     printf("                            o8888YYYYYY77iiiiooo8888888o\n");
@@ -336,15 +350,19 @@ void Fsith4(joueur_t* joueur)
         printf("_");
     }
     gotoligcol(45,00);
+    for (int i=0; i<168; i++)
+    {
+        Sleep(20);
+        printf(".");
+    }
 
-
-    joueur->position = 0;
-    joueur->argent = joueur->argent + 200;
+    Tabjoueur[tour].position = 0;
+    Tabjoueur[tour].argent = Tabjoueur[tour].argent + 200;
 
 }
 
 ///Carte Sith 5
-void Fsith5(joueur_t* joueur)
+void Fsith5(joueur_t Tabjoueur[], int tour)
 {
     printf("                              ,ooo888888888888888oooo,\n");
     printf("                            o8888YYYYYY77iiiiooo8888888o\n");
@@ -422,18 +440,23 @@ void Fsith5(joueur_t* joueur)
         printf("_");
     }
     gotoligcol(45,00);
-
-    joueur->argent= joueur->argent-400;
-    if (joueur->argent<0)
+    for (int i=0; i<150; i++)
     {
-        joueur->argent=0;
+        Sleep(20);
+        printf(".");
+    }
+
+    Tabjoueur[tour].argent= Tabjoueur[tour].argent-400;
+    if (Tabjoueur[tour].argent<0)
+    {
+        Tabjoueur[tour].argent=0;
     }
 
 
 }
 
 ///Carte Sith 6
-void Fsith6(joueur_t* joueur)
+void Fsith6(joueur_t Tabjoueur[], int tour)
 {
     printf("                              ,ooo888888888888888oooo,\n");
     printf("                            o8888YYYYYY77iiiiooo8888888o\n");
@@ -511,15 +534,19 @@ void Fsith6(joueur_t* joueur)
         printf("_");
     }
     gotoligcol(45,00);
+    for (int i=0; i<168; i++)
+    {
+        Sleep(20);
+        printf(".");
+    }
 
-
-    joueur->argent= joueur->argent+200;
+    Tabjoueur[tour].argent= Tabjoueur[tour].argent+200;
 
 
 
 }
 ///Carte Sith 7
-void Fsith7(joueur_t* joueur)
+void Fsith7(joueur_t Tabjoueur[], int tour)
 {
     printf("                              ,ooo888888888888888oooo,\n");
     printf("                            o8888YYYYYY77iiiiooo8888888o\n");
@@ -597,19 +624,23 @@ void Fsith7(joueur_t* joueur)
         printf("_");
     }
     gotoligcol(45,00);
-
-
-    joueur->argent= joueur->argent-200;
-    if (joueur->argent<0)
+    for (int i=0; i<168; i++)
     {
-        joueur->argent=0;
+        Sleep(20);
+        printf(".");
+    }
+
+    Tabjoueur[tour].argent= Tabjoueur[tour].argent-200;
+    if (Tabjoueur[tour].argent<0)
+    {
+        Tabjoueur[tour].argent=0;
     }
 }
 
 
 ///Carte Sith 8
 
-void Fsith8(joueur_t* joueur)
+void Fsith8(joueur_t Tabjoueur[], int tour)
 {
     printf("                              ,ooo888888888888888oooo,\n");
     printf("                            o8888YYYYYY77iiiiooo8888888o\n");
@@ -687,19 +718,23 @@ void Fsith8(joueur_t* joueur)
         printf("_");
     }
     gotoligcol(45,00);
-
-
-    if(joueur->position > 17)
+    for (int i=0; i<168; i++)
     {
-        joueur->argent = joueur->argent + 200;
+        Sleep(20);
+        printf(".");
     }
 
-    joueur->position = 17;//position carte geonosis
+    if(Tabjoueur[tour].position > 17)
+    {
+        Tabjoueur[tour].argent = Tabjoueur[tour].argent + 200;
+    }
+
+    Tabjoueur[tour].position = 17;//position carte geonosis
 
 }
 
 ///Carte Sith 9
-void Fsith9(joueur_t* joueur)
+void Fsith9(joueur_t Tabjoueur[], int tour)
 {
     printf("                              ,ooo888888888888888oooo,\n");
     printf("                            o8888YYYYYY77iiiiooo8888888o\n");
@@ -777,14 +812,18 @@ void Fsith9(joueur_t* joueur)
         printf("_");
     }
     gotoligcol(45,00);
-
-
-    if(joueur->position > 15)
+    for (int i=0; i<168; i++)
     {
-        joueur->argent = joueur->argent + 200;
+        Sleep(20);
+        printf(".");
     }
 
-    joueur->position= 15;
+    if(Tabjoueur[tour].position > 15)
+    {
+        Tabjoueur[tour].argent = Tabjoueur[tour].argent + 200;
+    }
+
+    Tabjoueur[tour].position= 15;
 
 
 
@@ -792,7 +831,7 @@ void Fsith9(joueur_t* joueur)
 
 ///Carte Sith 10
 
-void Fsith10(joueur_t* joueur)
+void Fsith10(joueur_t Tabjoueur[], int tour)
 {
     printf("                              ,ooo888888888888888oooo,\n");
     printf("                            o8888YYYYYY77iiiiooo8888888o\n");
@@ -870,14 +909,19 @@ void Fsith10(joueur_t* joueur)
         printf("_");
     }
     gotoligcol(45,00);
+    for (int i=0; i<168; i++)
+    {
+        Sleep(20);
+        printf(".");
+    }
 
-    joueur->argent= joueur->argent+200;
+    Tabjoueur[tour].argent= Tabjoueur[tour].argent+200;
 
 }
 
 ///Carte Sith 11
 
-void Fsith11(joueur_t* joueur)
+void Fsith11(joueur_t Tabjoueur[], int tour)
 {
     printf("                              ,ooo888888888888888oooo,\n");
     printf("                            o8888YYYYYY77iiiiooo8888888o\n");
@@ -955,18 +999,23 @@ void Fsith11(joueur_t* joueur)
         printf("_");
     }
     gotoligcol(45,00);
-
-    joueur->argent=joueur->argent-200;
-    if (joueur->argent<0)
+    for (int i=0; i<168; i++)
     {
-        joueur->argent=0;
+        Sleep(20);
+        printf(".");
+    }
+
+    Tabjoueur[tour].argent=Tabjoueur[tour].argent-200;
+    if (Tabjoueur[tour].argent<0)
+    {
+        Tabjoueur[tour].argent=0;
     }
 
 }
 
 ///Carte Sith 12
 
-void Fsith12(joueur_t* joueur)
+void Fsith12(joueur_t Tabjoueur[], int tour)
 {
     printf("                              ,ooo888888888888888oooo,\n");
     printf("                            o8888YYYYYY77iiiiooo8888888o\n");
@@ -1043,12 +1092,18 @@ void Fsith12(joueur_t* joueur)
         Sleep(20);
         printf("_");
     }
-
-
-    joueur->argent=joueur->argent-200;
-    if (joueur->argent<0)
+    gotoligcol(45,00);
+    for (int i=0; i<168; i++)
     {
-        joueur->argent=0;
+        Sleep(20);
+        printf(".");
+    }
+
+
+    Tabjoueur[tour].argent=Tabjoueur[tour].argent-200;
+    if (Tabjoueur[tour].argent<0)
+    {
+        Tabjoueur[tour].argent=0;
     }
 
 
@@ -1058,7 +1113,7 @@ void Fsith12(joueur_t* joueur)
 ///Carte Sith 13
 
 
-void Fsith13(joueur_t* joueur)
+void Fsith13(joueur_t Tabjoueur[], int tour)
 {
     printf("                              ,ooo888888888888888oooo,\n");
     printf("                            o8888YYYYYY77iiiiooo8888888o\n");
@@ -1135,16 +1190,21 @@ void Fsith13(joueur_t* joueur)
         Sleep(20);
         printf("_");
     }
+    gotoligcol(45,00);
+    for (int i=0; i<168; i++)
+    {
+        Sleep(20);
+        printf(".");
+    }
 
-
-    joueur->argent= joueur->argent+200;
+    Tabjoueur[tour].argent= Tabjoueur[tour].argent+200;
 
 }
 
 
 
 ///Carte Sith 14
-void Fsith14(joueur_t* joueur)
+void Fsith14(joueur_t Tabjoueur[], int tour)
 {
     printf("                              ,ooo888888888888888oooo,\n");
     printf("                            o8888YYYYYY77iiiiooo8888888o\n");
@@ -1221,12 +1281,13 @@ void Fsith14(joueur_t* joueur)
         Sleep(20);
         printf("_");
     }
-    gotoligcol(45,00);for (int i=0; i<168; i++)
+    gotoligcol(45,00);
+    for (int i=0; i<168; i++)
     {
         Sleep(20);
         printf(".");
     }
-    joueur->libertePrison=1;
+    Tabjoueur[tour].libertePrison=1;
 
 }
 ///Carte Sith 15
@@ -1323,7 +1384,7 @@ return joueur.argent;
 
 
 ///Carte Sith 16
-void Fsith16(joueur_t* joueur)
+void Fsith16(joueur_t Tabjoueur[], int tour)
 {
     printf("                              ,ooo888888888888888oooo,\n");
     printf("                            o8888YYYYYY77iiiiooo8888888o\n");
@@ -1360,7 +1421,7 @@ void Fsith16(joueur_t* joueur)
     Sleep(30);
     printf("   ;iiiii7iiiii7iiii77;i88888888888888888888i7888888888888888877;77i 888877777ii78\n");
     Color(15,0);
-    printf("   iiiiiiiiiii7iiii7iii;;;i7778888888888888ii7788888888888777i;;;;iiii 88888888888               R E B E L L E S   I D E N T I F I E S, \n");
+    printf("   iiiiiiiiiii7iiii7iii;;;i7778888888888888ii7788888888888777i;;;;iiii 88888888888               R E B E L L E S   I D E N T I F I E S, n");
     Sleep(30);
     printf("     i;iiiiiiiiiiii7iiiiiiiiiiiiiiiiiiiiiiiiii8877iiiiiiiiiiiiiiiiiii877   88888      \n");
     printf("      ii;;iiiiiiiiiiiiii;;;ii^^^;;;ii77777788888888888887777iii;;  77777           78             A L L E Z  S U R  H O T H\n");
@@ -1400,12 +1461,17 @@ void Fsith16(joueur_t* joueur)
         Sleep(20);
         printf("_");
     }
-
-
-    if(joueur->position > 3)
+    gotoligcol(45,00);
+    for (int i=0; i<168; i++)
     {
-        joueur->argent = joueur->argent + 200;
+        Sleep(20);
+        printf(".");
     }
-    joueur->position = 3;
+
+    if(Tabjoueur[tour].position > 3)
+    {
+        Tabjoueur[tour].argent = Tabjoueur[tour].argent + 200;
+    }
+    Tabjoueur[tour].position = 3;
 
 }

@@ -1,7 +1,7 @@
 #include "header.h"
 
 ///Carte chance 1
-void f1(joueur_t* joueur)
+void f1(joueur_t Tabjoueur[], int tour)
 {
 
     system("cls");
@@ -65,18 +65,22 @@ printf("                                OOOOOOOOOOOOOOOO\n");
         Sleep(20);
         printf("_");
     }
-    joueur->argent-=100;
 
-    if (joueur->argent<0)
+
+
+
+    Tabjoueur[tour].argent-=100;
+
+    if (Tabjoueur[tour].argent<0)
     {
-        joueur->argent=0;
+        Tabjoueur[tour].argent=0;
     }
 
 }
 
 ///Carte chance 2
 
-void f2(joueur_t* joueur)
+void f2(joueur_t Tabjoueur[], int tour)
 {
 
     system("cls");
@@ -122,6 +126,7 @@ printf("                  OOOOOOOOO                           OOOOOOOO\n");
 printf("                     OOOOOOOOOOO                OOOOOOOOOOO\n");
 printf("                          OOOOOOOOOOOOOOOOOOOOOOOOOOOOO\n");
 printf("                                OOOOOOOOOOOOOOOO\n");
+
     gotoligcol(22,115);
     printf(" C A R T E  J E D I :");
 
@@ -141,20 +146,19 @@ printf("                                OOOOOOOOOOOOOOOO\n");
         printf("_");
     }
 
-    joueur->argent-=200;
-    if (joueur->argent<0)
+    Tabjoueur[tour].argent-=200;
+    if (Tabjoueur[tour].argent<0)
     {
-        joueur->argent=0;
+        Tabjoueur[tour].argent=0;
     }
 }
 
 ///Carte chance 3
-void f3(joueur_t* joueur)
+void f3(joueur_t Tabjoueur[], int tour)
 {
 
     system("cls");
-
-    Color(15,0);
+Color(15,0);
 printf("\n");
 printf("\n");
 printf("                                OOOOOOOOOOOOOOOO \n");
@@ -216,16 +220,16 @@ printf("                                OOOOOOOOOOOOOOOO\n");
     }
 
 
-    joueur->argent=joueur->argent-50;
-    if (joueur->argent<0)
+    Tabjoueur[tour].argent=Tabjoueur[tour].argent-50;
+    if (Tabjoueur[tour].argent<0)
     {
-        joueur->argent=0;
+        Tabjoueur[tour].argent=0;
     }
 
 }
 
 ///Carte chance 4
-void f4(joueur_t* joueur)
+void f4(joueur_t Tabjoueur[], int tour)
 {
 
     system("cls");
@@ -291,22 +295,22 @@ printf("                                OOOOOOOOOOOOOOOO\n");
         printf("_");
     }
 
-    if(joueur->position > 24)
+    if(Tabjoueur[tour].position > 24)
     {
-        joueur->argent = joueur->argent + 200;
+        Tabjoueur[tour].argent = Tabjoueur[tour].argent + 200;
     }
-    joueur->position= 24;
+    Tabjoueur[tour].position= 24;
 
 }
 
 ///Carte Chance 5
-void f5(joueur_t* joueur)
+void f5(joueur_t Tabjoueur[], int tour)
 {
 
     system("cls");
 
 
-    Color(15,0);
+Color(15,0);
 printf("\n");
 printf("\n");
 printf("                                OOOOOOOOOOOOOOOO \n");
@@ -366,21 +370,21 @@ printf("                                OOOOOOOOOOOOOOOO\n");
         printf("_");
     }
 
-    if(joueur->position > 22)
+    if(Tabjoueur[tour].position > 22)
     {
-        joueur->argent = joueur->argent + 200;
+        Tabjoueur[tour].argent = Tabjoueur[tour].argent + 200;
     }
-    joueur->position= 22;
+    Tabjoueur[tour].position= 22;
 }
 
 ///Carte chance 6
-void f6(joueur_t* joueur)
+void f6(joueur_t Tabjoueur[], int tour)
 {
 
     system("cls");
 
 
-    Color(15,0);
+Color(15,0);
 printf("\n");
 printf("\n");
 printf("                                OOOOOOOOOOOOOOOO \n");
@@ -442,17 +446,17 @@ printf("                                OOOOOOOOOOOOOOOO\n");
     }
 
 
-    if(joueur->position > 1)
+    if(Tabjoueur[tour].position > 1)
     {
-        joueur->argent = joueur->argent + 200;
+        Tabjoueur[tour].argent = Tabjoueur[tour].argent + 200;
     }
-    joueur->position= 1;
+    Tabjoueur[tour].position= 1;
 
 }
 
 ///Carte chance 7
 
-void f7(joueur_t* joueur)
+void f7(joueur_t Tabjoueur[], int tour)
 {
 
     system("cls");
@@ -519,17 +523,17 @@ printf("                                OOOOOOOOOOOOOOOO\n");
     }
     gotoligcol(45,0);
 
-    joueur->argent=joueur->argent-500;
-    if (joueur->argent<0)
+    Tabjoueur[tour].argent=Tabjoueur[tour].argent-500;
+    if (Tabjoueur[tour].argent<0)
     {
-        joueur->argent=0;
+        Tabjoueur[tour].argent=0;
     }
 
 
 }
 
 ///Carte chance 8
-void f8(joueur_t* joueur)
+void f8(joueur_t Tabjoueur[], int tour)
 {
 
     system("cls");
@@ -575,7 +579,6 @@ printf("                  OOOOOOOOO                           OOOOOOOO\n");
 printf("                     OOOOOOOOOOO                OOOOOOOOOOO\n");
 printf("                          OOOOOOOOOOOOOOOOOOOOOOOOOOOOO\n");
 printf("                                OOOOOOOOOOOOOOOO\n");
-
     gotoligcol(22,115);
     printf(" C A R T E  J E D I :");
 
@@ -597,12 +600,12 @@ printf("                                OOOOOOOOOOOOOOOO\n");
     }
 
 
-    joueur->argent=joueur->argent+400;
+    Tabjoueur[tour].argent=Tabjoueur[tour].argent+400;
 }
 
 ///Carte chance 9
 
-void f9(joueur_t* joueur)
+void f9(joueur_t Tabjoueur[], int tour)
 {
 
     system("cls");
@@ -667,21 +670,21 @@ printf("                                OOOOOOOOOOOOOOOO\n");
         printf("_");
     }
 
-    joueur->argent=joueur->argent-100;
-    if (joueur->argent<0)
+    Tabjoueur[tour].argent=Tabjoueur[tour].argent-100;
+    if (Tabjoueur[tour].argent<0)
     {
-        joueur->argent=0;
+        Tabjoueur[tour].argent=0;
     }
 
 }
 
 ///Carte chance 10
-void f10(joueur_t* joueur)
+void f10(joueur_t Tabjoueur[], int tour)
 {
 
     system("cls");
 
-    Color(15,0);
+Color(15,0);
 printf("\n");
 printf("\n");
 printf("                                OOOOOOOOOOOOOOOO \n");
@@ -722,7 +725,6 @@ printf("                  OOOOOOOOO                           OOOOOOOO\n");
 printf("                     OOOOOOOOOOO                OOOOOOOOOOO\n");
 printf("                          OOOOOOOOOOOOOOOOOOOOOOOOOOOOO\n");
 printf("                                OOOOOOOOOOOOOOOO\n");
-
     gotoligcol(22,115);
     printf(" C A R T E  J E D I :");
 
@@ -743,21 +745,21 @@ printf("                                OOOOOOOOOOOOOOOO\n");
     gotoligcol(45,0);
 
 
-    if(joueur->position > 8)
+    if(Tabjoueur[tour].position > 8)
     {
-        joueur->argent = joueur->argent + 200;
+        Tabjoueur[tour].argent = Tabjoueur[tour].argent + 200;
     }
-    joueur->position= 8;
+    Tabjoueur[tour].position= 8;
 
 }
 
 ///Carte chance 11
-void f11(joueur_t* joueur)
+void f11(joueur_t Tabjoueur[], int tour)
 {
 
     system("cls");
 
-    Color(15,0);
+Color(15,0);
 printf("\n");
 printf("\n");
 printf("                                OOOOOOOOOOOOOOOO \n");
@@ -819,16 +821,16 @@ printf("                                OOOOOOOOOOOOOOOO\n");
     gotoligcol(45,0);
 
 
-    joueur->argent=joueur->argent+200;
+    Tabjoueur[tour].argent=Tabjoueur[tour].argent+200;
 }
 
 ///Carte chance 12
-void f12(joueur_t* joueur)
+void f12(joueur_t Tabjoueur[], int tour)
 {
 
     system("cls");
 
-    Color(15,0);
+Color(15,0);
 printf("\n");
 printf("\n");
 printf("                                OOOOOOOOOOOOOOOO \n");
@@ -890,12 +892,12 @@ printf("                                OOOOOOOOOOOOOOOO\n");
     gotoligcol(45,0);
 
 
-    joueur->argent=joueur->argent+50;
+    Tabjoueur[tour].argent=Tabjoueur[tour].argent+50;
 
 }
 
 ///Carte chance 13
-void f13(joueur_t* joueur)
+void f13(joueur_t Tabjoueur[], int tour)
 {
 
     system("cls");
@@ -959,31 +961,31 @@ printf("                                OOOOOOOOOOOOOOOO\n");
         printf("_");
     }
 
-    if(joueur->position >= 1 || joueur->position <= 7)
+    if(Tabjoueur[tour].position >= 1 || Tabjoueur[tour].position <= 7)
     {
-        joueur->position = 4;
+        Tabjoueur[tour].position = 4;
     }
-    if(joueur->position > 7 || joueur->position <= 13)
+    if(Tabjoueur[tour].position > 7 || Tabjoueur[tour].position <= 13)
     {
-        joueur->position = 10;
+        Tabjoueur[tour].position = 10;
     }
-    if(joueur->position > 13 || joueur->position <= 22)
+    if(Tabjoueur[tour].position > 13 || Tabjoueur[tour].position <= 22)
     {
-        joueur->position = 18;
+        Tabjoueur[tour].position = 18;
     }
-    if(joueur->position > 22 || joueur->position <= 27 || joueur->position == 0)
+    if(Tabjoueur[tour].position > 22 || Tabjoueur[tour].position <= 27 || Tabjoueur[tour].position == 0)
     {
-        if(joueur->position == 0)
+        if(Tabjoueur[tour].position == 0)
         {
-            joueur->argent = joueur->argent + 200;
+            Tabjoueur[tour].argent = Tabjoueur[tour].argent + 200;
         }
-        joueur->position = 25;
+        Tabjoueur[tour].position = 25;
     }
 
 }
 
 ///Carte chance 14
-void f14(joueur_t* joueur)
+void f14(joueur_t Tabjoueur[], int tour)
 {
 
     system("cls");
@@ -1051,12 +1053,12 @@ printf("                                OOOOOOOOOOOOOOOO\n");
     }
     gotoligcol(45,0);
 
-    joueur->position=27;
+    Tabjoueur[tour].position=27;
 
 }
 
 ///Carte chance 15
-void f15(joueur_t* joueur)
+void f15(joueur_t Tabjoueur[], int tour)
 {
 
     system("cls");
@@ -1120,14 +1122,14 @@ printf("                                OOOOOOOOOOOOOOOO\n");
         printf("_");
     }
 
-    joueur->position = joueur->position - 3 ;
-    if(joueur->position == 0)
+    Tabjoueur[tour].position = Tabjoueur[tour].position - 3 ;
+    if(Tabjoueur[tour].position == 0)
     {
-        joueur->argent = joueur->argent + 200;
+        Tabjoueur[tour].argent = Tabjoueur[tour].argent + 200;
     }
 }
 
-void f16(joueur_t* joueur)
+void f16(joueur_t Tabjoueur[], int tour)
 {
 
     system("cls");
@@ -1193,15 +1195,10 @@ printf("                                OOOOOOOOOOOOOOOO\n");
         printf("_");
     }
 
-    if(joueur->position > 18)
+    if(Tabjoueur[tour].position > 18)
     {
-        joueur->argent = joueur->argent + 200;
+        Tabjoueur[tour].argent = Tabjoueur[tour].argent + 200;
     }
-    joueur->position = 18;
+    Tabjoueur[tour].position = 18;
 
 }
-
-
-
-
-
