@@ -134,7 +134,7 @@ printf("                                OOOOOOOOOOOOOOOO\n");
     printf(" U N  C H A S S E U R  D E  P R I M E  V O U S  C H E R C H E");
 
     gotoligcol(26,105);
-    printf(" P A Y E R  2 0 0   C R E D I T  P O U R  Q U ' I L  V O U S  L A I S S E");
+    printf(" P A Y E R  2 0 0   C R E D I T  P O U R  V I V R E ");
 
 
     gotoligcol(28,90);
@@ -961,19 +961,19 @@ printf("                                OOOOOOOOOOOOOOOO\n");
         printf("_");
     }
 
-    if(Tabjoueur[tour].position >= 1 || Tabjoueur[tour].position <= 7)
+    if(Tabjoueur[tour].position >= 1 && Tabjoueur[tour].position <= 7)
     {
         Tabjoueur[tour].position = 4;
     }
-    if(Tabjoueur[tour].position > 7 || Tabjoueur[tour].position <= 13)
+    if(Tabjoueur[tour].position > 7 && Tabjoueur[tour].position <= 13)
     {
         Tabjoueur[tour].position = 10;
     }
-    if(Tabjoueur[tour].position > 13 || Tabjoueur[tour].position <= 22)
+    if(Tabjoueur[tour].position > 13 && Tabjoueur[tour].position <= 22)
     {
         Tabjoueur[tour].position = 18;
     }
-    if(Tabjoueur[tour].position > 22 || Tabjoueur[tour].position <= 27 || Tabjoueur[tour].position == 0)
+    if((Tabjoueur[tour].position > 22 && Tabjoueur[tour].position <= 27) || Tabjoueur[tour].position == 0)
     {
         if(Tabjoueur[tour].position == 0)
         {

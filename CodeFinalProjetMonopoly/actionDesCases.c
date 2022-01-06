@@ -359,7 +359,7 @@ void actioncase(joueur_t Tabjoueur[],caseMonop tabc[],int tour, int* nombreCarte
             }
             case 14:
             {
-                //Fsith15(Tabjoueur, tour);
+                Fsith15(Tabjoueur, tour);
                 break;
             }
             case 15:
@@ -460,6 +460,11 @@ void actioncase(joueur_t Tabjoueur[],caseMonop tabc[],int tour, int* nombreCarte
             f16(Tabjoueur, tour);
             break;
         }
+        }
+        *nombreCarteChance = *nombreCarteChance + 1;
+        if(*nombreCarteChance == 16)
+        {
+            *nombreCarteChance = 0;
         }
         break;
     }

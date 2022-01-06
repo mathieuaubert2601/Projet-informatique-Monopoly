@@ -90,6 +90,7 @@ void Fsith10(joueur_t Tabjoueur[], int tour);
 void Fsith12(joueur_t Tabjoueur[], int tour);
 void Fsith13(joueur_t Tabjoueur[], int tour);
 void Fsith14(joueur_t Tabjoueur[], int tour);
+void Fsith15(joueur_t Tabjoueur[], int tour);
 void Fsith16(joueur_t Tabjoueur[], int tour);
 void f1(joueur_t Tabjoueur[], int tour);
 void f2(joueur_t Tabjoueur[], int tour);
