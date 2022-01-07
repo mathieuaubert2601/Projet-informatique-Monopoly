@@ -1359,7 +1359,7 @@ void Fsith16(joueur_t Tabjoueur[], int tour)
     printf("   iiiiiiiiiii7iiii7iii;;;i7778888888888888ii7788888888888777i;;;;iiii 88888888888               R E B E L L E S   I D E N T I F I E S, \n");
     Sleep(30);
     printf("     i;iiiiiiiiiiii7iiiiiiiiiiiiiiiiiiiiiiiiii8877iiiiiiiiiiiiiiiiiii877   88888      \n");
-    printf("      ii;;iiiiiiiiiiiiii;;;ii^^^;;;ii77777788888888888887777iii;;  77777           78             A L L E Z  S U R  H O T H\n");
+    printf("      ii;;iiiiiiiiiiiiii;;;ii^^^;;;ii77777788888888888887777iii;;  77777           78                   A L L E Z  S U R  H O T H\n");
     Sleep(30);
     printf("     77iii;;iiiiiiiiii;;;ii;;;;;;;;;^^^^8888888888888888888777ii;;  ii7         ;i78\n");
     printf("        ^ii;8iiiiiiii ';;;;ii;;;;;;;;;;;;;;;;;;^^oo ooooo^^^88888888;;i7          7;788\n");

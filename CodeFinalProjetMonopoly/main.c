@@ -110,7 +110,7 @@ int main()
 
                     //Action case
                     positionTemporaire = ordreDePassageDesJoueurs[t].position;
-                    actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance);
+                    actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
 
                     //On vérifie si le joueur était sur une case avec une carte
                     if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
@@ -218,7 +218,7 @@ int main()
 
                             //Action case
                             positionTemporaire = ordreDePassageDesJoueurs[t].position;
-                            actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance);
+                            actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
 
                             //On vérifie si le joueur était sur une case avec une carte
                             if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
@@ -285,7 +285,7 @@ int main()
 
                             //Action case
                             positionTemporaire = ordreDePassageDesJoueurs[t].position;
-                            actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance);
+                            actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
 
                             //On vérifie si le joueur était sur une case avec une carte
                             if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
@@ -407,7 +407,7 @@ int main()
 
                         //Action case
                         positionTemporaire = ordreDePassageDesJoueurs[t].position;
-                        actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance);
+                        actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
 
                         //On vérifie si le joueur était sur une case avec une carte
                         if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
@@ -503,7 +503,7 @@ int main()
 
                                 //Action case
                                 positionTemporaire = ordreDePassageDesJoueurs[t].position;
-                                actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance);
+                                actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
 
                                 //On vérifie si le joueur était sur une case avec une carte
                                 if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
@@ -561,7 +561,7 @@ int main()
 
                                 //Action case
                                 positionTemporaire = ordreDePassageDesJoueurs[t].position;
-                                actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance);
+                                actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
 
                                 //On vérifie si le joueur était sur une case avec une carte
                                 if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
@@ -594,7 +594,7 @@ int main()
                     {
                         positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
                         plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly);
-                        actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance);
+                        actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
                         system("cls");
                         plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly);
 
@@ -720,7 +720,7 @@ int main()
 
                     //Action case
                     positionTemporaire = ordreDePassageDesJoueurs[t].position;
-                    actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance);
+                    actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
 
                     //On vérifie si le joueur était sur une case avec une carte
                     if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
@@ -828,7 +828,7 @@ int main()
 
                             //Action case
                             positionTemporaire = ordreDePassageDesJoueurs[t].position;
-                            actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance);
+                            actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
 
                             //On vérifie si le joueur était sur une case avec une carte
                             if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
@@ -895,7 +895,7 @@ int main()
 
                             //Action case
                             positionTemporaire = ordreDePassageDesJoueurs[t].position;
-                            actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance);
+                            actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
 
                             //On vérifie si le joueur était sur une case avec une carte
                             if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
@@ -1017,7 +1017,7 @@ int main()
 
                         //Action case
                         positionTemporaire = ordreDePassageDesJoueurs[t].position;
-                        actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance);
+                        actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
 
                         //On vérifie si le joueur était sur une case avec une carte
                         if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
@@ -1113,7 +1113,7 @@ int main()
 
                                 //Action case
                                 positionTemporaire = ordreDePassageDesJoueurs[t].position;
-                                actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance);
+                                actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
 
                                 //On vérifie si le joueur était sur une case avec une carte
                                 if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
@@ -1171,7 +1171,7 @@ int main()
 
                                 //Action case
                                 positionTemporaire = ordreDePassageDesJoueurs[t].position;
-                                actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance);
+                                actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
 
                                 //On vérifie si le joueur était sur une case avec une carte
                                 if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
@@ -1204,7 +1204,7 @@ int main()
                     {
                         positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
                         plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly);
-                        actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance);
+                        actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
                         system("cls");
                         plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly);
 
@@ -1287,7 +1287,7 @@ int main()
 
                     //Action case
                     positionTemporaire = ordreDePassageDesJoueurs[t].position;
-                    actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance);
+                    actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
 
                     //On vérifie si le joueur était sur une case avec une carte
                     if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
@@ -1395,7 +1395,7 @@ int main()
 
                             //Action case
                             positionTemporaire = ordreDePassageDesJoueurs[t].position;
-                            actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance);
+                            actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
 
                             //On vérifie si le joueur était sur une case avec une carte
                             if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
@@ -1462,7 +1462,7 @@ int main()
 
                             //Action case
                             positionTemporaire = ordreDePassageDesJoueurs[t].position;
-                            actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance);
+                            actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
 
                             //On vérifie si le joueur était sur une case avec une carte
                             if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
@@ -1584,7 +1584,7 @@ int main()
 
                         //Action case
                         positionTemporaire = ordreDePassageDesJoueurs[t].position;
-                        actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance);
+                        actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
 
                         //On vérifie si le joueur était sur une case avec une carte
                         if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
@@ -1680,7 +1680,7 @@ int main()
 
                                 //Action case
                                 positionTemporaire = ordreDePassageDesJoueurs[t].position;
-                                actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance);
+                                actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
 
                                 //On vérifie si le joueur était sur une case avec une carte
                                 if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
@@ -1738,7 +1738,7 @@ int main()
 
                                 //Action case
                                 positionTemporaire = ordreDePassageDesJoueurs[t].position;
-                                actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance);
+                                actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
 
                                 //On vérifie si le joueur était sur une case avec une carte
                                 if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
@@ -1771,7 +1771,7 @@ int main()
                     {
                         positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
                         plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly);
-                        actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance);
+                        actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
                         system("cls");
                         plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly);
 

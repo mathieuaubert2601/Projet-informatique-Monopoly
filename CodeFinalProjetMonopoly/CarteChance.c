@@ -220,7 +220,7 @@ printf("                                OOOOOOOOOOOOOOOO\n");
     }
 
 
-    Tabjoueur[tour].argent=Tabjoueur[tour].argent-50;
+    Tabjoueur[tour].argent=Tabjoueur[tour].argent-100;
     if (Tabjoueur[tour].argent<0)
     {
         Tabjoueur[tour].argent=0;

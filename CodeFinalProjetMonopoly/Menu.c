@@ -115,8 +115,7 @@ void menu(int* choix)//menu
             fflush(stdin);
             Color(3,0);
             scanf("%d",&choix);
-        }
-        while(*choix<1||*choix>7); //tant que l'on a pas de resultat entre 1 et 6
+        }while(*choix<1 || *choix>7); //tant que l'on a pas de resultat entre 1 et
     }
 }
 

@@ -1,7 +1,7 @@
 #include "header.h"
 
 
-void actioncase(joueur_t Tabjoueur[],caseMonop tabc[],int tour, int* nombreCarteSith,int* nombreCarteChance)
+void actioncase(joueur_t Tabjoueur[],caseMonop tabc[],int tour, int* nombreCarteSith,int* nombreCarteChance, int positionDesJoueurs[])
 {
     int pos = Tabjoueur[tour].position;
 
@@ -22,15 +22,28 @@ void actioncase(joueur_t Tabjoueur[],caseMonop tabc[],int tour, int* nombreCarte
                 do
                 {
                     gotoligcol(14,114);
-                    printf("%s, souhaitez vous payer %d credits afin d'acheter %s ?",Tabjoueur[tour].nomJoueur,tabc[pos].prix_case,tabc[pos].nomCase);
+                    printf("Nom de la case : %s ",tabc[pos].nomCase);
                     gotoligcol(15,114);
-                    printf("Le loyer sur cette case est de %d credits, vous avez %d credits.",tabc[pos].prixLoyer, Tabjoueur[tour].argent);
+                    printf("Prix : %d || Loyer : %d",tabc[pos].prix_case,tabc[pos].prixLoyer);
                     gotoligcol(16,114);
+                    printf("A vous de choisir %s", Tabjoueur[tour].nomJoueur);
+                    gotoligcol(17,114);
                     printf("Acheter(1) ou ne pas acheter(0) ?");
                     fflush(stdin);
-                    gotoligcol(16,146);
+                    gotoligcol(18,114);
                     scanf("%d", &choixAchat);
-                }while(choixAchat!=0 && choixAchat!=1);
+                }
+                while(choixAchat!=0 && choixAchat!=1);
+                gotoligcol(14,114);
+                printf("                                                             ");
+                gotoligcol(15,114);
+                printf("                                                             ");
+                gotoligcol(16,114);
+                printf("                                                             ");
+                gotoligcol(17,114);
+                printf("                                                             ");
+                gotoligcol(18,114);
+                printf("                                                             ");
                 if (choixAchat == 1)
                 {
                     Tabjoueur[tour].argent -= tabc[pos].prix_case;
@@ -41,6 +54,7 @@ void actioncase(joueur_t Tabjoueur[],caseMonop tabc[],int tour, int* nombreCarte
 
                     gotoligcol(14,114);
                     printf("%s a achete %s pour %d credits",Tabjoueur[tour].nomJoueur,tabc[pos].nomCase, tabc[pos].prix_case);
+
                 }
                 else if (choixAchat==0)
                 {
@@ -51,223 +65,375 @@ void actioncase(joueur_t Tabjoueur[],caseMonop tabc[],int tour, int* nombreCarte
             else if (Tabjoueur[tour].argent<= tabc[pos].prix_case)
             {
                 gotoligcol(14,114);
-                printf("%s vaut : %d credits, cependant vous n'avez que %d credits",tabc[pos].nomCase, tabc[pos].prix_case, Tabjoueur[tour].argent);
+                printf("%s vaut : %d credits", tabc[pos].nomCase, tabc[pos].prix_case);
+                gotoligcol(15,114);
+                printf("cependant vous n'avez que %d credits", Tabjoueur[tour].argent);
                 gotoligcol(16,114);
                 printf("donc vous ne pouvez pas acheter %s\n",tabc[pos].nomCase);
             }
         }
         else if ((prop_DE>0 && prop_DE<5)&& prop_DE!=Tabjoueur[tour].numeroJoueur)
         {
-            if (Tabjoueur[prop_DE].familles[tabc[pos].famille] == 2)
+            if (tabc[pos].hypotheque==1)
             {
-                if (tabc[pos].nbMaison==0 && tabc[pos].nbHotel==0)
+                if (Tabjoueur[prop_DE].familles[tabc[pos].famille] == 2)
                 {
-                    gotoligcol(14,114);
-                    printf("%s appartient a %s, vous allez devoir lui payer %d credits", tabc[pos].nomCase, Tabjoueur[prop_DE].nomJoueur, tabc[pos].prixLoyer*2);
-                    if (Tabjoueur[tour].argent>=tabc[pos].prixLoyer*2)
+                    if (tabc[pos].nbMaison==0 && tabc[pos].nbHotel==0)
                     {
-                        Tabjoueur[tour].argent-= tabc[pos].prixLoyer*2;
-                        Tabjoueur[prop_DE].argent += tabc[pos].prixLoyer*2;
-                        gotoligcol(15,114);
-                        printf("%s a paye %d credits a %s", Tabjoueur[tour].nomJoueur,tabc[pos].prixLoyer*2, Tabjoueur[prop_DE].nomJoueur);
+                        gotoligcol(14,114);
+                        printf("%s appartient a %s, vous allez devoir lui payer %d credits", tabc[pos].nomCase, Tabjoueur[prop_DE].nomJoueur, tabc[pos].prixLoyer*2);
+                        if (Tabjoueur[tour].argent>=tabc[pos].prixLoyer*2)
+                        {
+                            Tabjoueur[tour].argent-= tabc[pos].prixLoyer*2;
+                            Tabjoueur[prop_DE].argent += tabc[pos].prixLoyer*2;
+                            gotoligcol(15,114);
+                            printf("%s a paye %d credits a %s", Tabjoueur[tour].nomJoueur,tabc[pos].prixLoyer*2, Tabjoueur[prop_DE].nomJoueur);
+                        }
+                        else if (Tabjoueur[tour].argent<=tabc[pos].prixLoyer*2)
+                        {
+
+                        }
+
                     }
-                    else if (Tabjoueur[tour].argent<=tabc[pos].prixLoyer*2)
+                    if (tabc[pos].nbMaison==1)
                     {
+                        gotoligcol(14,114);
+                        printf("%s appartient a %s, vous allez devoir lui payer %d credits", tabc[pos].nomCase, Tabjoueur[prop_DE].nomJoueur, tabc[pos].prixloy1maison*2);
+                        if (Tabjoueur[tour].argent>=tabc[pos].prixloy1maison*2)
+                        {
+                            Tabjoueur[tour].argent-= tabc[pos].prixloy1maison*2;
+                            Tabjoueur[prop_DE].argent += tabc[pos].prixloy1maison*2;
+                            gotoligcol(15,114);
+                            printf("%s a paye %d credits a %s", Tabjoueur[tour].nomJoueur,tabc[pos].prixloy1maison*2, Tabjoueur[prop_DE].nomJoueur);
+                        }
+                        else if (Tabjoueur[tour].argent<=tabc[pos].prixloy1maison*2)
+                        {
+
+                        }
+
+                    } if (tabc[pos].nbMaison==2)
+                    {
+                        gotoligcol(14,114);
+                        printf("%s appartient a %s, vous allez devoir lui payer %d credits", tabc[pos].nomCase, Tabjoueur[prop_DE].nomJoueur, tabc[pos].prixloy2maison*2);
+                        if (Tabjoueur[tour].argent>=tabc[pos].prixloy2maison*2)
+                        {
+                            Tabjoueur[tour].argent-= tabc[pos].prixloy2maison*2;
+                            Tabjoueur[prop_DE].argent += tabc[pos].prixloy2maison*2;
+                            gotoligcol(15,114);
+                            printf("%s a paye %d credits a %s", Tabjoueur[tour].nomJoueur,tabc[pos].prixloy2maison*2, Tabjoueur[prop_DE].nomJoueur);
+                        }
+                        else if (Tabjoueur[tour].argent<=tabc[pos].prixloy2maison*2)
+                        {
+
+                        }
+
+                    } if (tabc[pos].nbMaison==3)
+                    {
+                        gotoligcol(14,114);
+                        printf("%s appartient a %s, vous allez devoir lui payer %d credits", tabc[pos].nomCase, Tabjoueur[prop_DE].nomJoueur, tabc[pos].prixloy3maison*2);
+                        if (Tabjoueur[tour].argent>=tabc[pos].prixloy3maison*2)
+                        {
+                            Tabjoueur[tour].argent-= tabc[pos].prixloy3maison*2;
+                            Tabjoueur[prop_DE].argent += tabc[pos].prixloy3maison*2;
+                            gotoligcol(15,114);
+                            printf("%s a paye %d credits a %s", Tabjoueur[tour].nomJoueur,tabc[pos].prixloy3maison*2, Tabjoueur[prop_DE].nomJoueur);
+                        }
+                        else if (Tabjoueur[tour].argent<=tabc[pos].prixloy3maison*2)
+                        {
+
+                        }
+
+                    } if (tabc[pos].nbMaison==4)
+                    {
+                        gotoligcol(14,114);
+                        printf("%s appartient a %s, vous allez devoir lui payer %d credits", tabc[pos].nomCase, Tabjoueur[prop_DE].nomJoueur, tabc[pos].prixloy4maison*2);
+                        if (Tabjoueur[tour].argent>=tabc[pos].prixloy4maison*2)
+                        {
+                            Tabjoueur[tour].argent-= tabc[pos].prixloy4maison*2;
+                            Tabjoueur[prop_DE].argent += tabc[pos].prixloy4maison*2;
+                            gotoligcol(15,114);
+                            printf("%s a paye %d credits a %s", Tabjoueur[tour].nomJoueur,tabc[pos].prixloy4maison*2, Tabjoueur[prop_DE].nomJoueur);
+                        }
+                        else if (Tabjoueur[tour].argent<=tabc[pos].prixloy4maison*2)
+                        {
+
+                        }
+
+                    } if (tabc[pos].nbHotel==0)
+                    {
+                        gotoligcol(14,114);
+                        printf("%s appartient a %s, vous allez devoir lui payer %d credits", tabc[pos].nomCase, Tabjoueur[prop_DE].nomJoueur, tabc[pos].prixloyhotel*2);
+                        if (Tabjoueur[tour].argent>=tabc[pos].prixloyhotel*2)
+                        {
+                            Tabjoueur[tour].argent-= tabc[pos].prixloyhotel*2;
+                            Tabjoueur[prop_DE].argent += tabc[pos].prixloyhotel*2;
+                            gotoligcol(15,114);
+                            printf("%s a paye %d credits a %s", Tabjoueur[tour].nomJoueur,tabc[pos].prixloyhotel*2, Tabjoueur[prop_DE].nomJoueur);
+                        }
+                        else if (Tabjoueur[tour].argent<=tabc[pos].prixloyhotel*2)
+                        {
+
+                        }
 
                     }
 
                 }
-                if (tabc[pos].nbMaison==1)
+                else if (Tabjoueur[prop_DE].familles[tabc[pos].famille] == 1)
                 {
-                    gotoligcol(14,114);
-                    printf("%s appartient a %s, vous allez devoir lui payer %d credits", tabc[pos].nomCase, Tabjoueur[prop_DE].nomJoueur, tabc[pos].prixloy1maison*2);
-                    if (Tabjoueur[tour].argent>=tabc[pos].prixloy1maison*2)
+                    if (tabc[pos].nbMaison==0 && tabc[pos].nbHotel==0)
                     {
-                        Tabjoueur[tour].argent-= tabc[pos].prixloy1maison*2;
-                        Tabjoueur[prop_DE].argent += tabc[pos].prixloy1maison*2;
-                        gotoligcol(15,114);
-                        printf("%s a paye %d credits a %s", Tabjoueur[tour].nomJoueur,tabc[pos].prixloy1maison*2, Tabjoueur[prop_DE].nomJoueur);
-                    }
-                    else if (Tabjoueur[tour].argent<=tabc[pos].prixloy1maison*2)
-                    {
+                        gotoligcol(14,114);
+                        printf("%s appartient a %s, vous allez devoir lui payer %d credits", tabc[pos].nomCase, Tabjoueur[prop_DE].nomJoueur, tabc[pos].prixLoyer);
+                        if (Tabjoueur[tour].argent>=tabc[pos].prixLoyer)
+                        {
+                            Tabjoueur[tour].argent-= tabc[pos].prixLoyer;
+                            Tabjoueur[prop_DE].argent += tabc[pos].prixLoyer;
+                            gotoligcol(15,114);
+                            printf("%s a paye %d credits a %s", Tabjoueur[tour].nomJoueur,tabc[pos].prixLoyer, Tabjoueur[prop_DE].nomJoueur);
+                        }
+                        else if (Tabjoueur[tour].argent<=tabc[pos].prixLoyer)
+                        {
+
+                        }
 
                     }
-
-                }if (tabc[pos].nbMaison==2)
-                {
-                    gotoligcol(14,114);
-                    printf("%s appartient a %s, vous allez devoir lui payer %d credits", tabc[pos].nomCase, Tabjoueur[prop_DE].nomJoueur, tabc[pos].prixloy2maison*2);
-                    if (Tabjoueur[tour].argent>=tabc[pos].prixloy2maison*2)
+                    if (tabc[pos].nbMaison==1)
                     {
-                        Tabjoueur[tour].argent-= tabc[pos].prixloy2maison*2;
-                        Tabjoueur[prop_DE].argent += tabc[pos].prixloy2maison*2;
-                        gotoligcol(15,114);
-                        printf("%s a paye %d credits a %s", Tabjoueur[tour].nomJoueur,tabc[pos].prixloy2maison*2, Tabjoueur[prop_DE].nomJoueur);
-                    }
-                    else if (Tabjoueur[tour].argent<=tabc[pos].prixloy2maison*2)
+                        gotoligcol(14,114);
+                        printf("%s appartient a %s, vous allez devoir lui payer %d credits", tabc[pos].nomCase, Tabjoueur[prop_DE].nomJoueur, tabc[pos].prixloy1maison);
+                        if (Tabjoueur[tour].argent>=tabc[pos].prixloy1maison)
+                        {
+                            Tabjoueur[tour].argent-= tabc[pos].prixloy1maison;
+                            Tabjoueur[prop_DE].argent += tabc[pos].prixloy1maison;
+                            gotoligcol(15,114);
+                            printf("%s a paye %d credits a %s", Tabjoueur[tour].nomJoueur,tabc[pos].prixloy1maison, Tabjoueur[prop_DE].nomJoueur);
+                        }
+                        else if (Tabjoueur[tour].argent<=tabc[pos].prixloy1maison)
+                        {
+
+                        }
+
+                    } if (tabc[pos].nbMaison==2)
                     {
+                        gotoligcol(14,114);
+                        printf("%s appartient a %s, vous allez devoir lui payer %d credits", tabc[pos].nomCase, Tabjoueur[prop_DE].nomJoueur, tabc[pos].prixloy2maison);
+                        if (Tabjoueur[tour].argent>=tabc[pos].prixloy2maison)
+                        {
+                            Tabjoueur[tour].argent-= tabc[pos].prixloy2maison;
+                            Tabjoueur[prop_DE].argent += tabc[pos].prixloy2maison;
+                            gotoligcol(15,114);
+                            printf("%s a paye %d credits a %s", Tabjoueur[tour].nomJoueur,tabc[pos].prixloy2maison, Tabjoueur[prop_DE].nomJoueur);
+                        }
+                        else if (Tabjoueur[tour].argent<=tabc[pos].prixloy2maison)
+                        {
 
-                    }
+                        }
 
-                }if (tabc[pos].nbMaison==3)
-                {
-                    gotoligcol(14,114);
-                    printf("%s appartient a %s, vous allez devoir lui payer %d credits", tabc[pos].nomCase, Tabjoueur[prop_DE].nomJoueur, tabc[pos].prixloy3maison*2);
-                    if (Tabjoueur[tour].argent>=tabc[pos].prixloy3maison*2)
+                    } if (tabc[pos].nbMaison==3)
                     {
-                        Tabjoueur[tour].argent-= tabc[pos].prixloy3maison*2;
-                        Tabjoueur[prop_DE].argent += tabc[pos].prixloy3maison*2;
-                        gotoligcol(15,114);
-                        printf("%s a paye %d credits a %s", Tabjoueur[tour].nomJoueur,tabc[pos].prixloy3maison*2, Tabjoueur[prop_DE].nomJoueur);
-                    }
-                    else if (Tabjoueur[tour].argent<=tabc[pos].prixloy3maison*2)
+                        gotoligcol(14,114);
+                        printf("%s appartient a %s, vous allez devoir lui payer %d credits", tabc[pos].nomCase, Tabjoueur[prop_DE].nomJoueur, tabc[pos].prixloy3maison);
+                        if (Tabjoueur[tour].argent>=tabc[pos].prixloy3maison)
+                        {
+                            Tabjoueur[tour].argent-= tabc[pos].prixloy3maison;
+                            Tabjoueur[prop_DE].argent += tabc[pos].prixloy3maison;
+                            gotoligcol(15,114);
+                            printf("%s a paye %d credits a %s", Tabjoueur[tour].nomJoueur,tabc[pos].prixloy3maison, Tabjoueur[prop_DE].nomJoueur);
+                        }
+                        else if (Tabjoueur[tour].argent<=tabc[pos].prixloy3maison)
+                        {
+
+                        }
+
+                    } if (tabc[pos].nbMaison==4)
                     {
+                        gotoligcol(14,114);
+                        printf("%s appartient a %s, vous allez devoir lui payer %d credits", tabc[pos].nomCase, Tabjoueur[prop_DE].nomJoueur, tabc[pos].prixloy4maison);
+                        if (Tabjoueur[tour].argent>=tabc[pos].prixloy4maison)
+                        {
+                            Tabjoueur[tour].argent-= tabc[pos].prixloy4maison;
+                            Tabjoueur[prop_DE].argent += tabc[pos].prixloy4maison;
+                            gotoligcol(15,114);
+                            printf("%s a paye %d credits a %s", Tabjoueur[tour].nomJoueur,tabc[pos].prixloy4maison, Tabjoueur[prop_DE].nomJoueur);
+                        }
+                        else if (Tabjoueur[tour].argent<=tabc[pos].prixloy4maison)
+                        {
 
-                    }
+                        }
 
-                }if (tabc[pos].nbMaison==4)
-                {
-                    gotoligcol(14,114);
-                    printf("%s appartient a %s, vous allez devoir lui payer %d credits", tabc[pos].nomCase, Tabjoueur[prop_DE].nomJoueur, tabc[pos].prixloy4maison*2);
-                    if (Tabjoueur[tour].argent>=tabc[pos].prixloy4maison*2)
+                    } if (tabc[pos].nbHotel==0)
                     {
-                        Tabjoueur[tour].argent-= tabc[pos].prixloy4maison*2;
-                        Tabjoueur[prop_DE].argent += tabc[pos].prixloy4maison*2;
-                        gotoligcol(15,114);
-                        printf("%s a paye %d credits a %s", Tabjoueur[tour].nomJoueur,tabc[pos].prixloy4maison*2, Tabjoueur[prop_DE].nomJoueur);
-                    }
-                    else if (Tabjoueur[tour].argent<=tabc[pos].prixloy4maison*2)
-                    {
+                        gotoligcol(14,114);
+                        printf("%s appartient a %s, vous allez devoir lui payer %d credits", tabc[pos].nomCase, Tabjoueur[prop_DE].nomJoueur, tabc[pos].prixloyhotel);
+                        if (Tabjoueur[tour].argent>=tabc[pos].prixloyhotel)
+                        {
+                            Tabjoueur[tour].argent-= tabc[pos].prixloyhotel;
+                            Tabjoueur[prop_DE].argent += tabc[pos].prixloyhotel;
+                            gotoligcol(15,114);
+                            printf("%s a paye %d credits a %s", Tabjoueur[tour].nomJoueur,tabc[pos].prixloyhotel, Tabjoueur[prop_DE].nomJoueur);
+                        }
+                        else if (Tabjoueur[tour].argent<=tabc[pos].prixloyhotel)
+                        {
+
+                        }
 
                     }
-
-                }if (tabc[pos].nbHotel==0)
-                {
-                    gotoligcol(14,114);
-                    printf("%s appartient a %s, vous allez devoir lui payer %d credits", tabc[pos].nomCase, Tabjoueur[prop_DE].nomJoueur, tabc[pos].prixloyhotel*2);
-                    if (Tabjoueur[tour].argent>=tabc[pos].prixloyhotel*2)
-                    {
-                        Tabjoueur[tour].argent-= tabc[pos].prixloyhotel*2;
-                        Tabjoueur[prop_DE].argent += tabc[pos].prixloyhotel*2;
-                        gotoligcol(15,114);
-                        printf("%s a paye %d credits a %s", Tabjoueur[tour].nomJoueur,tabc[pos].prixloyhotel*2, Tabjoueur[prop_DE].nomJoueur);
-                    }
-                    else if (Tabjoueur[tour].argent<=tabc[pos].prixloyhotel*2)
-                    {
-
-                    }
-
                 }
+
 
             }
-            else if (Tabjoueur[prop_DE].familles[tabc[pos].famille] == 1)
+            else if(tabc[pos].hypotheque==1)
             {
-                if (tabc[pos].nbMaison==0 && tabc[pos].nbHotel==0)
-                {
-                    gotoligcol(14,114);
-                    printf("%s appartient a %s, vous allez devoir lui payer %d credits", tabc[pos].nomCase, Tabjoueur[prop_DE].nomJoueur, tabc[pos].prixLoyer);
-                    if (Tabjoueur[tour].argent>=tabc[pos].prixLoyer)
-                    {
-                        Tabjoueur[tour].argent-= tabc[pos].prixLoyer;
-                        Tabjoueur[prop_DE].argent += tabc[pos].prixLoyer;
-                        gotoligcol(15,114);
-                        printf("%s a paye %d credits a %s", Tabjoueur[tour].nomJoueur,tabc[pos].prixLoyer, Tabjoueur[prop_DE].nomJoueur);
-                    }
-                    else if (Tabjoueur[tour].argent<=tabc[pos].prixLoyer)
-                    {
-
-                    }
-
-                }
-                if (tabc[pos].nbMaison==1)
-                {
-                    gotoligcol(14,114);
-                    printf("%s appartient a %s, vous allez devoir lui payer %d credits", tabc[pos].nomCase, Tabjoueur[prop_DE].nomJoueur, tabc[pos].prixloy1maison);
-                    if (Tabjoueur[tour].argent>=tabc[pos].prixloy1maison)
-                    {
-                        Tabjoueur[tour].argent-= tabc[pos].prixloy1maison;
-                        Tabjoueur[prop_DE].argent += tabc[pos].prixloy1maison;
-                        gotoligcol(15,114);
-                        printf("%s a paye %d credits a %s", Tabjoueur[tour].nomJoueur,tabc[pos].prixloy1maison, Tabjoueur[prop_DE].nomJoueur);
-                    }
-                    else if (Tabjoueur[tour].argent<=tabc[pos].prixloy1maison)
-                    {
-
-                    }
-
-                }if (tabc[pos].nbMaison==2)
-                {
-                    gotoligcol(14,114);
-                    printf("%s appartient a %s, vous allez devoir lui payer %d credits", tabc[pos].nomCase, Tabjoueur[prop_DE].nomJoueur, tabc[pos].prixloy2maison);
-                    if (Tabjoueur[tour].argent>=tabc[pos].prixloy2maison)
-                    {
-                        Tabjoueur[tour].argent-= tabc[pos].prixloy2maison;
-                        Tabjoueur[prop_DE].argent += tabc[pos].prixloy2maison;
-                        gotoligcol(15,114);
-                        printf("%s a paye %d credits a %s", Tabjoueur[tour].nomJoueur,tabc[pos].prixloy2maison, Tabjoueur[prop_DE].nomJoueur);
-                    }
-                    else if (Tabjoueur[tour].argent<=tabc[pos].prixloy2maison)
-                    {
-
-                    }
-
-                }if (tabc[pos].nbMaison==3)
-                {
-                    gotoligcol(14,114);
-                    printf("%s appartient a %s, vous allez devoir lui payer %d credits", tabc[pos].nomCase, Tabjoueur[prop_DE].nomJoueur, tabc[pos].prixloy3maison);
-                    if (Tabjoueur[tour].argent>=tabc[pos].prixloy3maison)
-                    {
-                        Tabjoueur[tour].argent-= tabc[pos].prixloy3maison;
-                        Tabjoueur[prop_DE].argent += tabc[pos].prixloy3maison;
-                        gotoligcol(15,114);
-                        printf("%s a paye %d credits a %s", Tabjoueur[tour].nomJoueur,tabc[pos].prixloy3maison, Tabjoueur[prop_DE].nomJoueur);
-                    }
-                    else if (Tabjoueur[tour].argent<=tabc[pos].prixloy3maison)
-                    {
-
-                    }
-
-                }if (tabc[pos].nbMaison==4)
-                {
-                    gotoligcol(14,114);
-                    printf("%s appartient a %s, vous allez devoir lui payer %d credits", tabc[pos].nomCase, Tabjoueur[prop_DE].nomJoueur, tabc[pos].prixloy4maison);
-                    if (Tabjoueur[tour].argent>=tabc[pos].prixloy4maison)
-                    {
-                        Tabjoueur[tour].argent-= tabc[pos].prixloy4maison;
-                        Tabjoueur[prop_DE].argent += tabc[pos].prixloy4maison;
-                        gotoligcol(15,114);
-                        printf("%s a paye %d credits a %s", Tabjoueur[tour].nomJoueur,tabc[pos].prixloy4maison, Tabjoueur[prop_DE].nomJoueur);
-                    }
-                    else if (Tabjoueur[tour].argent<=tabc[pos].prixloy4maison)
-                    {
-
-                    }
-
-                }if (tabc[pos].nbHotel==0)
-                {
-                    gotoligcol(14,114);
-                    printf("%s appartient a %s, vous allez devoir lui payer %d credits", tabc[pos].nomCase, Tabjoueur[prop_DE].nomJoueur, tabc[pos].prixloyhotel);
-                    if (Tabjoueur[tour].argent>=tabc[pos].prixloyhotel)
-                    {
-                        Tabjoueur[tour].argent-= tabc[pos].prixloyhotel;
-                        Tabjoueur[prop_DE].argent += tabc[pos].prixloyhotel;
-                        gotoligcol(15,114);
-                        printf("%s a paye %d credits a %s", Tabjoueur[tour].nomJoueur,tabc[pos].prixloyhotel, Tabjoueur[prop_DE].nomJoueur);
-                    }
-                    else if (Tabjoueur[tour].argent<=tabc[pos].prixloyhotel)
-                    {
-
-                    }
-
-                }
-
+                gotoligcol(14,114);
+                printf("%s a ete hypotheque, vous n'avez donc rien a payer",tabc[pos].nomCase);
             }
         }
+
         break;
     }
     case 2:
     {
-        //prog acheter
+        int prop_DE = tabc[pos].proprieteDe, choixAchat;
+        if (prop_DE == 0)
+        {
+            if (Tabjoueur[tour].argent>= tabc[pos].prix_case)
+            {
+                do
+                {
+                    do
+                    {
+                        gotoligcol(14,114);
+                        printf("Nom de la case : %s ",tabc[pos].nomCase);
+                        gotoligcol(15,114);
+                        printf("Prix : %d || Loyer : %d",tabc[pos].prix_case,tabc[pos].prixLoyer);
+                        gotoligcol(16,114);
+                        printf("A vous de choisir %s", Tabjoueur[tour].nomJoueur);
+                        gotoligcol(17,114);
+                        printf("Acheter(1) ou ne pas acheter(0) ?");
+                        fflush(stdin);
+                        gotoligcol(18,114);
+                        scanf("%d", &choixAchat);
+                    }
+                    while(choixAchat!=0 && choixAchat!=1);
+                }
+                while(choixAchat!=0 && choixAchat!=1);
+                gotoligcol(14,114);
+                printf("                                                             ");
+                gotoligcol(15,114);
+                printf("                                                             ");
+                gotoligcol(16,114);
+                printf("                                                             ");
+                gotoligcol(17,114);
+                printf("                                                             ");
+                gotoligcol(18,114);
+                printf("                                                             ");
+                if (choixAchat == 1)
+                {
+                    Tabjoueur[tour].argent -= tabc[pos].prix_case;
+                    Tabjoueur[tour].nbPropriete += 1;
+                    Tabjoueur[tour].possessions[tabc[pos].position] = tabc[pos].position;
+                    Tabjoueur[tour].familles[tabc[pos].famille]+=1;
+                    tabc[pos].proprieteDe = Tabjoueur[tour].numeroJoueur;
+
+                    gotoligcol(14,114);
+                    printf("%s a achete %s pour %d credits",Tabjoueur[tour].nomJoueur,tabc[pos].nomCase, tabc[pos].prix_case);
+
+                }
+                else if (choixAchat==0)
+                {
+                    gotoligcol(14,114);
+                    printf("%s n'a pas achete %s",Tabjoueur[tour].nomJoueur,tabc[pos].nomCase);
+                }
+            }
+            else if (Tabjoueur[tour].argent<= tabc[pos].prix_case)
+            {
+                gotoligcol(14,114);
+                printf("%s vaut : %d credits", tabc[pos].nomCase, tabc[pos].prix_case);
+                gotoligcol(15,114);
+                printf("cependant vous n'avez que %d credits", Tabjoueur[tour].argent);
+                gotoligcol(16,114);
+                printf("donc vous ne pouvez pas acheter %s\n",tabc[pos].nomCase);
+            }
+        }
+        else if ((prop_DE>0 && prop_DE<5)&& prop_DE!=Tabjoueur[tour].numeroJoueur)
+        {
+            if (Tabjoueur[prop_DE].familles[tabc[pos].famille]==1)
+            {
+                int prix = 50;
+                gotoligcol(14,114);
+                printf("%s appartient a %s, il possede %d gare",tabc[pos].nomCase, Tabjoueur[prop_DE].nomJoueur);
+                gotoligcol(15,114);
+                printf("vous allez devoir lui payer %d credits", prix);
+                if (Tabjoueur[tour].argent>=prix)
+                {
+                    Tabjoueur[tour].argent-= prix;
+                    Tabjoueur[prop_DE].argent += prix;
+                    gotoligcol(15,114);
+                    printf("%s a paye %d credits a %s", Tabjoueur[tour].nomJoueur,prix, Tabjoueur[prop_DE].nomJoueur);
+                }
+                else if (Tabjoueur[tour].argent<=prix)
+                {
+
+                }
+            }
+            else if (Tabjoueur[prop_DE].familles[tabc[pos].famille]==2)
+            {
+                int prix =100;
+                gotoligcol(14,114);
+                printf("%s appartient a %s, il possede %d gare",tabc[pos].nomCase, Tabjoueur[prop_DE].nomJoueur);
+                gotoligcol(15,114);
+                printf("vous allez devoir lui payer %d credits", prix);
+                if (Tabjoueur[tour].argent>=prix)
+                {
+                    Tabjoueur[tour].argent-= prix;
+                    Tabjoueur[prop_DE].argent += prix;
+                    gotoligcol(15,114);
+                    printf("%s a paye %d credits a %s", Tabjoueur[tour].nomJoueur,prix, Tabjoueur[prop_DE].nomJoueur);
+                }
+                else if (Tabjoueur[tour].argent<=prix)
+                {
+
+                }
+            }
+            else if (Tabjoueur[prop_DE].familles[tabc[pos].famille]==3)
+            {
+                int prix = 200;
+                gotoligcol(14,114);
+                printf("%s appartient a %s, il possede %d gare",tabc[pos].nomCase, Tabjoueur[prop_DE].nomJoueur);
+                gotoligcol(15,114);
+                printf("vous allez devoir lui payer %d credits", prix);
+                if (Tabjoueur[tour].argent>=prix)
+                {
+                    Tabjoueur[tour].argent-= prix;
+                    Tabjoueur[prop_DE].argent += prix;
+                    gotoligcol(15,114);
+                    printf("%s a paye %d credits a %s", Tabjoueur[tour].nomJoueur,prix, Tabjoueur[prop_DE].nomJoueur);
+                }
+                else if (Tabjoueur[tour].argent<=prix)
+                {
+
+                }
+            }
+            else if (Tabjoueur[prop_DE].familles[tabc[pos].famille]==4)
+            {
+                int prix = 400;
+                gotoligcol(14,114);
+                printf("%s appartient a %s, il possede %d gare",tabc[pos].nomCase, Tabjoueur[prop_DE].nomJoueur);
+                gotoligcol(15,114);
+                printf("vous allez devoir lui payer %d credits", prix);
+                if (Tabjoueur[tour].argent>=prix)
+                {
+                    Tabjoueur[tour].argent-= prix;
+                    Tabjoueur[prop_DE].argent += prix;
+                    gotoligcol(15,114);
+                    printf("%s a paye %d credits a %s", Tabjoueur[tour].nomJoueur,prix, Tabjoueur[prop_DE].nomJoueur);
+                }
+                else if (Tabjoueur[tour].argent<=prix)
+                {
+
+                }
+            }
+        }
         break;
     }
     case 4:
@@ -278,6 +444,7 @@ void actioncase(joueur_t Tabjoueur[],caseMonop tabc[],int tour, int* nombreCarte
     case 5:
     {
         Tabjoueur[tour].position=7;
+        positionDesJoueurs[tour]=7;
         Tabjoueur[tour].tourPrison+=1;
         break;
     }
@@ -287,86 +454,86 @@ void actioncase(joueur_t Tabjoueur[],caseMonop tabc[],int tour, int* nombreCarte
         Color(15,0);
         switch(*nombreCarteSith)
         {
-            case 0:
-            {
-                Fsith1(Tabjoueur, tour);
-                break;
-            }
-            case 1:
-            {
-                Fsith2(Tabjoueur, tour);
-                break;
-            }
-            case 2:
-            {
-                Fsith3(Tabjoueur, tour);
-                break;
-            }
-            case 3:
-            {
-                Fsith4(Tabjoueur, tour);
-                break;
-            }
-            case 4:
-            {
-                Fsith5(Tabjoueur, tour);
-                break;
-            }
-            case 5:
-            {
-                Fsith6(Tabjoueur, tour);
-                break;
-            }
-            case 6:
-            {
-                Fsith7(Tabjoueur, tour);
-                break;
-            }
-            case 7:
-            {
-                Fsith8(Tabjoueur, tour);
-                break;
-            }
-            case 8:
-            {
-                Fsith9(Tabjoueur, tour);
-                break;
-            }
-            case 9:
-            {
-                Fsith10(Tabjoueur, tour);
-                break;
-            }
-            case 10:
-            {
-                Fsith11(Tabjoueur, tour);
-                break;
-            }
-            case 11:
-            {
-                Fsith12(Tabjoueur, tour);
-                break;
-            }
-            case 12:
-            {
-                Fsith13(Tabjoueur, tour);
-                break;
-            }
-            case 13:
-            {
-                Fsith14(Tabjoueur, tour);
-                break;
-            }
-            case 14:
-            {
-                Fsith15(Tabjoueur, tour);
-                break;
-            }
-            case 15:
-            {
-                Fsith16(Tabjoueur, tour);
-                break;
-            }
+        case 0:
+        {
+            Fsith1(Tabjoueur, tour);
+            break;
+        }
+        case 1:
+        {
+            Fsith2(Tabjoueur, tour);
+            break;
+        }
+        case 2:
+        {
+            Fsith3(Tabjoueur, tour);
+            break;
+        }
+        case 3:
+        {
+            Fsith4(Tabjoueur, tour);
+            break;
+        }
+        case 4:
+        {
+            Fsith5(Tabjoueur, tour);
+            break;
+        }
+        case 5:
+        {
+            Fsith6(Tabjoueur, tour);
+            break;
+        }
+        case 6:
+        {
+            Fsith7(Tabjoueur, tour);
+            break;
+        }
+        case 7:
+        {
+            Fsith8(Tabjoueur, tour);
+            break;
+        }
+        case 8:
+        {
+            Fsith9(Tabjoueur, tour);
+            break;
+        }
+        case 9:
+        {
+            Fsith10(Tabjoueur, tour);
+            break;
+        }
+        case 10:
+        {
+            Fsith11(Tabjoueur, tour);
+            break;
+        }
+        case 11:
+        {
+            Fsith12(Tabjoueur, tour);
+            break;
+        }
+        case 12:
+        {
+            Fsith13(Tabjoueur, tour);
+            break;
+        }
+        case 13:
+        {
+            Fsith14(Tabjoueur, tour);
+            break;
+        }
+        case 14:
+        {
+            //Fsith15(Tabjoueur, tour);
+            break;
+        }
+        case 15:
+        {
+            Fsith16(Tabjoueur, tour);
+            break;
+        }
         }
         *nombreCarteSith = *nombreCarteSith + 1;
         if(*nombreCarteSith == 16)
@@ -490,7 +657,7 @@ void remplirTableauDeCase(caseMonop tableauDesCases[])
     case1.position = 1;
     case1.prix_case=50;
     case1.famille=1;
-    case1.proprieteDe=1;
+    case1.proprieteDe=0;
     case1.nbMaison = 0;
     case1.nbHotel=0;
     case1.typeCase=1;
@@ -532,7 +699,7 @@ void remplirTableauDeCase(caseMonop tableauDesCases[])
     case4.position = 4;
     case4.prix_case=200;
     case4.famille=9;
-    case4.proprieteDe=1;
+    case4.proprieteDe=0;
     case4.nbMaison=0;
     case4.nbHotel=0;
     case4.typeCase=2;
@@ -560,7 +727,7 @@ void remplirTableauDeCase(caseMonop tableauDesCases[])
     case6.proprieteDe=0;
     case6.nbMaison=0;
     case6.nbHotel=0;
-    case6.typeCase=2;
+    case6.typeCase=1;
     case6.prixLoyer=6;
     case6.prixloy1maison=31;
     case6.prixloy2maison=93;
