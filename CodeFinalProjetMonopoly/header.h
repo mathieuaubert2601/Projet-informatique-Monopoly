@@ -44,7 +44,7 @@ typedef struct
     int prixloy4maison;
     int prixloyhotel;
     int hypotheque; //0 si pas hypothequer et 1 si hypothequer
-    int couthypo;
+    int couthyp;
 
 
 } caseMonop;
@@ -57,7 +57,7 @@ void menu(int* choix);
 void choixmenu(int* choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[], joueur_t OrdreDesJoueursAcharger[],int* nombreDeJoueurAJouer,int* nombreCarteSith, int* nombreCarteChance);
 void regle_Du_jeu(joueur_t tab_joueur[], int* nombre_joueur,caseMonop tableauDeCase[], joueur_t OrdreDesJoueursAcharger[],int* nombreCarteSith,int*nombreCarteChance);
 void creer_nouveau_joueur(joueur_t tab_joueur[], int* nombre_joueur);
-void plateau(int pos[],int nbj,caseMonop cases[]);
+void plateau(int pos[],int nbj,caseMonop cases[28],joueur_t joueur[4]);
 void SauvegardeVerifPartieSauv();
 int testPartieChargee();
 void sauvegardeNombreJoueur(int nombre_De_joueur);
@@ -112,5 +112,10 @@ int ChargerNombreCarteSith();
 void SauvegardeNombreCarteSith(int nombreCarteSith);
 int ChargerNombreCarteChance();
 void SauvegardeNombreCarteChance(int nombreCarteChance);
+void echange(joueur_t tabJoueur[], caseMonop tabCases[],int *compteurMaisons, int *compteurHotels, int i, int nbJoueurs);
+void achat( joueur_t tabJoueur[], caseMonop Tabcase[], int *compteurMaison, int *compteurHotel, int nbrMaison, int choixP, int i);
+void vente(joueur_t tabJoueur[], caseMonop Tabcase[], int *compteurMaison, int *compteurHotel, int nbrMaison, int choixP, int i);
+void gestion_Prop(joueur_t joueur[], caseMonop caseMonopoly[], int *compteurMaison, int *compteurHotel, int i);
+void hypotheque(joueur_t tabJoueur[], caseMonop tabC[],int *compteurMaisons, int *compteurHotels, int t);
 
 #endif // HEADER_H_INCLUDED

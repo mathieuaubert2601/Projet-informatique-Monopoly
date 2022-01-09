@@ -114,7 +114,7 @@ void menu(int* choix)//menu
             printf("Non acceptee, cette valeur est. Retaper, tu dois.\n");
             fflush(stdin);
             Color(3,0);
-            scanf("%d",&choix);
+            scanf("%d",choix);
         }while(*choix<1 || *choix>7); //tant que l'on a pas de resultat entre 1 et
     }
 }

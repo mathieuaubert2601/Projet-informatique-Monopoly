@@ -46,6 +46,9 @@
 		<Unit filename="GestionDuCurseur.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="Gestion_Maisons_Hotels.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="LancementEtGestionDesDes.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -73,7 +76,13 @@
 		<Unit filename="couleursDuMonopoly.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="echanges.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="header.h" />
+		<Unit filename="hypotheque.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="introductionPartie.c">
 			<Option compilerVar="CC" />
 		</Unit>
