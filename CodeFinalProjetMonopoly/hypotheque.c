@@ -40,9 +40,10 @@ void hypotheque(joueur_t tabJoueur[], caseMonop tabC[],int *compteurMaisons, int
             }
             do
             {
-                printf("Veuillez entrer le numero de la propriete a hypothequer : ");
+                printf("\nVeuillez entrer le numero de la propriete a hypothequer : ");
                 fflush(stdin);
-                scanf("%d\n",&casep);
+                scanf("%d",&casep);
+                printf("\n");
             }
             while(tabC[casep].proprieteDe!=tabJoueur[t].numeroJoueur || tabC[casep].hypotheque == 1);
 
@@ -73,7 +74,7 @@ void hypotheque(joueur_t tabJoueur[], caseMonop tabC[],int *compteurMaisons, int
                     }
                     while((choix!=1)&&(choix!=2));
                 }
-                else if ((choix==1)||(choix==2))
+                if ((choix==1)||(choix==2))
                 {
                     if (choix==1)
                     {
@@ -113,7 +114,7 @@ void hypotheque(joueur_t tabJoueur[], caseMonop tabC[],int *compteurMaisons, int
                     }
                     while((choix!=1)&&(choix!=2));
                 }
-                else if ((choix==1)||(choix==2))
+                if ((choix==1)||(choix==2))
                 {
                     if (choix==1)
                     {
@@ -151,7 +152,7 @@ void hypotheque(joueur_t tabJoueur[], caseMonop tabC[],int *compteurMaisons, int
                     }
                     while((choix!=1)&&(choix!=2));
                 }
-                else if ((choix==1)||(choix==2))
+                if ((choix==1)||(choix==2))
                 {
                     if (choix==1)
                     {
@@ -187,7 +188,7 @@ void hypotheque(joueur_t tabJoueur[], caseMonop tabC[],int *compteurMaisons, int
                     }
                     while((choix!=1)&&(choix!=2));
                 }
-                else if ((choix==1)||(choix==2))
+                if ((choix==1)||(choix==2))
                 {
                     if (choix==1)
                     {
@@ -224,7 +225,7 @@ void hypotheque(joueur_t tabJoueur[], caseMonop tabC[],int *compteurMaisons, int
                     }
                     while((choix!=1)&&(choix!=2));
                 }
-                else if ((choix==1)||(choix==2))
+                if ((choix==1)||(choix==2))
                 {
                     if (choix==1)
                     {
@@ -260,7 +261,7 @@ void hypotheque(joueur_t tabJoueur[], caseMonop tabC[],int *compteurMaisons, int
                     }
                     while((choix!=1)&&(choix!=2));
                 }
-                else if ((choix==1)||(choix==2))
+                if ((choix==1)||(choix==2))
                 {
                     if (choix==1)
                     {
@@ -306,7 +307,7 @@ void hypotheque(joueur_t tabJoueur[], caseMonop tabC[],int *compteurMaisons, int
                 {
                     if (tabC[i].hypotheque!=0)
                     {
-                        printf("%d : %s",i,tabC[i].nomCase);
+                        printf("%d : %s ",i,tabC[i].nomCase);
                     }
                 }
             }
@@ -323,7 +324,7 @@ void hypotheque(joueur_t tabJoueur[], caseMonop tabC[],int *compteurMaisons, int
                 fflush(stdin);
                 scanf("%d",&valid);
             }
-            while(valid!=0 || valid!=1);
+            while(valid!=0 && valid!=1);
             if (valid == 1)
             {
                 prix=tabC[choix].couthyp+(tabC[choix].couthyp*0.1);

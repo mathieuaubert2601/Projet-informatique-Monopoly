@@ -43,6 +43,9 @@
 		<Unit filename="Faillite.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="Gagne.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="GestionDuCurseur.c">
 			<Option compilerVar="CC" />
 		</Unit>

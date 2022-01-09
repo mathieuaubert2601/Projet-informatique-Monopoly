@@ -477,7 +477,7 @@ void plateau(int pos[],int nbj,caseMonop cases[28],joueur_t joueur[4])// rajoute
         //ligne du haut colone 6 variation de 10 Ã  partir de 13
         for(int k=1; k<8; k++)
         {
-            gotoligcol(colgau-2,lighau+(k*11)+i);
+            gotoligcol(colgau,lighau+(k*11)+i);
             if (j==pos[i])
             {
                 printf("*");

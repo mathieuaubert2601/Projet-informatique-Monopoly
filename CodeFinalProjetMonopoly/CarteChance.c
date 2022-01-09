@@ -1,7 +1,7 @@
 #include "header.h"
 
 ///Carte chance 1
-void f1(joueur_t Tabjoueur[], int tour, int compteur)
+void f1(joueur_t Tabjoueur[],caseMonop tabc[],int* compteurMaisons,int* compteurHotels, int tour, int compteur)
 {
 
     system("cls");
@@ -69,18 +69,20 @@ printf("                                OOOOOOOOOOOOOOOO\n");
 
 
 
-    Tabjoueur[tour].argent-=100;
-
-    if (Tabjoueur[tour].argent<0)
+    if(Tabjoueur[tour].argent - 100 < 0)
     {
-        Tabjoueur[tour].argent=0;
+        faillite_carte(Tabjoueur,tabc,compteurMaisons,compteurHotels,tour,100,compteur);
+    }
+    else
+    {
+        Tabjoueur[tour].argent -= 100;
     }
 
 }
 
 ///Carte chance 2
 
-void f2(joueur_t Tabjoueur[], int tour , int compteur)
+void f2(joueur_t Tabjoueur[],caseMonop tabc[],int* compteurMaisons,int* compteurHotels, int tour, int compteur)
 {
 
     system("cls");
@@ -145,16 +147,18 @@ printf("                                OOOOOOOOOOOOOOOO\n");
         Sleep(20);
         printf("_");
     }
-
-    Tabjoueur[tour].argent-=200;
-    if (Tabjoueur[tour].argent<0)
+    if(Tabjoueur[tour].argent - 200 < 0)
     {
-        Tabjoueur[tour].argent=0;
+        faillite_carte(Tabjoueur,tabc,compteurMaisons,compteurHotels,tour,200,compteur);
+    }
+    else
+    {
+        Tabjoueur[tour].argent -= 200;
     }
 }
 
 ///Carte chance 3
-void f3(joueur_t Tabjoueur[], int tour, int compteur)
+void f3(joueur_t Tabjoueur[],caseMonop tabc[],int* compteurMaisons,int* compteurHotels, int tour, int compteur)
 {
 
     system("cls");
@@ -220,10 +224,13 @@ printf("                                OOOOOOOOOOOOOOOO\n");
     }
 
 
-    Tabjoueur[tour].argent=Tabjoueur[tour].argent-100;
-    if (Tabjoueur[tour].argent<0)
+    if(Tabjoueur[tour].argent - 100 < 0)
     {
-        Tabjoueur[tour].argent=0;
+        faillite_carte(Tabjoueur,tabc,compteurMaisons,compteurHotels,tour,100,compteur);
+    }
+    else
+    {
+        Tabjoueur[tour].argent -= 100;
     }
 
 }
@@ -456,7 +463,7 @@ printf("                                OOOOOOOOOOOOOOOO\n");
 
 ///Carte chance 7
 
-void f7(joueur_t Tabjoueur[], int tour, int compteur)
+void f7(joueur_t Tabjoueur[],caseMonop tabc[],int* compteurMaisons,int* compteurHotels, int tour, int compteur)
 {
 
     system("cls");
@@ -522,10 +529,13 @@ printf("                                OOOOOOOOOOOOOOOO\n");
         printf("_");
     }
 
-    Tabjoueur[tour].argent=Tabjoueur[tour].argent-500;
-    if (Tabjoueur[tour].argent<0)
+    if(Tabjoueur[tour].argent - 500 < 0)
     {
-        Tabjoueur[tour].argent=0;
+        faillite_carte(Tabjoueur,tabc,compteurMaisons,compteurHotels,tour,500,compteur);
+    }
+    else
+    {
+        Tabjoueur[tour].argent -= 500;
     }
 
 
@@ -604,7 +614,7 @@ printf("                                OOOOOOOOOOOOOOOO\n");
 
 ///Carte chance 9
 
-void f9(joueur_t Tabjoueur[], int tour, int compteur)
+void f9(joueur_t Tabjoueur[],caseMonop tabc[],int* compteurMaisons,int* compteurHotels, int tour, int compteur)
 {
 
     system("cls");
@@ -669,10 +679,13 @@ printf("                                OOOOOOOOOOOOOOOO\n");
         printf("_");
     }
 
-    Tabjoueur[tour].argent=Tabjoueur[tour].argent-100;
-    if (Tabjoueur[tour].argent<0)
+    if(Tabjoueur[tour].argent - 100 < 0)
     {
-        Tabjoueur[tour].argent=0;
+        faillite_carte(Tabjoueur,tabc,compteurMaisons,compteurHotels,tour,100,compteur);
+    }
+    else
+    {
+        Tabjoueur[tour].argent -= 100;
     }
 
 }

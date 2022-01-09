@@ -2,7 +2,21 @@
 void hypotheque_faillite(joueur_t tabJoueur[], caseMonop tabC[],int *compteurMaisons, int *compteurHotels, int t)
 {
 
-        int compteur=0,casep;
+    int choixmenu,casep, valid;
+    do
+    {
+        printf("Selectionnez votre choix : \n");
+        printf(" 1. Hypothequer une propriete\n");
+        printf(" 2. Lever une hypotheque a la banque\n");
+        printf(" 3. Quitter ce menu.\n");
+        fflush(stdin);
+        scanf("%d",&choixmenu);
+    }
+    while(choixmenu<1 || choixmenu>3 );
+
+    if (choixmenu==1)
+    {
+        int compteur=0;
         for (int i=0; i<28; i++)
         {
             if ((tabJoueur[t].possessions[i])!=0)
@@ -26,9 +40,10 @@ void hypotheque_faillite(joueur_t tabJoueur[], caseMonop tabC[],int *compteurMai
             }
             do
             {
-                printf("Veuillez entrer le numero de la propriete a hypothequer : ");
+                printf("\nVeuillez entrer le numero de la propriete a hypothequer : ");
                 fflush(stdin);
-                scanf("%d\n",&casep);
+                scanf("%d",&casep);
+                printf("\n");
             }
             while(tabC[casep].proprieteDe!=tabJoueur[t].numeroJoueur || tabC[casep].hypotheque == 1);
 
@@ -59,7 +74,7 @@ void hypotheque_faillite(joueur_t tabJoueur[], caseMonop tabC[],int *compteurMai
                     }
                     while((choix!=1)&&(choix!=2));
                 }
-                else if ((choix==1)||(choix==2))
+                if ((choix==1)||(choix==2))
                 {
                     if (choix==1)
                     {
@@ -99,7 +114,7 @@ void hypotheque_faillite(joueur_t tabJoueur[], caseMonop tabC[],int *compteurMai
                     }
                     while((choix!=1)&&(choix!=2));
                 }
-                else if ((choix==1)||(choix==2))
+                if ((choix==1)||(choix==2))
                 {
                     if (choix==1)
                     {
@@ -137,7 +152,7 @@ void hypotheque_faillite(joueur_t tabJoueur[], caseMonop tabC[],int *compteurMai
                     }
                     while((choix!=1)&&(choix!=2));
                 }
-                else if ((choix==1)||(choix==2))
+                if ((choix==1)||(choix==2))
                 {
                     if (choix==1)
                     {
@@ -173,7 +188,7 @@ void hypotheque_faillite(joueur_t tabJoueur[], caseMonop tabC[],int *compteurMai
                     }
                     while((choix!=1)&&(choix!=2));
                 }
-                else if ((choix==1)||(choix==2))
+                if ((choix==1)||(choix==2))
                 {
                     if (choix==1)
                     {
@@ -210,7 +225,7 @@ void hypotheque_faillite(joueur_t tabJoueur[], caseMonop tabC[],int *compteurMai
                     }
                     while((choix!=1)&&(choix!=2));
                 }
-                else if ((choix==1)||(choix==2))
+                if ((choix==1)||(choix==2))
                 {
                     if (choix==1)
                     {
@@ -246,7 +261,7 @@ void hypotheque_faillite(joueur_t tabJoueur[], caseMonop tabC[],int *compteurMai
                     }
                     while((choix!=1)&&(choix!=2));
                 }
-                else if ((choix==1)||(choix==2))
+                if ((choix==1)||(choix==2))
                 {
                     if (choix==1)
                     {
@@ -266,4 +281,4 @@ void hypotheque_faillite(joueur_t tabJoueur[], caseMonop tabC[],int *compteurMai
             printf("VOUS N'AVEZ AUCUNE PROPRIETEE A HYPOTHEQUER.\n");
         }
     }
-
+}

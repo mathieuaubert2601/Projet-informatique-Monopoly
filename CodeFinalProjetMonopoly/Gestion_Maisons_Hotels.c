@@ -102,7 +102,7 @@ void gestion_Prop(joueur_t joueur[], caseMonop caseMonopoly[], int *compteurMais
                 {
                     if (joueur[i].possessions[j] != 0)
                     {
-                        printf("%d\n",j);
+                        printf("%d %s \n",j, caseMonopoly[j].nomCase);
 
                     }
                 }
@@ -115,10 +115,12 @@ void gestion_Prop(joueur_t joueur[], caseMonop caseMonopoly[], int *compteurMais
                 while(joueur[i].possessions[choixP]==0);
 
 
-                //Differents choix suivant le nombre de maisons sur cette propriete
 
-
-                if((joueur[i].possessions[choixP]==4 || joueur[i].possessions[choixP]==10)||(joueur[i].possessions[choixP]==18 || joueur[i].possessions[choixP]==25))
+                if(caseMonopoly[choixP].hypotheque == 1)
+                {
+                    printf("La propriete selectionnee est hypothequee, vous ne pouvez pas y ajouter des maisons.\n");
+                }
+                else if((joueur[i].possessions[choixP]==4 || joueur[i].possessions[choixP]==10)||(joueur[i].possessions[choixP]==18 || joueur[i].possessions[choixP]==25))
                 {
                     printf("vous avez choisis un Spatioport, il est impossible d'acheter de maisons sur un spatioport.\n");
                 }
@@ -135,7 +137,7 @@ void gestion_Prop(joueur_t joueur[], caseMonop caseMonopoly[], int *compteurMais
                     printf("vous possedez 4 maisons, vous pouvez rajouter une maison, ce qui vous donnera un hotel. \n Une maison sur cette propriete vaut : %d credits\n", caseMonopoly[choixP].prix_case);
 
                     printf("Voulez vous acheter une maison pour %d Credits ?\n",caseMonopoly[choixP].prix_case/2);
-                    if (*compteurHotel==5)
+                    if (*compteurHotel==12)
                     {
                         printf("vous ne pouvez pas acheter d'hotel car il y en a deja 5 sur le plateau\n");
                     }
@@ -149,7 +151,11 @@ void gestion_Prop(joueur_t joueur[], caseMonop caseMonopoly[], int *compteurMais
                         }
                         while(choixNbMaison != 1 || choixNbMaison != 0);
 
-                        if (choixNbMaison == 1)
+                        if (joueur[i].argent<caseMonopoly[choixP].prix_case*choixNbMaison)
+                        {
+                            printf("Vous n'avez pas assez d'argent pour acheter %d maisons",choixNbMaison);
+                        }
+                        else if (choixNbMaison == 1)
                         {
                             achat(joueur,caseMonopoly,compteurMaison,compteurHotel,choixNbMaison,choixP,i);
                             //achat(&joueur[i], compteurMaison, compteurHotel, choixNbMaison, choixP);
@@ -172,11 +178,15 @@ void gestion_Prop(joueur_t joueur[], caseMonop caseMonopoly[], int *compteurMais
                     while(choixNbMaison <0 || choixNbMaison >2);
 
                     //Verification du nombre de maisons disponibles
-                    if (choixNbMaison==1 && *compteurMaison == 32)
+                    if (joueur[i].argent<caseMonopoly[choixP].prix_case*choixNbMaison)
+                        {
+                            printf("Vous n'avez pas assez d'argent pour acheter %d maisons",choixNbMaison);
+                        }
+                    else if (choixNbMaison==1 && *compteurMaison == 32)
                     {
                         printf("Vous ne pouvez pas acheter de maison car il y en a deja 32 sur le plateau\n");
                     }
-                    else if (choixNbMaison==2 && *compteurHotel == 5)
+                    else if (choixNbMaison==2 && *compteurHotel == 12)
                     {
                         printf("vous ne pouvez pas acheter d'hotel car il y en a deja 5 sur le plateau\n");
                     }
@@ -201,11 +211,16 @@ void gestion_Prop(joueur_t joueur[], caseMonop caseMonopoly[], int *compteurMais
                     }
                     while(choixNbMaison <0 || choixNbMaison >3);
 
-                    if ((choixNbMaison==1 || choixNbMaison==2) && *compteurMaison+choixNbMaison > 32)
+                    if (joueur[i].argent<caseMonopoly[choixP].prix_case*choixNbMaison)
+                        {
+                            printf("Vous n'avez pas assez d'argent pour acheter %d maisons",choixNbMaison);
+                        }
+
+                    else if ((choixNbMaison==1 || choixNbMaison==2) && *compteurMaison+choixNbMaison > 32)
                     {
                         printf("Vous ne pouvez pas acheter de maison car il y en a deja %d sur le plateau\n", compteurMaison);
                     }
-                    else if (choixNbMaison==3 && *compteurHotel == 5)
+                    else if (choixNbMaison==3 && *compteurHotel == 12)
                     {
                         printf("vous ne pouvez pas acheter d'hotel car il y en a deja 5 sur le plateau\n");
                     }
@@ -228,11 +243,16 @@ void gestion_Prop(joueur_t joueur[], caseMonop caseMonopoly[], int *compteurMais
                     }
                     while(choixNbMaison <0 || choixNbMaison >4);
 
-                    if (choixNbMaison!=4 && *compteurMaison+choixNbMaison > 32)
+                    if (joueur[i].argent<caseMonopoly[choixP].prix_case*choixNbMaison)
+                        {
+                            printf("Vous n'avez pas assez d'argent pour acheter %d maisons",choixNbMaison);
+                        }
+
+                    else if (choixNbMaison!=4 && *compteurMaison+choixNbMaison > 32)
                     {
                         printf("Vous ne pouvez pas acheter de maison car il y en a deja %d sur le plateau\n", compteurMaison);
                     }
-                    else if (choixNbMaison==4 && *compteurHotel == 5)
+                    else if (choixNbMaison==4 && *compteurHotel == 12)
                     {
                         printf("vous ne pouvez pas acheter d'hotel car il y en a deja 5 sur le plateau\n");
                     }
@@ -254,12 +274,16 @@ void gestion_Prop(joueur_t joueur[], caseMonop caseMonopoly[], int *compteurMais
                         scanf("%d",&choixNbMaison);
                     }
                     while(choixNbMaison <0 || choixNbMaison >5);
+                    if (joueur[i].argent<caseMonopoly[choixP].prix_case*choixNbMaison)
+                        {
+                            printf("Vous n'avez pas assez d'argent pour acheter %d maisons",choixNbMaison);
+                        }
 
-                    if (choixNbMaison!=5 && *compteurMaison+choixNbMaison > 32)
+                    else if (choixNbMaison!=5 && *compteurMaison+choixNbMaison > 32)
                     {
                         printf("Vous ne pouvez pas acheter de maison car il y en a deja %d sur le plateau\n", compteurMaison);
                     }
-                    else if (choixNbMaison==5 && *compteurHotel == 5)
+                    else if (choixNbMaison==5 && *compteurHotel == 12)
                     {
                         printf("vous ne pouvez pas acheter d'hotel car il y en a deja 5 sur le plateau\n");
                     }
@@ -280,7 +304,7 @@ void gestion_Prop(joueur_t joueur[], caseMonop caseMonopoly[], int *compteurMais
                 {
                     if (joueur[i].possessions[j] != 0)
                     {
-                        printf("%d\n",joueur[i].possessions[j]);
+                        printf("%d %s \n",j , caseMonopoly[j].nomCase);
                     }
                 }
                 do

@@ -171,7 +171,7 @@ void Fsith2(joueur_t Tabjoueur[], int tour, int compteur)
 }
 
 ///Carte sith 3
-void Fsith3(joueur_t Tabjoueur[], int tour, int compteur)
+void Fsith3(joueur_t Tabjoueur[],caseMonop tabc[],int* compteurMaisons,int* compteurHotels, int tour, int compteur)
 {
     printf("                              ,ooo888888888888888oooo,\n");
     printf("                            o8888YYYYYY77iiiiooo8888888o\n");
@@ -251,10 +251,13 @@ void Fsith3(joueur_t Tabjoueur[], int tour, int compteur)
     gotoligcol(45,00);
 
 
-    Tabjoueur[tour].argent -= 200;
-    if (Tabjoueur[tour].argent < 0)
+    if(Tabjoueur[tour].argent - 200 < 0)
     {
-        Tabjoueur[tour].argent =0;
+        faillite_carte(Tabjoueur,tabc,compteurMaisons,compteurHotels,tour,200,compteur);
+    }
+    else
+    {
+        Tabjoueur[tour].argent -= 200;
     }
 
 
@@ -347,7 +350,7 @@ void Fsith4(joueur_t Tabjoueur[], int tour, int compteur)
 }
 
 ///Carte Sith 5
-void Fsith5(joueur_t Tabjoueur[], int tour, int compteur)
+void Fsith5(joueur_t Tabjoueur[],caseMonop tabc[],int* compteurMaisons,int* compteurHotels, int tour, int compteur)
 {
     printf("                              ,ooo888888888888888oooo,\n");
     printf("                            o8888YYYYYY77iiiiooo8888888o\n");
@@ -427,10 +430,13 @@ void Fsith5(joueur_t Tabjoueur[], int tour, int compteur)
     gotoligcol(45,00);
 
 
-    Tabjoueur[tour].argent= Tabjoueur[tour].argent-400;
-    if (Tabjoueur[tour].argent<0)
+    if(Tabjoueur[tour].argent - 400 < 0)
     {
-        Tabjoueur[tour].argent=0;
+        faillite_carte(Tabjoueur,tabc,compteurMaisons,compteurHotels,tour,400,compteur);
+    }
+    else
+    {
+        Tabjoueur[tour].argent -= 400;
     }
 
 
@@ -523,7 +529,7 @@ void Fsith6(joueur_t Tabjoueur[], int tour, int compteur)
 
 }
 ///Carte Sith 7
-void Fsith7(joueur_t Tabjoueur[], int tour, int compteur)
+void Fsith7(joueur_t Tabjoueur[],caseMonop tabc[],int* compteurMaisons,int* compteurHotels, int tour, int compteur)
 {
     printf("                              ,ooo888888888888888oooo,\n");
     printf("                            o8888YYYYYY77iiiiooo8888888o\n");
@@ -600,12 +606,13 @@ void Fsith7(joueur_t Tabjoueur[], int tour, int compteur)
         Sleep(20);
         printf("_");
     }
-    gotoligcol(45,00);
-
-    Tabjoueur[tour].argent= Tabjoueur[tour].argent-200;
-    if (Tabjoueur[tour].argent<0)
+    if(Tabjoueur[tour].argent - 200 < 0)
     {
-        Tabjoueur[tour].argent=0;
+        faillite_carte(Tabjoueur,tabc,compteurMaisons,compteurHotels,tour,200,compteur);
+    }
+    else
+    {
+        Tabjoueur[tour].argent -= 200;
     }
 }
 
@@ -878,7 +885,7 @@ void Fsith10(joueur_t Tabjoueur[], int tour, int compteur)
 
 ///Carte Sith 11
 
-void Fsith11(joueur_t Tabjoueur[], int tour, int compteur)
+void Fsith11(joueur_t Tabjoueur[],caseMonop tabc[],int* compteurMaisons,int* compteurHotels, int tour, int compteur)
 {
     printf("                              ,ooo888888888888888oooo,\n");
     printf("                            o8888YYYYYY77iiiiooo8888888o\n");
@@ -955,19 +962,21 @@ void Fsith11(joueur_t Tabjoueur[], int tour, int compteur)
         Sleep(20);
         printf("_");
     }
-    gotoligcol(45,00);
 
-    Tabjoueur[tour].argent=Tabjoueur[tour].argent-200;
-    if (Tabjoueur[tour].argent<0)
+    if(Tabjoueur[tour].argent - 200 < 0)
     {
-        Tabjoueur[tour].argent=0;
+        faillite_carte(Tabjoueur,tabc,compteurMaisons,compteurHotels,tour,200,compteur);
+    }
+    else
+    {
+        Tabjoueur[tour].argent -= 200;
     }
 
 }
 
 ///Carte Sith 12
 
-void Fsith12(joueur_t Tabjoueur[], int tour, int compteur)
+void Fsith12(joueur_t Tabjoueur[],caseMonop tabc[],int* compteurMaisons,int* compteurHotels, int tour, int compteur)
 {
     printf("                              ,ooo888888888888888oooo,\n");
     printf("                            o8888YYYYYY77iiiiooo8888888o\n");
@@ -1047,10 +1056,13 @@ void Fsith12(joueur_t Tabjoueur[], int tour, int compteur)
     gotoligcol(45,00);
 
 
-    Tabjoueur[tour].argent=Tabjoueur[tour].argent-200;
-    if (Tabjoueur[tour].argent<0)
+    if(Tabjoueur[tour].argent - 200 < 0)
     {
-        Tabjoueur[tour].argent=0;
+        faillite_carte(Tabjoueur,tabc,compteurMaisons,compteurHotels,tour,200,compteur);
+    }
+    else
+    {
+        Tabjoueur[tour].argent -= 200;
     }
 
 
@@ -1231,7 +1243,7 @@ void Fsith14(joueur_t Tabjoueur[], int tour, int compteur)
 }
 ///Carte Sith 15
 
-void Fsith15(joueur_t Tabjoueur[], int tour, int compteur)
+void Fsith15(joueur_t Tabjoueur[],caseMonop tabc[],int* compteurMaisons,int* compteurHotels, int tour, int compteur)
 {
 printf("                              ,ooo888888888888888oooo,\n");
 printf("                            o8888YYYYYY77iiiiooo8888888o\n");
@@ -1308,13 +1320,14 @@ for (int i=0;i<72;i++)
     Sleep(20);
     printf("_");
 }
-gotoligcol(45,00);
-
-Tabjoueur[tour].argent -= 250;
-if (Tabjoueur[tour].argent < 0){
-    Tabjoueur[tour].argent =0;
+if(Tabjoueur[tour].argent - 250 < 0)
+{
+    faillite_carte(Tabjoueur,tabc,compteurMaisons,compteurHotels,tour,250,compteur);
 }
-
+else
+{
+    Tabjoueur[tour].argent -= 250;
+}
 }
 
 

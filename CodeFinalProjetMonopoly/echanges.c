@@ -2,8 +2,9 @@
 
 void echange(joueur_t tabJoueur[],  caseMonop tabCases[],int *compteurMaisons, int *compteurHotels, int i, int nbJoueurs)
 {
+    //Compteur qui compte le nombre de propriete hypothequées//
     int ligne=1;
-    for(int i =0; i<nbJoueurs; i++)
+    for(int i =0; i<nbJoueurs;i++)
     {
         Color(i+1,0);
         ligne+=4;
@@ -11,37 +12,44 @@ void echange(joueur_t tabJoueur[],  caseMonop tabCases[],int *compteurMaisons, i
         printf("%d.", tabJoueur[i].numeroJoueur);
         gotoligcol(ligne-1,155);
         printf("%s possede :",tabJoueur[i].nomJoueur);
-        for(int j=1; j<28; j++)
+        for(int j=1;j<28;j++)
         {
             if(tabJoueur[i].possessions[j]==j)
             {
                 gotoligcol(ligne,156);
-                printf(" %s",tabCases[j].nomCase);
+                printf(" %s ",tabCases[j].nomCase);
+                if (tabCases[j].hypotheque==1)
+                {
+                    printf("(H)");
+                }
                 ligne++;
 
             }
         }
     }
+
     int joueurSelec, choixEchange1,choixEchange1_2, choixEchange2,choixEchange2_1, choixEchange2_2, validH, creditsJ1,creditsJ2, propriete1J1,propriete2J1, propriete1J2,propriete2J2, valid, nbPropJ1, nbPropJ2;
     do
     {
+        ///Selection du joueur avec qui echanger///
         gotoligcol(0,0);
         printf("Avec quel joueur souhaitez vous echanger ? veuillez selectionner son numero. Selectionner 0 pour quitter ce menu.\n");
 
         fflush(stdin);
         scanf("%d",&joueurSelec);
     }
-    while((joueurSelec<0 || joueurSelec>nbJoueurs)|| joueurSelec-1==i);
+    while((joueurSelec<0 || joueurSelec>nbJoueurs)|| joueurSelec-1==i); //Blindage de la saisie
     if (joueurSelec>=0)
     {
         do
         {
+            //Selection de ce qu'il faut echanger
             printf("souhaitez vous lui echanger des credits(1) ou des proprietes(2) ? Selectionner 0 pour quitter ce menu.\n");
             fflush(stdin);
             scanf("%d", &choixEchange1);
         }
         while(choixEchange1<0 && choixEchange1>2);
-        if (choixEchange1 == 1)
+        if (choixEchange1 == 1) //Si le joueur veut echanger des credits
         {
             do
             {
@@ -50,14 +58,14 @@ void echange(joueur_t tabJoueur[],  caseMonop tabCases[],int *compteurMaisons, i
                 scanf("%d",&creditsJ1);
             }
             while(creditsJ1>tabJoueur[i].argent || creditsJ1<0);
-
+            //Si le joueur selectionne n'as pas de propriete
             if (tabJoueur[joueurSelec-1].nbPropriete==0)
             {
                 printf("%s n'a pas de propriete a echanger.\n",tabJoueur[joueurSelec-1].nomJoueur);
             }
             else if(tabJoueur[joueurSelec-1].nbPropriete!=0)
             {
-
+                //Choix du nombre de propriete a echanger
                 do
                 {
                     printf("Contre combien de propriete de %s souhaitez vous echanger vos %d credits ? 2 maximum, %s possede %d propiete(s).\n",tabJoueur[joueurSelec-1].nomJoueur,creditsJ1,tabJoueur[joueurSelec-1].nomJoueur, tabJoueur[joueurSelec-1].nbPropriete);
@@ -65,6 +73,7 @@ void echange(joueur_t tabJoueur[],  caseMonop tabCases[],int *compteurMaisons, i
                     scanf("%d",&nbPropJ2);
                 }
                 while(nbPropJ2<1 || (nbPropJ2>2 || nbPropJ2>tabJoueur[joueurSelec-1].nbPropriete));
+                //Si le joueur choisis une propriete
                 if (nbPropJ2==1)
                 {
                     do
@@ -82,7 +91,7 @@ void echange(joueur_t tabJoueur[],  caseMonop tabCases[],int *compteurMaisons, i
                         scanf("%d",&propriete1J2);
                     }
                     while(tabJoueur[joueurSelec-1].possessions[propriete1J2] == 0 );
-                    do
+                    do      //Validation de l'echange
                     {
                         printf("%s, souhaitez vous echanger %s contre %d credits avec %s ? Saisir 1 pour valider ou 0 pour refuser.\n",tabJoueur[joueurSelec-1].nomJoueur,tabCases[propriete1J2].nomCase, creditsJ1, tabJoueur[i].nomJoueur);
                         fflush(stdin);
@@ -92,6 +101,7 @@ void echange(joueur_t tabJoueur[],  caseMonop tabCases[],int *compteurMaisons, i
                     while(valid !=0 && valid !=1);
                     if (valid == 1)
                     {
+                        //Si la case a echanger est hypothequee
                         if (tabCases[propriete1J2].hypotheque == 1)
                         {
                             do
@@ -139,8 +149,10 @@ void echange(joueur_t tabJoueur[],  caseMonop tabCases[],int *compteurMaisons, i
                     }
 
                 }
+                //Si le joueur veut 2 propriete
                 else if(nbPropJ2 == 2);
                 {
+                    //Choix des proprietes
                     do
                     {
                         printf("Contre quelles proprietes de %s souhaitez vous echanger %d credits ?\n",tabJoueur[joueurSelec-1].nomJoueur,creditsJ1);
@@ -709,45 +721,45 @@ void echange(joueur_t tabJoueur[],  caseMonop tabCases[],int *compteurMaisons, i
                     if (valid==1)
                     {
                         if (tabCases[propriete1J1].hypotheque == 1)
-                                {
-                                    do
-                                    {
-                                        printf("%s est hypothequee, %s, souhaitez vous lever l'hypotheque tout de suite pour %d credits(1) ? ou lever l'hypotheque plus tard et payer seulement %d credits(2)",tabCases[propriete1J1].nomCase,tabJoueur[joueurSelec-1].nomJoueur, (tabCases[propriete1J1].couthyp*0.10)+tabCases[propriete1J1].couthyp,tabCases[propriete1J1].couthyp*0.10);
-                                        fflush(stdin);
-                                        scanf("%d", &validH);
-                                    }
-                                    while(validH != 1 || validH != 2);
-                                    if (validH == 1)
-                                    {
-                                        tabJoueur[joueurSelec-1].argent -= (tabCases[propriete1J1].couthyp*0.10)+tabCases[propriete1J1].couthyp;
-                                        tabCases[propriete1J1].hypotheque = 0;
-                                    }
-                                    else if (validH == 0)
-                                    {
-                                        tabJoueur[joueurSelec-1].argent -= tabCases[propriete1J1].couthyp*0.10;
-                                    }
+                        {
+                            do
+                            {
+                                printf("%s est hypothequee, %s, souhaitez vous lever l'hypotheque tout de suite pour %d credits(1) ? ou lever l'hypotheque plus tard et payer seulement %d credits(2)",tabCases[propriete1J1].nomCase,tabJoueur[joueurSelec-1].nomJoueur, (tabCases[propriete1J1].couthyp*0.10)+tabCases[propriete1J1].couthyp,tabCases[propriete1J1].couthyp*0.10);
+                                fflush(stdin);
+                                scanf("%d", &validH);
+                            }
+                            while(validH != 1 || validH != 2);
+                            if (validH == 1)
+                            {
+                                tabJoueur[joueurSelec-1].argent -= (tabCases[propriete1J1].couthyp*0.10)+tabCases[propriete1J1].couthyp;
+                                tabCases[propriete1J1].hypotheque = 0;
+                            }
+                            else if (validH == 0)
+                            {
+                                tabJoueur[joueurSelec-1].argent -= tabCases[propriete1J1].couthyp*0.10;
+                            }
 
-                                }
-                                if (tabCases[propriete2J1].hypotheque == 1)
-                                {
-                                    do
-                                    {
-                                        printf("%s est hypothequee, %s, souhaitez vous lever l'hypotheque tout de suite pour %d credits(1) ? ou lever l'hypotheque plus tard et payer seulement %d credits(2)",tabCases[propriete2J1].nomCase,tabJoueur[i].nomJoueur, (tabCases[propriete2J1].couthyp*0.10)+tabCases[propriete2J1].couthyp,tabCases[propriete2J1].couthyp*0.10);
-                                        fflush(stdin);
-                                        scanf("%d", &validH);
-                                    }
-                                    while(validH != 1 || validH != 2);
-                                    if (validH == 1)
-                                    {
-                                        tabJoueur[i].argent -= (tabCases[propriete2J1].couthyp*0.10)+tabCases[propriete2J1].couthyp;
-                                        tabCases[propriete2J1].hypotheque = 0;
-                                    }
-                                    else if (validH == 0)
-                                    {
-                                        tabJoueur[i].argent -= tabCases[propriete2J1].couthyp*0.10;
-                                    }
+                        }
+                        if (tabCases[propriete2J1].hypotheque == 1)
+                        {
+                            do
+                            {
+                                printf("%s est hypothequee, %s, souhaitez vous lever l'hypotheque tout de suite pour %d credits(1) ? ou lever l'hypotheque plus tard et payer seulement %d credits(2)",tabCases[propriete2J1].nomCase,tabJoueur[i].nomJoueur, (tabCases[propriete2J1].couthyp*0.10)+tabCases[propriete2J1].couthyp,tabCases[propriete2J1].couthyp*0.10);
+                                fflush(stdin);
+                                scanf("%d", &validH);
+                            }
+                            while(validH != 1 || validH != 2);
+                            if (validH == 1)
+                            {
+                                tabJoueur[i].argent -= (tabCases[propriete2J1].couthyp*0.10)+tabCases[propriete2J1].couthyp;
+                                tabCases[propriete2J1].hypotheque = 0;
+                            }
+                            else if (validH == 0)
+                            {
+                                tabJoueur[i].argent -= tabCases[propriete2J1].couthyp*0.10;
+                            }
 
-                                }
+                        }
                         // echange argent
                         tabJoueur[i].argent += creditsJ2;
                         tabJoueur[joueurSelec-1].argent -= creditsJ2;
@@ -837,7 +849,7 @@ void echange(joueur_t tabJoueur[],  caseMonop tabCases[],int *compteurMaisons, i
 
                             if (valid == 1)
                             {
-                                 if (tabCases[propriete1J1].hypotheque == 1)
+                                if (tabCases[propriete1J1].hypotheque == 1)
                                 {
                                     do
                                     {

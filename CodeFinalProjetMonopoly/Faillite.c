@@ -1,9 +1,11 @@
 #include "header.h"
-
+//Si un joueur tombe en faillite sur une case appartenant a un autre joueur
 void faillite_case (joueur_t Tabjoueur[],caseMonop tabc[],int* compteurMaisons,int* compteurHotels, int tour, int prix, int prop_DE, int compteur)
 {
     int choixF,choixH;
+    system("cls");
     gotoligcol(15,114);
+
     printf("Vous n'avez pas assez d'argent pour payer ce loyer");
     do
     {
@@ -12,15 +14,17 @@ void faillite_case (joueur_t Tabjoueur[],caseMonop tabc[],int* compteurMaisons,i
         fflush(stdin);
         scanf("%d",&choixF);
     }
-    while(choixF!=0 || choixF!=1);
+    while(choixF!=0 && choixF!=1);
+    //Si le joueur choisis d'hypothequer
     if(choixF==1)
     {
         if (Tabjoueur[tour].nbPropriete>0)
         {
             while(Tabjoueur[tour].argent<=prix && compteur<Tabjoueur[tour].nbPropriete)
             {
-                hypotheque_faillite(Tabjoueur,tabc, compteurMaisons, compteurHotels, tour);
+                hypotheque_faillite(Tabjoueur,tabc, compteurMaisons, compteurHotels, tour); //Appel du programme permettant d'hypothequer
             }
+            //Si le joueur obtient assez d'argent
             if (Tabjoueur[tour].argent>=prix)
             {
                 Tabjoueur[tour].argent-= prix;
@@ -32,6 +36,7 @@ void faillite_case (joueur_t Tabjoueur[],caseMonop tabc[],int* compteurMaisons,i
                 gotoligcol(15,114);
                 printf("%s a paye %d credits a %s", Tabjoueur[tour].nomJoueur,prix, Tabjoueur[prop_DE].nomJoueur);
             }
+            //Sinon, il y a "don" de propriete et faillite
             else if (Tabjoueur[tour].argent<=prix && compteur==Tabjoueur[tour].nbPropriete)
             {
                 gotoligcol(15,114);
@@ -102,6 +107,7 @@ void faillite_case (joueur_t Tabjoueur[],caseMonop tabc[],int* compteurMaisons,i
                 }
             }
         }
+        //Si le joueur n'a pas de propriete
         else if (Tabjoueur[tour].nbPropriete==0)
         {
             {
@@ -158,7 +164,7 @@ void faillite_case (joueur_t Tabjoueur[],caseMonop tabc[],int* compteurMaisons,i
                                 fflush(stdin);
                                 scanf("%d",&choixH);
                             }
-                            while(choixH!=1 || choixH!=0);
+                            while(choixH!=1 && choixH!=0);
                             if (choixH == 1)
                             {
                                 Tabjoueur[prop_DE].argent -= (tabc[d].prix_case)+tabc[d].prix_case*0.1;
@@ -174,7 +180,7 @@ void faillite_case (joueur_t Tabjoueur[],caseMonop tabc[],int* compteurMaisons,i
             }
         }
 
-    }
+    }// Si le joueur décide d'abandonner
     else if (choixF==0)
     {
         {
@@ -229,7 +235,7 @@ void faillite_case (joueur_t Tabjoueur[],caseMonop tabc[],int* compteurMaisons,i
                             fflush(stdin);
                             scanf("%d",&choixH);
                         }
-                        while(choixH!=1 || choixH!=0);
+                        while(choixH!=1 && choixH!=0);
                         if (choixH == 1)
                         {
                             Tabjoueur[prop_DE].argent -= (tabc[d].prix_case)+tabc[d].prix_case*0.1;
@@ -246,7 +252,7 @@ void faillite_case (joueur_t Tabjoueur[],caseMonop tabc[],int* compteurMaisons,i
     }
 }
 
-
+//Meme fonctionnement que pour le programme précédent, cependant il n'y a pas de "don" de propriété
 void faillite_carte (joueur_t Tabjoueur[],caseMonop tabc[],int* compteurMaisons,int* compteurHotels, int tour, int prix, int compteur)
 {
     int choixF,choixH;
@@ -259,7 +265,7 @@ void faillite_carte (joueur_t Tabjoueur[],caseMonop tabc[],int* compteurMaisons,
         fflush(stdin);
         scanf("%d",&choixF);
     }
-    while(choixF!=0 || choixF!=1);
+    while(choixF!=0 && choixF!=1);
     if(choixF==1)
     {
         if (Tabjoueur[tour].nbPropriete>0)
@@ -294,18 +300,18 @@ void faillite_carte (joueur_t Tabjoueur[],caseMonop tabc[],int* compteurMaisons,
                 {
                     if (Tabjoueur[tour].possessions[d]==d)
                     {
-                            tabc[d].proprieteDe = 0;
-                            Tabjoueur[tour].familles[tabc[d].famille] =0;
-                            Tabjoueur[tour].possessions[d] = 0;
-                            *compteurHotels -= tabc[d].nbHotel;
-                            *compteurMaisons -= tabc[d].nbMaison;
-                            tabc[d].nbMaison=0;
-                            tabc[d].nbHotel=0;
-                            tabc[d].hypotheque=0;
-
-                        }
+                        tabc[d].proprieteDe = 0;
+                        Tabjoueur[tour].familles[tabc[d].famille] =0;
+                        Tabjoueur[tour].possessions[d] = 0;
+                        *compteurHotels -= tabc[d].nbHotel;
+                        *compteurMaisons -= tabc[d].nbMaison;
+                        tabc[d].nbMaison=0;
+                        tabc[d].nbHotel=0;
+                        tabc[d].hypotheque=0;
 
                     }
+
+                }
 
             }
         }
@@ -326,18 +332,18 @@ void faillite_carte (joueur_t Tabjoueur[],caseMonop tabc[],int* compteurMaisons,
                 {
                     if (Tabjoueur[tour].possessions[d]==d)
                     {
-                            tabc[d].proprieteDe = 0;
-                            Tabjoueur[tour].familles[tabc[d].famille] =0;
-                            Tabjoueur[tour].possessions[d] = 0;
-                            *compteurHotels -= tabc[d].nbHotel;
-                            *compteurMaisons -= tabc[d].nbMaison;
-                            tabc[d].nbMaison=0;
-                            tabc[d].nbHotel=0;
-                            tabc[d].hypotheque=0;
-
-                        }
+                        tabc[d].proprieteDe = 0;
+                        Tabjoueur[tour].familles[tabc[d].famille] =0;
+                        Tabjoueur[tour].possessions[d] = 0;
+                        *compteurHotels -= tabc[d].nbHotel;
+                        *compteurMaisons -= tabc[d].nbMaison;
+                        tabc[d].nbMaison=0;
+                        tabc[d].nbHotel=0;
+                        tabc[d].hypotheque=0;
 
                     }
+
+                }
 
             }
         }
@@ -345,34 +351,34 @@ void faillite_carte (joueur_t Tabjoueur[],caseMonop tabc[],int* compteurMaisons,
     else if (choixF==0)
     {
         {
-                gotoligcol(15,114);
-                printf("                                              ");
-                gotoligcol(16,114);
-                printf("                                              ");
-                gotoligcol(15,114);
-                printf("Vous n'avez plus de propriete a hypothequer");
-                gotoligcol(16,114);
-                printf("%s a fait faillite !", Tabjoueur[tour]);
-                Sleep(1500);
-                Tabjoueur[tour].argent = -100;
-                for (int d=1; d<28; d++)
+            gotoligcol(15,114);
+            printf("                                              ");
+            gotoligcol(16,114);
+            printf("                                              ");
+            gotoligcol(15,114);
+            printf("Vous n'avez plus de propriete a hypothequer");
+            gotoligcol(16,114);
+            printf("%s a fait faillite !", Tabjoueur[tour]);
+            Sleep(1500);
+            Tabjoueur[tour].argent = -100;
+            for (int d=1; d<28; d++)
+            {
+                if (Tabjoueur[tour].possessions[d]==d)
                 {
-                    if (Tabjoueur[tour].possessions[d]==d)
-                    {
-                            tabc[d].proprieteDe = 0;
-                            Tabjoueur[tour].familles[tabc[d].famille] =0;
-                            Tabjoueur[tour].possessions[d] = 0;
-                            *compteurHotels -= tabc[d].nbHotel;
-                            *compteurMaisons -= tabc[d].nbMaison;
-                            tabc[d].nbMaison=0;
-                            tabc[d].nbHotel=0;
-                            tabc[d].hypotheque=0;
+                    tabc[d].proprieteDe = 0;
+                    Tabjoueur[tour].familles[tabc[d].famille] =0;
+                    Tabjoueur[tour].possessions[d] = 0;
+                    *compteurHotels -= tabc[d].nbHotel;
+                    *compteurMaisons -= tabc[d].nbMaison;
+                    tabc[d].nbMaison=0;
+                    tabc[d].nbHotel=0;
+                    tabc[d].hypotheque=0;
 
-                        }
-
-                    }
+                }
 
             }
+
         }
+    }
 
 }

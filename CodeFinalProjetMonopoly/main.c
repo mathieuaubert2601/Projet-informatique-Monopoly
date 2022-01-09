@@ -67,11 +67,10 @@ int main()
                 {
                     t++;
                 }
-                while(compteurFaillite == (nombreDeJoueur-1))
+                if(compteurFaillite == (nombreDeJoueur-1))
                 {
                     system("cls");
-                    printf("La Partie est terminee !\n");
-                    printf("%s, vous avez gagne",ordreDePassageDesJoueurs[t].nomJoueur);
+                    bebeyoda();
                     Sleep(5000);
                     system("cls");
                     menu(&choixDuMenuPrincipal); //Affichage du menu
@@ -79,7 +78,7 @@ int main()
                 }
 
                 //Si le joueur qui doit joueur n'est pas en prison
-                if(ordreDePassageDesJoueurs[t].tourPrison == 0)
+                if(ordreDePassageDesJoueurs[t].tourPrison == 0 && compteurFaillite  != (nombreDeJoueur-1))
                 {
                     //Affichage du nom du joueur qui doit jouer
                     gotoligcol(3,115);
@@ -506,7 +505,7 @@ int main()
 
                 }
                 //Si le joueur est en prison
-                else if(ordreDePassageDesJoueurs[t].tourPrison != 0 )
+                else if(ordreDePassageDesJoueurs[t].tourPrison != 0 && compteurFaillite  != (nombreDeJoueur-1))
                 {
                     //On lance le programme des tours prison
                     prisonChoix(&choixPrison);
@@ -1040,6 +1039,7 @@ int main()
         {
             //On sauvegarde le fait qu'une partie a été lancé
             SauvegardeVerifPartieCommencee();
+            compteurFaillite = 0;
 
             //Suppression du retour chariot à la fin des noms pour faciliter l'affichage
             for(int i=0 ; i<nombreDeJoueur ; i++)
@@ -1079,8 +1079,6 @@ int main()
                 joueurEnFaillite[i]=0;
 
             }
-
-            ordreDePassageDesJoueurs[0].argent = -510;
             //On actualise le plateau
             plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
 
@@ -1096,11 +1094,10 @@ int main()
                 {
                     t++;
                 }
-                while(compteurFaillite == (nombreDeJoueur-1))
+                if(compteurFaillite == (nombreDeJoueur-1))
                 {
                     system("cls");
-                    printf("La Partie est terminee !\n");
-                    printf("%s, vous avez gagne",ordreDePassageDesJoueurs[t].nomJoueur);
+                    bebeyoda();
                     Sleep(5000);
                     system("cls");
                     menu(&choixDuMenuPrincipal); //Affichage du menu
@@ -1108,7 +1105,7 @@ int main()
                 }
 
                 //Si le joueur qui doit joueur n'est pas en prison
-                if(ordreDePassageDesJoueurs[t].tourPrison == 0)
+                if(ordreDePassageDesJoueurs[t].tourPrison == 0 && compteurFaillite != (nombreDeJoueur-1))
                 {
                     //Affichage du nom du joueur qui doit jouer
                     gotoligcol(3,115);
@@ -1535,7 +1532,7 @@ int main()
 
                 }
                 //Si le joueur est en prison
-                else if(ordreDePassageDesJoueurs[t].tourPrison != 0 )
+                else if(ordreDePassageDesJoueurs[t].tourPrison != 0 && compteurFaillite != (nombreDeJoueur-1) )
                 {
                     //On lance le programme des tours prison
                     prisonChoix(&choixPrison);
@@ -2080,11 +2077,10 @@ int main()
                 {
                     t++;
                 }
-                while(compteurFaillite == (nombreDeJoueur-1))
+                if(compteurFaillite == (nombreDeJoueur-1))
                 {
                     system("cls");
-                    printf("La Partie est terminee !\n");
-                    printf("%s, vous avez gagne",ordreDePassageDesJoueurs[t].nomJoueur);
+                    bebeyoda();
                     Sleep(5000);
                     system("cls");
                     menu(&choixDuMenuPrincipal); //Affichage du menu
@@ -2092,7 +2088,7 @@ int main()
                 }
 
                 //Si le joueur qui doit joueur n'est pas en prison
-                if(ordreDePassageDesJoueurs[t].tourPrison == 0)
+                if(ordreDePassageDesJoueurs[t].tourPrison == 0 && compteurFaillite != (nombreDeJoueur-1))
                 {
                     //Affichage du nom du joueur qui doit jouer
                     gotoligcol(3,115);
@@ -2519,7 +2515,7 @@ int main()
 
                 }
                 //Si le joueur est en prison
-                else if(ordreDePassageDesJoueurs[t].tourPrison != 0 )
+                else if(ordreDePassageDesJoueurs[t].tourPrison != 0 && compteurFaillite != (nombreDeJoueur-1) )
                 {
                     //On lance le programme des tours prison
                     prisonChoix(&choixPrison);
