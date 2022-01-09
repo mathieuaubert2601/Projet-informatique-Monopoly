@@ -11,6 +11,7 @@ int main()
     int numeroCarteChance = rand() % 15;
     int positionTemporaire;
     int joueurEnFaillite[4];
+    int compteurFaillite = 0;
     char choixT;
     joueur_t joueur1, joueur2, joueur3, joueur4, tableauDeJoueur[4] = {joueur1, joueur2, joueur3, joueur4};
     joueur_t ordreDePassageDesJoueurs[4];
@@ -29,7 +30,7 @@ int main()
 
 ///Affichage et saisie dans le menu
     menu(&choixDuMenuPrincipal); //Affichage du menu
-    choixmenu(&choixDuMenuPrincipal, tableauDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs,&nombreDeJoueur,&numeroCarteSith,&numeroCarteChance,joueurEnFaillite);
+    choixmenu(&choixDuMenuPrincipal, tableauDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs,&nombreDeJoueur,&numeroCarteSith,&numeroCarteChance,joueurEnFaillite,compteurFaillite);
     Sleep(1000);
 
 /// ////////////////////////////////////////////////////////////////////
@@ -61,6 +62,20 @@ int main()
                 if(t==(nombreDeJoueur))
                 {
                     t=0;
+                }
+                if(joueurEnFaillite[t] != 0)
+                {
+                    t++;
+                }
+                while(compteurFaillite == (nombreDeJoueur-1))
+                {
+                    system("cls");
+                    printf("La Partie est terminee !\n");
+                    printf("%s, vous avez gagne",ordreDePassageDesJoueurs[t].nomJoueur);
+                    Sleep(5000);
+                    system("cls");
+                    menu(&choixDuMenuPrincipal); //Affichage du menu
+                    choixmenu(&choixDuMenuPrincipal, tableauDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs,&nombreDeJoueur,&numeroCarteSith,&numeroCarteChance,joueurEnFaillite,compteurFaillite);
                 }
 
                 //Si le joueur qui doit joueur n'est pas en prison
@@ -132,350 +147,28 @@ int main()
                     }
                     while(choixT!='L');
 
-                    //On lance les dés une première fois
-                    int deNumeroDeux = rand() % 6 + 1;
-                    int deNumeroUn = rand() % 6 + 1;
-                    afficherDe(deNumeroUn,deNumeroDeux);
-                    sommeDesLance = deNumeroUn + deNumeroDeux;
-
-                    //On actualise la position
-                    ordreDePassageDesJoueurs[t].position = deplanbrjr(sommeDesLance,&ordreDePassageDesJoueurs[t]);
-                    positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-                    Sleep(1500);
-
-                    //On efface toutes les données des dés
-                    for(int l=5 ; l<22 ; l++)
+                    if(ordreDePassageDesJoueurs[t].argent < 0)
                     {
-                        for(int c = 115 ; c<160 ; c++)
-                        {
-                            gotoligcol(l,c);
-                            printf(" ");
-                        }
-                    }
-
-                    //Actualisation du plateau
-                    plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-
-                    //Affichage de l'argent du joueur
-                    gotoligcol(43, 73);
-                    Color(15,0);
-                    printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                    Color(12,0);
-
-                    //Action case
-                    positionTemporaire = ordreDePassageDesJoueurs[t].position;
-                    actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
-
-                    //On vérifie si le joueur était sur une case avec une carte
-                    if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
-                    {
-                        gotoligcol(3,115);
-                        printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
-                        fflush(stdin);
-                        getchar();
-
-                        positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-
-                        //Actualisation du plateau
-                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-
-                        //Affichage de l'argent du joueur
-                        gotoligcol(43, 73);
-                        Color(15,0);
-                        printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                        Color(12,0);
-
-                    }
-                    if(positionTemporaire != ordreDePassageDesJoueurs[t].position)
-                    {
-                        //On resauvegarde les bonnes positions
-                        positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-                        //Actualisation du plateau
-                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-                        //Affichage de l'argent du joueur
-                        gotoligcol(43, 73);
-                        Color(15,0);
-                        printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                        Color(12,0);
-                        //On lance le sous programme action case
-                        actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
-                    }
-                    //On resauvegarde les bonnes positions
-                    positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-                    //Actualisation du plateau
-                    plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-                    //Affichage de l'argent du joueur
-                    gotoligcol(43, 73);
-                    Color(15,0);
-                    printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                    Color(12,0);
-
-                    //Cette boucle est utilisée ssi un double à été fait
-                    while(deNumeroDeux == deNumeroUn)
-                    {
-                        if(ordreDePassageDesJoueurs[t].doubleOuNon == 1)
-                        {
-                            //On lance les dés
-                            lancerDeDes(&deNumeroUn,&deNumeroDeux);
-                            afficherDe(deNumeroUn,deNumeroDeux);
-                            Sleep(1500);
-                            sommeDesLance = deNumeroUn + deNumeroDeux;
-                            ordreDePassageDesJoueurs[t].doubleOuNon = 2;
-                            ordreDePassageDesJoueurs[t].position = deplanbrjr(sommeDesLance,&ordreDePassageDesJoueurs[t]);
-                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-
-                            if(deNumeroDeux != deNumeroUn)
-                            {
-                                gotoligcol(43,1);
-                                printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
-                                fflush(stdin);
-                                getchar();
-
-                                //On efface toutes les données des dés
-                                for(int l=5 ; l<22 ; l++)
-                                {
-                                    for(int c = 115 ; c<160 ; c++)
-                                    {
-                                        gotoligcol(l,c);
-                                        printf(" ");
-                                    }
-                                }
-
-                                //Actualisation du plateau
-                                plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-
-                                //Affichage de l'argent du joueur
-                                gotoligcol(43, 73);
-                                Color(15,0);
-                                printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                                Color(12,0);
-
-                                //Action case
-                                positionTemporaire = ordreDePassageDesJoueurs[t].position;
-                                actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
-
-                                //On vérifie si le joueur était sur une case avec une carte
-                                if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
-                                {
-                                    gotoligcol(3,115);
-                                    printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
-                                    fflush(stdin);
-                                    getchar();
-
-                                    positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-
-                                    //Actualisation du plateau
-                                    plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-
-                                    //Affichage de l'argent du joueur
-                                    gotoligcol(43, 73);
-                                    Color(15,0);
-                                    printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                                    Color(12,0);
-
-                                }
-                                if(positionTemporaire != ordreDePassageDesJoueurs[t].position)
-                                {
-                                    //On resauvegarde les bonnes positions
-                                    positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-                                    //Actualisation du plateau
-                                    plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-                                    //Affichage de l'argent du joueur
-                                    gotoligcol(43, 73);
-                                    Color(15,0);
-                                    printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                                    Color(12,0);
-                                    //On lance le sous programme action case
-                                    actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
-                                }
-                                //On resauvegarde les bonnes positions
-                                positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-                                //Actualisation du plateau
-                                plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-                                //Affichage de l'argent du joueur
-                                gotoligcol(43, 73);
-                                Color(15,0);
-                                printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                                Color(12,0);
-                            }
-                            else if(deNumeroUn == deNumeroDeux)
-                            {
-                                gotoligcol(22,115);
-                                printf("Vous allez en prison ! \n");
-                                ordreDePassageDesJoueurs[t].doubleOuNon = 0;
-
-
-                                gotoligcol(43,1);
-                                printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
-                                fflush(stdin);
-                                getchar();
-
-                                //On efface toutes les données des dés
-                                for(int l=5 ; l<22 ; l++)
-                                {
-                                    for(int c = 115 ; c<160 ; c++)
-                                    {
-                                        gotoligcol(l,c);
-                                        printf(" ");
-                                    }
-                                }
-
-                                //Actualisation du plateau
-                                plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-
-                                //Affichage de l'argent du joueur
-                                gotoligcol(43, 73);
-                                Color(15,0);
-                                printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                                Color(12,0);
-
-
-                                break;
-                            }
-
-
-
-                        }
-
-                        if(ordreDePassageDesJoueurs[t].doubleOuNon == 0)
-                        {
-                            lancerDeDes(&deNumeroUn,&deNumeroDeux);
-                            afficherDe(deNumeroUn,deNumeroDeux);
-                            Sleep(1500);
-                            sommeDesLance = deNumeroUn + deNumeroDeux;
-                            ordreDePassageDesJoueurs[t].doubleOuNon = 1;
-                            ordreDePassageDesJoueurs[t].position = deplanbrjr(sommeDesLance,&ordreDePassageDesJoueurs[t]);
-                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-
-                            //On efface toutes les données des dés
-                            for(int l=5 ; l<22 ; l++)
-                            {
-                                for(int c = 115 ; c<160 ; c++)
-                                {
-                                    gotoligcol(l,c);
-                                    printf(" ");
-                                }
-                            }
-
-                            //Actualisation du plateau
-                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-
-                            //Affichage de l'argent du joueur
-                            gotoligcol(43, 73);
-                            Color(15,0);
-                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                            Color(12,0);
-
-                            //Action case
-                            positionTemporaire = ordreDePassageDesJoueurs[t].position;
-                            actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
-
-                            //On vérifie si le joueur était sur une case avec une carte
-                            if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
-                            {
-                                gotoligcol(3,115);
-                                printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
-                                fflush(stdin);
-                                getchar();
-
-                                positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-
-                                //Actualisation du plateau
-                                plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-
-                                //Affichage de l'argent du joueur
-                                gotoligcol(43, 73);
-                                Color(15,0);
-                                printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                                Color(12,0);
-
-                            }
-                            if(positionTemporaire != ordreDePassageDesJoueurs[t].position)
-                            {
-                                //On resauvegarde les bonnes positions
-                                positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-                                //Actualisation du plateau
-                                plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-                                //Affichage de l'argent du joueur
-                                gotoligcol(43, 73);
-                                Color(15,0);
-                                printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                                Color(12,0);
-                                //On lance le sous programme action case
-                                actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
-                            }
-                            //On resauvegarde les bonnes positions
-                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-                            //Actualisation du plateau
-                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-                            //Affichage de l'argent du joueur
-                            gotoligcol(43, 73);
-                            Color(15,0);
-                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                            Color(12,0);
-
-                        }
-                    }
-
-                    //Cette boucle permet de demander à l'utilisateur s'il veut revenir au programme principal à la fin du tour
-                    if(t==(nombreDeJoueur-1))
-                    {
-                        do
-                        {
-                            gotoligcol(3,115);
-                            printf("revenir au menu principal ? || OUI : 1 || NON : 0 || : ");
-                            fflush(stdin);
-                            scanf("%d",&retournerMenu);
-                        }
-                        while(retournerMenu != 0 && retournerMenu !=1);
-
-                        if(retournerMenu == 1)
-                        {
-                            quitterLaBoucle = 1;
-                            break;
-                        }
-                        if(retournerMenu == 0)
-                        {
-                            gotoligcol(3,115);
-                            printf("                                                         ");
-                            quitterLaBoucle = 0;
-                        }
-
-                    }
-                }
-                //Si le joueur est en prison
-                else if(ordreDePassageDesJoueurs[t].tourPrison != 0 )
-                {
-                    //On lance le programme des tours prison
-                    prisonChoix(&choixPrison);
-                    prison(choixPrison,ordreDePassageDesJoueurs,t,nombreDeJoueur);
-
-                    //Si jamais on a fait 3 tours
-                    if(ordreDePassageDesJoueurs[t].tourPrison == 4 && choixPrison != 3)
-                    {
-                        printf("\nVous sortez de prison en payant 50 credits !");
-                        ordreDePassageDesJoueurs[t].argent -= 50;
-                        ordreDePassageDesJoueurs[t].tourPrison = 0;
+                        joueurEnFaillite[t] = 1;
+                        compteurFaillite ++ ;
                         system("cls");
-                        gotoligcol(3,115);
-                        printf("C'est a %s de jouer !",ordreDePassageDesJoueurs[t].nomJoueur);
+                        printf("Vous avez perdu !");
+                        Sleep(2000);
 
-                        //Affichage de l'argent du joueur
-                        gotoligcol(43, 73);
-                        Color(15,0);
-                        printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                        Color(12,0);
+                    }
 
+                    if(ordreDePassageDesJoueurs[t].argent > 0)
+                    {
                         //On lance les dés une première fois
-                        ordreDePassageDesJoueurs[t].doubleOuNon = 0;
-                        lancerDeDes(&deNumeroUn,&deNumeroDeux);
+                        int deNumeroDeux = rand() % 6 + 1;
+                        int deNumeroUn = rand() % 6 + 1;
                         afficherDe(deNumeroUn,deNumeroDeux);
                         sommeDesLance = deNumeroUn + deNumeroDeux;
 
                         //On actualise la position
                         ordreDePassageDesJoueurs[t].position = deplanbrjr(sommeDesLance,&ordreDePassageDesJoueurs[t]);
                         positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-                        Sleep(1000);
+                        Sleep(1500);
 
                         //On efface toutes les données des dés
                         for(int l=5 ; l<22 ; l++)
@@ -498,253 +191,7 @@ int main()
 
                         //Action case
                         positionTemporaire = ordreDePassageDesJoueurs[t].position;
-                        actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
-
-                        //On vérifie si le joueur était sur une case avec une carte
-                        if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
-                        {
-                            gotoligcol(3,115);
-                            printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
-                            fflush(stdin);
-                            getchar();
-
-                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-
-                            //Actualisation du plateau
-                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-
-                            //Affichage de l'argent du joueur
-                            gotoligcol(43, 73);
-                            Color(15,0);
-                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                            Color(12,0);
-
-                        }
-
-                        //Cette boucle est utilisée ssi un double à été fait
-                        while(deNumeroDeux == deNumeroUn)
-                        {
-                            if(ordreDePassageDesJoueurs[t].doubleOuNon == 1)
-                            {
-                                //On lance les dés
-                                lancerDeDes(&deNumeroUn,&deNumeroDeux);
-                                afficherDe(deNumeroUn,deNumeroDeux);
-                                Sleep(1500);
-                                sommeDesLance = deNumeroUn + deNumeroDeux;
-                                ordreDePassageDesJoueurs[t].doubleOuNon = 2;
-                                ordreDePassageDesJoueurs[t].position = deplanbrjr(sommeDesLance,&ordreDePassageDesJoueurs[t]);
-                                positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-
-                                if(deNumeroDeux != deNumeroUn)
-                                {
-                                    gotoligcol(43,1);
-                                    printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
-                                    fflush(stdin);
-                                    getchar();
-
-                                    //On efface toutes les données des dés
-                                    for(int l=5 ; l<22 ; l++)
-                                    {
-                                        for(int c = 115 ; c<160 ; c++)
-                                        {
-                                            gotoligcol(l,c);
-                                            printf(" ");
-                                        }
-                                    }
-
-                                    //Actualisation du plateau
-                                    plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-
-                                    //Affichage de l'argent du joueur
-                                    gotoligcol(43, 73);
-                                    Color(15,0);
-                                    printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                                    Color(12,0);
-
-                                    //Action case
-                                    positionTemporaire = ordreDePassageDesJoueurs[t].position;
-                                    actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
-
-                                    //On vérifie si le joueur était sur une case avec une carte
-                                    if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
-                                    {
-                                        gotoligcol(3,115);
-                                        printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
-                                        fflush(stdin);
-                                        getchar();
-
-                                        positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-
-                                        //Actualisation du plateau
-                                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-
-                                        //Affichage de l'argent du joueur
-                                        gotoligcol(43, 73);
-                                        Color(15,0);
-                                        printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                                        Color(12,0);
-
-                                    }
-                                    if(positionTemporaire != ordreDePassageDesJoueurs[t].position)
-                                    {
-                                        //On resauvegarde les bonnes positions
-                                        positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-                                        //Actualisation du plateau
-                                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-                                        //Affichage de l'argent du joueur
-                                        gotoligcol(43, 73);
-                                        Color(15,0);
-                                        printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                                        Color(12,0);
-                                        //On lance le sous programme action case
-                                        actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
-                                    }
-                                    //On resauvegarde les bonnes positions
-                                    positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-                                    //Actualisation du plateau
-                                    plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-                                    //Affichage de l'argent du joueur
-                                    gotoligcol(43, 73);
-                                    Color(15,0);
-                                    printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                                    Color(12,0);
-                                }
-                                else if(deNumeroUn == deNumeroDeux)
-                                {
-                                    gotoligcol(22,115);
-                                    printf("Vous allez en prison ! \n");
-                                    ordreDePassageDesJoueurs[t].doubleOuNon = 0;
-
-
-                                    gotoligcol(43,1);
-                                    printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
-                                    fflush(stdin);
-                                    getchar();
-
-                                    //On efface toutes les données des dés
-                                    for(int l=5 ; l<22 ; l++)
-                                    {
-                                        for(int c = 115 ; c<160 ; c++)
-                                        {
-                                            gotoligcol(l,c);
-                                            printf(" ");
-                                        }
-                                    }
-
-                                    //Actualisation du plateau
-                                    plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-
-                                    //Affichage de l'argent du joueur
-                                    gotoligcol(43, 73);
-                                    Color(15,0);
-                                    printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                                    Color(12,0);
-
-
-                                    break;
-                                }
-
-
-
-                            }
-
-                            if(ordreDePassageDesJoueurs[t].doubleOuNon == 0)
-                            {
-                                lancerDeDes(&deNumeroUn,&deNumeroDeux);
-                                afficherDe(deNumeroUn,deNumeroDeux);
-                                Sleep(1500);
-                                sommeDesLance = deNumeroUn + deNumeroDeux;
-                                ordreDePassageDesJoueurs[t].doubleOuNon = 1;
-                                ordreDePassageDesJoueurs[t].position = deplanbrjr(sommeDesLance,&ordreDePassageDesJoueurs[t]);
-                                positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-
-                                //On efface toutes les données des dés
-                                for(int l=5 ; l<22 ; l++)
-                                {
-                                    for(int c = 115 ; c<160 ; c++)
-                                    {
-                                        gotoligcol(l,c);
-                                        printf(" ");
-                                    }
-                                }
-
-                                //Actualisation du plateau
-                                plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-
-                                //Affichage de l'argent du joueur
-                                gotoligcol(43, 73);
-                                Color(15,0);
-                                printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                                Color(12,0);
-
-                                //Action case
-                                positionTemporaire = ordreDePassageDesJoueurs[t].position;
-                                actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
-
-                                //On vérifie si le joueur était sur une case avec une carte
-                                if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
-                                {
-                                    gotoligcol(3,115);
-                                    printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
-                                    fflush(stdin);
-                                    getchar();
-
-                                    positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-
-                                    //Actualisation du plateau
-                                    plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-
-                                    //Affichage de l'argent du joueur
-                                    gotoligcol(43, 73);
-                                    Color(15,0);
-                                    printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                                    Color(12,0);
-
-                                }
-                                if(positionTemporaire != ordreDePassageDesJoueurs[t].position)
-                                {
-                                    //On resauvegarde les bonnes positions
-                                    positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-                                    //Actualisation du plateau
-                                    plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-                                    //Affichage de l'argent du joueur
-                                    gotoligcol(43, 73);
-                                    Color(15,0);
-                                    printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                                    Color(12,0);
-                                    //On lance le sous programme action case
-                                    actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
-                                }
-                                //On resauvegarde les bonnes positions
-                                positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-                                //Actualisation du plateau
-                                plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-                                //Affichage de l'argent du joueur
-                                gotoligcol(43, 73);
-                                Color(15,0);
-                                printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                                Color(12,0);
-
-                            }
-                        }
-                        system("cls");
-                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-                        //Affichage de l'argent du joueur
-                        gotoligcol(43, 73);
-                        Color(15,0);
-                        printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                        Color(12,0);
-
-                    }
-
-                    //Si on a fait un double
-                    if(choixPrison == 3)
-                    {
-                        positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-                        //Action case
-                        positionTemporaire = ordreDePassageDesJoueurs[t].position;
-                        actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
+                        actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs, &compteurMaisons, &compteurHotels);
 
                         //On vérifie si le joueur était sur une case avec une carte
                         if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
@@ -778,17 +225,771 @@ int main()
                             printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
                             Color(12,0);
                             //On lance le sous programme action case
-                            actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
+                            actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs, &compteurMaisons, &compteurHotels);
                         }
-                        //On resauvegarde les bonnes positions
-                        positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-                        //Actualisation du plateau
-                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+                        if(ordreDePassageDesJoueurs[t].argent < 0)
+                        {
+                            joueurEnFaillite[t] = 1;
+                            compteurFaillite ++ ;
+                            system("cls");
+                            printf("Vous avez perdu !");
+                            Sleep(2000);
+
+                        }
+                        if(ordreDePassageDesJoueurs[t].argent > 0)
+                        {
+                            //On resauvegarde les bonnes positions
+                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+                            //Actualisation du plateau
+                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+                            //Affichage de l'argent du joueur
+                            gotoligcol(43, 73);
+                            Color(15,0);
+                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                            Color(12,0);
+
+                            //Cette boucle est utilisée ssi un double à été fait
+                            while(deNumeroDeux == deNumeroUn)
+                            {
+                                if(ordreDePassageDesJoueurs[t].doubleOuNon == 1)
+                                {
+                                    //On lance les dés
+                                    lancerDeDes(&deNumeroUn,&deNumeroDeux);
+                                    afficherDe(deNumeroUn,deNumeroDeux);
+                                    Sleep(1500);
+                                    sommeDesLance = deNumeroUn + deNumeroDeux;
+                                    ordreDePassageDesJoueurs[t].doubleOuNon = 2;
+                                    ordreDePassageDesJoueurs[t].position = deplanbrjr(sommeDesLance,&ordreDePassageDesJoueurs[t]);
+                                    positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+
+                                    if(deNumeroDeux != deNumeroUn)
+                                    {
+                                        gotoligcol(43,1);
+                                        printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
+                                        fflush(stdin);
+                                        getchar();
+
+                                        //On efface toutes les données des dés
+                                        for(int l=5 ; l<22 ; l++)
+                                        {
+                                            for(int c = 115 ; c<160 ; c++)
+                                            {
+                                                gotoligcol(l,c);
+                                                printf(" ");
+                                            }
+                                        }
+
+                                        //Actualisation du plateau
+                                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+
+                                        //Affichage de l'argent du joueur
+                                        gotoligcol(43, 73);
+                                        Color(15,0);
+                                        printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                        Color(12,0);
+
+                                        //Action case
+                                        positionTemporaire = ordreDePassageDesJoueurs[t].position;
+                                        actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs, &compteurMaisons, &compteurHotels);
+
+                                        //On vérifie si le joueur était sur une case avec une carte
+                                        if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
+                                        {
+                                            gotoligcol(3,115);
+                                            printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
+                                            fflush(stdin);
+                                            getchar();
+
+                                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+
+                                            //Actualisation du plateau
+                                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+
+                                            //Affichage de l'argent du joueur
+                                            gotoligcol(43, 73);
+                                            Color(15,0);
+                                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                            Color(12,0);
+
+                                        }
+                                        if(positionTemporaire != ordreDePassageDesJoueurs[t].position)
+                                        {
+                                            //On resauvegarde les bonnes positions
+                                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+                                            //Actualisation du plateau
+                                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+                                            //Affichage de l'argent du joueur
+                                            gotoligcol(43, 73);
+                                            Color(15,0);
+                                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                            Color(12,0);
+                                            //On lance le sous programme action case
+                                            actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs, &compteurMaisons, &compteurHotels);
+                                        }
+                                        if(ordreDePassageDesJoueurs[t].argent < 0)
+                                        {
+                                            joueurEnFaillite[t] = 1;
+                                            compteurFaillite ++ ;
+                                            system("cls");
+                                            printf("Vous avez perdu !");
+                                            Sleep(2000);
+                                            break;
+
+                                        }
+                                        //On resauvegarde les bonnes positions
+                                        positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+                                        //Actualisation du plateau
+                                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+                                        //Affichage de l'argent du joueur
+                                        gotoligcol(43, 73);
+                                        Color(15,0);
+                                        printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                        Color(12,0);
+                                    }
+                                    else if(deNumeroUn == deNumeroDeux)
+                                    {
+                                        gotoligcol(22,115);
+                                        printf("Vous allez en prison ! \n");
+                                        ordreDePassageDesJoueurs[t].doubleOuNon = 0;
+
+
+                                        gotoligcol(43,1);
+                                        printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
+                                        fflush(stdin);
+                                        getchar();
+
+                                        //On efface toutes les données des dés
+                                        for(int l=5 ; l<22 ; l++)
+                                        {
+                                            for(int c = 115 ; c<160 ; c++)
+                                            {
+                                                gotoligcol(l,c);
+                                                printf(" ");
+                                            }
+                                        }
+
+                                        //Actualisation du plateau
+                                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+
+                                        //Affichage de l'argent du joueur
+                                        gotoligcol(43, 73);
+                                        Color(15,0);
+                                        printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                        Color(12,0);
+
+
+                                        break;
+                                    }
+
+
+
+                                }
+
+                                if(ordreDePassageDesJoueurs[t].doubleOuNon == 0)
+                                {
+                                    lancerDeDes(&deNumeroUn,&deNumeroDeux);
+                                    afficherDe(deNumeroUn,deNumeroDeux);
+                                    Sleep(1500);
+                                    sommeDesLance = deNumeroUn + deNumeroDeux;
+                                    ordreDePassageDesJoueurs[t].doubleOuNon = 1;
+                                    ordreDePassageDesJoueurs[t].position = deplanbrjr(sommeDesLance,&ordreDePassageDesJoueurs[t]);
+                                    positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+
+                                    //On efface toutes les données des dés
+                                    for(int l=5 ; l<22 ; l++)
+                                    {
+                                        for(int c = 115 ; c<160 ; c++)
+                                        {
+                                            gotoligcol(l,c);
+                                            printf(" ");
+                                        }
+                                    }
+
+                                    //Actualisation du plateau
+                                    plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+
+                                    //Affichage de l'argent du joueur
+                                    gotoligcol(43, 73);
+                                    Color(15,0);
+                                    printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                    Color(12,0);
+
+                                    //Action case
+                                    positionTemporaire = ordreDePassageDesJoueurs[t].position;
+                                    actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs, &compteurMaisons, &compteurHotels);
+
+                                    //On vérifie si le joueur était sur une case avec une carte
+                                    if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
+                                    {
+                                        gotoligcol(3,115);
+                                        printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
+                                        fflush(stdin);
+                                        getchar();
+
+                                        positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+
+                                        //Actualisation du plateau
+                                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+
+                                        //Affichage de l'argent du joueur
+                                        gotoligcol(43, 73);
+                                        Color(15,0);
+                                        printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                        Color(12,0);
+
+                                    }
+                                    if(positionTemporaire != ordreDePassageDesJoueurs[t].position)
+                                    {
+                                        //On resauvegarde les bonnes positions
+                                        positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+                                        //Actualisation du plateau
+                                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+                                        //Affichage de l'argent du joueur
+                                        gotoligcol(43, 73);
+                                        Color(15,0);
+                                        printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                        Color(12,0);
+                                        //On lance le sous programme action case
+                                        actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs, &compteurMaisons, &compteurHotels);
+                                    }
+                                    if(ordreDePassageDesJoueurs[t].argent < 0)
+                                    {
+                                        joueurEnFaillite[t] = 1;
+                                        compteurFaillite ++ ;
+                                        system("cls");
+                                        printf("Vous avez perdu !");
+                                        Sleep(2000);
+                                        break;
+
+                                    }
+                                    //On resauvegarde les bonnes positions
+                                    positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+                                    //Actualisation du plateau
+                                    plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+                                    //Affichage de l'argent du joueur
+                                    gotoligcol(43, 73);
+                                    Color(15,0);
+                                    printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                    Color(12,0);
+
+                                }
+                            }
+
+                            //Cette boucle permet de demander à l'utilisateur s'il veut revenir au programme principal à la fin du tour
+                            if(t==(nombreDeJoueur-1))
+                            {
+                                do
+                                {
+                                    gotoligcol(3,115);
+                                    printf("revenir au menu principal ? || OUI : 1 || NON : 0 || : ");
+                                    fflush(stdin);
+                                    scanf("%d",&retournerMenu);
+                                }
+                                while(retournerMenu != 0 && retournerMenu !=1);
+
+                                if(retournerMenu == 1)
+                                {
+                                    quitterLaBoucle = 1;
+                                    break;
+                                }
+                                if(retournerMenu == 0)
+                                {
+                                    gotoligcol(3,115);
+                                    printf("                                                         ");
+                                    quitterLaBoucle = 0;
+                                }
+
+                            }
+                        }
+
+                    }
+
+                }
+                //Si le joueur est en prison
+                else if(ordreDePassageDesJoueurs[t].tourPrison != 0 )
+                {
+                    //On lance le programme des tours prison
+                    prisonChoix(&choixPrison);
+                    prison(choixPrison,ordreDePassageDesJoueurs,t,nombreDeJoueur);
+
+                    //Si jamais on a fait 3 tours
+                    if(ordreDePassageDesJoueurs[t].tourPrison == 4 && choixPrison != 3)
+                    {
+                        printf("\nVous sortez de prison en payant 50 credits !");
+                        ordreDePassageDesJoueurs[t].argent -= 50;
+                        ordreDePassageDesJoueurs[t].tourPrison = 0;
+                        system("cls");
+                        //Affichage du nom du joueur qui doit jouer
+                        gotoligcol(3,115);
+                        printf("C'est a %s de jouer !",ordreDePassageDesJoueurs[t].nomJoueur);
+
                         //Affichage de l'argent du joueur
                         gotoligcol(43, 73);
                         Color(15,0);
                         printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
                         Color(12,0);
+
+                        //On propose les différents choix
+                        ordreDePassageDesJoueurs[t].doubleOuNon = 0;
+                        do
+                        {
+                            do
+                            {
+                                gotoligcol(5,115);
+                                printf("Selectionner choix :");
+                                gotoligcol(6,115);
+                                printf("L pour lancer les des");
+                                gotoligcol(7,115);
+                                printf("G pour acheter ou vendre des maisons");
+                                gotoligcol(8,115);
+                                printf("E pour proceder a des echanges ");
+                                gotoligcol(9,115);
+                                printf("H pour acceder au menu de l'hypotheque");
+                                gotoligcol(10,115);
+                                fflush(stdin);
+                                scanf("%c",&choixT);
+                            }
+                            while(choixT!='L' && choixT!='G' && choixT!='H' && choixT!='E');
+
+                            //boucle qui s'execute si l'utilisateur veut acheter ou vendre des maisons
+                            if (choixT == 'G')
+                            {
+                                system("cls");
+                                gestion_Prop(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,&compteurMaisons, &compteurHotels, t);
+                                Sleep(1500);
+                                system("cls");
+                            }
+                            //Boucle qui s'execute si l'utilisateur veut hypothequer une propriété
+                            else if (choixT == 'H')
+                            {
+                                system("cls");
+                                hypotheque(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,&compteurMaisons, &compteurHotels, t);
+                                Sleep(1500);
+                                system("cls");
+                            }
+                            //Boucle qui s'execute si l'utilisateur veut faire des échanges
+                            else if (choixT == 'E')
+                            {
+                                system("cls");
+                                echange(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,&compteurMaisons, &compteurHotels, t, nombreDeJoueur);
+                                Sleep(1500);
+                                system("cls");
+                            }
+                            //Actualisation du plateau
+                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+                            //Affichage de l'argent du joueur
+                            gotoligcol(43, 73);
+                            Color(15,0);
+                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                            Color(12,0);
+                        }
+                        while(choixT!='L');
+
+                        if(ordreDePassageDesJoueurs[t].argent < 0)
+                        {
+                            joueurEnFaillite[t] = 1;
+                            compteurFaillite ++ ;
+                            system("cls");
+                            printf("Vous avez perdu !");
+                            Sleep(2000);
+
+                        }
+
+                        if(ordreDePassageDesJoueurs[t].argent > 0)
+                        {
+                            //On lance les dés une première fois
+                            int deNumeroDeux = rand() % 6 + 1;
+                            int deNumeroUn = rand() % 6 + 1;
+                            afficherDe(deNumeroUn,deNumeroDeux);
+                            sommeDesLance = deNumeroUn + deNumeroDeux;
+
+                            //On actualise la position
+                            ordreDePassageDesJoueurs[t].position = deplanbrjr(sommeDesLance,&ordreDePassageDesJoueurs[t]);
+                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+                            Sleep(1500);
+
+                            //On efface toutes les données des dés
+                            for(int l=5 ; l<22 ; l++)
+                            {
+                                for(int c = 115 ; c<160 ; c++)
+                                {
+                                    gotoligcol(l,c);
+                                    printf(" ");
+                                }
+                            }
+
+                            //Actualisation du plateau
+                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+
+                            //Affichage de l'argent du joueur
+                            gotoligcol(43, 73);
+                            Color(15,0);
+                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                            Color(12,0);
+
+                            //Action case
+                            positionTemporaire = ordreDePassageDesJoueurs[t].position;
+                            actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs, &compteurMaisons, &compteurHotels);
+
+                            //On vérifie si le joueur était sur une case avec une carte
+                            if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
+                            {
+                                gotoligcol(3,115);
+                                printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
+                                fflush(stdin);
+                                getchar();
+
+                                positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+
+                                //Actualisation du plateau
+                                plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+
+                                //Affichage de l'argent du joueur
+                                gotoligcol(43, 73);
+                                Color(15,0);
+                                printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                Color(12,0);
+
+                            }
+                            if(positionTemporaire != ordreDePassageDesJoueurs[t].position)
+                            {
+                                //On resauvegarde les bonnes positions
+                                positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+                                //Actualisation du plateau
+                                plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+                                //Affichage de l'argent du joueur
+                                gotoligcol(43, 73);
+                                Color(15,0);
+                                printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                Color(12,0);
+                                //On lance le sous programme action case
+                                actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs, &compteurMaisons, &compteurHotels);
+                            }
+                            if(ordreDePassageDesJoueurs[t].argent < 0)
+                            {
+                                joueurEnFaillite[t] = 1;
+                                compteurFaillite ++ ;
+                                system("cls");
+                                printf("Vous avez perdu !");
+                                Sleep(2000);
+
+                            }
+                            if(ordreDePassageDesJoueurs[t].argent > 0)
+                            {
+                                //On resauvegarde les bonnes positions
+                                positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+                                //Actualisation du plateau
+                                plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+                                //Affichage de l'argent du joueur
+                                gotoligcol(43, 73);
+                                Color(15,0);
+                                printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                Color(12,0);
+
+                                //Cette boucle est utilisée ssi un double à été fait
+                                while(deNumeroDeux == deNumeroUn)
+                                {
+                                    if(ordreDePassageDesJoueurs[t].doubleOuNon == 1)
+                                    {
+                                        //On lance les dés
+                                        lancerDeDes(&deNumeroUn,&deNumeroDeux);
+                                        afficherDe(deNumeroUn,deNumeroDeux);
+                                        Sleep(1500);
+                                        sommeDesLance = deNumeroUn + deNumeroDeux;
+                                        ordreDePassageDesJoueurs[t].doubleOuNon = 2;
+                                        ordreDePassageDesJoueurs[t].position = deplanbrjr(sommeDesLance,&ordreDePassageDesJoueurs[t]);
+                                        positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+
+                                        if(deNumeroDeux != deNumeroUn)
+                                        {
+                                            gotoligcol(43,1);
+                                            printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
+                                            fflush(stdin);
+                                            getchar();
+
+                                            //On efface toutes les données des dés
+                                            for(int l=5 ; l<22 ; l++)
+                                            {
+                                                for(int c = 115 ; c<160 ; c++)
+                                                {
+                                                    gotoligcol(l,c);
+                                                    printf(" ");
+                                                }
+                                            }
+
+                                            //Actualisation du plateau
+                                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+
+                                            //Affichage de l'argent du joueur
+                                            gotoligcol(43, 73);
+                                            Color(15,0);
+                                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                            Color(12,0);
+
+                                            //Action case
+                                            positionTemporaire = ordreDePassageDesJoueurs[t].position;
+                                            actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs, &compteurMaisons, &compteurHotels);
+
+                                            //On vérifie si le joueur était sur une case avec une carte
+                                            if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
+                                            {
+                                                gotoligcol(3,115);
+                                                printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
+                                                fflush(stdin);
+                                                getchar();
+
+                                                positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+
+                                                //Actualisation du plateau
+                                                plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+
+                                                //Affichage de l'argent du joueur
+                                                gotoligcol(43, 73);
+                                                Color(15,0);
+                                                printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                                Color(12,0);
+
+                                            }
+                                            if(positionTemporaire != ordreDePassageDesJoueurs[t].position)
+                                            {
+                                                //On resauvegarde les bonnes positions
+                                                positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+                                                //Actualisation du plateau
+                                                plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+                                                //Affichage de l'argent du joueur
+                                                gotoligcol(43, 73);
+                                                Color(15,0);
+                                                printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                                Color(12,0);
+                                                //On lance le sous programme action case
+                                                actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs, &compteurMaisons, &compteurHotels);
+                                            }
+                                            if(ordreDePassageDesJoueurs[t].argent < 0)
+                                            {
+                                                joueurEnFaillite[t] = 1;
+                                                compteurFaillite ++ ;
+                                                system("cls");
+                                                printf("Vous avez perdu !");
+                                                Sleep(2000);
+                                                break;
+
+                                            }
+                                            //On resauvegarde les bonnes positions
+                                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+                                            //Actualisation du plateau
+                                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+                                            //Affichage de l'argent du joueur
+                                            gotoligcol(43, 73);
+                                            Color(15,0);
+                                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                            Color(12,0);
+                                        }
+                                        else if(deNumeroUn == deNumeroDeux)
+                                        {
+                                            gotoligcol(22,115);
+                                            printf("Vous allez en prison ! \n");
+                                            ordreDePassageDesJoueurs[t].doubleOuNon = 0;
+
+
+                                            gotoligcol(43,1);
+                                            printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
+                                            fflush(stdin);
+                                            getchar();
+
+                                            //On efface toutes les données des dés
+                                            for(int l=5 ; l<22 ; l++)
+                                            {
+                                                for(int c = 115 ; c<160 ; c++)
+                                                {
+                                                    gotoligcol(l,c);
+                                                    printf(" ");
+                                                }
+                                            }
+
+                                            //Actualisation du plateau
+                                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+
+                                            //Affichage de l'argent du joueur
+                                            gotoligcol(43, 73);
+                                            Color(15,0);
+                                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                            Color(12,0);
+
+
+                                            break;
+                                        }
+
+
+
+                                    }
+
+                                    if(ordreDePassageDesJoueurs[t].doubleOuNon == 0)
+                                    {
+                                        lancerDeDes(&deNumeroUn,&deNumeroDeux);
+                                        afficherDe(deNumeroUn,deNumeroDeux);
+                                        Sleep(1500);
+                                        sommeDesLance = deNumeroUn + deNumeroDeux;
+                                        ordreDePassageDesJoueurs[t].doubleOuNon = 1;
+                                        ordreDePassageDesJoueurs[t].position = deplanbrjr(sommeDesLance,&ordreDePassageDesJoueurs[t]);
+                                        positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+
+                                        //On efface toutes les données des dés
+                                        for(int l=5 ; l<22 ; l++)
+                                        {
+                                            for(int c = 115 ; c<160 ; c++)
+                                            {
+                                                gotoligcol(l,c);
+                                                printf(" ");
+                                            }
+                                        }
+
+                                        //Actualisation du plateau
+                                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+
+                                        //Affichage de l'argent du joueur
+                                        gotoligcol(43, 73);
+                                        Color(15,0);
+                                        printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                        Color(12,0);
+
+                                        //Action case
+                                        positionTemporaire = ordreDePassageDesJoueurs[t].position;
+                                        actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs, &compteurMaisons, &compteurHotels);
+
+                                        //On vérifie si le joueur était sur une case avec une carte
+                                        if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
+                                        {
+                                            gotoligcol(3,115);
+                                            printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
+                                            fflush(stdin);
+                                            getchar();
+
+                                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+
+                                            //Actualisation du plateau
+                                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+
+                                            //Affichage de l'argent du joueur
+                                            gotoligcol(43, 73);
+                                            Color(15,0);
+                                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                            Color(12,0);
+
+                                        }
+                                        if(positionTemporaire != ordreDePassageDesJoueurs[t].position)
+                                        {
+                                            //On resauvegarde les bonnes positions
+                                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+                                            //Actualisation du plateau
+                                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+                                            //Affichage de l'argent du joueur
+                                            gotoligcol(43, 73);
+                                            Color(15,0);
+                                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                            Color(12,0);
+                                            //On lance le sous programme action case
+                                            actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs, &compteurMaisons, &compteurHotels);
+                                        }
+                                        if(ordreDePassageDesJoueurs[t].argent < 0)
+                                        {
+                                            joueurEnFaillite[t] = 1;
+                                            compteurFaillite ++ ;
+                                            system("cls");
+                                            printf("Vous avez perdu !");
+                                            Sleep(2000);
+                                            break;
+
+                                        }
+                                        if(ordreDePassageDesJoueurs[t].argent > 0)
+                                        {
+
+                                            //On resauvegarde les bonnes positions
+                                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+                                            //Actualisation du plateau
+                                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+                                            //Affichage de l'argent du joueur
+                                            gotoligcol(43, 73);
+                                            Color(15,0);
+                                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                            Color(12,0);
+                                        }
+
+                                    }
+                                }
+
+
+                            }
+
+                        }
+
+                    }
+
+                    //Si on a fait un double
+                    if(choixPrison == 3)
+                    {
+                        positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+                        //Action case
+                        positionTemporaire = ordreDePassageDesJoueurs[t].position;
+                        actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs, &compteurMaisons, &compteurHotels);
+
+                        //On vérifie si le joueur était sur une case avec une carte
+                        if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
+                        {
+                            gotoligcol(3,115);
+                            printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
+                            fflush(stdin);
+                            getchar();
+
+                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+
+                            //Actualisation du plateau
+                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+
+                            //Affichage de l'argent du joueur
+                            gotoligcol(43, 73);
+                            Color(15,0);
+                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                            Color(12,0);
+
+                        }
+                        if(positionTemporaire != ordreDePassageDesJoueurs[t].position)
+                        {
+                            //On resauvegarde les bonnes positions
+                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+                            //Actualisation du plateau
+                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+                            //Affichage de l'argent du joueur
+                            gotoligcol(43, 73);
+                            Color(15,0);
+                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                            Color(12,0);
+                            //On lance le sous programme action case
+                            actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs, &compteurMaisons, &compteurHotels);
+                        }
+                        if(ordreDePassageDesJoueurs[t].argent < 0)
+                        {
+                            joueurEnFaillite[t] = 1;
+                            compteurFaillite ++ ;
+                            system("cls");
+                            printf("Vous avez perdu !");
+                            Sleep(2000);
+                            break;
+
+                        }
+                        if(ordreDePassageDesJoueurs[t].argent > 0)
+                        {
+                            //On resauvegarde les bonnes positions
+                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+                            //Actualisation du plateau
+                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+                            //Affichage de l'argent du joueur
+                            gotoligcol(43, 73);
+                            Color(15,0);
+                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                            Color(12,0);
+                        }
+
 
                     }
 
@@ -879,6 +1080,7 @@ int main()
 
             }
 
+            ordreDePassageDesJoueurs[0].argent = -510;
             //On actualise le plateau
             plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
 
@@ -893,6 +1095,16 @@ int main()
                 if(joueurEnFaillite[t] != 0)
                 {
                     t++;
+                }
+                while(compteurFaillite == (nombreDeJoueur-1))
+                {
+                    system("cls");
+                    printf("La Partie est terminee !\n");
+                    printf("%s, vous avez gagne",ordreDePassageDesJoueurs[t].nomJoueur);
+                    Sleep(5000);
+                    system("cls");
+                    menu(&choixDuMenuPrincipal); //Affichage du menu
+                    choixmenu(&choixDuMenuPrincipal, tableauDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs,&nombreDeJoueur,&numeroCarteSith,&numeroCarteChance,joueurEnFaillite,compteurFaillite);
                 }
 
                 //Si le joueur qui doit joueur n'est pas en prison
@@ -964,350 +1176,28 @@ int main()
                     }
                     while(choixT!='L');
 
-                    //On lance les dés une première fois
-                    int deNumeroDeux = rand() % 6 + 1;
-                    int deNumeroUn = rand() % 6 + 1;
-                    afficherDe(deNumeroUn,deNumeroDeux);
-                    sommeDesLance = deNumeroUn + deNumeroDeux;
-
-                    //On actualise la position
-                    ordreDePassageDesJoueurs[t].position = deplanbrjr(sommeDesLance,&ordreDePassageDesJoueurs[t]);
-                    positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-                    Sleep(1500);
-
-                    //On efface toutes les données des dés
-                    for(int l=5 ; l<22 ; l++)
+                    if(ordreDePassageDesJoueurs[t].argent < 0)
                     {
-                        for(int c = 115 ; c<160 ; c++)
-                        {
-                            gotoligcol(l,c);
-                            printf(" ");
-                        }
-                    }
-
-                    //Actualisation du plateau
-                    plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-
-                    //Affichage de l'argent du joueur
-                    gotoligcol(43, 73);
-                    Color(15,0);
-                    printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                    Color(12,0);
-
-                    //Action case
-                    positionTemporaire = ordreDePassageDesJoueurs[t].position;
-                    actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
-
-                    //On vérifie si le joueur était sur une case avec une carte
-                    if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
-                    {
-                        gotoligcol(3,115);
-                        printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
-                        fflush(stdin);
-                        getchar();
-
-                        positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-
-                        //Actualisation du plateau
-                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-
-                        //Affichage de l'argent du joueur
-                        gotoligcol(43, 73);
-                        Color(15,0);
-                        printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                        Color(12,0);
-
-                    }
-                    if(positionTemporaire != ordreDePassageDesJoueurs[t].position)
-                    {
-                        //On resauvegarde les bonnes positions
-                        positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-                        //Actualisation du plateau
-                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-                        //Affichage de l'argent du joueur
-                        gotoligcol(43, 73);
-                        Color(15,0);
-                        printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                        Color(12,0);
-                        //On lance le sous programme action case
-                        actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
-                    }
-                    //On resauvegarde les bonnes positions
-                    positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-                    //Actualisation du plateau
-                    plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-                    //Affichage de l'argent du joueur
-                    gotoligcol(43, 73);
-                    Color(15,0);
-                    printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                    Color(12,0);
-
-                    //Cette boucle est utilisée ssi un double à été fait
-                    while(deNumeroDeux == deNumeroUn)
-                    {
-                        if(ordreDePassageDesJoueurs[t].doubleOuNon == 1)
-                        {
-                            //On lance les dés
-                            lancerDeDes(&deNumeroUn,&deNumeroDeux);
-                            afficherDe(deNumeroUn,deNumeroDeux);
-                            Sleep(1500);
-                            sommeDesLance = deNumeroUn + deNumeroDeux;
-                            ordreDePassageDesJoueurs[t].doubleOuNon = 2;
-                            ordreDePassageDesJoueurs[t].position = deplanbrjr(sommeDesLance,&ordreDePassageDesJoueurs[t]);
-                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-
-                            if(deNumeroDeux != deNumeroUn)
-                            {
-                                gotoligcol(43,1);
-                                printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
-                                fflush(stdin);
-                                getchar();
-
-                                //On efface toutes les données des dés
-                                for(int l=5 ; l<22 ; l++)
-                                {
-                                    for(int c = 115 ; c<160 ; c++)
-                                    {
-                                        gotoligcol(l,c);
-                                        printf(" ");
-                                    }
-                                }
-
-                                //Actualisation du plateau
-                                plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-
-                                //Affichage de l'argent du joueur
-                                gotoligcol(43, 73);
-                                Color(15,0);
-                                printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                                Color(12,0);
-
-                                //Action case
-                                positionTemporaire = ordreDePassageDesJoueurs[t].position;
-                                actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
-
-                                //On vérifie si le joueur était sur une case avec une carte
-                                if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
-                                {
-                                    gotoligcol(3,115);
-                                    printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
-                                    fflush(stdin);
-                                    getchar();
-
-                                    positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-
-                                    //Actualisation du plateau
-                                    plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-
-                                    //Affichage de l'argent du joueur
-                                    gotoligcol(43, 73);
-                                    Color(15,0);
-                                    printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                                    Color(12,0);
-
-                                }
-                                if(positionTemporaire != ordreDePassageDesJoueurs[t].position)
-                                {
-                                    //On resauvegarde les bonnes positions
-                                    positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-                                    //Actualisation du plateau
-                                    plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-                                    //Affichage de l'argent du joueur
-                                    gotoligcol(43, 73);
-                                    Color(15,0);
-                                    printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                                    Color(12,0);
-                                    //On lance le sous programme action case
-                                    actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
-                                }
-                                //On resauvegarde les bonnes positions
-                                positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-                                //Actualisation du plateau
-                                plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-                                //Affichage de l'argent du joueur
-                                gotoligcol(43, 73);
-                                Color(15,0);
-                                printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                                Color(12,0);
-                            }
-                            else if(deNumeroUn == deNumeroDeux)
-                            {
-                                gotoligcol(22,115);
-                                printf("Vous allez en prison ! \n");
-                                ordreDePassageDesJoueurs[t].doubleOuNon = 0;
-
-
-                                gotoligcol(43,1);
-                                printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
-                                fflush(stdin);
-                                getchar();
-
-                                //On efface toutes les données des dés
-                                for(int l=5 ; l<22 ; l++)
-                                {
-                                    for(int c = 115 ; c<160 ; c++)
-                                    {
-                                        gotoligcol(l,c);
-                                        printf(" ");
-                                    }
-                                }
-
-                                //Actualisation du plateau
-                                plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-
-                                //Affichage de l'argent du joueur
-                                gotoligcol(43, 73);
-                                Color(15,0);
-                                printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                                Color(12,0);
-
-
-                                break;
-                            }
-
-
-
-                        }
-
-                        if(ordreDePassageDesJoueurs[t].doubleOuNon == 0)
-                        {
-                            lancerDeDes(&deNumeroUn,&deNumeroDeux);
-                            afficherDe(deNumeroUn,deNumeroDeux);
-                            Sleep(1500);
-                            sommeDesLance = deNumeroUn + deNumeroDeux;
-                            ordreDePassageDesJoueurs[t].doubleOuNon = 1;
-                            ordreDePassageDesJoueurs[t].position = deplanbrjr(sommeDesLance,&ordreDePassageDesJoueurs[t]);
-                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-
-                            //On efface toutes les données des dés
-                            for(int l=5 ; l<22 ; l++)
-                            {
-                                for(int c = 115 ; c<160 ; c++)
-                                {
-                                    gotoligcol(l,c);
-                                    printf(" ");
-                                }
-                            }
-
-                            //Actualisation du plateau
-                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-
-                            //Affichage de l'argent du joueur
-                            gotoligcol(43, 73);
-                            Color(15,0);
-                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                            Color(12,0);
-
-                            //Action case
-                            positionTemporaire = ordreDePassageDesJoueurs[t].position;
-                            actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
-
-                            //On vérifie si le joueur était sur une case avec une carte
-                            if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
-                            {
-                                gotoligcol(3,115);
-                                printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
-                                fflush(stdin);
-                                getchar();
-
-                                positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-
-                                //Actualisation du plateau
-                                plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-
-                                //Affichage de l'argent du joueur
-                                gotoligcol(43, 73);
-                                Color(15,0);
-                                printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                                Color(12,0);
-
-                            }
-                            if(positionTemporaire != ordreDePassageDesJoueurs[t].position)
-                            {
-                                //On resauvegarde les bonnes positions
-                                positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-                                //Actualisation du plateau
-                                plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-                                //Affichage de l'argent du joueur
-                                gotoligcol(43, 73);
-                                Color(15,0);
-                                printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                                Color(12,0);
-                                //On lance le sous programme action case
-                                actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
-                            }
-                            //On resauvegarde les bonnes positions
-                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-                            //Actualisation du plateau
-                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-                            //Affichage de l'argent du joueur
-                            gotoligcol(43, 73);
-                            Color(15,0);
-                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                            Color(12,0);
-
-                        }
-                    }
-
-                    //Cette boucle permet de demander à l'utilisateur s'il veut revenir au programme principal à la fin du tour
-                    if(t==(nombreDeJoueur-1))
-                    {
-                        do
-                        {
-                            gotoligcol(3,115);
-                            printf("revenir au menu principal ? || OUI : 1 || NON : 0 || : ");
-                            fflush(stdin);
-                            scanf("%d",&retournerMenu);
-                        }
-                        while(retournerMenu != 0 && retournerMenu !=1);
-
-                        if(retournerMenu == 1)
-                        {
-                            quitterLaBoucle = 1;
-                            break;
-                        }
-                        if(retournerMenu == 0)
-                        {
-                            gotoligcol(3,115);
-                            printf("                                                         ");
-                            quitterLaBoucle = 0;
-                        }
-
-                    }
-                }
-                //Si le joueur est en prison
-                else if(ordreDePassageDesJoueurs[t].tourPrison != 0 )
-                {
-                    //On lance le programme des tours prison
-                    prisonChoix(&choixPrison);
-                    prison(choixPrison,ordreDePassageDesJoueurs,t,nombreDeJoueur);
-
-                    //Si jamais on a fait 3 tours
-                    if(ordreDePassageDesJoueurs[t].tourPrison == 4 && choixPrison != 3)
-                    {
-                        printf("\nVous sortez de prison en payant 50 credits !");
-                        ordreDePassageDesJoueurs[t].argent -= 50;
-                        ordreDePassageDesJoueurs[t].tourPrison = 0;
+                        joueurEnFaillite[t] = 1;
+                        compteurFaillite ++ ;
                         system("cls");
-                        gotoligcol(3,115);
-                        printf("C'est a %s de jouer !",ordreDePassageDesJoueurs[t].nomJoueur);
+                        printf("Vous avez perdu !");
+                        Sleep(2000);
 
-                        //Affichage de l'argent du joueur
-                        gotoligcol(43, 73);
-                        Color(15,0);
-                        printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                        Color(12,0);
+                    }
 
+                    if(ordreDePassageDesJoueurs[t].argent > 0)
+                    {
                         //On lance les dés une première fois
-                        ordreDePassageDesJoueurs[t].doubleOuNon = 0;
-                        lancerDeDes(&deNumeroUn,&deNumeroDeux);
+                        int deNumeroDeux = rand() % 6 + 1;
+                        int deNumeroUn = rand() % 6 + 1;
                         afficherDe(deNumeroUn,deNumeroDeux);
                         sommeDesLance = deNumeroUn + deNumeroDeux;
 
                         //On actualise la position
                         ordreDePassageDesJoueurs[t].position = deplanbrjr(sommeDesLance,&ordreDePassageDesJoueurs[t]);
                         positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-                        Sleep(1000);
+                        Sleep(1500);
 
                         //On efface toutes les données des dés
                         for(int l=5 ; l<22 ; l++)
@@ -1330,253 +1220,7 @@ int main()
 
                         //Action case
                         positionTemporaire = ordreDePassageDesJoueurs[t].position;
-                        actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
-
-                        //On vérifie si le joueur était sur une case avec une carte
-                        if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
-                        {
-                            gotoligcol(3,115);
-                            printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
-                            fflush(stdin);
-                            getchar();
-
-                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-
-                            //Actualisation du plateau
-                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-
-                            //Affichage de l'argent du joueur
-                            gotoligcol(43, 73);
-                            Color(15,0);
-                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                            Color(12,0);
-
-                        }
-
-                        //Cette boucle est utilisée ssi un double à été fait
-                        while(deNumeroDeux == deNumeroUn)
-                        {
-                            if(ordreDePassageDesJoueurs[t].doubleOuNon == 1)
-                            {
-                                //On lance les dés
-                                lancerDeDes(&deNumeroUn,&deNumeroDeux);
-                                afficherDe(deNumeroUn,deNumeroDeux);
-                                Sleep(1500);
-                                sommeDesLance = deNumeroUn + deNumeroDeux;
-                                ordreDePassageDesJoueurs[t].doubleOuNon = 2;
-                                ordreDePassageDesJoueurs[t].position = deplanbrjr(sommeDesLance,&ordreDePassageDesJoueurs[t]);
-                                positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-
-                                if(deNumeroDeux != deNumeroUn)
-                                {
-                                    gotoligcol(43,1);
-                                    printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
-                                    fflush(stdin);
-                                    getchar();
-
-                                    //On efface toutes les données des dés
-                                    for(int l=5 ; l<22 ; l++)
-                                    {
-                                        for(int c = 115 ; c<160 ; c++)
-                                        {
-                                            gotoligcol(l,c);
-                                            printf(" ");
-                                        }
-                                    }
-
-                                    //Actualisation du plateau
-                                    plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-
-                                    //Affichage de l'argent du joueur
-                                    gotoligcol(43, 73);
-                                    Color(15,0);
-                                    printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                                    Color(12,0);
-
-                                    //Action case
-                                    positionTemporaire = ordreDePassageDesJoueurs[t].position;
-                                    actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
-
-                                    //On vérifie si le joueur était sur une case avec une carte
-                                    if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
-                                    {
-                                        gotoligcol(3,115);
-                                        printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
-                                        fflush(stdin);
-                                        getchar();
-
-                                        positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-
-                                        //Actualisation du plateau
-                                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-
-                                        //Affichage de l'argent du joueur
-                                        gotoligcol(43, 73);
-                                        Color(15,0);
-                                        printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                                        Color(12,0);
-
-                                    }
-                                    if(positionTemporaire != ordreDePassageDesJoueurs[t].position)
-                                    {
-                                        //On resauvegarde les bonnes positions
-                                        positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-                                        //Actualisation du plateau
-                                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-                                        //Affichage de l'argent du joueur
-                                        gotoligcol(43, 73);
-                                        Color(15,0);
-                                        printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                                        Color(12,0);
-                                        //On lance le sous programme action case
-                                        actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
-                                    }
-                                    //On resauvegarde les bonnes positions
-                                    positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-                                    //Actualisation du plateau
-                                    plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-                                    //Affichage de l'argent du joueur
-                                    gotoligcol(43, 73);
-                                    Color(15,0);
-                                    printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                                    Color(12,0);
-                                }
-                                else if(deNumeroUn == deNumeroDeux)
-                                {
-                                    gotoligcol(22,115);
-                                    printf("Vous allez en prison ! \n");
-                                    ordreDePassageDesJoueurs[t].doubleOuNon = 0;
-
-
-                                    gotoligcol(43,1);
-                                    printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
-                                    fflush(stdin);
-                                    getchar();
-
-                                    //On efface toutes les données des dés
-                                    for(int l=5 ; l<22 ; l++)
-                                    {
-                                        for(int c = 115 ; c<160 ; c++)
-                                        {
-                                            gotoligcol(l,c);
-                                            printf(" ");
-                                        }
-                                    }
-
-                                    //Actualisation du plateau
-                                    plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-
-                                    //Affichage de l'argent du joueur
-                                    gotoligcol(43, 73);
-                                    Color(15,0);
-                                    printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                                    Color(12,0);
-
-
-                                    break;
-                                }
-
-
-
-                            }
-
-                            if(ordreDePassageDesJoueurs[t].doubleOuNon == 0)
-                            {
-                                lancerDeDes(&deNumeroUn,&deNumeroDeux);
-                                afficherDe(deNumeroUn,deNumeroDeux);
-                                Sleep(1500);
-                                sommeDesLance = deNumeroUn + deNumeroDeux;
-                                ordreDePassageDesJoueurs[t].doubleOuNon = 1;
-                                ordreDePassageDesJoueurs[t].position = deplanbrjr(sommeDesLance,&ordreDePassageDesJoueurs[t]);
-                                positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-
-                                //On efface toutes les données des dés
-                                for(int l=5 ; l<22 ; l++)
-                                {
-                                    for(int c = 115 ; c<160 ; c++)
-                                    {
-                                        gotoligcol(l,c);
-                                        printf(" ");
-                                    }
-                                }
-
-                                //Actualisation du plateau
-                                plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-
-                                //Affichage de l'argent du joueur
-                                gotoligcol(43, 73);
-                                Color(15,0);
-                                printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                                Color(12,0);
-
-                                //Action case
-                                positionTemporaire = ordreDePassageDesJoueurs[t].position;
-                                actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
-
-                                //On vérifie si le joueur était sur une case avec une carte
-                                if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
-                                {
-                                    gotoligcol(3,115);
-                                    printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
-                                    fflush(stdin);
-                                    getchar();
-
-                                    positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-
-                                    //Actualisation du plateau
-                                    plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-
-                                    //Affichage de l'argent du joueur
-                                    gotoligcol(43, 73);
-                                    Color(15,0);
-                                    printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                                    Color(12,0);
-
-                                }
-                                if(positionTemporaire != ordreDePassageDesJoueurs[t].position)
-                                {
-                                    //On resauvegarde les bonnes positions
-                                    positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-                                    //Actualisation du plateau
-                                    plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-                                    //Affichage de l'argent du joueur
-                                    gotoligcol(43, 73);
-                                    Color(15,0);
-                                    printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                                    Color(12,0);
-                                    //On lance le sous programme action case
-                                    actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
-                                }
-                                //On resauvegarde les bonnes positions
-                                positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-                                //Actualisation du plateau
-                                plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-                                //Affichage de l'argent du joueur
-                                gotoligcol(43, 73);
-                                Color(15,0);
-                                printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                                Color(12,0);
-
-                            }
-                        }
-                        system("cls");
-                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-                        //Affichage de l'argent du joueur
-                        gotoligcol(43, 73);
-                        Color(15,0);
-                        printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                        Color(12,0);
-
-                    }
-
-                    //Si on a fait un double
-                    if(choixPrison == 3)
-                    {
-                        positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-                        //Action case
-                        positionTemporaire = ordreDePassageDesJoueurs[t].position;
-                        actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
+                        actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs, &compteurMaisons, &compteurHotels);
 
                         //On vérifie si le joueur était sur une case avec une carte
                         if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
@@ -1610,17 +1254,771 @@ int main()
                             printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
                             Color(12,0);
                             //On lance le sous programme action case
-                            actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
+                            actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs, &compteurMaisons, &compteurHotels);
                         }
-                        //On resauvegarde les bonnes positions
-                        positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-                        //Actualisation du plateau
-                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+                        if(ordreDePassageDesJoueurs[t].argent < 0)
+                        {
+                            joueurEnFaillite[t] = 1;
+                            compteurFaillite ++ ;
+                            system("cls");
+                            printf("Vous avez perdu !");
+                            Sleep(2000);
+
+                        }
+                        if(ordreDePassageDesJoueurs[t].argent > 0)
+                        {
+                            //On resauvegarde les bonnes positions
+                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+                            //Actualisation du plateau
+                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+                            //Affichage de l'argent du joueur
+                            gotoligcol(43, 73);
+                            Color(15,0);
+                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                            Color(12,0);
+
+                            //Cette boucle est utilisée ssi un double à été fait
+                            while(deNumeroDeux == deNumeroUn)
+                            {
+                                if(ordreDePassageDesJoueurs[t].doubleOuNon == 1)
+                                {
+                                    //On lance les dés
+                                    lancerDeDes(&deNumeroUn,&deNumeroDeux);
+                                    afficherDe(deNumeroUn,deNumeroDeux);
+                                    Sleep(1500);
+                                    sommeDesLance = deNumeroUn + deNumeroDeux;
+                                    ordreDePassageDesJoueurs[t].doubleOuNon = 2;
+                                    ordreDePassageDesJoueurs[t].position = deplanbrjr(sommeDesLance,&ordreDePassageDesJoueurs[t]);
+                                    positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+
+                                    if(deNumeroDeux != deNumeroUn)
+                                    {
+                                        gotoligcol(43,1);
+                                        printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
+                                        fflush(stdin);
+                                        getchar();
+
+                                        //On efface toutes les données des dés
+                                        for(int l=5 ; l<22 ; l++)
+                                        {
+                                            for(int c = 115 ; c<160 ; c++)
+                                            {
+                                                gotoligcol(l,c);
+                                                printf(" ");
+                                            }
+                                        }
+
+                                        //Actualisation du plateau
+                                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+
+                                        //Affichage de l'argent du joueur
+                                        gotoligcol(43, 73);
+                                        Color(15,0);
+                                        printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                        Color(12,0);
+
+                                        //Action case
+                                        positionTemporaire = ordreDePassageDesJoueurs[t].position;
+                                        actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs, &compteurMaisons, &compteurHotels);
+
+                                        //On vérifie si le joueur était sur une case avec une carte
+                                        if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
+                                        {
+                                            gotoligcol(3,115);
+                                            printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
+                                            fflush(stdin);
+                                            getchar();
+
+                                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+
+                                            //Actualisation du plateau
+                                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+
+                                            //Affichage de l'argent du joueur
+                                            gotoligcol(43, 73);
+                                            Color(15,0);
+                                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                            Color(12,0);
+
+                                        }
+                                        if(positionTemporaire != ordreDePassageDesJoueurs[t].position)
+                                        {
+                                            //On resauvegarde les bonnes positions
+                                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+                                            //Actualisation du plateau
+                                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+                                            //Affichage de l'argent du joueur
+                                            gotoligcol(43, 73);
+                                            Color(15,0);
+                                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                            Color(12,0);
+                                            //On lance le sous programme action case
+                                            actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs, &compteurMaisons, &compteurHotels);
+                                        }
+                                        if(ordreDePassageDesJoueurs[t].argent < 0)
+                                        {
+                                            joueurEnFaillite[t] = 1;
+                                            compteurFaillite ++ ;
+                                            system("cls");
+                                            printf("Vous avez perdu !");
+                                            Sleep(2000);
+                                            break;
+
+                                        }
+                                        //On resauvegarde les bonnes positions
+                                        positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+                                        //Actualisation du plateau
+                                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+                                        //Affichage de l'argent du joueur
+                                        gotoligcol(43, 73);
+                                        Color(15,0);
+                                        printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                        Color(12,0);
+                                    }
+                                    else if(deNumeroUn == deNumeroDeux)
+                                    {
+                                        gotoligcol(22,115);
+                                        printf("Vous allez en prison ! \n");
+                                        ordreDePassageDesJoueurs[t].doubleOuNon = 0;
+
+
+                                        gotoligcol(43,1);
+                                        printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
+                                        fflush(stdin);
+                                        getchar();
+
+                                        //On efface toutes les données des dés
+                                        for(int l=5 ; l<22 ; l++)
+                                        {
+                                            for(int c = 115 ; c<160 ; c++)
+                                            {
+                                                gotoligcol(l,c);
+                                                printf(" ");
+                                            }
+                                        }
+
+                                        //Actualisation du plateau
+                                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+
+                                        //Affichage de l'argent du joueur
+                                        gotoligcol(43, 73);
+                                        Color(15,0);
+                                        printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                        Color(12,0);
+
+
+                                        break;
+                                    }
+
+
+
+                                }
+
+                                if(ordreDePassageDesJoueurs[t].doubleOuNon == 0)
+                                {
+                                    lancerDeDes(&deNumeroUn,&deNumeroDeux);
+                                    afficherDe(deNumeroUn,deNumeroDeux);
+                                    Sleep(1500);
+                                    sommeDesLance = deNumeroUn + deNumeroDeux;
+                                    ordreDePassageDesJoueurs[t].doubleOuNon = 1;
+                                    ordreDePassageDesJoueurs[t].position = deplanbrjr(sommeDesLance,&ordreDePassageDesJoueurs[t]);
+                                    positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+
+                                    //On efface toutes les données des dés
+                                    for(int l=5 ; l<22 ; l++)
+                                    {
+                                        for(int c = 115 ; c<160 ; c++)
+                                        {
+                                            gotoligcol(l,c);
+                                            printf(" ");
+                                        }
+                                    }
+
+                                    //Actualisation du plateau
+                                    plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+
+                                    //Affichage de l'argent du joueur
+                                    gotoligcol(43, 73);
+                                    Color(15,0);
+                                    printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                    Color(12,0);
+
+                                    //Action case
+                                    positionTemporaire = ordreDePassageDesJoueurs[t].position;
+                                    actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs, &compteurMaisons, &compteurHotels);
+
+                                    //On vérifie si le joueur était sur une case avec une carte
+                                    if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
+                                    {
+                                        gotoligcol(3,115);
+                                        printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
+                                        fflush(stdin);
+                                        getchar();
+
+                                        positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+
+                                        //Actualisation du plateau
+                                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+
+                                        //Affichage de l'argent du joueur
+                                        gotoligcol(43, 73);
+                                        Color(15,0);
+                                        printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                        Color(12,0);
+
+                                    }
+                                    if(positionTemporaire != ordreDePassageDesJoueurs[t].position)
+                                    {
+                                        //On resauvegarde les bonnes positions
+                                        positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+                                        //Actualisation du plateau
+                                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+                                        //Affichage de l'argent du joueur
+                                        gotoligcol(43, 73);
+                                        Color(15,0);
+                                        printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                        Color(12,0);
+                                        //On lance le sous programme action case
+                                        actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs, &compteurMaisons, &compteurHotels);
+                                    }
+                                    if(ordreDePassageDesJoueurs[t].argent < 0)
+                                    {
+                                        joueurEnFaillite[t] = 1;
+                                        compteurFaillite ++ ;
+                                        system("cls");
+                                        printf("Vous avez perdu !");
+                                        Sleep(2000);
+                                        break;
+
+                                    }
+                                    //On resauvegarde les bonnes positions
+                                    positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+                                    //Actualisation du plateau
+                                    plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+                                    //Affichage de l'argent du joueur
+                                    gotoligcol(43, 73);
+                                    Color(15,0);
+                                    printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                    Color(12,0);
+
+                                }
+                            }
+
+                            //Cette boucle permet de demander à l'utilisateur s'il veut revenir au programme principal à la fin du tour
+                            if(t==(nombreDeJoueur-1))
+                            {
+                                do
+                                {
+                                    gotoligcol(3,115);
+                                    printf("revenir au menu principal ? || OUI : 1 || NON : 0 || : ");
+                                    fflush(stdin);
+                                    scanf("%d",&retournerMenu);
+                                }
+                                while(retournerMenu != 0 && retournerMenu !=1);
+
+                                if(retournerMenu == 1)
+                                {
+                                    quitterLaBoucle = 1;
+                                    break;
+                                }
+                                if(retournerMenu == 0)
+                                {
+                                    gotoligcol(3,115);
+                                    printf("                                                         ");
+                                    quitterLaBoucle = 0;
+                                }
+
+                            }
+                        }
+
+                    }
+
+                }
+                //Si le joueur est en prison
+                else if(ordreDePassageDesJoueurs[t].tourPrison != 0 )
+                {
+                    //On lance le programme des tours prison
+                    prisonChoix(&choixPrison);
+                    prison(choixPrison,ordreDePassageDesJoueurs,t,nombreDeJoueur);
+
+                    //Si jamais on a fait 3 tours
+                    if(ordreDePassageDesJoueurs[t].tourPrison == 4 && choixPrison != 3)
+                    {
+                        printf("\nVous sortez de prison en payant 50 credits !");
+                        ordreDePassageDesJoueurs[t].argent -= 50;
+                        ordreDePassageDesJoueurs[t].tourPrison = 0;
+                        system("cls");
+                        //Affichage du nom du joueur qui doit jouer
+                        gotoligcol(3,115);
+                        printf("C'est a %s de jouer !",ordreDePassageDesJoueurs[t].nomJoueur);
+
                         //Affichage de l'argent du joueur
                         gotoligcol(43, 73);
                         Color(15,0);
                         printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
                         Color(12,0);
+
+                        //On propose les différents choix
+                        ordreDePassageDesJoueurs[t].doubleOuNon = 0;
+                        do
+                        {
+                            do
+                            {
+                                gotoligcol(5,115);
+                                printf("Selectionner choix :");
+                                gotoligcol(6,115);
+                                printf("L pour lancer les des");
+                                gotoligcol(7,115);
+                                printf("G pour acheter ou vendre des maisons");
+                                gotoligcol(8,115);
+                                printf("E pour proceder a des echanges ");
+                                gotoligcol(9,115);
+                                printf("H pour acceder au menu de l'hypotheque");
+                                gotoligcol(10,115);
+                                fflush(stdin);
+                                scanf("%c",&choixT);
+                            }
+                            while(choixT!='L' && choixT!='G' && choixT!='H' && choixT!='E');
+
+                            //boucle qui s'execute si l'utilisateur veut acheter ou vendre des maisons
+                            if (choixT == 'G')
+                            {
+                                system("cls");
+                                gestion_Prop(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,&compteurMaisons, &compteurHotels, t);
+                                Sleep(1500);
+                                system("cls");
+                            }
+                            //Boucle qui s'execute si l'utilisateur veut hypothequer une propriété
+                            else if (choixT == 'H')
+                            {
+                                system("cls");
+                                hypotheque(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,&compteurMaisons, &compteurHotels, t);
+                                Sleep(1500);
+                                system("cls");
+                            }
+                            //Boucle qui s'execute si l'utilisateur veut faire des échanges
+                            else if (choixT == 'E')
+                            {
+                                system("cls");
+                                echange(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,&compteurMaisons, &compteurHotels, t, nombreDeJoueur);
+                                Sleep(1500);
+                                system("cls");
+                            }
+                            //Actualisation du plateau
+                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+                            //Affichage de l'argent du joueur
+                            gotoligcol(43, 73);
+                            Color(15,0);
+                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                            Color(12,0);
+                        }
+                        while(choixT!='L');
+
+                        if(ordreDePassageDesJoueurs[t].argent < 0)
+                        {
+                            joueurEnFaillite[t] = 1;
+                            compteurFaillite ++ ;
+                            system("cls");
+                            printf("Vous avez perdu !");
+                            Sleep(2000);
+
+                        }
+
+                        if(ordreDePassageDesJoueurs[t].argent > 0)
+                        {
+                            //On lance les dés une première fois
+                            int deNumeroDeux = rand() % 6 + 1;
+                            int deNumeroUn = rand() % 6 + 1;
+                            afficherDe(deNumeroUn,deNumeroDeux);
+                            sommeDesLance = deNumeroUn + deNumeroDeux;
+
+                            //On actualise la position
+                            ordreDePassageDesJoueurs[t].position = deplanbrjr(sommeDesLance,&ordreDePassageDesJoueurs[t]);
+                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+                            Sleep(1500);
+
+                            //On efface toutes les données des dés
+                            for(int l=5 ; l<22 ; l++)
+                            {
+                                for(int c = 115 ; c<160 ; c++)
+                                {
+                                    gotoligcol(l,c);
+                                    printf(" ");
+                                }
+                            }
+
+                            //Actualisation du plateau
+                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+
+                            //Affichage de l'argent du joueur
+                            gotoligcol(43, 73);
+                            Color(15,0);
+                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                            Color(12,0);
+
+                            //Action case
+                            positionTemporaire = ordreDePassageDesJoueurs[t].position;
+                            actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs, &compteurMaisons, &compteurHotels);
+
+                            //On vérifie si le joueur était sur une case avec une carte
+                            if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
+                            {
+                                gotoligcol(3,115);
+                                printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
+                                fflush(stdin);
+                                getchar();
+
+                                positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+
+                                //Actualisation du plateau
+                                plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+
+                                //Affichage de l'argent du joueur
+                                gotoligcol(43, 73);
+                                Color(15,0);
+                                printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                Color(12,0);
+
+                            }
+                            if(positionTemporaire != ordreDePassageDesJoueurs[t].position)
+                            {
+                                //On resauvegarde les bonnes positions
+                                positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+                                //Actualisation du plateau
+                                plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+                                //Affichage de l'argent du joueur
+                                gotoligcol(43, 73);
+                                Color(15,0);
+                                printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                Color(12,0);
+                                //On lance le sous programme action case
+                                actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs, &compteurMaisons, &compteurHotels);
+                            }
+                            if(ordreDePassageDesJoueurs[t].argent < 0)
+                            {
+                                joueurEnFaillite[t] = 1;
+                                compteurFaillite ++ ;
+                                system("cls");
+                                printf("Vous avez perdu !");
+                                Sleep(2000);
+
+                            }
+                            if(ordreDePassageDesJoueurs[t].argent > 0)
+                            {
+                                //On resauvegarde les bonnes positions
+                                positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+                                //Actualisation du plateau
+                                plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+                                //Affichage de l'argent du joueur
+                                gotoligcol(43, 73);
+                                Color(15,0);
+                                printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                Color(12,0);
+
+                                //Cette boucle est utilisée ssi un double à été fait
+                                while(deNumeroDeux == deNumeroUn)
+                                {
+                                    if(ordreDePassageDesJoueurs[t].doubleOuNon == 1)
+                                    {
+                                        //On lance les dés
+                                        lancerDeDes(&deNumeroUn,&deNumeroDeux);
+                                        afficherDe(deNumeroUn,deNumeroDeux);
+                                        Sleep(1500);
+                                        sommeDesLance = deNumeroUn + deNumeroDeux;
+                                        ordreDePassageDesJoueurs[t].doubleOuNon = 2;
+                                        ordreDePassageDesJoueurs[t].position = deplanbrjr(sommeDesLance,&ordreDePassageDesJoueurs[t]);
+                                        positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+
+                                        if(deNumeroDeux != deNumeroUn)
+                                        {
+                                            gotoligcol(43,1);
+                                            printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
+                                            fflush(stdin);
+                                            getchar();
+
+                                            //On efface toutes les données des dés
+                                            for(int l=5 ; l<22 ; l++)
+                                            {
+                                                for(int c = 115 ; c<160 ; c++)
+                                                {
+                                                    gotoligcol(l,c);
+                                                    printf(" ");
+                                                }
+                                            }
+
+                                            //Actualisation du plateau
+                                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+
+                                            //Affichage de l'argent du joueur
+                                            gotoligcol(43, 73);
+                                            Color(15,0);
+                                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                            Color(12,0);
+
+                                            //Action case
+                                            positionTemporaire = ordreDePassageDesJoueurs[t].position;
+                                            actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs, &compteurMaisons, &compteurHotels);
+
+                                            //On vérifie si le joueur était sur une case avec une carte
+                                            if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
+                                            {
+                                                gotoligcol(3,115);
+                                                printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
+                                                fflush(stdin);
+                                                getchar();
+
+                                                positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+
+                                                //Actualisation du plateau
+                                                plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+
+                                                //Affichage de l'argent du joueur
+                                                gotoligcol(43, 73);
+                                                Color(15,0);
+                                                printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                                Color(12,0);
+
+                                            }
+                                            if(positionTemporaire != ordreDePassageDesJoueurs[t].position)
+                                            {
+                                                //On resauvegarde les bonnes positions
+                                                positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+                                                //Actualisation du plateau
+                                                plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+                                                //Affichage de l'argent du joueur
+                                                gotoligcol(43, 73);
+                                                Color(15,0);
+                                                printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                                Color(12,0);
+                                                //On lance le sous programme action case
+                                                actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs, &compteurMaisons, &compteurHotels);
+                                            }
+                                            if(ordreDePassageDesJoueurs[t].argent < 0)
+                                            {
+                                                joueurEnFaillite[t] = 1;
+                                                compteurFaillite ++ ;
+                                                system("cls");
+                                                printf("Vous avez perdu !");
+                                                Sleep(2000);
+                                                break;
+
+                                            }
+                                            //On resauvegarde les bonnes positions
+                                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+                                            //Actualisation du plateau
+                                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+                                            //Affichage de l'argent du joueur
+                                            gotoligcol(43, 73);
+                                            Color(15,0);
+                                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                            Color(12,0);
+                                        }
+                                        else if(deNumeroUn == deNumeroDeux)
+                                        {
+                                            gotoligcol(22,115);
+                                            printf("Vous allez en prison ! \n");
+                                            ordreDePassageDesJoueurs[t].doubleOuNon = 0;
+
+
+                                            gotoligcol(43,1);
+                                            printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
+                                            fflush(stdin);
+                                            getchar();
+
+                                            //On efface toutes les données des dés
+                                            for(int l=5 ; l<22 ; l++)
+                                            {
+                                                for(int c = 115 ; c<160 ; c++)
+                                                {
+                                                    gotoligcol(l,c);
+                                                    printf(" ");
+                                                }
+                                            }
+
+                                            //Actualisation du plateau
+                                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+
+                                            //Affichage de l'argent du joueur
+                                            gotoligcol(43, 73);
+                                            Color(15,0);
+                                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                            Color(12,0);
+
+
+                                            break;
+                                        }
+
+
+
+                                    }
+
+                                    if(ordreDePassageDesJoueurs[t].doubleOuNon == 0)
+                                    {
+                                        lancerDeDes(&deNumeroUn,&deNumeroDeux);
+                                        afficherDe(deNumeroUn,deNumeroDeux);
+                                        Sleep(1500);
+                                        sommeDesLance = deNumeroUn + deNumeroDeux;
+                                        ordreDePassageDesJoueurs[t].doubleOuNon = 1;
+                                        ordreDePassageDesJoueurs[t].position = deplanbrjr(sommeDesLance,&ordreDePassageDesJoueurs[t]);
+                                        positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+
+                                        //On efface toutes les données des dés
+                                        for(int l=5 ; l<22 ; l++)
+                                        {
+                                            for(int c = 115 ; c<160 ; c++)
+                                            {
+                                                gotoligcol(l,c);
+                                                printf(" ");
+                                            }
+                                        }
+
+                                        //Actualisation du plateau
+                                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+
+                                        //Affichage de l'argent du joueur
+                                        gotoligcol(43, 73);
+                                        Color(15,0);
+                                        printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                        Color(12,0);
+
+                                        //Action case
+                                        positionTemporaire = ordreDePassageDesJoueurs[t].position;
+                                        actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs, &compteurMaisons, &compteurHotels);
+
+                                        //On vérifie si le joueur était sur une case avec une carte
+                                        if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
+                                        {
+                                            gotoligcol(3,115);
+                                            printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
+                                            fflush(stdin);
+                                            getchar();
+
+                                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+
+                                            //Actualisation du plateau
+                                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+
+                                            //Affichage de l'argent du joueur
+                                            gotoligcol(43, 73);
+                                            Color(15,0);
+                                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                            Color(12,0);
+
+                                        }
+                                        if(positionTemporaire != ordreDePassageDesJoueurs[t].position)
+                                        {
+                                            //On resauvegarde les bonnes positions
+                                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+                                            //Actualisation du plateau
+                                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+                                            //Affichage de l'argent du joueur
+                                            gotoligcol(43, 73);
+                                            Color(15,0);
+                                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                            Color(12,0);
+                                            //On lance le sous programme action case
+                                            actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs, &compteurMaisons, &compteurHotels);
+                                        }
+                                        if(ordreDePassageDesJoueurs[t].argent < 0)
+                                        {
+                                            joueurEnFaillite[t] = 1;
+                                            compteurFaillite ++ ;
+                                            system("cls");
+                                            printf("Vous avez perdu !");
+                                            Sleep(2000);
+                                            break;
+
+                                        }
+                                        if(ordreDePassageDesJoueurs[t].argent > 0)
+                                        {
+
+                                            //On resauvegarde les bonnes positions
+                                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+                                            //Actualisation du plateau
+                                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+                                            //Affichage de l'argent du joueur
+                                            gotoligcol(43, 73);
+                                            Color(15,0);
+                                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                            Color(12,0);
+                                        }
+
+                                    }
+                                }
+
+
+                            }
+
+                        }
+
+                    }
+
+                    //Si on a fait un double
+                    if(choixPrison == 3)
+                    {
+                        positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+                        //Action case
+                        positionTemporaire = ordreDePassageDesJoueurs[t].position;
+                        actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs, &compteurMaisons, &compteurHotels);
+
+                        //On vérifie si le joueur était sur une case avec une carte
+                        if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
+                        {
+                            gotoligcol(3,115);
+                            printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
+                            fflush(stdin);
+                            getchar();
+
+                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+
+                            //Actualisation du plateau
+                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+
+                            //Affichage de l'argent du joueur
+                            gotoligcol(43, 73);
+                            Color(15,0);
+                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                            Color(12,0);
+
+                        }
+                        if(positionTemporaire != ordreDePassageDesJoueurs[t].position)
+                        {
+                            //On resauvegarde les bonnes positions
+                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+                            //Actualisation du plateau
+                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+                            //Affichage de l'argent du joueur
+                            gotoligcol(43, 73);
+                            Color(15,0);
+                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                            Color(12,0);
+                            //On lance le sous programme action case
+                            actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs, &compteurMaisons, &compteurHotels);
+                        }
+                        if(ordreDePassageDesJoueurs[t].argent < 0)
+                        {
+                            joueurEnFaillite[t] = 1;
+                            compteurFaillite ++ ;
+                            system("cls");
+                            printf("Vous avez perdu !");
+                            Sleep(2000);
+                            break;
+
+                        }
+                        if(ordreDePassageDesJoueurs[t].argent > 0)
+                        {
+                            //On resauvegarde les bonnes positions
+                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+                            //Actualisation du plateau
+                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+                            //Affichage de l'argent du joueur
+                            gotoligcol(43, 73);
+                            Color(15,0);
+                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                            Color(12,0);
+                        }
+
 
                     }
 
@@ -1678,6 +2076,20 @@ int main()
                 {
                     t=0;
                 }
+                if(joueurEnFaillite[t] != 0)
+                {
+                    t++;
+                }
+                while(compteurFaillite == (nombreDeJoueur-1))
+                {
+                    system("cls");
+                    printf("La Partie est terminee !\n");
+                    printf("%s, vous avez gagne",ordreDePassageDesJoueurs[t].nomJoueur);
+                    Sleep(5000);
+                    system("cls");
+                    menu(&choixDuMenuPrincipal); //Affichage du menu
+                    choixmenu(&choixDuMenuPrincipal, tableauDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs,&nombreDeJoueur,&numeroCarteSith,&numeroCarteChance,joueurEnFaillite,compteurFaillite);
+                }
 
                 //Si le joueur qui doit joueur n'est pas en prison
                 if(ordreDePassageDesJoueurs[t].tourPrison == 0)
@@ -1748,350 +2160,28 @@ int main()
                     }
                     while(choixT!='L');
 
-                    //On lance les dés une première fois
-                    int deNumeroDeux = rand() % 6 + 1;
-                    int deNumeroUn = rand() % 6 + 1;
-                    afficherDe(deNumeroUn,deNumeroDeux);
-                    sommeDesLance = deNumeroUn + deNumeroDeux;
-
-                    //On actualise la position
-                    ordreDePassageDesJoueurs[t].position = deplanbrjr(sommeDesLance,&ordreDePassageDesJoueurs[t]);
-                    positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-                    Sleep(1500);
-
-                    //On efface toutes les données des dés
-                    for(int l=5 ; l<22 ; l++)
+                    if(ordreDePassageDesJoueurs[t].argent < 0)
                     {
-                        for(int c = 115 ; c<160 ; c++)
-                        {
-                            gotoligcol(l,c);
-                            printf(" ");
-                        }
-                    }
-
-                    //Actualisation du plateau
-                    plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-
-                    //Affichage de l'argent du joueur
-                    gotoligcol(43, 73);
-                    Color(15,0);
-                    printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                    Color(12,0);
-
-                    //Action case
-                    positionTemporaire = ordreDePassageDesJoueurs[t].position;
-                    actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
-
-                    //On vérifie si le joueur était sur une case avec une carte
-                    if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
-                    {
-                        gotoligcol(3,115);
-                        printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
-                        fflush(stdin);
-                        getchar();
-
-                        positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-
-                        //Actualisation du plateau
-                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-
-                        //Affichage de l'argent du joueur
-                        gotoligcol(43, 73);
-                        Color(15,0);
-                        printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                        Color(12,0);
-
-                    }
-                    if(positionTemporaire != ordreDePassageDesJoueurs[t].position)
-                    {
-                        //On resauvegarde les bonnes positions
-                        positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-                        //Actualisation du plateau
-                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-                        //Affichage de l'argent du joueur
-                        gotoligcol(43, 73);
-                        Color(15,0);
-                        printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                        Color(12,0);
-                        //On lance le sous programme action case
-                        actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
-                    }
-                    //On resauvegarde les bonnes positions
-                    positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-                    //Actualisation du plateau
-                    plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-                    //Affichage de l'argent du joueur
-                    gotoligcol(43, 73);
-                    Color(15,0);
-                    printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                    Color(12,0);
-
-                    //Cette boucle est utilisée ssi un double à été fait
-                    while(deNumeroDeux == deNumeroUn)
-                    {
-                        if(ordreDePassageDesJoueurs[t].doubleOuNon == 1)
-                        {
-                            //On lance les dés
-                            lancerDeDes(&deNumeroUn,&deNumeroDeux);
-                            afficherDe(deNumeroUn,deNumeroDeux);
-                            Sleep(1500);
-                            sommeDesLance = deNumeroUn + deNumeroDeux;
-                            ordreDePassageDesJoueurs[t].doubleOuNon = 2;
-                            ordreDePassageDesJoueurs[t].position = deplanbrjr(sommeDesLance,&ordreDePassageDesJoueurs[t]);
-                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-
-                            if(deNumeroDeux != deNumeroUn)
-                            {
-                                gotoligcol(43,1);
-                                printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
-                                fflush(stdin);
-                                getchar();
-
-                                //On efface toutes les données des dés
-                                for(int l=5 ; l<22 ; l++)
-                                {
-                                    for(int c = 115 ; c<160 ; c++)
-                                    {
-                                        gotoligcol(l,c);
-                                        printf(" ");
-                                    }
-                                }
-
-                                //Actualisation du plateau
-                                plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-
-                                //Affichage de l'argent du joueur
-                                gotoligcol(43, 73);
-                                Color(15,0);
-                                printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                                Color(12,0);
-
-                                //Action case
-                                positionTemporaire = ordreDePassageDesJoueurs[t].position;
-                                actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
-
-                                //On vérifie si le joueur était sur une case avec une carte
-                                if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
-                                {
-                                    gotoligcol(3,115);
-                                    printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
-                                    fflush(stdin);
-                                    getchar();
-
-                                    positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-
-                                    //Actualisation du plateau
-                                    plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-
-                                    //Affichage de l'argent du joueur
-                                    gotoligcol(43, 73);
-                                    Color(15,0);
-                                    printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                                    Color(12,0);
-
-                                }
-                                if(positionTemporaire != ordreDePassageDesJoueurs[t].position)
-                                {
-                                    //On resauvegarde les bonnes positions
-                                    positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-                                    //Actualisation du plateau
-                                    plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-                                    //Affichage de l'argent du joueur
-                                    gotoligcol(43, 73);
-                                    Color(15,0);
-                                    printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                                    Color(12,0);
-                                    //On lance le sous programme action case
-                                    actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
-                                }
-                                //On resauvegarde les bonnes positions
-                                positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-                                //Actualisation du plateau
-                                plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-                                //Affichage de l'argent du joueur
-                                gotoligcol(43, 73);
-                                Color(15,0);
-                                printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                                Color(12,0);
-                            }
-                            else if(deNumeroUn == deNumeroDeux)
-                            {
-                                gotoligcol(22,115);
-                                printf("Vous allez en prison ! \n");
-                                ordreDePassageDesJoueurs[t].doubleOuNon = 0;
-
-
-                                gotoligcol(43,1);
-                                printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
-                                fflush(stdin);
-                                getchar();
-
-                                //On efface toutes les données des dés
-                                for(int l=5 ; l<22 ; l++)
-                                {
-                                    for(int c = 115 ; c<160 ; c++)
-                                    {
-                                        gotoligcol(l,c);
-                                        printf(" ");
-                                    }
-                                }
-
-                                //Actualisation du plateau
-                                plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-
-                                //Affichage de l'argent du joueur
-                                gotoligcol(43, 73);
-                                Color(15,0);
-                                printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                                Color(12,0);
-
-
-                                break;
-                            }
-
-
-
-                        }
-
-                        if(ordreDePassageDesJoueurs[t].doubleOuNon == 0)
-                        {
-                            lancerDeDes(&deNumeroUn,&deNumeroDeux);
-                            afficherDe(deNumeroUn,deNumeroDeux);
-                            Sleep(1500);
-                            sommeDesLance = deNumeroUn + deNumeroDeux;
-                            ordreDePassageDesJoueurs[t].doubleOuNon = 1;
-                            ordreDePassageDesJoueurs[t].position = deplanbrjr(sommeDesLance,&ordreDePassageDesJoueurs[t]);
-                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-
-                            //On efface toutes les données des dés
-                            for(int l=5 ; l<22 ; l++)
-                            {
-                                for(int c = 115 ; c<160 ; c++)
-                                {
-                                    gotoligcol(l,c);
-                                    printf(" ");
-                                }
-                            }
-
-                            //Actualisation du plateau
-                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-
-                            //Affichage de l'argent du joueur
-                            gotoligcol(43, 73);
-                            Color(15,0);
-                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                            Color(12,0);
-
-                            //Action case
-                            positionTemporaire = ordreDePassageDesJoueurs[t].position;
-                            actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
-
-                            //On vérifie si le joueur était sur une case avec une carte
-                            if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
-                            {
-                                gotoligcol(3,115);
-                                printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
-                                fflush(stdin);
-                                getchar();
-
-                                positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-
-                                //Actualisation du plateau
-                                plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-
-                                //Affichage de l'argent du joueur
-                                gotoligcol(43, 73);
-                                Color(15,0);
-                                printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                                Color(12,0);
-
-                            }
-                            if(positionTemporaire != ordreDePassageDesJoueurs[t].position)
-                            {
-                                //On resauvegarde les bonnes positions
-                                positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-                                //Actualisation du plateau
-                                plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-                                //Affichage de l'argent du joueur
-                                gotoligcol(43, 73);
-                                Color(15,0);
-                                printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                                Color(12,0);
-                                //On lance le sous programme action case
-                                actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
-                            }
-                            //On resauvegarde les bonnes positions
-                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-                            //Actualisation du plateau
-                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-                            //Affichage de l'argent du joueur
-                            gotoligcol(43, 73);
-                            Color(15,0);
-                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                            Color(12,0);
-
-                        }
-                    }
-
-                    //Cette boucle permet de demander à l'utilisateur s'il veut revenir au programme principal à la fin du tour
-                    if(t==(nombreDeJoueur-1))
-                    {
-                        do
-                        {
-                            gotoligcol(3,115);
-                            printf("revenir au menu principal ? || OUI : 1 || NON : 0 || : ");
-                            fflush(stdin);
-                            scanf("%d",&retournerMenu);
-                        }
-                        while(retournerMenu != 0 && retournerMenu !=1);
-
-                        if(retournerMenu == 1)
-                        {
-                            quitterLaBoucle = 1;
-                            break;
-                        }
-                        if(retournerMenu == 0)
-                        {
-                            gotoligcol(3,115);
-                            printf("                                                         ");
-                            quitterLaBoucle = 0;
-                        }
-
-                    }
-                }
-                //Si le joueur est en prison
-                else if(ordreDePassageDesJoueurs[t].tourPrison != 0 )
-                {
-                    //On lance le programme des tours prison
-                    prisonChoix(&choixPrison);
-                    prison(choixPrison,ordreDePassageDesJoueurs,t,nombreDeJoueur);
-
-                    //Si jamais on a fait 3 tours
-                    if(ordreDePassageDesJoueurs[t].tourPrison == 4 && choixPrison != 3)
-                    {
-                        printf("\nVous sortez de prison en payant 50 credits !");
-                        ordreDePassageDesJoueurs[t].argent -= 50;
-                        ordreDePassageDesJoueurs[t].tourPrison = 0;
+                        joueurEnFaillite[t] = 1;
+                        compteurFaillite ++ ;
                         system("cls");
-                        gotoligcol(3,115);
-                        printf("C'est a %s de jouer !",ordreDePassageDesJoueurs[t].nomJoueur);
+                        printf("Vous avez perdu !");
+                        Sleep(2000);
 
-                        //Affichage de l'argent du joueur
-                        gotoligcol(43, 73);
-                        Color(15,0);
-                        printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                        Color(12,0);
+                    }
 
+                    if(ordreDePassageDesJoueurs[t].argent > 0)
+                    {
                         //On lance les dés une première fois
-                        ordreDePassageDesJoueurs[t].doubleOuNon = 0;
-                        lancerDeDes(&deNumeroUn,&deNumeroDeux);
+                        int deNumeroDeux = rand() % 6 + 1;
+                        int deNumeroUn = rand() % 6 + 1;
                         afficherDe(deNumeroUn,deNumeroDeux);
                         sommeDesLance = deNumeroUn + deNumeroDeux;
 
                         //On actualise la position
                         ordreDePassageDesJoueurs[t].position = deplanbrjr(sommeDesLance,&ordreDePassageDesJoueurs[t]);
                         positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-                        Sleep(1000);
+                        Sleep(1500);
 
                         //On efface toutes les données des dés
                         for(int l=5 ; l<22 ; l++)
@@ -2114,253 +2204,7 @@ int main()
 
                         //Action case
                         positionTemporaire = ordreDePassageDesJoueurs[t].position;
-                        actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
-
-                        //On vérifie si le joueur était sur une case avec une carte
-                        if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
-                        {
-                            gotoligcol(3,115);
-                            printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
-                            fflush(stdin);
-                            getchar();
-
-                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-
-                            //Actualisation du plateau
-                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-
-                            //Affichage de l'argent du joueur
-                            gotoligcol(43, 73);
-                            Color(15,0);
-                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                            Color(12,0);
-
-                        }
-
-                        //Cette boucle est utilisée ssi un double à été fait
-                        while(deNumeroDeux == deNumeroUn)
-                        {
-                            if(ordreDePassageDesJoueurs[t].doubleOuNon == 1)
-                            {
-                                //On lance les dés
-                                lancerDeDes(&deNumeroUn,&deNumeroDeux);
-                                afficherDe(deNumeroUn,deNumeroDeux);
-                                Sleep(1500);
-                                sommeDesLance = deNumeroUn + deNumeroDeux;
-                                ordreDePassageDesJoueurs[t].doubleOuNon = 2;
-                                ordreDePassageDesJoueurs[t].position = deplanbrjr(sommeDesLance,&ordreDePassageDesJoueurs[t]);
-                                positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-
-                                if(deNumeroDeux != deNumeroUn)
-                                {
-                                    gotoligcol(43,1);
-                                    printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
-                                    fflush(stdin);
-                                    getchar();
-
-                                    //On efface toutes les données des dés
-                                    for(int l=5 ; l<22 ; l++)
-                                    {
-                                        for(int c = 115 ; c<160 ; c++)
-                                        {
-                                            gotoligcol(l,c);
-                                            printf(" ");
-                                        }
-                                    }
-
-                                    //Actualisation du plateau
-                                    plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-
-                                    //Affichage de l'argent du joueur
-                                    gotoligcol(43, 73);
-                                    Color(15,0);
-                                    printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                                    Color(12,0);
-
-                                    //Action case
-                                    positionTemporaire = ordreDePassageDesJoueurs[t].position;
-                                    actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
-
-                                    //On vérifie si le joueur était sur une case avec une carte
-                                    if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
-                                    {
-                                        gotoligcol(3,115);
-                                        printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
-                                        fflush(stdin);
-                                        getchar();
-
-                                        positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-
-                                        //Actualisation du plateau
-                                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-
-                                        //Affichage de l'argent du joueur
-                                        gotoligcol(43, 73);
-                                        Color(15,0);
-                                        printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                                        Color(12,0);
-
-                                    }
-                                    if(positionTemporaire != ordreDePassageDesJoueurs[t].position)
-                                    {
-                                        //On resauvegarde les bonnes positions
-                                        positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-                                        //Actualisation du plateau
-                                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-                                        //Affichage de l'argent du joueur
-                                        gotoligcol(43, 73);
-                                        Color(15,0);
-                                        printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                                        Color(12,0);
-                                        //On lance le sous programme action case
-                                        actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
-                                    }
-                                    //On resauvegarde les bonnes positions
-                                    positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-                                    //Actualisation du plateau
-                                    plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-                                    //Affichage de l'argent du joueur
-                                    gotoligcol(43, 73);
-                                    Color(15,0);
-                                    printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                                    Color(12,0);
-                                }
-                                else if(deNumeroUn == deNumeroDeux)
-                                {
-                                    gotoligcol(22,115);
-                                    printf("Vous allez en prison ! \n");
-                                    ordreDePassageDesJoueurs[t].doubleOuNon = 0;
-
-
-                                    gotoligcol(43,1);
-                                    printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
-                                    fflush(stdin);
-                                    getchar();
-
-                                    //On efface toutes les données des dés
-                                    for(int l=5 ; l<22 ; l++)
-                                    {
-                                        for(int c = 115 ; c<160 ; c++)
-                                        {
-                                            gotoligcol(l,c);
-                                            printf(" ");
-                                        }
-                                    }
-
-                                    //Actualisation du plateau
-                                    plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-
-                                    //Affichage de l'argent du joueur
-                                    gotoligcol(43, 73);
-                                    Color(15,0);
-                                    printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                                    Color(12,0);
-
-
-                                    break;
-                                }
-
-
-
-                            }
-
-                            if(ordreDePassageDesJoueurs[t].doubleOuNon == 0)
-                            {
-                                lancerDeDes(&deNumeroUn,&deNumeroDeux);
-                                afficherDe(deNumeroUn,deNumeroDeux);
-                                Sleep(1500);
-                                sommeDesLance = deNumeroUn + deNumeroDeux;
-                                ordreDePassageDesJoueurs[t].doubleOuNon = 1;
-                                ordreDePassageDesJoueurs[t].position = deplanbrjr(sommeDesLance,&ordreDePassageDesJoueurs[t]);
-                                positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-
-                                //On efface toutes les données des dés
-                                for(int l=5 ; l<22 ; l++)
-                                {
-                                    for(int c = 115 ; c<160 ; c++)
-                                    {
-                                        gotoligcol(l,c);
-                                        printf(" ");
-                                    }
-                                }
-
-                                //Actualisation du plateau
-                                plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-
-                                //Affichage de l'argent du joueur
-                                gotoligcol(43, 73);
-                                Color(15,0);
-                                printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                                Color(12,0);
-
-                                //Action case
-                                positionTemporaire = ordreDePassageDesJoueurs[t].position;
-                                actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
-
-                                //On vérifie si le joueur était sur une case avec une carte
-                                if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
-                                {
-                                    gotoligcol(3,115);
-                                    printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
-                                    fflush(stdin);
-                                    getchar();
-
-                                    positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-
-                                    //Actualisation du plateau
-                                    plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-
-                                    //Affichage de l'argent du joueur
-                                    gotoligcol(43, 73);
-                                    Color(15,0);
-                                    printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                                    Color(12,0);
-
-                                }
-                                if(positionTemporaire != ordreDePassageDesJoueurs[t].position)
-                                {
-                                    //On resauvegarde les bonnes positions
-                                    positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-                                    //Actualisation du plateau
-                                    plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-                                    //Affichage de l'argent du joueur
-                                    gotoligcol(43, 73);
-                                    Color(15,0);
-                                    printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                                    Color(12,0);
-                                    //On lance le sous programme action case
-                                    actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
-                                }
-                                //On resauvegarde les bonnes positions
-                                positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-                                //Actualisation du plateau
-                                plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-                                //Affichage de l'argent du joueur
-                                gotoligcol(43, 73);
-                                Color(15,0);
-                                printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                                Color(12,0);
-
-                            }
-                        }
-                        system("cls");
-                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-                        //Affichage de l'argent du joueur
-                        gotoligcol(43, 73);
-                        Color(15,0);
-                        printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
-                        Color(12,0);
-
-                    }
-
-                    //Si on a fait un double
-                    if(choixPrison == 3)
-                    {
-                        positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
-                        //Action case
-                        positionTemporaire = ordreDePassageDesJoueurs[t].position;
-                        actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
+                        actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs, &compteurMaisons, &compteurHotels);
 
                         //On vérifie si le joueur était sur une case avec une carte
                         if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
@@ -2394,17 +2238,771 @@ int main()
                             printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
                             Color(12,0);
                             //On lance le sous programme action case
-                            actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs);
+                            actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs, &compteurMaisons, &compteurHotels);
                         }
-                        //On resauvegarde les bonnes positions
-                        positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
-                        //Actualisation du plateau
-                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+                        if(ordreDePassageDesJoueurs[t].argent < 0)
+                        {
+                            joueurEnFaillite[t] = 1;
+                            compteurFaillite ++ ;
+                            system("cls");
+                            printf("Vous avez perdu !");
+                            Sleep(2000);
+
+                        }
+                        if(ordreDePassageDesJoueurs[t].argent > 0)
+                        {
+                            //On resauvegarde les bonnes positions
+                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+                            //Actualisation du plateau
+                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+                            //Affichage de l'argent du joueur
+                            gotoligcol(43, 73);
+                            Color(15,0);
+                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                            Color(12,0);
+
+                            //Cette boucle est utilisée ssi un double à été fait
+                            while(deNumeroDeux == deNumeroUn)
+                            {
+                                if(ordreDePassageDesJoueurs[t].doubleOuNon == 1)
+                                {
+                                    //On lance les dés
+                                    lancerDeDes(&deNumeroUn,&deNumeroDeux);
+                                    afficherDe(deNumeroUn,deNumeroDeux);
+                                    Sleep(1500);
+                                    sommeDesLance = deNumeroUn + deNumeroDeux;
+                                    ordreDePassageDesJoueurs[t].doubleOuNon = 2;
+                                    ordreDePassageDesJoueurs[t].position = deplanbrjr(sommeDesLance,&ordreDePassageDesJoueurs[t]);
+                                    positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+
+                                    if(deNumeroDeux != deNumeroUn)
+                                    {
+                                        gotoligcol(43,1);
+                                        printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
+                                        fflush(stdin);
+                                        getchar();
+
+                                        //On efface toutes les données des dés
+                                        for(int l=5 ; l<22 ; l++)
+                                        {
+                                            for(int c = 115 ; c<160 ; c++)
+                                            {
+                                                gotoligcol(l,c);
+                                                printf(" ");
+                                            }
+                                        }
+
+                                        //Actualisation du plateau
+                                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+
+                                        //Affichage de l'argent du joueur
+                                        gotoligcol(43, 73);
+                                        Color(15,0);
+                                        printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                        Color(12,0);
+
+                                        //Action case
+                                        positionTemporaire = ordreDePassageDesJoueurs[t].position;
+                                        actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs, &compteurMaisons, &compteurHotels);
+
+                                        //On vérifie si le joueur était sur une case avec une carte
+                                        if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
+                                        {
+                                            gotoligcol(3,115);
+                                            printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
+                                            fflush(stdin);
+                                            getchar();
+
+                                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+
+                                            //Actualisation du plateau
+                                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+
+                                            //Affichage de l'argent du joueur
+                                            gotoligcol(43, 73);
+                                            Color(15,0);
+                                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                            Color(12,0);
+
+                                        }
+                                        if(positionTemporaire != ordreDePassageDesJoueurs[t].position)
+                                        {
+                                            //On resauvegarde les bonnes positions
+                                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+                                            //Actualisation du plateau
+                                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+                                            //Affichage de l'argent du joueur
+                                            gotoligcol(43, 73);
+                                            Color(15,0);
+                                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                            Color(12,0);
+                                            //On lance le sous programme action case
+                                            actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs, &compteurMaisons, &compteurHotels);
+                                        }
+                                        if(ordreDePassageDesJoueurs[t].argent < 0)
+                                        {
+                                            joueurEnFaillite[t] = 1;
+                                            compteurFaillite ++ ;
+                                            system("cls");
+                                            printf("Vous avez perdu !");
+                                            Sleep(2000);
+                                            break;
+
+                                        }
+                                        //On resauvegarde les bonnes positions
+                                        positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+                                        //Actualisation du plateau
+                                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+                                        //Affichage de l'argent du joueur
+                                        gotoligcol(43, 73);
+                                        Color(15,0);
+                                        printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                        Color(12,0);
+                                    }
+                                    else if(deNumeroUn == deNumeroDeux)
+                                    {
+                                        gotoligcol(22,115);
+                                        printf("Vous allez en prison ! \n");
+                                        ordreDePassageDesJoueurs[t].doubleOuNon = 0;
+
+
+                                        gotoligcol(43,1);
+                                        printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
+                                        fflush(stdin);
+                                        getchar();
+
+                                        //On efface toutes les données des dés
+                                        for(int l=5 ; l<22 ; l++)
+                                        {
+                                            for(int c = 115 ; c<160 ; c++)
+                                            {
+                                                gotoligcol(l,c);
+                                                printf(" ");
+                                            }
+                                        }
+
+                                        //Actualisation du plateau
+                                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+
+                                        //Affichage de l'argent du joueur
+                                        gotoligcol(43, 73);
+                                        Color(15,0);
+                                        printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                        Color(12,0);
+
+
+                                        break;
+                                    }
+
+
+
+                                }
+
+                                if(ordreDePassageDesJoueurs[t].doubleOuNon == 0)
+                                {
+                                    lancerDeDes(&deNumeroUn,&deNumeroDeux);
+                                    afficherDe(deNumeroUn,deNumeroDeux);
+                                    Sleep(1500);
+                                    sommeDesLance = deNumeroUn + deNumeroDeux;
+                                    ordreDePassageDesJoueurs[t].doubleOuNon = 1;
+                                    ordreDePassageDesJoueurs[t].position = deplanbrjr(sommeDesLance,&ordreDePassageDesJoueurs[t]);
+                                    positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+
+                                    //On efface toutes les données des dés
+                                    for(int l=5 ; l<22 ; l++)
+                                    {
+                                        for(int c = 115 ; c<160 ; c++)
+                                        {
+                                            gotoligcol(l,c);
+                                            printf(" ");
+                                        }
+                                    }
+
+                                    //Actualisation du plateau
+                                    plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+
+                                    //Affichage de l'argent du joueur
+                                    gotoligcol(43, 73);
+                                    Color(15,0);
+                                    printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                    Color(12,0);
+
+                                    //Action case
+                                    positionTemporaire = ordreDePassageDesJoueurs[t].position;
+                                    actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs, &compteurMaisons, &compteurHotels);
+
+                                    //On vérifie si le joueur était sur une case avec une carte
+                                    if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
+                                    {
+                                        gotoligcol(3,115);
+                                        printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
+                                        fflush(stdin);
+                                        getchar();
+
+                                        positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+
+                                        //Actualisation du plateau
+                                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+
+                                        //Affichage de l'argent du joueur
+                                        gotoligcol(43, 73);
+                                        Color(15,0);
+                                        printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                        Color(12,0);
+
+                                    }
+                                    if(positionTemporaire != ordreDePassageDesJoueurs[t].position)
+                                    {
+                                        //On resauvegarde les bonnes positions
+                                        positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+                                        //Actualisation du plateau
+                                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+                                        //Affichage de l'argent du joueur
+                                        gotoligcol(43, 73);
+                                        Color(15,0);
+                                        printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                        Color(12,0);
+                                        //On lance le sous programme action case
+                                        actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs, &compteurMaisons, &compteurHotels);
+                                    }
+                                    if(ordreDePassageDesJoueurs[t].argent < 0)
+                                    {
+                                        joueurEnFaillite[t] = 1;
+                                        compteurFaillite ++ ;
+                                        system("cls");
+                                        printf("Vous avez perdu !");
+                                        Sleep(2000);
+                                        break;
+
+                                    }
+                                    //On resauvegarde les bonnes positions
+                                    positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+                                    //Actualisation du plateau
+                                    plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+                                    //Affichage de l'argent du joueur
+                                    gotoligcol(43, 73);
+                                    Color(15,0);
+                                    printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                    Color(12,0);
+
+                                }
+                            }
+
+                            //Cette boucle permet de demander à l'utilisateur s'il veut revenir au programme principal à la fin du tour
+                            if(t==(nombreDeJoueur-1))
+                            {
+                                do
+                                {
+                                    gotoligcol(3,115);
+                                    printf("revenir au menu principal ? || OUI : 1 || NON : 0 || : ");
+                                    fflush(stdin);
+                                    scanf("%d",&retournerMenu);
+                                }
+                                while(retournerMenu != 0 && retournerMenu !=1);
+
+                                if(retournerMenu == 1)
+                                {
+                                    quitterLaBoucle = 1;
+                                    break;
+                                }
+                                if(retournerMenu == 0)
+                                {
+                                    gotoligcol(3,115);
+                                    printf("                                                         ");
+                                    quitterLaBoucle = 0;
+                                }
+
+                            }
+                        }
+
+                    }
+
+                }
+                //Si le joueur est en prison
+                else if(ordreDePassageDesJoueurs[t].tourPrison != 0 )
+                {
+                    //On lance le programme des tours prison
+                    prisonChoix(&choixPrison);
+                    prison(choixPrison,ordreDePassageDesJoueurs,t,nombreDeJoueur);
+
+                    //Si jamais on a fait 3 tours
+                    if(ordreDePassageDesJoueurs[t].tourPrison == 4 && choixPrison != 3)
+                    {
+                        printf("\nVous sortez de prison en payant 50 credits !");
+                        ordreDePassageDesJoueurs[t].argent -= 50;
+                        ordreDePassageDesJoueurs[t].tourPrison = 0;
+                        system("cls");
+                        //Affichage du nom du joueur qui doit jouer
+                        gotoligcol(3,115);
+                        printf("C'est a %s de jouer !",ordreDePassageDesJoueurs[t].nomJoueur);
+
                         //Affichage de l'argent du joueur
                         gotoligcol(43, 73);
                         Color(15,0);
                         printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
                         Color(12,0);
+
+                        //On propose les différents choix
+                        ordreDePassageDesJoueurs[t].doubleOuNon = 0;
+                        do
+                        {
+                            do
+                            {
+                                gotoligcol(5,115);
+                                printf("Selectionner choix :");
+                                gotoligcol(6,115);
+                                printf("L pour lancer les des");
+                                gotoligcol(7,115);
+                                printf("G pour acheter ou vendre des maisons");
+                                gotoligcol(8,115);
+                                printf("E pour proceder a des echanges ");
+                                gotoligcol(9,115);
+                                printf("H pour acceder au menu de l'hypotheque");
+                                gotoligcol(10,115);
+                                fflush(stdin);
+                                scanf("%c",&choixT);
+                            }
+                            while(choixT!='L' && choixT!='G' && choixT!='H' && choixT!='E');
+
+                            //boucle qui s'execute si l'utilisateur veut acheter ou vendre des maisons
+                            if (choixT == 'G')
+                            {
+                                system("cls");
+                                gestion_Prop(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,&compteurMaisons, &compteurHotels, t);
+                                Sleep(1500);
+                                system("cls");
+                            }
+                            //Boucle qui s'execute si l'utilisateur veut hypothequer une propriété
+                            else if (choixT == 'H')
+                            {
+                                system("cls");
+                                hypotheque(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,&compteurMaisons, &compteurHotels, t);
+                                Sleep(1500);
+                                system("cls");
+                            }
+                            //Boucle qui s'execute si l'utilisateur veut faire des échanges
+                            else if (choixT == 'E')
+                            {
+                                system("cls");
+                                echange(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,&compteurMaisons, &compteurHotels, t, nombreDeJoueur);
+                                Sleep(1500);
+                                system("cls");
+                            }
+                            //Actualisation du plateau
+                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+                            //Affichage de l'argent du joueur
+                            gotoligcol(43, 73);
+                            Color(15,0);
+                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                            Color(12,0);
+                        }
+                        while(choixT!='L');
+
+                        if(ordreDePassageDesJoueurs[t].argent < 0)
+                        {
+                            joueurEnFaillite[t] = 1;
+                            compteurFaillite ++ ;
+                            system("cls");
+                            printf("Vous avez perdu !");
+                            Sleep(2000);
+
+                        }
+
+                        if(ordreDePassageDesJoueurs[t].argent > 0)
+                        {
+                            //On lance les dés une première fois
+                            int deNumeroDeux = rand() % 6 + 1;
+                            int deNumeroUn = rand() % 6 + 1;
+                            afficherDe(deNumeroUn,deNumeroDeux);
+                            sommeDesLance = deNumeroUn + deNumeroDeux;
+
+                            //On actualise la position
+                            ordreDePassageDesJoueurs[t].position = deplanbrjr(sommeDesLance,&ordreDePassageDesJoueurs[t]);
+                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+                            Sleep(1500);
+
+                            //On efface toutes les données des dés
+                            for(int l=5 ; l<22 ; l++)
+                            {
+                                for(int c = 115 ; c<160 ; c++)
+                                {
+                                    gotoligcol(l,c);
+                                    printf(" ");
+                                }
+                            }
+
+                            //Actualisation du plateau
+                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+
+                            //Affichage de l'argent du joueur
+                            gotoligcol(43, 73);
+                            Color(15,0);
+                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                            Color(12,0);
+
+                            //Action case
+                            positionTemporaire = ordreDePassageDesJoueurs[t].position;
+                            actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs, &compteurMaisons, &compteurHotels);
+
+                            //On vérifie si le joueur était sur une case avec une carte
+                            if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
+                            {
+                                gotoligcol(3,115);
+                                printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
+                                fflush(stdin);
+                                getchar();
+
+                                positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+
+                                //Actualisation du plateau
+                                plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+
+                                //Affichage de l'argent du joueur
+                                gotoligcol(43, 73);
+                                Color(15,0);
+                                printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                Color(12,0);
+
+                            }
+                            if(positionTemporaire != ordreDePassageDesJoueurs[t].position)
+                            {
+                                //On resauvegarde les bonnes positions
+                                positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+                                //Actualisation du plateau
+                                plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+                                //Affichage de l'argent du joueur
+                                gotoligcol(43, 73);
+                                Color(15,0);
+                                printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                Color(12,0);
+                                //On lance le sous programme action case
+                                actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs, &compteurMaisons, &compteurHotels);
+                            }
+                            if(ordreDePassageDesJoueurs[t].argent < 0)
+                            {
+                                joueurEnFaillite[t] = 1;
+                                compteurFaillite ++ ;
+                                system("cls");
+                                printf("Vous avez perdu !");
+                                Sleep(2000);
+
+                            }
+                            if(ordreDePassageDesJoueurs[t].argent > 0)
+                            {
+                                //On resauvegarde les bonnes positions
+                                positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+                                //Actualisation du plateau
+                                plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+                                //Affichage de l'argent du joueur
+                                gotoligcol(43, 73);
+                                Color(15,0);
+                                printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                Color(12,0);
+
+                                //Cette boucle est utilisée ssi un double à été fait
+                                while(deNumeroDeux == deNumeroUn)
+                                {
+                                    if(ordreDePassageDesJoueurs[t].doubleOuNon == 1)
+                                    {
+                                        //On lance les dés
+                                        lancerDeDes(&deNumeroUn,&deNumeroDeux);
+                                        afficherDe(deNumeroUn,deNumeroDeux);
+                                        Sleep(1500);
+                                        sommeDesLance = deNumeroUn + deNumeroDeux;
+                                        ordreDePassageDesJoueurs[t].doubleOuNon = 2;
+                                        ordreDePassageDesJoueurs[t].position = deplanbrjr(sommeDesLance,&ordreDePassageDesJoueurs[t]);
+                                        positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+
+                                        if(deNumeroDeux != deNumeroUn)
+                                        {
+                                            gotoligcol(43,1);
+                                            printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
+                                            fflush(stdin);
+                                            getchar();
+
+                                            //On efface toutes les données des dés
+                                            for(int l=5 ; l<22 ; l++)
+                                            {
+                                                for(int c = 115 ; c<160 ; c++)
+                                                {
+                                                    gotoligcol(l,c);
+                                                    printf(" ");
+                                                }
+                                            }
+
+                                            //Actualisation du plateau
+                                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+
+                                            //Affichage de l'argent du joueur
+                                            gotoligcol(43, 73);
+                                            Color(15,0);
+                                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                            Color(12,0);
+
+                                            //Action case
+                                            positionTemporaire = ordreDePassageDesJoueurs[t].position;
+                                            actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs, &compteurMaisons, &compteurHotels);
+
+                                            //On vérifie si le joueur était sur une case avec une carte
+                                            if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
+                                            {
+                                                gotoligcol(3,115);
+                                                printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
+                                                fflush(stdin);
+                                                getchar();
+
+                                                positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+
+                                                //Actualisation du plateau
+                                                plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+
+                                                //Affichage de l'argent du joueur
+                                                gotoligcol(43, 73);
+                                                Color(15,0);
+                                                printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                                Color(12,0);
+
+                                            }
+                                            if(positionTemporaire != ordreDePassageDesJoueurs[t].position)
+                                            {
+                                                //On resauvegarde les bonnes positions
+                                                positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+                                                //Actualisation du plateau
+                                                plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+                                                //Affichage de l'argent du joueur
+                                                gotoligcol(43, 73);
+                                                Color(15,0);
+                                                printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                                Color(12,0);
+                                                //On lance le sous programme action case
+                                                actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs, &compteurMaisons, &compteurHotels);
+                                            }
+                                            if(ordreDePassageDesJoueurs[t].argent < 0)
+                                            {
+                                                joueurEnFaillite[t] = 1;
+                                                compteurFaillite ++ ;
+                                                system("cls");
+                                                printf("Vous avez perdu !");
+                                                Sleep(2000);
+                                                break;
+
+                                            }
+                                            //On resauvegarde les bonnes positions
+                                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+                                            //Actualisation du plateau
+                                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+                                            //Affichage de l'argent du joueur
+                                            gotoligcol(43, 73);
+                                            Color(15,0);
+                                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                            Color(12,0);
+                                        }
+                                        else if(deNumeroUn == deNumeroDeux)
+                                        {
+                                            gotoligcol(22,115);
+                                            printf("Vous allez en prison ! \n");
+                                            ordreDePassageDesJoueurs[t].doubleOuNon = 0;
+
+
+                                            gotoligcol(43,1);
+                                            printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
+                                            fflush(stdin);
+                                            getchar();
+
+                                            //On efface toutes les données des dés
+                                            for(int l=5 ; l<22 ; l++)
+                                            {
+                                                for(int c = 115 ; c<160 ; c++)
+                                                {
+                                                    gotoligcol(l,c);
+                                                    printf(" ");
+                                                }
+                                            }
+
+                                            //Actualisation du plateau
+                                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+
+                                            //Affichage de l'argent du joueur
+                                            gotoligcol(43, 73);
+                                            Color(15,0);
+                                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                            Color(12,0);
+
+
+                                            break;
+                                        }
+
+
+
+                                    }
+
+                                    if(ordreDePassageDesJoueurs[t].doubleOuNon == 0)
+                                    {
+                                        lancerDeDes(&deNumeroUn,&deNumeroDeux);
+                                        afficherDe(deNumeroUn,deNumeroDeux);
+                                        Sleep(1500);
+                                        sommeDesLance = deNumeroUn + deNumeroDeux;
+                                        ordreDePassageDesJoueurs[t].doubleOuNon = 1;
+                                        ordreDePassageDesJoueurs[t].position = deplanbrjr(sommeDesLance,&ordreDePassageDesJoueurs[t]);
+                                        positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+
+                                        //On efface toutes les données des dés
+                                        for(int l=5 ; l<22 ; l++)
+                                        {
+                                            for(int c = 115 ; c<160 ; c++)
+                                            {
+                                                gotoligcol(l,c);
+                                                printf(" ");
+                                            }
+                                        }
+
+                                        //Actualisation du plateau
+                                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+
+                                        //Affichage de l'argent du joueur
+                                        gotoligcol(43, 73);
+                                        Color(15,0);
+                                        printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                        Color(12,0);
+
+                                        //Action case
+                                        positionTemporaire = ordreDePassageDesJoueurs[t].position;
+                                        actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs, &compteurMaisons, &compteurHotels);
+
+                                        //On vérifie si le joueur était sur une case avec une carte
+                                        if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
+                                        {
+                                            gotoligcol(3,115);
+                                            printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
+                                            fflush(stdin);
+                                            getchar();
+
+                                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+
+                                            //Actualisation du plateau
+                                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+
+                                            //Affichage de l'argent du joueur
+                                            gotoligcol(43, 73);
+                                            Color(15,0);
+                                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                            Color(12,0);
+
+                                        }
+                                        if(positionTemporaire != ordreDePassageDesJoueurs[t].position)
+                                        {
+                                            //On resauvegarde les bonnes positions
+                                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+                                            //Actualisation du plateau
+                                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+                                            //Affichage de l'argent du joueur
+                                            gotoligcol(43, 73);
+                                            Color(15,0);
+                                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                            Color(12,0);
+                                            //On lance le sous programme action case
+                                            actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs, &compteurMaisons, &compteurHotels);
+                                        }
+                                        if(ordreDePassageDesJoueurs[t].argent < 0)
+                                        {
+                                            joueurEnFaillite[t] = 1;
+                                            compteurFaillite ++ ;
+                                            system("cls");
+                                            printf("Vous avez perdu !");
+                                            Sleep(2000);
+                                            break;
+
+                                        }
+                                        if(ordreDePassageDesJoueurs[t].argent > 0)
+                                        {
+
+                                            //On resauvegarde les bonnes positions
+                                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+                                            //Actualisation du plateau
+                                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+                                            //Affichage de l'argent du joueur
+                                            gotoligcol(43, 73);
+                                            Color(15,0);
+                                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                                            Color(12,0);
+                                        }
+
+                                    }
+                                }
+
+
+                            }
+
+                        }
+
+                    }
+
+                    //Si on a fait un double
+                    if(choixPrison == 3)
+                    {
+                        positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+                        plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+                        //Action case
+                        positionTemporaire = ordreDePassageDesJoueurs[t].position;
+                        actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs, &compteurMaisons, &compteurHotels);
+
+                        //On vérifie si le joueur était sur une case avec une carte
+                        if(positionTemporaire == 2 || positionTemporaire == 12 || positionTemporaire == 23 || positionTemporaire == 16)
+                        {
+                            gotoligcol(3,115);
+                            printf("Appuyer sur Entrer pour actualiser le plateau de jeu ");
+                            fflush(stdin);
+                            getchar();
+
+                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+
+                            //Actualisation du plateau
+                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+
+                            //Affichage de l'argent du joueur
+                            gotoligcol(43, 73);
+                            Color(15,0);
+                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                            Color(12,0);
+
+                        }
+                        if(positionTemporaire != ordreDePassageDesJoueurs[t].position)
+                        {
+                            //On resauvegarde les bonnes positions
+                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+                            //Actualisation du plateau
+                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+                            //Affichage de l'argent du joueur
+                            gotoligcol(43, 73);
+                            Color(15,0);
+                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                            Color(12,0);
+                            //On lance le sous programme action case
+                            actioncase(ordreDePassageDesJoueurs,TableauDesCasesDuMonopoly,t,&numeroCarteSith,&numeroCarteChance,positionDesJoueurs, &compteurMaisons, &compteurHotels);
+                        }
+                        if(ordreDePassageDesJoueurs[t].argent < 0)
+                        {
+                            joueurEnFaillite[t] = 1;
+                            compteurFaillite ++ ;
+                            system("cls");
+                            printf("Vous avez perdu !");
+                            Sleep(2000);
+                            break;
+
+                        }
+                        if(ordreDePassageDesJoueurs[t].argent > 0)
+                        {
+                            //On resauvegarde les bonnes positions
+                            positionDesJoueurs[t] = ordreDePassageDesJoueurs[t].position;
+                            //Actualisation du plateau
+                            plateau(positionDesJoueurs,nombreDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs);
+                            //Affichage de l'argent du joueur
+                            gotoligcol(43, 73);
+                            Color(15,0);
+                            printf("ARGENT DU JOUEUR : %d",ordreDePassageDesJoueurs[t].argent);
+                            Color(12,0);
+                        }
+
 
                     }
 
@@ -2448,7 +3046,7 @@ int main()
         //Si l'utilisateur sort de la boucle, on affiche le menu principal
         system("cls");
         menu(&choixDuMenuPrincipal);
-        choixmenu(&choixDuMenuPrincipal,tableauDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs,&nombreDeJoueur,&numeroCarteSith,&numeroCarteChance,joueurEnFaillite);
+        choixmenu(&choixDuMenuPrincipal,tableauDeJoueur,TableauDesCasesDuMonopoly,ordreDePassageDesJoueurs,&nombreDeJoueur,&numeroCarteSith,&numeroCarteChance,joueurEnFaillite,compteurFaillite);
         quitterLaBoucle = 0;
     }
     return 0;

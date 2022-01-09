@@ -1,9 +1,21 @@
 #include "header.h"
 
 
-void actioncase(joueur_t Tabjoueur[],caseMonop tabc[],int tour, int* nombreCarteSith,int* nombreCarteChance, int positionDesJoueurs[])
+void actioncase(joueur_t Tabjoueur[],caseMonop tabc[],int tour, int* nombreCarteSith,int* nombreCarteChance, int positionDesJoueurs[], int* compteurMaisons, int* compteurHotels)
 {
     int pos = Tabjoueur[tour].position;
+    int choixF,compteur, choixH;
+
+    for (int i=0; i<28; i++)
+    {
+        if ((Tabjoueur[tour].possessions[i])!=0)
+        {
+            if (tabc[i].hypotheque!=0)
+            {
+                compteur++;
+            }
+        }
+    }
 
     switch (tabc[pos].typeCase)
     {
@@ -74,7 +86,7 @@ void actioncase(joueur_t Tabjoueur[],caseMonop tabc[],int tour, int* nombreCarte
         }
         else if ((prop_DE>0 || prop_DE<5)&& prop_DE!=Tabjoueur[tour].numeroJoueur)
         {
-            if (tabc[pos].hypotheque==1)
+            if (tabc[pos].hypotheque==0)
             {
                 if (Tabjoueur[prop_DE-1].familles[tabc[pos].famille] == 2)
                 {
@@ -89,13 +101,13 @@ void actioncase(joueur_t Tabjoueur[],caseMonop tabc[],int tour, int* nombreCarte
                             gotoligcol(15,114);
                             printf("%s a paye %d credits a %s", Tabjoueur[tour].nomJoueur,tabc[pos].prixLoyer*2, Tabjoueur[prop_DE].nomJoueur);
                         }
-                        else if (Tabjoueur[tour].argent<=tabc[pos].prixLoyer*2)
+                        else if (Tabjoueur[tour].argent<tabc[pos].prixLoyer*2)
                         {
-
+                            faillite_case(Tabjoueur, tabc, compteurMaisons, compteurHotels, tour, tabc[pos].prixLoyer*2, prop_DE-1, compteur);
                         }
 
                     }
-                    if (tabc[pos].nbMaison==1)
+                    else if (tabc[pos].nbMaison==1)
                     {
                         gotoligcol(14,114);
                         printf("%s appartient a %s, vous allez devoir lui payer %d credits", tabc[pos].nomCase, Tabjoueur[prop_DE-1].nomJoueur, tabc[pos].prixloy1maison*2);
@@ -106,12 +118,12 @@ void actioncase(joueur_t Tabjoueur[],caseMonop tabc[],int tour, int* nombreCarte
                             gotoligcol(15,114);
                             printf("%s a paye %d credits a %s", Tabjoueur[tour].nomJoueur,tabc[pos].prixloy1maison*2, Tabjoueur[prop_DE-1].nomJoueur);
                         }
-                        else if (Tabjoueur[tour].argent<=tabc[pos].prixloy1maison*2)
+                        else if (Tabjoueur[tour].argent<tabc[pos].prixloy1maison*2)
                         {
-
+                            faillite_case(Tabjoueur, tabc, compteurMaisons, compteurHotels, tour, tabc[pos].prixloy1maison*2, prop_DE-1, compteur);
                         }
 
-                    } if (tabc[pos].nbMaison==2)
+                    } else if (tabc[pos].nbMaison==2)
                     {
                         gotoligcol(14,114);
                         printf("%s appartient a %s, vous allez devoir lui payer %d credits", tabc[pos].nomCase, Tabjoueur[prop_DE-1].nomJoueur, tabc[pos].prixloy2maison*2);
@@ -122,12 +134,12 @@ void actioncase(joueur_t Tabjoueur[],caseMonop tabc[],int tour, int* nombreCarte
                             gotoligcol(15,114);
                             printf("%s a paye %d credits a %s", Tabjoueur[tour].nomJoueur,tabc[pos].prixloy2maison*2, Tabjoueur[prop_DE-1].nomJoueur);
                         }
-                        else if (Tabjoueur[tour].argent<=tabc[pos].prixloy2maison*2)
+                        else if (Tabjoueur[tour].argent<tabc[pos].prixloy2maison*2)
                         {
-
+                            faillite_case(Tabjoueur, tabc, compteurMaisons, compteurHotels, tour, tabc[pos].prixloy2maison*2, prop_DE-1, compteur);
                         }
 
-                    } if (tabc[pos].nbMaison==3)
+                    } else if (tabc[pos].nbMaison==3)
                     {
                         gotoligcol(14,114);
                         printf("%s appartient a %s, vous allez devoir lui payer %d credits", tabc[pos].nomCase, Tabjoueur[prop_DE-1].nomJoueur, tabc[pos].prixloy3maison*2);
@@ -138,12 +150,12 @@ void actioncase(joueur_t Tabjoueur[],caseMonop tabc[],int tour, int* nombreCarte
                             gotoligcol(15,114);
                             printf("%s a paye %d credits a %s", Tabjoueur[tour].nomJoueur,tabc[pos].prixloy3maison*2, Tabjoueur[prop_DE-1].nomJoueur);
                         }
-                        else if (Tabjoueur[tour].argent<=tabc[pos].prixloy3maison*2)
+                        else if (Tabjoueur[tour].argent<tabc[pos].prixloy3maison*2)
                         {
-
+                            faillite_case(Tabjoueur, tabc, compteurMaisons, compteurHotels, tour, tabc[pos].prixloy3maison*2, prop_DE-1, compteur);
                         }
 
-                    } if (tabc[pos].nbMaison==4)
+                    } else if (tabc[pos].nbMaison==4)
                     {
                         gotoligcol(14,114);
                         printf("%s appartient a %s, vous allez devoir lui payer %d credits", tabc[pos].nomCase, Tabjoueur[prop_DE-1].nomJoueur, tabc[pos].prixloy4maison*2);
@@ -154,12 +166,12 @@ void actioncase(joueur_t Tabjoueur[],caseMonop tabc[],int tour, int* nombreCarte
                             gotoligcol(15,114);
                             printf("%s a paye %d credits a %s", Tabjoueur[tour].nomJoueur,tabc[pos].prixloy4maison*2, Tabjoueur[prop_DE-1].nomJoueur);
                         }
-                        else if (Tabjoueur[tour].argent<=tabc[pos].prixloy4maison*2)
+                        else if (Tabjoueur[tour].argent<tabc[pos].prixloy4maison*2)
                         {
-
+                            faillite_case(Tabjoueur, tabc, compteurMaisons, compteurHotels, tour, tabc[pos].prixloy4maison*2, prop_DE-1, compteur);
                         }
 
-                    } if (tabc[pos].nbHotel==0)
+                    }else  if (tabc[pos].nbHotel==1)
                     {
                         gotoligcol(14,114);
                         printf("%s appartient a %s, vous allez devoir lui payer %d credits", tabc[pos].nomCase, Tabjoueur[prop_DE-1].nomJoueur, tabc[pos].prixloyhotel*2);
@@ -170,9 +182,9 @@ void actioncase(joueur_t Tabjoueur[],caseMonop tabc[],int tour, int* nombreCarte
                             gotoligcol(15,114);
                             printf("%s a paye %d credits a %s", Tabjoueur[tour].nomJoueur,tabc[pos].prixloyhotel*2, Tabjoueur[prop_DE-1].nomJoueur);
                         }
-                        else if (Tabjoueur[tour].argent<=tabc[pos].prixloyhotel*2)
+                        else if (Tabjoueur[tour].argent<tabc[pos].prixloyhotel*2)
                         {
-
+                            faillite_case(Tabjoueur, tabc, compteurMaisons, compteurHotels, tour, tabc[pos].prixloyhotel*2, prop_DE-1, compteur);
                         }
 
                     }
@@ -191,13 +203,13 @@ void actioncase(joueur_t Tabjoueur[],caseMonop tabc[],int tour, int* nombreCarte
                             gotoligcol(15,114);
                             printf("%s a paye %d credits a %s", Tabjoueur[tour].nomJoueur,tabc[pos].prixLoyer, Tabjoueur[prop_DE-1].nomJoueur);
                         }
-                        else if (Tabjoueur[tour].argent<=tabc[pos].prixLoyer)
+                        else if (Tabjoueur[tour].argent<tabc[pos].prixLoyer)
                         {
-
+                            faillite_case(Tabjoueur, tabc, compteurMaisons, compteurHotels, tour, tabc[pos].prixLoyer, prop_DE-1, compteur);
                         }
 
                     }
-                    if (tabc[pos].nbMaison==1)
+                    else if (tabc[pos].nbMaison==1)
                     {
                         gotoligcol(14,114);
                         printf("%s appartient a %s, vous allez devoir lui payer %d credits", tabc[pos].nomCase, Tabjoueur[prop_DE-1].nomJoueur, tabc[pos].prixloy1maison);
@@ -208,12 +220,12 @@ void actioncase(joueur_t Tabjoueur[],caseMonop tabc[],int tour, int* nombreCarte
                             gotoligcol(15,114);
                             printf("%s a paye %d credits a %s", Tabjoueur[tour].nomJoueur,tabc[pos].prixloy1maison, Tabjoueur[prop_DE-1].nomJoueur);
                         }
-                        else if (Tabjoueur[tour].argent<=tabc[pos].prixloy1maison)
+                        else if (Tabjoueur[tour].argent<tabc[pos].prixloy1maison)
                         {
-
+                            faillite_case(Tabjoueur, tabc, compteurMaisons, compteurHotels, tour, tabc[pos].prixloy1maison, prop_DE-1, compteur);
                         }
 
-                    } if (tabc[pos].nbMaison==2)
+                    } else if (tabc[pos].nbMaison==2)
                     {
                         gotoligcol(14,114);
                         printf("%s appartient a %s, vous allez devoir lui payer %d credits", tabc[pos].nomCase, Tabjoueur[prop_DE-1].nomJoueur, tabc[pos].prixloy2maison);
@@ -224,12 +236,12 @@ void actioncase(joueur_t Tabjoueur[],caseMonop tabc[],int tour, int* nombreCarte
                             gotoligcol(15,114);
                             printf("%s a paye %d credits a %s", Tabjoueur[tour].nomJoueur,tabc[pos].prixloy2maison, Tabjoueur[prop_DE-1].nomJoueur);
                         }
-                        else if (Tabjoueur[tour].argent<=tabc[pos].prixloy2maison)
+                        else if (Tabjoueur[tour].argent<tabc[pos].prixloy2maison)
                         {
-
+                            faillite_case(Tabjoueur, tabc, compteurMaisons, compteurHotels, tour, tabc[pos].prixloy2maison, prop_DE-1, compteur);
                         }
 
-                    } if (tabc[pos].nbMaison==3)
+                    }else  if (tabc[pos].nbMaison==3)
                     {
                         gotoligcol(14,114);
                         printf("%s appartient a %s, vous allez devoir lui payer %d credits", tabc[pos].nomCase, Tabjoueur[prop_DE-1].nomJoueur, tabc[pos].prixloy3maison);
@@ -240,12 +252,12 @@ void actioncase(joueur_t Tabjoueur[],caseMonop tabc[],int tour, int* nombreCarte
                             gotoligcol(15,114);
                             printf("%s a paye %d credits a %s", Tabjoueur[tour].nomJoueur,tabc[pos].prixloy3maison, Tabjoueur[prop_DE-1].nomJoueur);
                         }
-                        else if (Tabjoueur[tour].argent<=tabc[pos].prixloy3maison)
+                        else if (Tabjoueur[tour].argent<tabc[pos].prixloy3maison)
                         {
-
+                            faillite_case(Tabjoueur, tabc, compteurMaisons, compteurHotels, tour, tabc[pos].prixloy3maison, prop_DE-1, compteur);
                         }
 
-                    } if (tabc[pos].nbMaison==4)
+                    } else if (tabc[pos].nbMaison==4)
                     {
                         gotoligcol(14,114);
                         printf("%s appartient a %s, vous allez devoir lui payer %d credits", tabc[pos].nomCase, Tabjoueur[prop_DE-1].nomJoueur, tabc[pos].prixloy4maison);
@@ -256,12 +268,12 @@ void actioncase(joueur_t Tabjoueur[],caseMonop tabc[],int tour, int* nombreCarte
                             gotoligcol(15,114);
                             printf("%s a paye %d credits a %s", Tabjoueur[tour].nomJoueur,tabc[pos].prixloy4maison, Tabjoueur[prop_DE-1].nomJoueur);
                         }
-                        else if (Tabjoueur[tour].argent<=tabc[pos].prixloy4maison)
+                        else if (Tabjoueur[tour].argent<tabc[pos].prixloy4maison)
                         {
-
+                            faillite_case(Tabjoueur, tabc, compteurMaisons, compteurHotels, tour, tabc[pos].prixloy4maison, prop_DE-1, compteur);
                         }
 
-                    } if (tabc[pos].nbHotel==0)
+                    } else if (tabc[pos].nbHotel==1)
                     {
                         gotoligcol(14,114);
                         printf("%s appartient a %s, vous allez devoir lui payer %d credits", tabc[pos].nomCase, Tabjoueur[prop_DE-1].nomJoueur, tabc[pos].prixloyhotel);
@@ -272,9 +284,9 @@ void actioncase(joueur_t Tabjoueur[],caseMonop tabc[],int tour, int* nombreCarte
                             gotoligcol(15,114);
                             printf("%s a paye %d credits a %s", Tabjoueur[tour].nomJoueur,tabc[pos].prixloyhotel, Tabjoueur[prop_DE-1].nomJoueur);
                         }
-                        else if (Tabjoueur[tour].argent<=tabc[pos].prixloyhotel)
+                        else if (Tabjoueur[tour].argent<tabc[pos].prixloyhotel)
                         {
-
+                            faillite_case(Tabjoueur, tabc, compteurMaisons, compteurHotels, tour, tabc[pos].prixloyhotel, prop_DE-1, compteur);
                         }
 
                     }
@@ -288,8 +300,9 @@ void actioncase(joueur_t Tabjoueur[],caseMonop tabc[],int tour, int* nombreCarte
                 printf("%s a ete hypotheque, vous n'avez donc rien a payer",tabc[pos].nomCase);
             }
         }
-
+        Sleep(2000);
         break;
+
     }
     case 2:
     {
@@ -371,9 +384,9 @@ void actioncase(joueur_t Tabjoueur[],caseMonop tabc[],int tour, int* nombreCarte
                     gotoligcol(15,114);
                     printf("%s a paye %d credits a %s", Tabjoueur[tour].nomJoueur,prix, Tabjoueur[prop_DE-1].nomJoueur);
                 }
-                else if (Tabjoueur[tour].argent<=prix)
+                else if (Tabjoueur[tour].argent<prix)
                 {
-
+                    faillite_case(Tabjoueur, tabc, compteurMaisons, compteurHotels, tour, prix, prop_DE-1, compteur);
                 }
             }
             else if (Tabjoueur[prop_DE-1].familles[tabc[pos].famille]==2)
@@ -390,9 +403,9 @@ void actioncase(joueur_t Tabjoueur[],caseMonop tabc[],int tour, int* nombreCarte
                     gotoligcol(15,114);
                     printf("%s a paye %d credits a %s", Tabjoueur[tour].nomJoueur,prix, Tabjoueur[prop_DE-1].nomJoueur);
                 }
-                else if (Tabjoueur[tour].argent<=prix)
+                else if (Tabjoueur[tour].argent<prix)
                 {
-
+                    faillite_case(Tabjoueur, tabc, compteurMaisons, compteurHotels, tour, prix, prop_DE-1, compteur);
                 }
             }
             else if (Tabjoueur[prop_DE-1].familles[tabc[pos].famille]==3)
@@ -409,9 +422,9 @@ void actioncase(joueur_t Tabjoueur[],caseMonop tabc[],int tour, int* nombreCarte
                     gotoligcol(15,114);
                     printf("%s a paye %d credits a %s", Tabjoueur[tour].nomJoueur,prix, Tabjoueur[prop_DE-1].nomJoueur);
                 }
-                else if (Tabjoueur[tour].argent<=prix)
+                else if (Tabjoueur[tour].argent<prix)
                 {
-
+                    faillite_case(Tabjoueur, tabc, compteurMaisons, compteurHotels, tour, prix, prop_DE-1, compteur);
                 }
             }
             else if (Tabjoueur[prop_DE-1].familles[tabc[pos].famille]==4)
@@ -428,12 +441,13 @@ void actioncase(joueur_t Tabjoueur[],caseMonop tabc[],int tour, int* nombreCarte
                     gotoligcol(15,114);
                     printf("%s a paye %d credits a %s", Tabjoueur[tour].nomJoueur,prix, Tabjoueur[prop_DE-1].nomJoueur);
                 }
-                else if (Tabjoueur[tour].argent<=prix)
+                else if (Tabjoueur[tour].argent<prix)
                 {
-
+                    faillite_case(Tabjoueur, tabc, compteurMaisons, compteurHotels, tour, prix, prop_DE-1, compteur);
                 }
             }
         }
+        Sleep(2000);
         break;
     }
     case 4:
@@ -456,72 +470,72 @@ void actioncase(joueur_t Tabjoueur[],caseMonop tabc[],int tour, int* nombreCarte
         {
         case 0:
         {
-            Fsith1(Tabjoueur, tour);
+            Fsith1(Tabjoueur, tour, compteur);
             break;
         }
         case 1:
         {
-            Fsith2(Tabjoueur, tour);
+            Fsith2(Tabjoueur, tour, compteur);
             break;
         }
         case 2:
         {
-            Fsith3(Tabjoueur, tour);
+            Fsith3(Tabjoueur, tour, compteur);
             break;
         }
         case 3:
         {
-            Fsith4(Tabjoueur, tour);
+            Fsith4(Tabjoueur, tour, compteur);
             break;
         }
         case 4:
         {
-            Fsith5(Tabjoueur, tour);
+            Fsith5(Tabjoueur, tour, compteur);
             break;
         }
         case 5:
         {
-            Fsith6(Tabjoueur, tour);
+            Fsith6(Tabjoueur, tour, compteur);
             break;
         }
         case 6:
         {
-            Fsith7(Tabjoueur, tour);
+            Fsith7(Tabjoueur, tour, compteur);
             break;
         }
         case 7:
         {
-            Fsith8(Tabjoueur, tour);
+            Fsith8(Tabjoueur, tour, compteur);
             break;
         }
         case 8:
         {
-            Fsith9(Tabjoueur, tour);
+            Fsith9(Tabjoueur, tour, compteur);
             break;
         }
         case 9:
         {
-            Fsith10(Tabjoueur, tour);
+            Fsith10(Tabjoueur, tour, compteur);
             break;
         }
         case 10:
         {
-            Fsith11(Tabjoueur, tour);
+            Fsith11(Tabjoueur, tour, compteur);
             break;
         }
         case 11:
         {
-            Fsith12(Tabjoueur, tour);
+            Fsith12(Tabjoueur, tour, compteur);
             break;
         }
         case 12:
         {
-            Fsith13(Tabjoueur, tour);
+            Fsith13(Tabjoueur, tour, compteur);
             break;
         }
         case 13:
         {
-            Fsith14(Tabjoueur, tour);
+            Fsith14(Tabjoueur, tour, compteur);
             break;
         }
         case 14:
@@ -531,7 +545,7 @@ void actioncase(joueur_t Tabjoueur[],caseMonop tabc[],int tour, int* nombreCarte
         }
         case 15:
         {
-            Fsith16(Tabjoueur, tour);
+            Fsith16(Tabjoueur, tour, compteur);
             break;
         }
         }
@@ -549,82 +563,82 @@ void actioncase(joueur_t Tabjoueur[],caseMonop tabc[],int tour, int* nombreCarte
         {
         case 0:
         {
-            f1(Tabjoueur, tour);
+            f1(Tabjoueur, tour, compteur);
             break;
         }
         case 1:
         {
-            f2(Tabjoueur, tour);
+            f2(Tabjoueur, tour, compteur);
             break;
         }
         case 2:
         {
-            f3(Tabjoueur, tour);
+            f3(Tabjoueur, tour, compteur);
             break;
         }
         case 3:
         {
-            f4(Tabjoueur, tour);
+            f4(Tabjoueur, tour, compteur);
             break;
         }
         case 4:
         {
-            f5(Tabjoueur, tour);
+            f5(Tabjoueur, tour, compteur);
             break;
         }
         case 5:
         {
-            f6(Tabjoueur, tour);
+            f6(Tabjoueur, tour, compteur);
             break;
         }
         case 6:
         {
-            f7(Tabjoueur, tour);
+            f7(Tabjoueur, tour, compteur);
             break;
         }
         case 7:
         {
-            f8(Tabjoueur, tour);
+            f8(Tabjoueur, tour, compteur);
             break;
         }
         case 8:
         {
-            f9(Tabjoueur, tour);
+            f9(Tabjoueur, tour, compteur);
             break;
         }
         case 9:
         {
-            f10(Tabjoueur, tour);
+            f10(Tabjoueur, tour, compteur);
             break;
         }
         case 10:
         {
-            f11(Tabjoueur, tour);
+            f11(Tabjoueur, tour, compteur);
             break;
         }
         case 11:
         {
-            f12(Tabjoueur, tour);
+            f12(Tabjoueur, tour, compteur);
             break;
         }
         case 12:
         {
-            f13(Tabjoueur, tour);
+            f13(Tabjoueur, tour, compteur);
             break;
         }
         case 13:
         {
-            f14(Tabjoueur, tour);
+            f14(Tabjoueur, tour, compteur);
             break;
         }
         case 14:
         {
-            f15(Tabjoueur, tour);
+            f15(Tabjoueur, tour, compteur);
             break;
         }
         case 15:
         {
-            f16(Tabjoueur, tour);
+            f16(Tabjoueur, tour, compteur);
             break;
         }
         }
@@ -634,6 +648,7 @@ void actioncase(joueur_t Tabjoueur[],caseMonop tabc[],int tour, int* nombreCarte
             *nombreCarteChance = 0;
         }
         break;
+
     }
     }
 }
@@ -667,6 +682,8 @@ void remplirTableauDeCase(caseMonop tableauDesCases[])
     case1.prixloy3maison=94;
     case1.prixloy4maison=140;
     case1.prixloyhotel=210;
+    case1.hypotheque=0;
+    case1.couthyp=25;
 
 
     strcpy(case2.nomCase,"Conseil Jedi");
@@ -678,6 +695,7 @@ void remplirTableauDeCase(caseMonop tableauDesCases[])
     case2.nbHotel=0;
     case2.typeCase=7;
     case2.prixLoyer=0;
+
 
 
     strcpy(case3.nomCase,"Hoth");
@@ -694,6 +712,8 @@ void remplirTableauDeCase(caseMonop tableauDesCases[])
     case3.prixloy3maison=140;
     case3.prixloy4maison=210;
     case3.prixloyhotel=316;
+    case3.hypotheque=0;
+    case3.couthyp=35;
 
     strcpy(case4.nomCase,"Spatioport I");
     case4.position = 4;
@@ -704,6 +724,8 @@ void remplirTableauDeCase(caseMonop tableauDesCases[])
     case4.nbHotel=0;
     case4.typeCase=2;
     case4.prixLoyer=50;
+    case4.hypotheque=0;
+    case4.couthyp=100;
 
     strcpy(case5.nomCase,"Kashyyk");
     case5.position = 5;
@@ -719,6 +741,8 @@ void remplirTableauDeCase(caseMonop tableauDesCases[])
     case5.prixloy3maison=187;
     case5.prixloy4maison=281;
     case5.prixloyhotel=422;
+    case5.hypotheque=0;
+    case5.couthyp=50;
 
     strcpy(case6.nomCase,"Endor");
     case6.position = 6;
@@ -734,6 +758,8 @@ void remplirTableauDeCase(caseMonop tableauDesCases[])
     case6.prixloy3maison=234;
     case6.prixloy4maison=351;
     case6.prixloyhotel=527;
+    case6.hypotheque=0;
+    case6.couthyp=60;
 
     strcpy(case7.nomCase,"Prison");
     case7.position = 7;
@@ -759,6 +785,8 @@ void remplirTableauDeCase(caseMonop tableauDesCases[])
     case8.prixloy3maison=281;
     case8.prixloy4maison=412;
     case8.prixloyhotel=632;
+    case8.hypotheque=0;
+    case8.couthyp=75;
 
     strcpy(case9.nomCase,"Jakuu");
     case9.position = 9;
@@ -774,6 +802,8 @@ void remplirTableauDeCase(caseMonop tableauDesCases[])
     case9.prixloy3maison=328;
     case9.prixloy4maison=492;
     case9.prixloyhotel=738;
+    case9.hypotheque=0;
+    case9.couthyp=85;
 
     strcpy(case10.nomCase,"Spatioport II");
     case10.position = 10;
@@ -784,6 +814,8 @@ void remplirTableauDeCase(caseMonop tableauDesCases[])
     case10.nbHotel=0;
     case10.typeCase=2;
     case10.prixLoyer=50;
+    case10.hypotheque=0;
+    case10.couthyp=100;
 
     strcpy(case11.nomCase,"Jedha");
     case11.position = 11;
@@ -799,6 +831,8 @@ void remplirTableauDeCase(caseMonop tableauDesCases[])
     case11.prixloy3maison=375;
     case11.prixloy4maison=562;
     case11.prixloyhotel=844;
+    case11.hypotheque=0;
+    case11.couthyp=100;
 
     strcpy(case12.nomCase,"Alliance Sith");
     case12.position = 12;
@@ -824,6 +858,8 @@ void remplirTableauDeCase(caseMonop tableauDesCases[])
     case13.prixloy3maison=421;
     case13.prixloy4maison=632;
     case13.prixloyhotel=949;
+    case13.hypotheque=0;
+    case13.couthyp=110;
 
     strcpy(case14.nomCase,"Ordre 66");
     case14.position = 14;
@@ -849,6 +885,8 @@ void remplirTableauDeCase(caseMonop tableauDesCases[])
     case15.prixloy3maison=468;
     case15.prixloy4maison=703;
     case15.prixloyhotel=1054;
+    case15.hypotheque=0;
+    case15.couthyp=125;
 
     strcpy(case16.nomCase,"Conseil Jedi");
     case16.position = 16;
@@ -874,6 +912,8 @@ void remplirTableauDeCase(caseMonop tableauDesCases[])
     case17.prixloy3maison=515;
     case17.prixloy4maison=773;
     case17.prixloyhotel=1160;
+    case17.hypotheque=0;
+    case17.couthyp=135;
 
     strcpy(case18.nomCase,"Spatioport III");
     case18.position = 18;
@@ -884,8 +924,10 @@ void remplirTableauDeCase(caseMonop tableauDesCases[])
     case18.nbHotel=0;
     case18.typeCase=2;
     case18.prixLoyer=50;
+    case18.hypotheque=0;
+    case18.couthyp=100;
 
-    strcpy(case19.nomCase,"Craite");
+    strcpy(case19.nomCase,"Crait");
     case19.position = 19;
     case19.prix_case=300;
     case19.famille=6;
@@ -899,6 +941,8 @@ void remplirTableauDeCase(caseMonop tableauDesCases[])
     case19.prixloy3maison=562;
     case19.prixloy4maison=843;
     case19.prixloyhotel=1265;
+    case19.hypotheque=0;
+    case19.couthyp=150;
 
     strcpy(case20.nomCase,"Bespin");
     case20.position = 20;
@@ -914,6 +958,8 @@ void remplirTableauDeCase(caseMonop tableauDesCases[])
     case20.prixloy3maison=609;
     case20.prixloy4maison=914;
     case20.prixloyhotel=1160;
+    case20.hypotheque=0;
+    case20.couthyp=160;
 
     strcpy(case21.nomCase,"Arrestation");
     case21.position = 21;
@@ -939,6 +985,8 @@ void remplirTableauDeCase(caseMonop tableauDesCases[])
     case22.prixloy3maison=659;
     case22.prixloy4maison=984;
     case22.prixloyhotel=1371;
+    case22.hypotheque=0;
+    case22.couthyp=175;
 
     strcpy(case23.nomCase,"Alliance Sith");
     case23.position = 23;
@@ -964,6 +1012,8 @@ void remplirTableauDeCase(caseMonop tableauDesCases[])
     case24.prixloy3maison=703;
     case24.prixloy4maison=1054;
     case24.prixloyhotel=1582;
+    case24.hypotheque=0;
+    case24.couthyp=180;
 
     strcpy(case25.nomCase,"Spatioport IV");
     case25.position = 25;
@@ -989,6 +1039,8 @@ void remplirTableauDeCase(caseMonop tableauDesCases[])
     case26.prixloy3maison=750;
     case26.prixloy4maison=1125;
     case26.prixloyhotel=1687;
+    case26.hypotheque=0;
+    case26.couthyp=200;
 
     strcpy(case27.nomCase,"Corusant");
     case27.position = 27;
@@ -1004,7 +1056,8 @@ void remplirTableauDeCase(caseMonop tableauDesCases[])
     case27.prixloy3maison=843;
     case27.prixloy4maison=1265;
     case27.prixloyhotel=1898;
-
+    case27.hypotheque=0;
+    case27.couthyp=225;
 
     tableauDesCases[0]= case0;
     tableauDesCases[1]= case1;

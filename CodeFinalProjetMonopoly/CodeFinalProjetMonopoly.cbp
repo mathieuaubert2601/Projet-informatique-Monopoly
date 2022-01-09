@@ -83,6 +83,9 @@
 		<Unit filename="hypotheque.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="hypotheque_faillite.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="introductionPartie.c">
 			<Option compilerVar="CC" />
 		</Unit>

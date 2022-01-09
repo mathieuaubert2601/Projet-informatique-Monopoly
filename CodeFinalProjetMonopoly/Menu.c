@@ -120,7 +120,7 @@ void menu(int* choix)//menu
 }
 
 ///Sous programme pour les choix du menu
-void choixmenu(int* choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[], joueur_t OrdreDesJoueursAcharger[],int* nombreDeJoueurAJouer,int* nombreCarteSith, int* nombreCarteChance,int tableauJoueurFaillite[])//va traiter les choix du menu de la valeur deja blindée
+void choixmenu(int* choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[], joueur_t OrdreDesJoueursAcharger[],int* nombreDeJoueurAJouer,int* nombreCarteSith, int* nombreCarteChance,int tableauJoueurFaillite[],int compteurJoueurEnFaillite)//va traiter les choix du menu de la valeur deja blindée
 {
     int a,chargementPossibleOuNon,reprisePossibleOuNon,sauvegardePossibleOuNon;
 
@@ -137,7 +137,7 @@ void choixmenu(int* choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[]
             Sleep(2000);
             system("cls");
             menu(choixDumenu);
-            choixmenu(choixDumenu,tab_joueur,tableauDeCase,OrdreDesJoueursAcharger, nombreDeJoueurAJouer,nombreCarteSith,nombreCarteChance,tableauJoueurFaillite);
+            choixmenu(choixDumenu,tab_joueur,tableauDeCase,OrdreDesJoueursAcharger, nombreDeJoueurAJouer,nombreCarteSith,nombreCarteChance,tableauJoueurFaillite,compteurJoueurEnFaillite);
         }
         else
         {
@@ -147,6 +147,8 @@ void choixmenu(int* choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[]
             chargerOrdreJoueur(OrdreDesJoueursAcharger);
             SauvegardeVerifPartieCommencee();
             chargerJoueurFaillite(tableauJoueurFaillite);
+            chargerCasesMonopoly(tableauDeCase);
+            chargerNmbrJoueurFaillite(compteurJoueurEnFaillite);
             *nombreCarteChance = ChargerNombreCarteChance();
             *nombreCarteSith = ChargerNombreCarteSith();
 
@@ -177,7 +179,7 @@ void choixmenu(int* choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[]
             Sleep(2000);
             system("cls");
             menu(choixDumenu);
-            choixmenu(choixDumenu,tab_joueur,tableauDeCase,OrdreDesJoueursAcharger,nombreDeJoueurAJouer,nombreCarteSith,nombreCarteChance,tableauJoueurFaillite);
+            choixmenu(choixDumenu,tab_joueur,tableauDeCase,OrdreDesJoueursAcharger,nombreDeJoueurAJouer,nombreCarteSith,nombreCarteChance,tableauJoueurFaillite,compteurJoueurEnFaillite);
         }
         else if (sauvegardePossibleOuNon == 1)
         {
@@ -187,6 +189,8 @@ void choixmenu(int* choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[]
             SauvegardeNombreCarteChance(*nombreCarteChance);
             SauvegardeNombreCarteSith(*nombreCarteSith);
             sauvegardeJoueurEnFaillite(tableauJoueurFaillite);
+            sauvegardeCasesMonopoly(tableauDeCase);
+            sauvegardeCompteurFaillite(compteurJoueurEnFaillite);
 
             printf("Sauvegarde en cours");
             Sleep(1000);
@@ -200,14 +204,14 @@ void choixmenu(int* choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[]
             Sleep(2000);
             system("cls");
             menu(choixDumenu);
-            choixmenu(choixDumenu,tab_joueur,tableauDeCase,OrdreDesJoueursAcharger,nombreDeJoueurAJouer,nombreCarteSith,nombreCarteChance,tableauJoueurFaillite);
+            choixmenu(choixDumenu,tab_joueur,tableauDeCase,OrdreDesJoueursAcharger,nombreDeJoueurAJouer,nombreCarteSith,nombreCarteChance,tableauJoueurFaillite,compteurJoueurEnFaillite);
         }
 
         break;
     }
     case 4:
     {
-        credits(tab_joueur, nombreDeJoueurAJouer,tableauDeCase,OrdreDesJoueursAcharger,nombreCarteSith, nombreCarteChance,tableauJoueurFaillite);
+        credits(tab_joueur, nombreDeJoueurAJouer,tableauDeCase,OrdreDesJoueursAcharger,nombreCarteSith, nombreCarteChance,tableauJoueurFaillite,compteurJoueurEnFaillite);
 
         break;
     }
@@ -221,7 +225,7 @@ void choixmenu(int* choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[]
     }
     case 6:
     {
-        regle_Du_jeu(tab_joueur,nombreDeJoueurAJouer,tableauDeCase,OrdreDesJoueursAcharger,nombreCarteSith, nombreCarteChance,tableauJoueurFaillite);
+        regle_Du_jeu(tab_joueur,nombreDeJoueurAJouer,tableauDeCase,OrdreDesJoueursAcharger,nombreCarteSith, nombreCarteChance,tableauJoueurFaillite,compteurJoueurEnFaillite);
         break;
     }
     case 7:
@@ -233,7 +237,7 @@ void choixmenu(int* choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[]
             Sleep(2000);
             system("cls");
             menu(choixDumenu);
-            choixmenu(choixDumenu,tab_joueur,tableauDeCase,OrdreDesJoueursAcharger,nombreDeJoueurAJouer,nombreCarteSith, nombreCarteChance,tableauJoueurFaillite);
+            choixmenu(choixDumenu,tab_joueur,tableauDeCase,OrdreDesJoueursAcharger,nombreDeJoueurAJouer,nombreCarteSith, nombreCarteChance,tableauJoueurFaillite,compteurJoueurEnFaillite);
         }
         break;
     }

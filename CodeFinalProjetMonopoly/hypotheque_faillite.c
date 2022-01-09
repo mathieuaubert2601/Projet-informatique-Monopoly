@@ -1,22 +1,8 @@
 #include "header.h"
-
-void hypotheque(joueur_t tabJoueur[], caseMonop tabC[],int *compteurMaisons, int *compteurHotels, int t)
+void hypotheque_faillite(joueur_t tabJoueur[], caseMonop tabC[],int *compteurMaisons, int *compteurHotels, int t)
 {
-    int choixmenu,casep, valid;
-    do
-    {
-        printf("Selectionnez votre choix : \n");
-        printf(" 1. Hypothequer une propriete\n");
-        printf(" 2. Lever une hypotheque a la banque\n");
-        printf(" 3. Quitter ce menu.\n");
-        fflush(stdin);
-        scanf("%d",&choixmenu);
-    }
-    while(choixmenu<1 || choixmenu>3 );
 
-    if (choixmenu==1)
-    {
-        int compteur=0;
+        int compteur=0,casep;
         for (int i=0; i<28; i++)
         {
             if ((tabJoueur[t].possessions[i])!=0)
@@ -279,75 +265,5 @@ void hypotheque(joueur_t tabJoueur[], caseMonop tabC[],int *compteurMaisons, int
         {
             printf("VOUS N'AVEZ AUCUNE PROPRIETEE A HYPOTHEQUER.\n");
         }
-
-    }
-    else if (choixmenu==2)
-    {
-
-        int compteur=0;
-        int choix;
-        int prix;
-        for (int j=0; j<28; j++)
-        {
-            if (tabJoueur[t].possessions[j]!=0)
-            {
-                if (tabC[j].hypotheque!=0)
-                {
-                    compteur++;
-                }
-            }
-        }
-        if(compteur!=0)
-        {
-            printf("Vous possedez les hypotheques suivantes :\n");
-            for (int i=0; i<28; i++)
-            {
-                if (tabJoueur[t].possessions[i]!=0)
-                {
-                    if (tabC[i].hypotheque!=0)
-                    {
-                        printf("%d : %s",i,tabC[i].nomCase);
-                    }
-                }
-            }
-            do
-            {
-                printf("De quelle propriete souhaitez vous lever l'hypotheque ?\n ");
-                fflush(stdin);
-                scanf("%d",&choix);
-            }
-            while(tabC[choix].proprieteDe==tabJoueur[t].numeroJoueur && tabC[choix].hypotheque == 1);
-            do
-            {
-                printf("Souhaitez vous donc lever l'hypotheque de %s pour %d credits ? Accepter (1), refuser(0).\n", tabC[choix].nomCase, tabC[choix].couthyp+(tabC[choix].couthyp*0.1));
-                fflush(stdin);
-                scanf("%d",&valid);
-            }
-            while(valid!=0 || valid!=1);
-            if (valid == 1)
-            {
-                prix=tabC[choix].couthyp+(tabC[choix].couthyp*0.1);
-                tabJoueur[t].argent-= prix;
-                tabC[choix].hypotheque=0;
-                printf("Vous avez donc paye %d credits afin de lever l'hypotheque de %s\n",prix,tabC[choix].nomCase);
-            }
-            else if (valid == 0)
-            {
-                printf("Vous avez refuse de lever l'hypotheque de %s pour %d credits\n",tabC[choix].nomCase,prix);
-            }
-
-        }
-        else if (compteur == 0)
-        {
-            printf("Vous ne possedez pas de propriete sous hypotheque.\n");
-        }
-
-
     }
 
-
-    else if (choixmenu==3)
-    {
-        printf("Vous quittez le menu.\n");
-    }
-}

@@ -1,7 +1,7 @@
 #include "header.h"
 
 ///Carte chance 1
-void f1(joueur_t Tabjoueur[], int tour)
+void f1(joueur_t Tabjoueur[], int tour, int compteur)
 {
 
     system("cls");
@@ -80,7 +80,7 @@ printf("                                OOOOOOOOOOOOOOOO\n");
 
 ///Carte chance 2
 
-void f2(joueur_t Tabjoueur[], int tour)
+void f2(joueur_t Tabjoueur[], int tour , int compteur)
 {
 
     system("cls");
@@ -133,7 +133,7 @@ printf("                                OOOOOOOOOOOOOOOO\n");
     gotoligcol(24,95);
     printf(" U N  C H A S S E U R  D E  P R I M E  V O U S  C H E R C H E");
 
-    gotoligcol(26,105);
+    gotoligcol(26,99);
     printf(" P A Y E R  2 0 0   C R E D I T  P O U R  V I V R E ");
 
 
@@ -154,7 +154,7 @@ printf("                                OOOOOOOOOOOOOOOO\n");
 }
 
 ///Carte chance 3
-void f3(joueur_t Tabjoueur[], int tour)
+void f3(joueur_t Tabjoueur[], int tour, int compteur)
 {
 
     system("cls");
@@ -229,7 +229,7 @@ printf("                                OOOOOOOOOOOOOOOO\n");
 }
 
 ///Carte chance 4
-void f4(joueur_t Tabjoueur[], int tour)
+void f4(joueur_t Tabjoueur[], int tour, int compteur)
 {
 
     system("cls");
@@ -304,7 +304,7 @@ printf("                                OOOOOOOOOOOOOOOO\n");
 }
 
 ///Carte Chance 5
-void f5(joueur_t Tabjoueur[], int tour)
+void f5(joueur_t Tabjoueur[], int tour, int compteur)
 {
 
     system("cls");
@@ -358,7 +358,7 @@ printf("                                OOOOOOOOOOOOOOOO\n");
     gotoligcol(24,110);
     printf(" V O U S  A L L E Z  A U  Q G");
 
-    gotoligcol(26,110);
+    gotoligcol(26,108);
     printf(" D I R E C T I O N  Y A V I N  4");
 
     gotoligcol(28,90);
@@ -378,7 +378,7 @@ printf("                                OOOOOOOOOOOOOOOO\n");
 }
 
 ///Carte chance 6
-void f6(joueur_t Tabjoueur[], int tour)
+void f6(joueur_t Tabjoueur[], int tour, int compteur)
 {
 
     system("cls");
@@ -432,8 +432,8 @@ printf("                                OOOOOOOOOOOOOOOO\n");
     gotoligcol(24,95);
     printf(" V O U S  R E N D E Z  V I S I T E  A  M A I T R E  Y O D A");
 
-    gotoligcol(26,105);
-    printf(" A L L E Z  S U R  D A G O B A");
+    gotoligcol(26,108);
+    printf(" A L L E Z  S U R  D A G O B A H");
 
 
     gotoligcol(28,90);
@@ -456,7 +456,7 @@ printf("                                OOOOOOOOOOOOOOOO\n");
 
 ///Carte chance 7
 
-void f7(joueur_t Tabjoueur[], int tour)
+void f7(joueur_t Tabjoueur[], int tour, int compteur)
 {
 
     system("cls");
@@ -506,14 +506,14 @@ printf("                                OOOOOOOOOOOOOOOO\n");
     gotoligcol(22,115);
     printf(" C A R T E  J E D I :");
 
-    gotoligcol(24,80);
+    gotoligcol(24,85);
     printf(" V O U S  E T E S  A R R E T E S  P A R  L' E M P I R E,  V O U S  S O U D O Y E Z");
 
-    gotoligcol(26,100);
+    gotoligcol(26,91);
     printf(" L E  G A R D E  P O U R  V O U S  E C H A P P E Z,  P A Y E Z  5 0 0");
 
 
-    gotoligcol(28,90);
+    gotoligcol(28,88);
     Color(10,0);
 
     for (int i=0; i<75; i++)
@@ -521,7 +521,6 @@ printf("                                OOOOOOOOOOOOOOOO\n");
         Sleep(20);
         printf("_");
     }
-    gotoligcol(45,0);
 
     Tabjoueur[tour].argent=Tabjoueur[tour].argent-500;
     if (Tabjoueur[tour].argent<0)
@@ -533,7 +532,7 @@ printf("                                OOOOOOOOOOOOOOOO\n");
 }
 
 ///Carte chance 8
-void f8(joueur_t Tabjoueur[], int tour)
+void f8(joueur_t Tabjoueur[], int tour, int compteur)
 {
 
     system("cls");
@@ -582,11 +581,11 @@ printf("                                OOOOOOOOOOOOOOOO\n");
     gotoligcol(22,115);
     printf(" C A R T E  J E D I :");
 
-    gotoligcol(24,85);
-    printf(" P R I M E  P O U R  L A  D E T R U C T I O N  D E  L' E T O I L E  D E  L A  M O R T");
+    gotoligcol(24,100);
+    printf(" P R I M E  P O U R  L A  D E T R U C T I O N  D E");
 
-    gotoligcol(26,105);
-    printf(" R E C E V E Z  4 0 0");
+    gotoligcol(26,98);
+    printf("L' E T O I L E  D E  L A  M O R T, R E C E V E Z  4 0 0");
 
 
 
@@ -605,7 +604,7 @@ printf("                                OOOOOOOOOOOOOOOO\n");
 
 ///Carte chance 9
 
-void f9(joueur_t Tabjoueur[], int tour)
+void f9(joueur_t Tabjoueur[], int tour, int compteur)
 {
 
     system("cls");
@@ -679,7 +678,7 @@ printf("                                OOOOOOOOOOOOOOOO\n");
 }
 
 ///Carte chance 10
-void f10(joueur_t Tabjoueur[], int tour)
+void f10(joueur_t Tabjoueur[], int tour, int compteur)
 {
 
     system("cls");
@@ -754,7 +753,7 @@ printf("                                OOOOOOOOOOOOOOOO\n");
 }
 
 ///Carte chance 11
-void f11(joueur_t Tabjoueur[], int tour)
+void f11(joueur_t Tabjoueur[], int tour, int compteur)
 {
 
     system("cls");
@@ -825,7 +824,7 @@ printf("                                OOOOOOOOOOOOOOOO\n");
 }
 
 ///Carte chance 12
-void f12(joueur_t Tabjoueur[], int tour)
+void f12(joueur_t Tabjoueur[], int tour, int compteur)
 {
 
     system("cls");
@@ -875,11 +874,11 @@ printf("                                OOOOOOOOOOOOOOOO\n");
     gotoligcol(22,115);
     printf(" C A R T E  J E D I :");
 
-    gotoligcol(24,85);
-    printf(" L' A L L I A N C E  R E B E L L E  V O U S  R E M E R C I E  P O U R  V O S  B O N N E S  A C T I O N S,");
+    gotoligcol(24,92);
+    printf(" L' A L L I A N C E  R E B E L L E  V O U S  R E M E R C I E  P O U R ");
 
-    gotoligcol(26,115);
-    printf(" R E C E V E Z  50");
+    gotoligcol(26,100);
+    printf("V O S  B O N N E S  A C T I O N S, R E C E V E Z  50");
 
     gotoligcol(28,90);
     Color(10,0);
@@ -897,7 +896,7 @@ printf("                                OOOOOOOOOOOOOOOO\n");
 }
 
 ///Carte chance 13
-void f13(joueur_t Tabjoueur[], int tour)
+void f13(joueur_t Tabjoueur[], int tour, int compteur)
 {
 
     system("cls");
@@ -985,7 +984,7 @@ printf("                                OOOOOOOOOOOOOOOO\n");
 }
 
 ///Carte chance 14
-void f14(joueur_t Tabjoueur[], int tour)
+void f14(joueur_t Tabjoueur[], int tour, int compteur)
 {
 
     system("cls");
@@ -1037,10 +1036,10 @@ printf("                                OOOOOOOOOOOOOOOO\n");
     gotoligcol(22,115);
     printf(" C A R T E  J E D I :");
 
-    gotoligcol(24,98);
+    gotoligcol(24,99);
     printf(" L E I A  V O U S  E N V O I E  E N  M I S S I O N,");
 
-    gotoligcol(26,100);
+    gotoligcol(26,101);
     printf(" R E N D E Z  V O U S  S U R  C O R U S A N T");
 
     gotoligcol(28,90);
@@ -1058,7 +1057,7 @@ printf("                                OOOOOOOOOOOOOOOO\n");
 }
 
 ///Carte chance 15
-void f15(joueur_t Tabjoueur[], int tour)
+void f15(joueur_t Tabjoueur[], int tour, int compteur)
 {
 
     system("cls");
@@ -1108,7 +1107,7 @@ printf("                                OOOOOOOOOOOOOOOO\n");
     gotoligcol(22,115);
     printf(" C A R T E  J E D I :");
 
-    gotoligcol(24,95);
+    gotoligcol(24,104);
     printf(" R E C U L E Z  D E  T R O I S  C A S E S");
 
 
@@ -1129,7 +1128,7 @@ printf("                                OOOOOOOOOOOOOOOO\n");
     }
 }
 
-void f16(joueur_t Tabjoueur[], int tour)
+void f16(joueur_t Tabjoueur[], int tour, int compteur)
 {
 
     system("cls");
@@ -1179,11 +1178,11 @@ printf("                                OOOOOOOOOOOOOOOO\n");
     gotoligcol(22,115);
     printf(" C A R T E  J E D I :");
 
-    gotoligcol(24,110);
-    printf(" A L L E Z  A U  S P A T I O P O R T  3,");
+    gotoligcol(24,98);
+    printf(" A L L E Z  A U  S P A T I O P O R T  3, S I  V O U S");
 
-    gotoligcol(26,95);
-    printf(" S I  V O U S  P A S S E Z  P A R  L A  C A S E  D E P A R T  R E C E V E Z  2 0 0 ");
+    gotoligcol(26,91);
+    printf(" P A S S E Z  P A R  L A  C A S E  D E P A R T  R E C E V E Z  2 0 0 ");
 
 
     gotoligcol(28,90);

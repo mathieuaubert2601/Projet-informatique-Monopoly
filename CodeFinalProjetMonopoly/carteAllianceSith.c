@@ -2,7 +2,7 @@
 
 
 /// Carte sith 1
-void Fsith1(joueur_t Tabjoueur[], int tour)
+void Fsith1(joueur_t Tabjoueur[], int tour, int compteur)
 {
     printf("                              ,ooo888888888888888oooo,\n");
     printf("                            o8888YYYYYY77iiiiooo8888888o\n");
@@ -87,7 +87,7 @@ void Fsith1(joueur_t Tabjoueur[], int tour)
 
 ///Carte sith 2
 
-void Fsith2(joueur_t Tabjoueur[], int tour)
+void Fsith2(joueur_t Tabjoueur[], int tour, int compteur)
 {
     printf("                              ,ooo888888888888888oooo,\n");
     printf("                            o8888YYYYYY77iiiiooo8888888o\n");
@@ -171,7 +171,7 @@ void Fsith2(joueur_t Tabjoueur[], int tour)
 }
 
 ///Carte sith 3
-void Fsith3(joueur_t Tabjoueur[], int tour)
+void Fsith3(joueur_t Tabjoueur[], int tour, int compteur)
 {
     printf("                              ,ooo888888888888888oooo,\n");
     printf("                            o8888YYYYYY77iiiiooo8888888o\n");
@@ -263,7 +263,7 @@ void Fsith3(joueur_t Tabjoueur[], int tour)
 
 ///Carte sith 4
 
-void Fsith4(joueur_t Tabjoueur[], int tour)
+void Fsith4(joueur_t Tabjoueur[], int tour, int compteur)
 {
     printf("                              ,ooo888888888888888oooo,\n");
     printf("                            o8888YYYYYY77iiiiooo8888888o\n");
@@ -347,7 +347,7 @@ void Fsith4(joueur_t Tabjoueur[], int tour)
 }
 
 ///Carte Sith 5
-void Fsith5(joueur_t Tabjoueur[], int tour)
+void Fsith5(joueur_t Tabjoueur[], int tour, int compteur)
 {
     printf("                              ,ooo888888888888888oooo,\n");
     printf("                            o8888YYYYYY77iiiiooo8888888o\n");
@@ -437,7 +437,7 @@ void Fsith5(joueur_t Tabjoueur[], int tour)
 }
 
 ///Carte Sith 6
-void Fsith6(joueur_t Tabjoueur[], int tour)
+void Fsith6(joueur_t Tabjoueur[], int tour, int compteur)
 {
     printf("                              ,ooo888888888888888oooo,\n");
     printf("                            o8888YYYYYY77iiiiooo8888888o\n");
@@ -523,7 +523,7 @@ void Fsith6(joueur_t Tabjoueur[], int tour)
 
 }
 ///Carte Sith 7
-void Fsith7(joueur_t Tabjoueur[], int tour)
+void Fsith7(joueur_t Tabjoueur[], int tour, int compteur)
 {
     printf("                              ,ooo888888888888888oooo,\n");
     printf("                            o8888YYYYYY77iiiiooo8888888o\n");
@@ -612,7 +612,7 @@ void Fsith7(joueur_t Tabjoueur[], int tour)
 
 ///Carte Sith 8
 
-void Fsith8(joueur_t Tabjoueur[], int tour)
+void Fsith8(joueur_t Tabjoueur[], int tour, int compteur)
 {
     printf("                              ,ooo888888888888888oooo,\n");
     printf("                            o8888YYYYYY77iiiiooo8888888o\n");
@@ -701,7 +701,7 @@ void Fsith8(joueur_t Tabjoueur[], int tour)
 }
 
 ///Carte Sith 9
-void Fsith9(joueur_t Tabjoueur[], int tour)
+void Fsith9(joueur_t Tabjoueur[], int tour, int compteur)
 {
     printf("                              ,ooo888888888888888oooo,\n");
     printf("                            o8888YYYYYY77iiiiooo8888888o\n");
@@ -793,7 +793,7 @@ void Fsith9(joueur_t Tabjoueur[], int tour)
 
 ///Carte Sith 10
 
-void Fsith10(joueur_t Tabjoueur[], int tour)
+void Fsith10(joueur_t Tabjoueur[], int tour, int compteur)
 {
     printf("                              ,ooo888888888888888oooo,\n");
     printf("                            o8888YYYYYY77iiiiooo8888888o\n");
@@ -878,7 +878,7 @@ void Fsith10(joueur_t Tabjoueur[], int tour)
 
 ///Carte Sith 11
 
-void Fsith11(joueur_t Tabjoueur[], int tour)
+void Fsith11(joueur_t Tabjoueur[], int tour, int compteur)
 {
     printf("                              ,ooo888888888888888oooo,\n");
     printf("                            o8888YYYYYY77iiiiooo8888888o\n");
@@ -967,7 +967,7 @@ void Fsith11(joueur_t Tabjoueur[], int tour)
 
 ///Carte Sith 12
 
-void Fsith12(joueur_t Tabjoueur[], int tour)
+void Fsith12(joueur_t Tabjoueur[], int tour, int compteur)
 {
     printf("                              ,ooo888888888888888oooo,\n");
     printf("                            o8888YYYYYY77iiiiooo8888888o\n");
@@ -1060,7 +1060,7 @@ void Fsith12(joueur_t Tabjoueur[], int tour)
 ///Carte Sith 13
 
 
-void Fsith13(joueur_t Tabjoueur[], int tour)
+void Fsith13(joueur_t Tabjoueur[], int tour, int compteur)
 {
     printf("                              ,ooo888888888888888oooo,\n");
     printf("                            o8888YYYYYY77iiiiooo8888888o\n");
@@ -1147,7 +1147,7 @@ void Fsith13(joueur_t Tabjoueur[], int tour)
 
 
 ///Carte Sith 14
-void Fsith14(joueur_t Tabjoueur[], int tour)
+void Fsith14(joueur_t Tabjoueur[], int tour, int compteur)
 {
     printf("                              ,ooo888888888888888oooo,\n");
     printf("                            o8888YYYYYY77iiiiooo8888888o\n");
@@ -1231,7 +1231,7 @@ void Fsith14(joueur_t Tabjoueur[], int tour)
 }
 ///Carte Sith 15
 
-void Fsith15(joueur_t Tabjoueur[], int tour)
+void Fsith15(joueur_t Tabjoueur[], int tour, int compteur)
 {
 printf("                              ,ooo888888888888888oooo,\n");
 printf("                            o8888YYYYYY77iiiiooo8888888o\n");
@@ -1319,7 +1319,7 @@ if (Tabjoueur[tour].argent < 0){
 
 
 ///Carte Sith 16
-void Fsith16(joueur_t Tabjoueur[], int tour)
+void Fsith16(joueur_t Tabjoueur[], int tour, int compteur)
 {
     printf("                              ,ooo888888888888888oooo,\n");
     printf("                            o8888YYYYYY77iiiiooo8888888o\n");

@@ -2,14 +2,14 @@
 1640973790 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\introductionpartie.c
 	"header.h"
 
-1641721649 c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\header.h
+1641758967 c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\header.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<time.h>
 	<windows.h>
 
-1641721564 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\main.c
+1641759076 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\main.c
 	"header.h"
 
 1641235030 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\couleursdumonopoly.c
@@ -18,10 +18,10 @@
 1641403490 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\pleinecran.c
 	"header.h"
 
-1641721705 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\menu.c
+1641759095 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\menu.c
 	"header.h"
 
-1641721649 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\regles_du_jeu.c
+1641758992 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\regles_du_jeu.c
 	"header.h"
 
 1641234936 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\creation_nouveaux_joueurs.c
@@ -36,10 +36,10 @@
 1640858478 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\sauvegardeetchargement.c
 	"header.h"
 
-1641721528 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\personnesduprojet.c
+1641758979 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\personnesduprojet.c
 	"header.h"
 
-1641721329 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\saubegardeetchargement.c
+1641758842 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\saubegardeetchargement.c
 	"header.h"
 
 1641234982 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\ordredesjoueurs.c
@@ -52,19 +52,20 @@
 1641409226 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\deplacementdujoueur.c
 	"header.h"
 
-1641662058 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\actiondescases.c
+1641758331 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\actiondescases.c
 	"header.h"
 
-1641551642 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\cartealliancesith.c
+1641758396 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\cartealliancesith.c
 	"header.h"
 
-1641551742 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\cartechance.c
+1641758420 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\cartechance.c
 	"header.h"
 
 1641495042 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\prison.c
 	"header.h"
 
-1641500746 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\faillite.c
+1641758463 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\faillite.c
+	"header.h"
 
 1641570993 source:c:\users\thiba\onedrive\documents\ece\algo\monop\projet-informatique-monopoly\codefinalprojetmonopoly\actiondescases.c
 	"header.h"
@@ -139,14 +140,14 @@
 1641551642 source:f:\monop\projet-informatique-monopoly\codefinalprojetmonopoly\cartealliancesith.c
 	"header.h"
 
-1641666922 f:\monop\projet-informatique-monopoly\codefinalprojetmonopoly\header.h
+1641740410 f:\monop\projet-informatique-monopoly\codefinalprojetmonopoly\header.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<time.h>
 	<windows.h>
 
-1641551742 source:f:\monop\projet-informatique-monopoly\codefinalprojetmonopoly\cartechance.c
+1641723810 source:f:\monop\projet-informatique-monopoly\codefinalprojetmonopoly\cartechance.c
 	"header.h"
 
 1641235030 source:f:\monop\projet-informatique-monopoly\codefinalprojetmonopoly\couleursdumonopoly.c
@@ -158,12 +159,13 @@
 1641409226 source:f:\monop\projet-informatique-monopoly\codefinalprojetmonopoly\deplacementdujoueur.c
 	"header.h"
 
-1641569506 source:f:\monop\projet-informatique-monopoly\codefinalprojetmonopoly\echanges.c
+1641669368 source:f:\monop\projet-informatique-monopoly\codefinalprojetmonopoly\echanges.c
 	"header.h"
 
-1641500746 source:f:\monop\projet-informatique-monopoly\codefinalprojetmonopoly\faillite.c
+1641740726 source:f:\monop\projet-informatique-monopoly\codefinalprojetmonopoly\faillite.c
+	"header.h"
 
-1641569776 source:f:\monop\projet-informatique-monopoly\codefinalprojetmonopoly\gestion_maisons_hotels.c
+1641741444 source:f:\monop\projet-informatique-monopoly\codefinalprojetmonopoly\gestion_maisons_hotels.c
 	"header.h"
 
 1640857648 source:f:\monop\projet-informatique-monopoly\codefinalprojetmonopoly\gestionducurseur.c
@@ -176,13 +178,13 @@
 	"header.h"
 	<time.h>
 
-1641540038 source:f:\monop\projet-informatique-monopoly\codefinalprojetmonopoly\menu.c
+1641726966 source:f:\monop\projet-informatique-monopoly\codefinalprojetmonopoly\menu.c
 	"header.h"
 
 1641234982 source:f:\monop\projet-informatique-monopoly\codefinalprojetmonopoly\ordredesjoueurs.c
 	"header.h"
 
-1641401634 source:f:\monop\projet-informatique-monopoly\codefinalprojetmonopoly\personnesduprojet.c
+1641721530 source:f:\monop\projet-informatique-monopoly\codefinalprojetmonopoly\personnesduprojet.c
 	"header.h"
 
 1641669326 source:f:\monop\projet-informatique-monopoly\codefinalprojetmonopoly\plateaudejeu.c
@@ -194,27 +196,33 @@
 1641495042 source:f:\monop\projet-informatique-monopoly\codefinalprojetmonopoly\prison.c
 	"header.h"
 
-1641401564 source:f:\monop\projet-informatique-monopoly\codefinalprojetmonopoly\regles_du_jeu.c
+1641721650 source:f:\monop\projet-informatique-monopoly\codefinalprojetmonopoly\regles_du_jeu.c
 	"header.h"
 
-1641401304 source:f:\monop\projet-informatique-monopoly\codefinalprojetmonopoly\saubegardeetchargement.c
+1641721330 source:f:\monop\projet-informatique-monopoly\codefinalprojetmonopoly\saubegardeetchargement.c
 	"header.h"
 
-1641662058 source:f:\monop\projet-informatique-monopoly\codefinalprojetmonopoly\actiondescases.c
+1641752490 source:f:\monop\projet-informatique-monopoly\codefinalprojetmonopoly\actiondescases.c
 	"header.h"
 
-1641668652 source:f:\monop\projet-informatique-monopoly\codefinalprojetmonopoly\main.c
+1641734350 source:f:\monop\projet-informatique-monopoly\codefinalprojetmonopoly\main.c
 	"header.h"
 
-1641666884 source:f:\monop\projet-informatique-monopoly\codefinalprojetmonopoly\hypotheque.c
+1641741732 source:f:\monop\projet-informatique-monopoly\codefinalprojetmonopoly\hypotheque.c
 	"header.h"
 
-1641669368 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\echanges.c
+1641758463 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\echanges.c
 	"header.h"
 
-1641569776 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\gestion_maisons_hotels.c
+1641758539 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\gestion_maisons_hotels.c
 	"header.h"
 
-1641666884 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\hypotheque.c
+1641758512 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\hypotheque.c
+	"header.h"
+
+1641741832 source:f:\monop\projet-informatique-monopoly\codefinalprojetmonopoly\hypotheque_faillite.c
+	"header.h"
+
+1641758569 source:c:\users\aubert mathieu\documents\github\projet-informatique-monopoly\codefinalprojetmonopoly\hypotheque_faillite.c
 	"header.h"
 

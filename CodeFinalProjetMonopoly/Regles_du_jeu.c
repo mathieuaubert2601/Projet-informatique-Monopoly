@@ -1,6 +1,6 @@
 #include "header.h"
 
-void regle_Du_jeu(joueur_t tab_joueur[], int* nombre_joueur,caseMonop tableauDeCase[], joueur_t OrdreDesJoueursAcharger[],int* nombreCarteSith,int*nombreCarteChance,int tabJFaillite[])
+void regle_Du_jeu(joueur_t tab_joueur[], int* nombre_joueur,caseMonop tableauDeCase[], joueur_t OrdreDesJoueursAcharger[],int* nombreCarteSith,int*nombreCarteChance,int tabJFaillite[],int compteurJoueurEnFaillite)
 {
     ///Declaration des variables
     int a;
@@ -153,5 +153,5 @@ void regle_Du_jeu(joueur_t tab_joueur[], int* nombre_joueur,caseMonop tableauDeC
     getchar();
     system("cls");
     menu(&a);
-    choixmenu(&a, tab_joueur,tableauDeCase,OrdreDesJoueursAcharger,nombre_joueur,nombreCarteSith,nombreCarteChance,tabJFaillite);
+    choixmenu(&a, tab_joueur,tableauDeCase,OrdreDesJoueursAcharger,nombre_joueur,nombreCarteSith,nombreCarteChance,tabJFaillite,compteurJoueurEnFaillite);
 }
