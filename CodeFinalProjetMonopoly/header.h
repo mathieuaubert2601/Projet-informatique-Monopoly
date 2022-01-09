@@ -54,15 +54,15 @@ void intro();
 void Color(int couleurDuTexte,int couleurDeFond);
 void pleinEcran();
 void menu(int* choix);
-void choixmenu(int* choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[], joueur_t OrdreDesJoueursAcharger[],int* nombreDeJoueurAJouer,int* nombreCarteSith, int* nombreCarteChance);
-void regle_Du_jeu(joueur_t tab_joueur[], int* nombre_joueur,caseMonop tableauDeCase[], joueur_t OrdreDesJoueursAcharger[],int* nombreCarteSith,int*nombreCarteChance);
+void choixmenu(int* choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[], joueur_t OrdreDesJoueursAcharger[],int* nombreDeJoueurAJouer,int* nombreCarteSith, int* nombreCarteChance,int tableauJoueurFaillite[]);
+void regle_Du_jeu(joueur_t tab_joueur[], int* nombre_joueur,caseMonop tableauDeCase[], joueur_t OrdreDesJoueursAcharger[],int* nombreCarteSith,int*nombreCarteChance,int tabJFaillite[]);
 void creer_nouveau_joueur(joueur_t tab_joueur[], int* nombre_joueur);
 void plateau(int pos[],int nbj,caseMonop cases[28],joueur_t joueur[4]);
 void SauvegardeVerifPartieSauv();
 int testPartieChargee();
 void sauvegardeNombreJoueur(int nombre_De_joueur);
 void chargerNombreJoueur(int* nombre_De_joueur);
-void credits(joueur_t tab_joueur[], int* nombre_joueur,caseMonop tableauDeCase[], joueur_t OrdreDesJoueursAcharger[],int* nombreCarteSith, int* nombreCarteChance);
+void credits(joueur_t tab_joueur[], int* nombre_joueur,caseMonop tableauDeCase[], joueur_t OrdreDesJoueursAcharger[],int* nombreCarteSith, int* nombreCarteChance,int tabJoueurFaillite[]);
 void choisirQuiCommence(joueur_t ordreJoueur[],joueur_t tabJoueur[], int nbrJoueur);
 void afficherDe(int de1, int de2);
 void lancerDeDes(int* deC, int* deD);
@@ -117,5 +117,7 @@ void achat( joueur_t tabJoueur[], caseMonop Tabcase[], int *compteurMaison, int 
 void vente(joueur_t tabJoueur[], caseMonop Tabcase[], int *compteurMaison, int *compteurHotel, int nbrMaison, int choixP, int i);
 void gestion_Prop(joueur_t joueur[], caseMonop caseMonopoly[], int *compteurMaison, int *compteurHotel, int i);
 void hypotheque(joueur_t tabJoueur[], caseMonop tabC[],int *compteurMaisons, int *compteurHotels, int t);
+void chargerJoueurFaillite(int joueurEnFailliteAcharger[]);
+void sauvegardeJoueurEnFaillite(int joueurEnFaillite[]);
 
 #endif // HEADER_H_INCLUDED

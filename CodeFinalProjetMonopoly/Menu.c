@@ -120,7 +120,7 @@ void menu(int* choix)//menu
 }
 
 ///Sous programme pour les choix du menu
-void choixmenu(int* choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[], joueur_t OrdreDesJoueursAcharger[],int* nombreDeJoueurAJouer,int* nombreCarteSith, int* nombreCarteChance)//va traiter les choix du menu de la valeur deja blindée
+void choixmenu(int* choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[], joueur_t OrdreDesJoueursAcharger[],int* nombreDeJoueurAJouer,int* nombreCarteSith, int* nombreCarteChance,int tableauJoueurFaillite[])//va traiter les choix du menu de la valeur deja blindée
 {
     int a,chargementPossibleOuNon,reprisePossibleOuNon,sauvegardePossibleOuNon;
 
@@ -137,7 +137,7 @@ void choixmenu(int* choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[]
             Sleep(2000);
             system("cls");
             menu(choixDumenu);
-            choixmenu(choixDumenu,tab_joueur,tableauDeCase,OrdreDesJoueursAcharger, nombreDeJoueurAJouer,nombreCarteSith,nombreCarteChance);
+            choixmenu(choixDumenu,tab_joueur,tableauDeCase,OrdreDesJoueursAcharger, nombreDeJoueurAJouer,nombreCarteSith,nombreCarteChance,tableauJoueurFaillite);
         }
         else
         {
@@ -146,6 +146,7 @@ void choixmenu(int* choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[]
             Sleep(1000);
             chargerOrdreJoueur(OrdreDesJoueursAcharger);
             SauvegardeVerifPartieCommencee();
+            chargerJoueurFaillite(tableauJoueurFaillite);
             *nombreCarteChance = ChargerNombreCarteChance();
             *nombreCarteSith = ChargerNombreCarteSith();
 
@@ -176,7 +177,7 @@ void choixmenu(int* choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[]
             Sleep(2000);
             system("cls");
             menu(choixDumenu);
-            choixmenu(choixDumenu,tab_joueur,tableauDeCase,OrdreDesJoueursAcharger,nombreDeJoueurAJouer,nombreCarteSith,nombreCarteChance);
+            choixmenu(choixDumenu,tab_joueur,tableauDeCase,OrdreDesJoueursAcharger,nombreDeJoueurAJouer,nombreCarteSith,nombreCarteChance,tableauJoueurFaillite);
         }
         else if (sauvegardePossibleOuNon == 1)
         {
@@ -185,6 +186,7 @@ void choixmenu(int* choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[]
             SauvegardeVerifPartieSauv();
             SauvegardeNombreCarteChance(*nombreCarteChance);
             SauvegardeNombreCarteSith(*nombreCarteSith);
+            sauvegardeJoueurEnFaillite(tableauJoueurFaillite);
 
             printf("Sauvegarde en cours");
             Sleep(1000);
@@ -198,14 +200,14 @@ void choixmenu(int* choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[]
             Sleep(2000);
             system("cls");
             menu(choixDumenu);
-            choixmenu(choixDumenu,tab_joueur,tableauDeCase,OrdreDesJoueursAcharger,nombreDeJoueurAJouer,nombreCarteSith,nombreCarteChance);
+            choixmenu(choixDumenu,tab_joueur,tableauDeCase,OrdreDesJoueursAcharger,nombreDeJoueurAJouer,nombreCarteSith,nombreCarteChance,tableauJoueurFaillite);
         }
 
         break;
     }
     case 4:
     {
-        credits(tab_joueur, nombreDeJoueurAJouer,tableauDeCase,OrdreDesJoueursAcharger,nombreCarteSith, nombreCarteChance);
+        credits(tab_joueur, nombreDeJoueurAJouer,tableauDeCase,OrdreDesJoueursAcharger,nombreCarteSith, nombreCarteChance,tableauJoueurFaillite);
 
         break;
     }
@@ -219,7 +221,7 @@ void choixmenu(int* choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[]
     }
     case 6:
     {
-        regle_Du_jeu(tab_joueur,nombreDeJoueurAJouer,tableauDeCase,OrdreDesJoueursAcharger,nombreCarteSith, nombreCarteChance);
+        regle_Du_jeu(tab_joueur,nombreDeJoueurAJouer,tableauDeCase,OrdreDesJoueursAcharger,nombreCarteSith, nombreCarteChance,tableauJoueurFaillite);
         break;
     }
     case 7:
@@ -231,7 +233,7 @@ void choixmenu(int* choixDumenu,joueur_t tab_joueur[], caseMonop tableauDeCase[]
             Sleep(2000);
             system("cls");
             menu(choixDumenu);
-            choixmenu(choixDumenu,tab_joueur,tableauDeCase,OrdreDesJoueursAcharger,nombreDeJoueurAJouer,nombreCarteSith, nombreCarteChance);
+            choixmenu(choixDumenu,tab_joueur,tableauDeCase,OrdreDesJoueursAcharger,nombreDeJoueurAJouer,nombreCarteSith, nombreCarteChance,tableauJoueurFaillite);
         }
         break;
     }
